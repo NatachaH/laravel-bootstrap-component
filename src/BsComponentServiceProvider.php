@@ -29,7 +29,7 @@ class BsComponentServiceProvider extends ServiceProvider
       $this->loadViewsFrom(__DIR__.'/../resources/views', 'bs-component');
 
       // BLADES
-      Blade::component('bs-input', Nh\BsComponent\View\Components\Input::class);
+      Blade::component('bs-input', \Nh\BsComponent\View\Components\Input::class);
 
     }
 }

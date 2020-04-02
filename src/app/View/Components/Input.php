@@ -67,7 +67,7 @@ class Input extends Component
      *
      * @var string
      */
-    public public $size;
+    public $size;
 
     /**
      * Create a new component instance.
