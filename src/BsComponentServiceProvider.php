@@ -2,6 +2,7 @@
 namespace Nh\BsComponent;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class BsComponentServiceProvider extends ServiceProvider
 {
