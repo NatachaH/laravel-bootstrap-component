@@ -1,0 +1,24 @@
+{
+    "name": "nh/bs-component",
+    "description": "Bootstrap components",
+    "license": "MIT",
+    "type": "library",
+    "require": {},
+    "author": {
+        "name": "Natacha Herth",
+        "email": "info@natachaherth.ch"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nh\\BsComponent\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nh\\BsComponent\\BsComponentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
