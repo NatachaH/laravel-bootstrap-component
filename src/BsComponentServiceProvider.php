@@ -26,7 +26,7 @@ class BsComponentServiceProvider extends ServiceProvider
     {
 
       // VIEWS
-      $this->loadViewsFrom(__DIR__.'/../resources/views', 'bs-component');
+      $this->loadViewsFrom(__DIR__.'/resources/views', 'bs-component');
 
       // BLADES
       Blade::component('bs-input', \Nh\BsComponent\View\Components\Input::class);
