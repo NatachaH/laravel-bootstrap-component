@@ -49,20 +49,6 @@ class Input extends Component
     public $help;
 
     /**
-     * Is the input readonly.
-     *
-     * @var string
-     */
-    public $readonly;
-
-    /**
-     * Is the input disabled.
-     *
-     * @var string
-     */
-    public $disabled;
-
-    /**
      * The size of the input.
      *
      * @var string
@@ -70,11 +56,32 @@ class Input extends Component
     public $size;
 
     /**
+     * Is the input readonly.
+     *
+     * @var boolean
+     */
+    public $isReadonly;
+
+    /**
+     * Is the input disabled.
+     *
+     * @var boolean
+     */
+    public $isDisabled;
+
+    /**
+     * Is the input required.
+     *
+     * @var boolean
+     */
+    public $isRequired;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $readonly = false, $disabled = false, $size = '')
+    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false )
     {
         $this->label        = $label;
         $this->type         = $type;
@@ -82,9 +89,10 @@ class Input extends Component
         $this->value        = $value;
         $this->placeholder  = $placeholder;
         $this->help         = $help;
-        $this->readonly     = $readonly ? 'readonly' : '';
-        $this->disabled     = $disabled ? 'disabled' : '';
         $this->size         = !empty($size) ? 'form-control-'.$size : '';
+        $this->isReadonly   = $readonly;
+        $this->isDisabled   = $disabled;
+        $this->isRequired   = $required;
     }
 
     /**

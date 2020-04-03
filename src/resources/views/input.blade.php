@@ -1,7 +1,8 @@
 <div {{ $attributes }}>
 
   @if($label)
-    <label for="{{ $name.'Field' }}" class="form-label">{{ $label }}</label>
+    <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
+
   @endif
 
   <input
@@ -12,8 +13,9 @@
     id="{{ $name.'Field' }}"
     @if($placeholder) placeholder="{{ $placeholder }}" @endif
     @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
-    {{ $readonly }}
-    {{ $disabled }}
+    {{ $isReadonly ? 'readonly' : '' }}
+    {{ $isDisabled ? 'disabled' : ''}}
+    {{ $isRequired ? 'required' : ''}}
   />
 
   @if($help)
