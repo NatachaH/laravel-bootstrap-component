@@ -17,7 +17,7 @@
   />
 
   @if($help)
-    <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">Laissez le champ vide si vous ne souhaitez pas le modifier.</small>
+    <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
 
   @error($name)
