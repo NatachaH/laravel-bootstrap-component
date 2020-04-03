@@ -2,7 +2,6 @@
 
   @if($label)
     <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
-
   @endif
 
   <input
