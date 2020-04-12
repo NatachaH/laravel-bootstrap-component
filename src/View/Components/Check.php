@@ -42,17 +42,26 @@ class Check extends Component
     public $isDisabled;
 
     /**
+     * Is the input checked.
+     *
+     * @var boolean
+     */
+    public $isChecked;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false, $checked)
     {
         $this->label        = $label;
         $this->type         = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->name         = $name;
         $this->value        = $value;
         $this->isDisabled   = $disabled;
+        $this->isChecked    = $checked;
+
     }
 
     /**
