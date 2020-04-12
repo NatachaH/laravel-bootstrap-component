@@ -5,12 +5,12 @@
     name="{{ $name }}"
     value="{{ $value }}"
     class="form-check-input @error($name) is-invalid @enderror"
-    id="{{ $name.'Field'.$value }}"
+    id="{{ $id }}"
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isChecked ? 'checked' : ''}}
   />
 
-  <label class="form-check-label" for="{{ $name.'Field'.$value }}">
+  <label class="form-check-label" for="{{ $id }}">
     {{ $label }}
   </label>
 

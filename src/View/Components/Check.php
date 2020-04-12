@@ -49,11 +49,20 @@ class Check extends Component
     public $isChecked;
 
     /**
+     * Generate the id of the checkbox
+     *
+     * @var string
+     */
+    public function id(){
+      return str_replace('[]', '', $this->name).'Field'.strtoupper($value);
+    };
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false, $checked)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false, $checked = false)
     {
         $this->label        = $label;
         $this->type         = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
