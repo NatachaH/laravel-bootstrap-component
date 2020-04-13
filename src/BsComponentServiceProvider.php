@@ -31,6 +31,7 @@ class BsComponentServiceProvider extends ServiceProvider
       // BLADES
       Blade::component('bs-input', \Nh\BsComponent\View\Components\Input::class);
       Blade::component('bs-check', \Nh\BsComponent\View\Components\Check::class);
+      Blade::component('bs-select', \Nh\BsComponent\View\Components\Select::class);
 
 
     }
