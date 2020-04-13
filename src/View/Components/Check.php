@@ -53,9 +53,9 @@ class Check extends Component
      *
      * @var string
      */
-    public function id(){
-      return str_replace('[]', '', $this->name).'Field'.strtoupper($value);
-    };
+     public function id(){
+        return str_replace('[]', '', $this->name).'Field'.strtoupper($this->value);
+     }
 
     /**
      * Create a new component instance.
