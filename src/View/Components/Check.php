@@ -7,42 +7,42 @@ use Illuminate\View\Component;
 class Check extends Component
 {
     /**
-     * The label of the input.
+     * The label of the check.
      *
      * @var string
      */
     public $label;
 
     /**
-     * The type of the input.
+     * The type of the check.
      *
      * @var string
      */
     public $type;
 
     /**
-     * The name of the input.
+     * The name of the check.
      *
      * @var string
      */
     public $name;
 
     /**
-     * The default value of the input.
+     * The default value of the check.
      *
      * @var string
      */
     public $value;
 
     /**
-     * Is the input disabled.
+     * Is the check disabled.
      *
      * @var boolean
      */
     public $isDisabled;
 
     /**
-     * Is the input checked.
+     * Is the check checked.
      *
      * @var boolean
      */
