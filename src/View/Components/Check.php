@@ -87,7 +87,7 @@ class Check extends Component
         $this->name          = $name;
         $this->value         = $value;
         $this->isDisabled    = $disabled;
-        $this->isChecked     = defineIsChecked($checked);
+        $this->isChecked     = $this->defineIsChecked($checked);
     }
 
     /**
