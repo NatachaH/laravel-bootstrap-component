@@ -69,10 +69,14 @@ class Select extends Component
      */
     public $isRequired;
 
-
+    /**
+     * Check if the option is selected
+     * @param  string  $option
+     * @return boolean 
+     */
     public function isSelected($option)
     {
-        return $option == old($this->name,$this->value) ? 'selected' : '';
+        return $option == old($this->name,$this->value);
     }
 
     /**
