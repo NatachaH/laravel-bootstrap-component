@@ -97,7 +97,7 @@ class Select extends Component
         $this->label        = $label;
         $this->name         = $name;
         $this->options      = $options;
-        $this->values        = $values;
+        $this->values       = $values;
         $this->help         = $help;
         $this->size         = !empty($size) ? 'form-select-'.$size : '';
         $this->isMultiple   = $multiple;

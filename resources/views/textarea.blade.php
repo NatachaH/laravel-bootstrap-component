@@ -6,16 +6,14 @@
 
   <textarea
     name="{{ $name }}"
-    class="form-control {{ $size }} @error($name) is-invalid @enderror"
+    class="form-control @error($name) is-invalid @enderror"
     id="{{ $name.'Field' }}"
     @if($placeholder) placeholder="{{ $placeholder }}" @endif
     @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
     {{ $isReadonly ? 'readonly' : '' }}
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
-  >
-    {{ old($name,$value) }}
-  </textarea>
+  >{{ old($name,$value) }}</textarea>
 
   @if($help)
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
@@ -26,5 +24,5 @@
           {{ $message }}
       </span>
   @enderror
-  
+
 </div>

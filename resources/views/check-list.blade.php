@@ -13,12 +13,12 @@
         name="{{ $name }}"
         value="{{ $key }}"
         class="form-check-input @error($name) is-invalid @enderror"
-        id="{{ $idCheckbox }}"
+        id="{{ $idCheckbox($key) }}"
         {{ $isDisabled ? 'disabled' : '' }}
         {{ $isChecked($key) ? 'checked' : '' }}
       />
 
-      <label class="form-check-label" for="{{ $idCheckbox }}">
+      <label class="form-check-label" for="{{ $idCheckbox($key) }}">
         {{ $value }}
       </label>
 
@@ -35,5 +35,5 @@
           {{ $message }}
       </span>
   @enderror
-  
+
 </div>

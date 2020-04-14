@@ -85,8 +85,8 @@ class CheckList extends Component
      *
      * @var string
      */
-     public function idCheckbox(){
-        return str_replace('[]', '', $this->name).'Field'.strtoupper($this->value);
+     public function idCheckbox($option){
+        return str_replace('[]', '', $this->name).'Field'.strtoupper($option);
      }
 
     /**
