@@ -28,11 +28,12 @@ class Select extends Component
     public $options;
 
     /**
-     * The default value of the select.
+     * The default value(s) of the select.
+     * Can be a string or an array.
      *
-     * @var string
+     * @var mixed
      */
-    public $value;
+    public $values;
 
     /**
      * The help message of the select.
@@ -72,11 +73,18 @@ class Select extends Component
     /**
      * Check if the option is selected
      * @param  string  $option
-     * @return boolean 
+     * @return boolean
      */
     public function isSelected($option)
     {
-        return $option == old($this->name,$this->value);
+        $currentValues = old($this->name,$this->values);
+
+        if($this->isMultiple && is_array($currentValues))
+        {
+            return in_array($option, $currentValues);
+        } else {
+            return $option == $currentValues;
+        }
     }
 
     /**
@@ -84,12 +92,12 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $value = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
+    public function __construct($label = '', $name, $options, $values = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
     {
         $this->label        = $label;
         $this->name         = $name;
         $this->options      = $options;
-        $this->value        = $value;
+        $this->values        = $values;
         $this->help         = $help;
         $this->size         = !empty($size) ? 'form-select-'.$size : '';
         $this->isMultiple   = $multiple;

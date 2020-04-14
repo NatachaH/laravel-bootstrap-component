@@ -36,8 +36,9 @@ class CheckList extends Component
 
     /**
      * The default value of the check list.
+     * Can be a string or an array.
      *
-     * @var array
+     * @var mixed
      */
     public $values;
 
@@ -69,7 +70,14 @@ class CheckList extends Component
      */
     public function isChecked($option)
     {
-        return in_array($option, old($this->name,$this->values));
+        $currentValues = old($this->name,$this->values);
+
+        if(is_array($currentValues))
+        {
+            return in_array($option, $currentValues);
+        } else {
+            return $option == $currentValues;
+        }
     }
 
     /**

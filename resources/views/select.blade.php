@@ -18,7 +18,6 @@
 
   </select>
 
-
   @if($help)
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
@@ -28,4 +27,5 @@
           {{ $message }}
       </span>
   @enderror
+
 </div>

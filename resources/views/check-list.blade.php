@@ -4,7 +4,6 @@
     <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
   @endif
 
-
   @foreach ($options as $key => $value)
 
     <div class="form-check">
@@ -36,4 +35,5 @@
           {{ $message }}
       </span>
   @enderror
+  
 </div>

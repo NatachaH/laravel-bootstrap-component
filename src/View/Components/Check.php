@@ -28,11 +28,19 @@ class Check extends Component
     public $name;
 
     /**
-     * The default value of the check.
+     * The value of the check.
      *
      * @var string
      */
     public $value;
+
+    /**
+     * The default checked values.
+     * Can be a string or an array.
+     *
+     * @var mixed
+     */
+    public $checkedValues;
 
     /**
      * Is the check disabled.
@@ -46,7 +54,17 @@ class Check extends Component
      *
      * @var boolean
      */
-    public $isChecked;
+    public function isChecked()
+    {
+        $currentValues = old($this->name,$this->checkedValues);
+
+        if(is_array($currentValues))
+        {
+            return in_array($this->value, $currentValues);
+        } else {
+            return $this->value == $currentValues;
+        }
+    }
 
     /**
      * Generate the id of the checkbox
@@ -62,15 +80,14 @@ class Check extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false, $checked = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = '', $disabled = false, $checked = false; $checkedValues = '')
     {
-        $this->label        = $label;
-        $this->type         = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
-        $this->name         = $name;
-        $this->value        = $value;
-        $this->isDisabled   = $disabled;
-        $this->isChecked    = $checked;
-
+        $this->label         = $label;
+        $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
+        $this->name          = $name;
+        $this->value         = $value;
+        $this->isDisabled    = $disabled;
+        $this->checkedValues = empty($checked) ? $checkedValues : $value;
     }
 
     /**
