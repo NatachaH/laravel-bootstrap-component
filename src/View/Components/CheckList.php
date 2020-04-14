@@ -71,13 +71,7 @@ class CheckList extends Component
     public function isChecked($option)
     {
         $currentValues = old($this->name,$this->values);
-
-        if(is_array($currentValues))
-        {
-            return in_array($option, $currentValues);
-        } else {
-            return $option == $currentValues;
-        }
+        return is_array($currentValues) ? in_array($option, $currentValues) : $option == $currentValues;
     }
 
     /**
