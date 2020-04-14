@@ -13,9 +13,9 @@
   >
 
     @foreach ($options as $key => $value)
-      <option value="{{ $key }}" {{ $selected($key) }}>{{ $value }}</option>
+      <option value="{{ $key }}" {{ $isSelected($key) }}>{{ $value }}</option>
     @endforeach
-  
+
   </select>
 
 
