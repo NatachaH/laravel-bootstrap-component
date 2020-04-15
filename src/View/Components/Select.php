@@ -83,7 +83,7 @@ class Select extends Component
      */
     public function isOptionSelected($option)
     {
-        $currentValues = old($this->name,$this->value);
+        $currentValues = old($this->name,$this->values);
         return in_array($option, (array)$currentValues);
     }
 
@@ -102,12 +102,12 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $value = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
+    public function __construct($label = '', $name, $options, $values = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
     {
         $this->label            = $label;
         $this->name             = $name;
         $this->options          = $options;
-        $this->value            = $value;
+        $this->values           = $values;
         $this->help             = $help;
         $this->size             = !empty($size) ? 'form-select-'.$size : '';
         $this->isMultiple       = $multiple;
