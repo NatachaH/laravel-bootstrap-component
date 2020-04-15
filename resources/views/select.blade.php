@@ -13,7 +13,7 @@
   >
 
     @foreach ($options as $key => $value)
-      <option value="{{ $key }}" {{ $isSelected($key) ? 'selected' : '' }}>{{ $value }}</option>
+      <option value="{{ $key }}" {{ $isOptionSelected($key) ? 'selected' : '' }} {{ $isOptionDisabled($key) ? 'disabled' : '' }}>{{ $value }}</option>
     @endforeach
 
   </select>
