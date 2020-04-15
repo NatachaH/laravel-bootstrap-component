@@ -18,6 +18,10 @@
 
   </select>
 
+  @if($isDisabled && !empty($values))
+    <input type="hidden" name="{{ $name }}" value="{{ $values }}"/>
+  @endif
+
   @if($help)
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
