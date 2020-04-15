@@ -14,8 +14,8 @@
         value="{{ $key }}"
         class="form-check-input @error($name) is-invalid @enderror"
         id="{{ $idCheckbox($key) }}"
-        {{ $isDisabled ? 'disabled' : '' }}
-        {{ $isChecked($key) ? 'checked' : '' }}
+        {{ $isDisabled || $isOptionDisabled($key) ? 'disabled' : '' }}
+        {{ $isOptionChecked($key) ? 'checked' : '' }}
       />
 
       <label class="form-check-label" for="{{ $idCheckbox($key) }}">

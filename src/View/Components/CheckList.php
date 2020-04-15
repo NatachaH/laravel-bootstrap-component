@@ -64,14 +64,31 @@ class CheckList extends Component
     public $isRequired;
 
     /**
+     * The options who are disabled in the list.
+     *
+     * @var array
+     */
+    public $optionsDisabled;
+
+    /**
      * Check if the item is checked
      * @param  string  $option
      * @return boolean
      */
-    public function isChecked($option)
+    public function isOptionChecked($option)
     {
         $currentValues = old($this->name,$this->values);
-        return is_array($currentValues) ? in_array($option, $currentValues) : $option == $currentValues;
+        return in_array($option, $currentValues);
+    }
+
+    /**
+     * Check if the option is disabled
+     * @param  string  $option
+     * @return boolean
+     */
+    public function isOptionDisabled($option)
+    {
+        return in_array($option, $this->optionsDisabled);
     }
 
     /**
@@ -88,16 +105,17 @@ class CheckList extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $options, $values = [], $help  = '', $disabled = false, $required = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $options, $values = [], $help  = '', $disabled = false, $required = false, $optionsDisabled = [])
     {
-        $this->label        = $label;
-        $this->type         = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
-        $this->name         = $name;
-        $this->options      = $options;
-        $this->values       = $values;
-        $this->help         = $help;
-        $this->isDisabled   = $disabled;
-        $this->isRequired   = $required;
+        $this->label            = $label;
+        $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
+        $this->name             = $name;
+        $this->options          = $options;
+        $this->values           = (array)$values;
+        $this->help             = $help;
+        $this->isDisabled       = $disabled;
+        $this->isRequired       = $required;
+        $this->optionsDisabled  = (array)$optionsDisabled;
     }
 
     /**

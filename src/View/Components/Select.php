@@ -89,7 +89,7 @@ class Select extends Component
     }
 
     /**
-     * Check if the option is selected
+     * Check if the option is disabled
      * @param  string  $option
      * @return boolean
      */
@@ -115,7 +115,6 @@ class Select extends Component
         $this->isDisabled       = $disabled;
         $this->isRequired       = $required;
         $this->optionsDisabled  = (array)$optionsDisabled;
-
     }
 
     /**
