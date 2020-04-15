@@ -19,7 +19,7 @@
       />
 
       @if(($isDisabled || $isOptionDisabled($key)) && $isOptionChecked($key))
-        <input type="hidden" name="{{ $name }}" value="{{ $key }}"/>
+        <input type="hidden" name="disabled_{{ $name }}" value="{{ $key }}"/>
       @endif
 
       <label class="form-check-label" for="{{ $idCheckbox($key) }}">

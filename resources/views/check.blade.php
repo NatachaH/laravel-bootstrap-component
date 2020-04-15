@@ -11,7 +11,7 @@
   />
 
   @if($isDisabled && $isChecked)
-    <input type="hidden" name="{{ $name }}" value="{{ $value }}"/>
+    <input type="hidden" name="disabled_{{ $name }}" value="{{ $value }}"/>
   @endif
 
   <label class="form-check-label" for="{{ $id }}">

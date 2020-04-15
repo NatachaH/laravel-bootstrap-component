@@ -19,7 +19,7 @@
   </select>
 
   @if($isDisabled && !empty($values))
-    <input type="hidden" name="{{ $name }}" value="{{ $values }}"/>
+    <input type="hidden" name="disabled_{{ $name }}" value="{{ $values }}"/>
   @endif
 
   @if($help)
