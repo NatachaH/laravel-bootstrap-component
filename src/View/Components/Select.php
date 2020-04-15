@@ -29,11 +29,10 @@ class Select extends Component
 
     /**
      * The default value of the select.
-     * Can be a string or an array.
      *
-     * @var mixed
+     * @var array
      */
-    public $value;
+    public $values;
 
     /**
      * The help message of the select.
@@ -64,18 +63,18 @@ class Select extends Component
     public $isDisabled;
 
     /**
+     * Array of the disabled options
+     *
+     * @var array
+     */
+    private $optionsDisabled;
+
+    /**
      * Is the select required.
      *
      * @var boolean
      */
     public $isRequired;
-
-    /**
-     * The options who are disabled in the select.
-     *
-     * @var array
-     */
-    public $optionsDisabled;
 
     /**
      * Check if the option is selected
@@ -85,7 +84,7 @@ class Select extends Component
     public function isOptionSelected($option)
     {
         $currentValues = old($this->name,$this->value);
-        return is_array($currentValues) ? in_array($option, $currentValues) : $option == $currentValues;
+        return in_array($option, (array)$currentValues);
     }
 
     /**
@@ -95,7 +94,7 @@ class Select extends Component
      */
     public function isOptionDisabled($option)
     {
-        return in_array($option, $this->optionsDisabled);
+        return in_array($option, $this->optionDisabled);
     }
 
     /**
@@ -103,7 +102,7 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $value = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false, $optionsDisabled = [] )
+    public function __construct($label = '', $name, $options, $value = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
     {
         $this->label            = $label;
         $this->name             = $name;
@@ -112,9 +111,9 @@ class Select extends Component
         $this->help             = $help;
         $this->size             = !empty($size) ? 'form-select-'.$size : '';
         $this->isMultiple       = $multiple;
-        $this->isDisabled       = $disabled;
+        $this->isDisabled       = is_bool($disabled) ? $disabled : false;
+        $this->optionsDisabled  = is_array($disabled) ? $disabled : [];
         $this->isRequired       = $required;
-        $this->optionsDisabled  = (array)$optionsDisabled;
     }
 
     /**
