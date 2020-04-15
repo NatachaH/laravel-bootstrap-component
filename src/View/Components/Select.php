@@ -94,7 +94,7 @@ class Select extends Component
      */
     public function isOptionDisabled($option)
     {
-        return in_array($option, $this->optionDisabled);
+        return in_array($option, $this->optionsDisabled);
     }
 
     /**
