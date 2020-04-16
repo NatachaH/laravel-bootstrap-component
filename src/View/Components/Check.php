@@ -88,7 +88,7 @@ class Check extends Component
      */
      public function id()
      {
-        return Str::contains($this->name, '[]') ? $this->cleanName().Str::upper($this->value) : $this->name;
+        return $this->cleanName().Str::upper($this->value);
      }
 
      /**
@@ -99,7 +99,7 @@ class Check extends Component
       */
      private function cleanName()
      {
-         return Str::contains($this->name, '[]') ? Str::of($this->name)->replace('[]','') : $this->name;
+         return Str::contains($this->name, '[]') ? Str::replaceFirst('[]','',$this->name) : $this->name;
      }
 
     /**
@@ -107,7 +107,7 @@ class Check extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false,)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false)
     {
         $this->label         = $label;
         $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';

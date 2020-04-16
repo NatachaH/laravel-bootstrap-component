@@ -112,7 +112,7 @@ class CheckList extends Component
       */
      private function cleanName()
      {
-         return Str::contains($this->name, '[]') ? Str::of($this->name)->replace('[]','') : $this->name;
+         return Str::contains($this->name, '[]') ? Str::replaceFirst('[]','',$this->name) : $this->name;
      }
 
     /**
