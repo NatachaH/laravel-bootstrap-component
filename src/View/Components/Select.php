@@ -28,13 +28,6 @@ class Select extends Component
     public $options;
 
     /**
-     * The default value of the select.
-     *
-     * @var array
-     */
-    public $values;
-
-    /**
      * The help message of the select.
      *
      * @var string
@@ -43,10 +36,29 @@ class Select extends Component
 
     /**
      * The size of the select.
+     * Can be sm or lg
      *
      * @var string
      */
     public $size;
+
+    /**
+     * Array of the selected options
+     *
+     * @var array
+     */
+    private $optionsSelected;
+
+    /**
+     * Check if the option is selected
+     * @param  string  $option
+     * @return boolean
+     */
+    public function isOptionSelected($option)
+    {
+        $currentValues = old($this->name,$this->optionsSelected);
+        return in_array($option, (array)$currentValues);
+    }
 
     /**
      * Is the select multiple.
@@ -70,24 +82,6 @@ class Select extends Component
     private $optionsDisabled;
 
     /**
-     * Is the select required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Check if the option is selected
-     * @param  string  $option
-     * @return boolean
-     */
-    public function isOptionSelected($option)
-    {
-        $currentValues = old($this->name,$this->values);
-        return in_array($option, (array)$currentValues);
-    }
-
-    /**
      * Check if the option is disabled
      * @param  string  $option
      * @return boolean
@@ -98,21 +92,28 @@ class Select extends Component
     }
 
     /**
+     * Is the select required.
+     *
+     * @var boolean
+     */
+    public $isRequired;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $values = '', $help  = '', $size = '', $multiple = false, $disabled = false, $required = false )
+    public function __construct($label = '', $name, $options, $help  = '', $size = '', $selected = [],  $multiple = false, $disabled = false, $required = false )
     {
         $this->label            = $label;
         $this->name             = $name;
         $this->options          = $options;
-        $this->values           = $values;
         $this->help             = $help;
         $this->size             = !empty($size) ? 'form-select-'.$size : '';
+        $this->optionsSelected  = (array)$selected;
         $this->isMultiple       = $multiple;
-        $this->isDisabled       = is_bool($disabled) ? $disabled : false;
-        $this->optionsDisabled  = is_array($disabled) ? $disabled : [];
+        $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make the select disabled
+        $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
         $this->isRequired       = $required;
     }
 

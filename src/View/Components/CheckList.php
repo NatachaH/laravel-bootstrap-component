@@ -3,6 +3,7 @@
 namespace Nh\BsComponent\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Str;
 
 class CheckList extends Component
 {
@@ -15,6 +16,7 @@ class CheckList extends Component
 
     /**
      * The type of the check.
+     * Can be checkbox or radio
      *
      * @var string
      */
@@ -29,18 +31,11 @@ class CheckList extends Component
 
     /**
      * The options of the check list.
+     * Must be key => value array
      *
      * @var array
      */
     public $options;
-
-    /**
-     * The default value of the check list.
-     * Can be a string or an array.
-     *
-     * @var mixed
-     */
-    public $values;
 
     /**
      * The help message of the check list.
@@ -50,6 +45,24 @@ class CheckList extends Component
     public $help;
 
     /**
+     * Array of the checked options
+     *
+     * @var array
+     */
+    private $optionsChecked;
+
+    /**
+     * Check if an option is checked
+     * @param  string  $option
+     * @return boolean
+     */
+    public function isOptionChecked($option)
+    {
+        $currentValues = old($this->cleanName(),$this->optionsChecked);
+        return in_array($option, $currentValues);
+    }
+
+    /**
      * Is the check list disabled.
      *
      * @var boolean
@@ -57,32 +70,14 @@ class CheckList extends Component
     public $isDisabled;
 
     /**
-     * Is the input required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * The options who are disabled in the list.
+     * Array of the disabled options
      *
      * @var array
      */
-    public $optionsDisabled;
+    private $optionsDisabled;
 
     /**
-     * Check if the item is checked
-     * @param  string  $option
-     * @return boolean
-     */
-    public function isOptionChecked($option)
-    {
-        $currentValues = old($this->name,$this->values);
-        return in_array($option, $currentValues);
-    }
-
-    /**
-     * Check if the option is disabled
+     * Check if an option is disabled
      * @param  string  $option
      * @return boolean
      */
@@ -92,12 +87,32 @@ class CheckList extends Component
     }
 
     /**
+     * Is the input required.
+     *
+     * @var boolean
+     */
+    public $isRequired;
+
+    /**
      * Generate the id of the checkbox
+     * Exemple: field[] become fieldValue
      *
      * @var string
      */
-     public function idCheckbox($option){
-        return str_replace('[]', '', $this->name).'Field'.strtoupper($option);
+     public function idCheckbox($option)
+     {
+        return Str::contains($this->name, '[]') ? $this->cleanName().Str::upper($this->value) : $this->name;
+     }
+
+     /**
+      * Clean the name
+      * Exemple: field[] become field
+      *
+      * @return string
+      */
+     private function cleanName()
+     {
+         return Str::contains($this->name, '[]')) ? Str::of($this->name)->replace('[]','') : $this->name;
      }
 
     /**
@@ -105,16 +120,16 @@ class CheckList extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $options, $values = [], $help  = '', $disabled = false, $required = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $options, $help  = '', $checked = [], $disabled = false, $required = false)
     {
         $this->label            = $label;
         $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->name             = $name;
         $this->options          = $options;
-        $this->values           = (array)$values;
         $this->help             = $help;
-        $this->isDisabled       = is_bool($disabled) ? $disabled : false;
-        $this->optionsDisabled  = is_array($disabled) ? $disabled : [];
+        $this->optionsChecked   = (array)$checked;
+        $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make all the options disabled
+        $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
         $this->isRequired       = $required;
     }
 

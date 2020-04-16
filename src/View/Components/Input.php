@@ -15,6 +15,7 @@ class Input extends Component
 
     /**
      * The type of the input.
+     * Can be text, number, tel, phone, email, password etc.
      *
      * @var string
      */
@@ -50,6 +51,7 @@ class Input extends Component
 
     /**
      * The size of the input.
+     * Can be sm or lg
      *
      * @var string
      */
@@ -81,7 +83,7 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false )
+    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false)
     {
         $this->label        = $label;
         $this->type         = $type;
