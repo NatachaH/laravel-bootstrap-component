@@ -99,7 +99,7 @@ class Check extends Component
       */
      private function cleanName()
      {
-         return Str::contains($this->name, '[]')) ? Str::of($this->name)->replace('[]','') : $this->name;
+         return Str::contains($this->name, '[]') ? Str::of($this->name)->replace('[]','') : $this->name;
      }
 
     /**
@@ -107,16 +107,16 @@ class Check extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $disabled = false, $required = false, $checked = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false,)
     {
         $this->label         = $label;
         $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->name          = $name;
         $this->value         = $value;
         $this->help          = $help;
+        $this->isChecked     = $this->defineIsChecked($checked);
         $this->isDisabled    = $disabled;
         $this->isRequired    = $required;
-        $this->isChecked     = $this->defineIsChecked($checked);
     }
 
     /**
