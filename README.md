@@ -39,3 +39,9 @@ All the component manage the request old() value and the validation.
 ```
 <x-bs-select label="My label" name="fieldname" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" :selected="[2]" multiple disabled required />
 ```
+
+## Input File
+
+```
+<x-bs-input-file label="My label" name="fieldname" placeholder="Choose a file" button="Browse" help="Help message" size="lg" disabled required />
+```
