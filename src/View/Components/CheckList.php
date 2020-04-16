@@ -94,14 +94,14 @@ class CheckList extends Component
     public $isRequired;
 
     /**
-     * Generate the id of the checkbox
+     * Generate the id of the option
      * Exemple: field[] become fieldValue
      *
      * @var string
      */
-     public function idCheckbox($option)
+     public function idOption($option)
      {
-        return Str::contains($this->name, '[]') ? $this->cleanName().Str::upper($this->value) : $this->name;
+        return $this->cleanName().Str::upper($option);
      }
 
      /**
