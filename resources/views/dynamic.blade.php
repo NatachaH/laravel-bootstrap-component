@@ -2,14 +2,12 @@
 
     <legend>{{ $legend }}</legend>
 
-    {!! $slot !!}
-
     @if($currentItems)
       <div class="list-group">
         @foreach ($currentItems as $key => $current)
           <div class="list-group-item d-flex align-items-center dynamic-current">
 
-            {!! $current !!}
+            @includeif($folder.'/dynamic/current')
 
             <div class="btn-group-toggle ml-auto" data-toggle="buttons">
               <label class="btn btn-sm btn-danger active">
@@ -32,7 +30,7 @@
 
       <div class="d-flex align-items-end dynamic-item">
 
-         {!! $form !!}
+         {!! $slot !!}
 
         @if($isDynamic)
           <div class="flex-shrink-1 mb-1">

@@ -14,16 +14,16 @@ class Dynamic extends Component
     public $legend;
 
     /**
-     * Name of the folder where are the views to include.
+     * The current items
+     * @var array
+     */
+    public $currentItems;
+
+    /**
+     * The folder path for the views.
      * @var string
      */
     public $folder;
-
-    /**
-     * The current items
-     * @var string
-     */
-    public $currentItems;
 
     /**
      * Can you add/remove dynamically the inputs (nh/bs-component)
@@ -55,11 +55,11 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $folder, $current = [], $isDynamic = true, $min = 1, $max = null, $deleteName = 'delete[]')
+    public function __construct($legend, $current = [], $folder = '', $isDynamic = true, $min = 1, $max = null, $deleteName = 'delete[]')
     {
         $this->legend       = $legend;
-        $this->folder       = $folder;
         $this->currentItems = $current;
+        $this->folder       = $folder;
         $this->isDynamic    = $isDynamic;
         $this->min          = $min;
         $this->max          = $max;
