@@ -4,6 +4,7 @@
     <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
   @endif
 
+  {{-- Bootstrap 5
   <div class="form-file {{ $size }}">
     <input
       type="file"
@@ -18,6 +19,20 @@
       <span class="form-file-text">{{ $placeholder }}</span>
       <span class="form-file-button">{{ $button }}</span>
     </label>
+  </div>
+  --}}
+
+  <div class="custom-file">
+    <input
+      type="file"
+      name="{{ $name }}"
+      class="custom-file-input @error($name) is-invalid @enderror"
+      id="{{ $name.'Field' }}"
+      @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
+      {{ $isDisabled ? 'disabled' : ''}}
+      {{ $isRequired ? 'required' : ''}}
+    >
+    <label class="custom-file-label" for="customFile">{{ $placeholder }}</label>
   </div>
 
   @if($help)

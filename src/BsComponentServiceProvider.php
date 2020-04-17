@@ -35,6 +35,8 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-check-list', \Nh\BsComponent\View\Components\CheckList::class);
       Blade::component('bs-select', \Nh\BsComponent\View\Components\Select::class);
       Blade::component('bs-input-file', \Nh\BsComponent\View\Components\InputFile::class);
+      Blade::component('bs-dynamice', \Nh\BsComponent\View\Components\Dynamic::class);
+
 
     }
 }
