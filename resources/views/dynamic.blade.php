@@ -2,39 +2,25 @@
 
     <legend>{{ $legend }}</legend>
 
-    @if($currentItems)
-      <div class="list-group">
-        @foreach ($currentItems as $key => $current)
-          <div class="list-group-item d-flex align-items-center dynamic-current">
+    <div class="dynamic-list">
 
-            @includeif($folder.'/dynamic/current')
+      {!! $slot !!}
 
-            <div class="btn-group-toggle ml-auto" data-toggle="buttons">
-              <label class="btn btn-sm btn-danger active">
-                  <input class="dynamic-delete" type="checkbox" name="{{ $deleteName }}" value="{{ $current->id }}"> @lang('bs::dynamic.delete')
-              </label>
-            </div>
+    </div>
 
-          </div>
-        @endforeach
-      </div>
-    @endif
-
-    <div class="dynamic-list"></div>
-
-    @if($isDynamic)
-      <button type="button" class="btn btn-sm dynamic-add btn-primary" aria-label="@lang('bs::dynamic.add')">@lang('bs::dynamic.add')</button>
+    @if($isActive)
+      <button type="button" class="btn btn-sm dynamic-add {{ $btnAdd['class'] ?? 'btn-primary' }}" aria-label="{{ $btnAdd['label'] ?? 'Add' }}">{!! $btnAdd['value'] ?? 'Add' !!}</button>
     @endif
 
     <script type="text/template" data-template="dynamic-template">
 
       <div class="d-flex align-items-end dynamic-item">
 
-         {!! $slot !!}
+        {!! $template !!}
 
-        @if($isDynamic)
+        @if($isActive)
           <div class="flex-shrink-1 mb-1">
-            <button type="button" class="btn btn-sm dynamic-remove btn-danger" aria-label="@lang('bs::dynamic.remove')">@lang('bs::dynamic.remove')</button>
+            <button type="button" class="btn btn-sm dynamic-remove {{ $btnRemove['class'] ?? 'btn-danger' }}" aria-label="{{ $btnRemove['label'] ?? 'Remove' }}">{!! $btnRemove['value'] ?? 'Remove' !!}</button>
           </div>
         @endif
 

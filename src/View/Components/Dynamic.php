@@ -14,22 +14,10 @@ class Dynamic extends Component
     public $legend;
 
     /**
-     * The current items
-     * @var array
-     */
-    public $currentItems;
-
-    /**
-     * The folder path for the views.
-     * @var string
-     */
-    public $folder;
-
-    /**
-     * Can you add/remove dynamically the inputs (nh/bs-component)
+     * Can you add/remove dynamically the inputs
      * @var boolean
      */
-    public $isDynamic;
+    public $isActive;
 
     /**
      * Minimum nbr of inputs
@@ -44,26 +32,32 @@ class Dynamic extends Component
     public $max;
 
     /**
-     * Name of the delete checkbox.
-     * @var string
+     * Information for the add button
+     * Class, label and value
+     * @var array
      */
-    public $deleteName;
+    public $btnAdd;
 
+    /**
+     * Information for the remove buttons
+     * Class, label and value
+     * @var array
+     */
+    public $btnRemove;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($legend, $current = [], $folder = '', $isDynamic = true, $min = 1, $max = null, $deleteName = 'delete[]')
+    public function __construct($legend, $isActive = true, $min = 1, $max = null, $btnAdd = [], $btnRemove = [])
     {
         $this->legend       = $legend;
-        $this->currentItems = $current;
-        $this->folder       = $folder;
-        $this->isDynamic    = $isDynamic;
+        $this->isActive     = $isActive;
         $this->min          = $min;
         $this->max          = $max;
-        $this->deleteName   = $deleteName;
+        $this->btnAdd       = $btnAdd;
+        $this->btnRemove    = $btnRemove;
     }
 
     /**
