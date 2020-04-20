@@ -20,7 +20,7 @@
       this.min = 0;
       this.max = 0;
       this.nbr = function(){
-          return this.el.querySelectorAll('.dynamic-item').length + this.el.querySelectorAll('.dynamic-current:not(.dynamic-current-delete)').length;
+          return this.el.querySelectorAll('.dynamic-item:not(.dynamic-item-delete)').length;
       };
       this.checkMin = function(){
           var nbr = this.nbr() - 1;
@@ -69,12 +69,11 @@
 
           // Delete current dynamic (Toggle checkbox)
           if(e.target.classList.contains('dynamic-delete')){
-            var item = e.target.closest('.dynamic-current');
+            var item = e.target.closest('.dynamic-item');
             dynamicObject.delete(item,e.target.checked);
           }
 
       });
-
 
   }
 
@@ -168,11 +167,9 @@
   Dynamic.prototype.delete = function(item,checked)
   {
       if (checked) {
-          item.classList.add('list-group-item-danger');
-          item.classList.add('dynamic-current-delete');
+          item.classList.add('dynamic-item-delete');
       } else {
-          item.classList.remove('list-group-item-danger');
-          item.classList.remove('dynamic-current-delete');
+          item.classList.remove('dynamic-item-delete');
       }
 
       // Check if max and remove input if needed
@@ -193,6 +190,8 @@
               this.add();
           }
       }
+
+      this.buttons();
   }
 
 }());

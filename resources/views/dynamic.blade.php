@@ -14,7 +14,7 @@
 
     <script type="text/template" data-template="dynamic-template">
 
-      <div class="d-flex align-items-end dynamic-item">
+      <div class="d-flex align-items-nbr dynamic-item">
 
         {!! $template !!}
 
