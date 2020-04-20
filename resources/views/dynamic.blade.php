@@ -19,7 +19,7 @@
         {!! $template !!}
 
         @if($isActive)
-          <div class="flex-shrink-1 mb-1">
+          <div class="dynamic-item-btn">
             <button type="button" class="btn btn-sm dynamic-remove {{ $btnRemove['class'] ?? 'btn-danger' }}" aria-label="{{ $btnRemove['label'] ?? 'Remove' }}">{!! $btnRemove['value'] ?? 'Remove' !!}</button>
           </div>
         @endif
