@@ -168,8 +168,15 @@
   {
       if (checked) {
           item.classList.add('dynamic-item-delete');
+          item.querySelectorAll('input:not(.dynamic-delete)').forEach(function(input){
+            input.disabled=true;
+          });
+          console.log(inputs);
       } else {
           item.classList.remove('dynamic-item-delete');
+          item.querySelectorAll('input:not(.dynamic-delete)').forEach(function(input){
+            input.disabled=false;
+          });
       }
 
       // Check if max and remove input if needed
