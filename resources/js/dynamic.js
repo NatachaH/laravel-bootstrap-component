@@ -205,8 +205,8 @@
 
 }());
 
-// Init the Dynamic to each .dynamic
-var dynamic = document.querySelectorAll('.dynamic');
+// Init the Dynamic to each .dynamic-automatic
+var dynamic = document.querySelectorAll('.dynamic-automatic');
 Array.prototype.forEach.call(dynamic, function(el, i) {
     var myDynamic = new Dynamic(el);
 });

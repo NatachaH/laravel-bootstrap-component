@@ -1,4 +1,4 @@
-<fieldset {{ $attributes->merge(['class' => 'dynamic dynamic-fieldset']) }} data-min="{{ $min }}" data-max="{{ $max }}">
+<fieldset {{ $attributes->merge(['class' => 'dynamic-fieldset']) }} data-min="{{ $min }}" data-max="{{ $max }}">
 
     <legend>{{ $legend }}</legend>
 
