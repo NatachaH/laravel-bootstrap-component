@@ -64,11 +64,18 @@ class InputFile extends Component
     public $isRequired;
 
     /**
+     * Is the input is an input group.
+     *
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $name, $placeholder = 'Choose a file...', $button = 'Browse', $help  = '', $size = '', $disabled = false, $required = false)
+    public function __construct($label = '', $name, $placeholder = 'Choose a file...', $button = 'Browse', $help  = '', $size = '', $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -78,6 +85,7 @@ class InputFile extends Component
         $this->size         = !empty($size) ? 'form-file-'.$size : '';
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
+        $this->isInputGroup = $inputGroup;
     }
 
     /**

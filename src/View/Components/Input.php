@@ -79,11 +79,18 @@ class Input extends Component
     public $isRequired;
 
     /**
+     * Is the input is an input group.
+     *
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false)
+    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
         $this->type         = $type;
@@ -95,6 +102,7 @@ class Input extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
+        $this->isInputGroup = $inputGroup;
     }
 
     /**

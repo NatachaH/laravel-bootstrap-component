@@ -99,11 +99,18 @@ class Select extends Component
     public $isRequired;
 
     /**
+     * Is the select is an input group.
+     *
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $help  = '', $size = '', $selected = [],  $multiple = false, $disabled = false, $required = false )
+    public function __construct($label = '', $name, $options, $help  = '', $size = '', $selected = [],  $multiple = false, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label            = $label;
         $this->name             = $name;
@@ -115,6 +122,7 @@ class Select extends Component
         $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make the select disabled
         $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
         $this->isRequired       = $required;
+        $this->isInputGroup     = $inputGroup;
     }
 
     /**

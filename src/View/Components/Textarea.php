@@ -63,11 +63,18 @@ class Textarea extends Component
     public $isRequired;
 
     /**
+     * Is the textarea is an input group.
+     *
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = '', $name, $value = '', $placeholder = '', $help  = '', $readonly = false, $disabled = false, $required = false)
+    public function __construct($label = '', $name, $value = '', $placeholder = '', $help  = '', $readonly = false, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -77,6 +84,7 @@ class Textarea extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
+        $this->isInputGroup = $inputGroup;
     }
 
     /**

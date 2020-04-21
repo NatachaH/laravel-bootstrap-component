@@ -4,8 +4,22 @@
     <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
   @endif
 
-  @includeIf($field)
+  @if($isInputGroup)
+    <div class="input-group">
+        @isset($before)
+          {!! $before !!}
+        @endisset
 
+        @includeIf($field)
+
+        @isset($after)
+          {!! $after !!}
+        @endisset
+    </div>
+  @else
+    @includeIf($field)
+  @endif
+  
   @if($help)
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
