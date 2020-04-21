@@ -55,7 +55,6 @@ class Dynamic extends Component
         } else {
             $nbrHelper = '';
         }
-
         return $nbrHelper+' '+$help;
     }
 
