@@ -126,6 +126,6 @@ class Check extends Component
      */
     public function render()
     {
-        return view('bs-component::check');
+        return view('bs-component::form.check');
     }
 }

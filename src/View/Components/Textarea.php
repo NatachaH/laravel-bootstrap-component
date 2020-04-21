@@ -86,6 +86,6 @@ class Textarea extends Component
      */
     public function render()
     {
-        return view('bs-component::textarea');
+        return view('bs-component::form.template', ['field' => 'bs-component::form.field.textarea']);
     }
 }

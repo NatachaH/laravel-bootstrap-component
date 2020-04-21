@@ -104,6 +104,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('bs-component::input');
+        return view('bs-component::form.template', ['field' => 'bs-component::form.field.input']);
     }
 }
