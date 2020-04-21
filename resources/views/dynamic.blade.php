@@ -8,13 +8,19 @@
 
     </div>
 
-    @if($isActive)
-      <button type="button" class="btn btn-sm dynamic-add {{ $btnAdd['class'] ?? 'btn-primary' }}" aria-label="{{ $btnAdd['label'] ?? 'Add' }}">{!! $btnAdd['value'] ?? 'Add' !!}</button>
-    @endif
+    <div class="d-flex align-items-center">
+        @if($help)
+          <small class="form-text text-muted">{{ $help }}</small>
+        @endif
+
+        @if($isActive)
+          <button type="button" class="ml-auto btn btn-sm dynamic-add {{ $btnAdd['class'] ?? 'btn-primary' }}" aria-label="{{ $btnAdd['label'] ?? 'Add' }}">{!! $btnAdd['value'] ?? 'Add' !!}</button>
+        @endif
+    </div>
 
     <script type="text/template" data-template="dynamic-template">
 
-      <div class="d-flex align-items-nbr dynamic-item">
+      <div class="d-flex align-items-center dynamic-item">
 
         {!! $template !!}
 
