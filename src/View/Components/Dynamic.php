@@ -39,26 +39,6 @@ class Dynamic extends Component
     public $help;
 
     /**
-     * The help message of the fieldset.
-     *
-     * @var string
-     */
-    public function defineHelp($help)
-    {
-        if(!is_null($this->min) && !is_null($this->max))
-        {
-            $nbrHelper = __('validation.between.numeric',['attribute' => $this->legend, 'min' => $this->min, 'max' => $this->max]);
-        } else if(!is_null($this->min)) {
-            $nbrHelper = __('validation.min.numeric',['attribute' => $this->legend, 'min' => $this->min]);
-        } else if(!is_null($this->max)){
-            $nbrHelper = __('validation.max.numeric',['attribute' => $this->legend, 'max' => $this->max]);
-        } else {
-            $nbrHelper = '';
-        }
-        return $nbrHelper+' '+$help;
-    }
-
-    /**
      * Information for the add button
      * Class, label and value
      * @var array
@@ -83,7 +63,7 @@ class Dynamic extends Component
         $this->isActive     = $isActive;
         $this->min          = $min;
         $this->max          = $max;
-        $this->help         = defineHelp($help);
+        $this->help         = $help;
         $this->btnAdd       = $btnAdd;
         $this->btnRemove    = $btnRemove;
     }
