@@ -87,8 +87,8 @@
       var max = this.el.getAttribute('data-max');
 
       this.key = this.el.querySelectorAll('.dynamic-item').length;
-      this.min = min !== '' ? min : null;
-      this.max = max !== '' ? max : null;
+      this.min = min != '' && min != 0 ? min : 1;
+      this.max = max != '' && max != 0 ? max : null;
 
       // Init the enable/disable buttons
       this.buttons();
