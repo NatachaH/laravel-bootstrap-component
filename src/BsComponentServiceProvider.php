@@ -37,6 +37,9 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-input-file', \Nh\BsComponent\View\Components\InputFile::class);
       Blade::component('bs-dynamic', \Nh\BsComponent\View\Components\Dynamic::class);
 
+      Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
+
+
 
     }
 }
