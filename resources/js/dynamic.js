@@ -148,7 +148,8 @@
           var template = this.el.querySelector('script[data-template="dynamic-template"]').innerHTML.replace(/KEY/g,this.key++);
           var div = document.createElement('div');
           div.innerHTML = template;
-          this.el.querySelector('.dynamic-list').append(div.children[0]);
+          var item = div.children[0];
+          this.el.querySelector('.dynamic-list').append(item);
           this.options.addCallback(item);
       }
 
