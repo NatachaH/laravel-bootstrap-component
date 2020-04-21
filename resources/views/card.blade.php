@@ -8,11 +8,11 @@
     {!! $before !!}
   @endisset
 
-  @isset($slot)
+  @if(!empty(trim($slot)))
     <div class="card-body">
       {!! $slot !!}
     </div>
-  @endisset
+  @endif
 
   @isset($after)
     {!! $after !!}
