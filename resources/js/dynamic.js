@@ -33,7 +33,8 @@
 
       // Define option defaults
       var defaults = {
-          addCallback: function(e){}
+          addCallback: function(e){},
+          removeCallback: function(e){}
       };
 
       // Create options by extending defaults with the passed in arugments
@@ -148,6 +149,7 @@
           var div = document.createElement('div');
           div.innerHTML = template;
           this.el.querySelector('.dynamic-list').append(div.children[0]);
+          this.options.addCallback(item);
       }
 
       this.buttons();
@@ -159,6 +161,7 @@
       if(this.checkMin())
       {
           item.remove();
+          this.options.removeCallback(item);
       }
       this.buttons();
   }
@@ -201,7 +204,6 @@
   }
 
 }());
-
 
 // Init the Dynamic to each .dynamic
 var dynamic = document.querySelectorAll('.dynamic');
