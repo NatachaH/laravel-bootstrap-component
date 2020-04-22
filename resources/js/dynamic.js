@@ -1,9 +1,9 @@
 /*
 |--------------------------------------------------------------------------
-| Dynamic javascript
+| Dynamic - Script
 |--------------------------------------------------------------------------
 |
-| Copyright © 2019 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
 |
 */
 
@@ -167,7 +167,7 @@
       this.buttons();
   }
 
-  // Remove
+  // Delete
   Dynamic.prototype.delete = function(item,checked)
   {
       if (checked) {
