@@ -8,7 +8,7 @@
 
     </div>
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-end">
         @if($help)
           <small class="form-text text-muted">{{ $help }}</small>
         @endif
