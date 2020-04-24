@@ -8,7 +8,7 @@
 
     </div>
 
-    <div class="d-flex align-items-end">
+    <div class="d-flex align-items-enter">
         @if($help)
           <small class="form-text text-muted">{{ $help }}</small>
         @endif
@@ -20,13 +20,13 @@
 
     <script type="text/template" data-template="dynamic-template">
 
-      <div class="d-flex align-items-center dynamic-item">
+      <div class="d-flex align-items-end dynamic-item">
 
         {!! $template !!}
 
         @if($isActive)
           <div class="dynamic-item-btn">
-            <button type="button" class="btn dynamic-remove {{ config('bs-component.dynamic.remove.class') }}" aria-label="{{ $btnRemove }}">{!! {{ config('bs-component.dynamic.remove.value') ?? $btnRemove }} !!}</button>
+            <button type="button" class="btn dynamic-remove {{ config('bs-component.dynamic.remove.class') }}" aria-label="{{ $btnRemove }}">{!! config('bs-component.dynamic.remove.value') ?? $btnRemove !!}</button>
           </div>
         @endif
 

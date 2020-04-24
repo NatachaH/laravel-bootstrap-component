@@ -13,11 +13,11 @@ return [
 
     'dynamic' => [
         'add' => [
-          'class' => 'btn-secondary',
+          'class' => 'btn-gray rounded-circle',
           'value' => '<i class="icon-plus"></i>'
         ],
         'remove' => [
-          'class' => 'btn-secondary',
+          'class' => 'btn-gray rounded-circle',
           'value' => '<i class="icon-minus"></i>'
         ]
     ]
