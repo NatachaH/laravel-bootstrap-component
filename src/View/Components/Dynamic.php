@@ -97,7 +97,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $min = 1, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
         $this->legend       = $legend;
         $this->min          = $min;
@@ -108,10 +108,10 @@ class Dynamic extends Component
         $this->items        = $items;
         $this->viewItem     = $viewItem;
         $this->help         = $help;
-        $this->btnAdd       = empty($btnAdd) ? config('bs-component.dynamic-buttons.add') : $btnAdd;
-        $this->btnRemove    = empty($btnRemove) ? config('bs-component.dynamic-buttons.remove') : $btnRemove;
-        $this->btnDelete    = empty($btnDelete) ? config('bs-component.dynamic-buttons.delete') : $btnDelete;
-        $this->btnSortable  = empty($btnSortable) ? config('bs-component.dynamic-buttons.sortable') : $btnSortable;
+        $this->btnAdd       = empty($btnAdd) ? config('dynamic.buttons.add') : $btnAdd;
+        $this->btnRemove    = empty($btnRemove) ? config('dynamic.buttons.remove') : $btnRemove;
+        $this->btnDelete    = empty($btnDelete) ? config('dynamic.buttons.delete') : $btnDelete;
+        $this->btnSortable  = empty($btnSortable) ? config('dynamic.buttons.sortable') : $btnSortable;
     }
 
     /**

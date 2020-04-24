@@ -4,14 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Dynamic button
+    | Customize the buttons
     |--------------------------------------------------------------------------
     |
     | Here you may specify the class and the value of each button in the component view
     |
     */
 
-    'dynamic-buttons' => [
+    'buttons' => [
         'add' => [
           'class' => 'btn-primary',
           'label' => 'Add',

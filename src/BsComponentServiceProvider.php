@@ -27,7 +27,7 @@ class BsComponentServiceProvider extends ServiceProvider
 
       // VENDORS
       $this->publishes([
-          __DIR__.'/../config/bs-component.php' => config_path('bs-component.php')
+          __DIR__.'/../config/dynamic.php' => config_path('dynamic.php')
       ], 'bs-component');
 
       // VIEWS
@@ -41,7 +41,6 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-select', \Nh\BsComponent\View\Components\Select::class);
       Blade::component('bs-input-file', \Nh\BsComponent\View\Components\InputFile::class);
       Blade::component('bs-dynamic', \Nh\BsComponent\View\Components\Dynamic::class);
-
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
 
     }
