@@ -4,7 +4,21 @@
 
     <div class="dynamic-list">
 
-      {!! $slot !!}
+      @forelse ($items as $key => $item)
+        <div class="d-flex align-items-end dynamic-item dynamic-item-current">
+
+            @includeIf($viewItem)
+
+            <div class="dynamic-item-btn btn-group-toggle ml-auto" data-toggle="buttons">
+               <label class="btn {{ $btnDelete['class'] }}">
+                   <input class="dynamic-delete" type="checkbox" name="{{ $deleteName }}" value="{{ $item->id }}" aria-label="{{ $btnDelete['label'] }}">
+                   {!! {{ $btnDelete['value'] ?? $btnDelete['label'] }} !!}
+               </label>
+            </div>
+        </div>
+      @empty
+          {!! $slot !!}
+      @endforelse
 
     </div>
 
@@ -12,26 +26,19 @@
         @if($help)
           <small class="form-text text-muted">{{ $help }}</small>
         @endif
-
-        @if($isActive)
-          <button type="button" class="ml-auto btn dynamic-add {{ config('bs-component.dynamic.add.class') }}" aria-label="{{ $btnAdd }}">{!! config('bs-component.dynamic.add.value') ?? $btnAdd !!}</button>
-        @endif
+        <button type="button" class="ml-auto btn dynamic-add {{ $btnAdd['class'] }}" aria-label="{{ $btnAdd['label'] }}">{!! {{ $btnAdd['value'] ?? $btnAdd['label'] }} !!}</button>
     </div>
 
     <script type="text/template" data-template="dynamic-template">
-
       <div class="d-flex align-items-end dynamic-item">
 
         {!! $template !!}
 
-        @if($isActive)
-          <div class="dynamic-item-btn">
-            <button type="button" class="btn dynamic-remove {{ config('bs-component.dynamic.remove.class') }}" aria-label="{{ $btnRemove }}">{!! config('bs-component.dynamic.remove.value') ?? $btnRemove !!}</button>
-          </div>
-        @endif
+        <div class="dynamic-item-btn">
+          <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ $btnRemove['label'] }}">{!! $btnRemove['value'] ?? $btnRemove['label'] !!}</button>
+        </div>
 
       </div>
-
     </script>
 
 </fieldset>

@@ -11,14 +11,21 @@ return [
     |
     */
 
-    'dynamic' => [
+    'dynamic-buttons' => [
         'add' => [
-          'class' => 'btn-gray rounded-circle',
-          'value' => '<i class="icon-plus"></i>'
+          'class' => 'btn-primary',
+          'label' => 'Add',
+          'value' => null
         ],
         'remove' => [
-          'class' => 'btn-gray rounded-circle',
-          'value' => '<i class="icon-minus"></i>'
+          'class' => 'btn-danger',
+          'label' => 'Remove',
+          'value' => null
+        ],
+        'delete' => [
+          'class' => 'btn-danger',
+          'label' => 'Delete',
+          'value' => null
         ]
     ]
 

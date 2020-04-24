@@ -14,10 +14,16 @@ class Dynamic extends Component
     public $legend;
 
     /**
-     * Can you add/remove dynamically the inputs
-     * @var boolean
+     * The current items
+     * @var array
      */
-    public $isActive;
+    public $items;
+
+    /**
+     * The path for the current item view
+     * @var string
+     */
+    public $viewItem;
 
     /**
      * Minimum nbr of inputs
@@ -41,31 +47,46 @@ class Dynamic extends Component
     /**
      * Information for the add button
      * Class, label and value
-     * @var string
+     * @var array
      */
     public $btnAdd;
 
     /**
      * Information for the remove buttons
      * Class, label and value
-     * @var string
+     * @var array
      */
     public $btnRemove;
+
+    /**
+     * Information for the delete buttons
+     * Class, label and value
+     * @var array
+     */
+    public $btnDelete;
+
+    /**
+     * Name for the input delete
+     * @var string
+     */
+    public $deleteName;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($legend, $isActive = true, $min = 1, $max = null, $help = '', $btnAdd = 'Add', $btnRemove = 'Remove')
+    public function __construct($legend, $items = [], $viewItem = '', $min = 1, $max = null, $help = '', $deleteName = '', $btnAdd = [], $btnRemove = [], $btnDelete = [])
     {
         $this->legend       = $legend;
-        $this->isActive     = $isActive;
+        $this->items        = $items;
+        $this->viewItem     = $viewItem;
         $this->min          = $min;
         $this->max          = $max;
         $this->help         = $help;
-        $this->btnAdd       = $btnAdd;
-        $this->btnRemove    = $btnRemove;
+        $this->btnAdd       = empty($btnAdd) ? config('bs-component.dynamic-buttons.add') : $btnAdd;
+        $this->btnRemove    = empty($btnRemove) ? config('bs-component.dynamic-buttons.remove') : $btnRemove;
+        $this->btnDelete    = empty($btnDelete) ? config('bs-component.dynamic-buttons.delete') : $btnDelete;
     }
 
     /**
