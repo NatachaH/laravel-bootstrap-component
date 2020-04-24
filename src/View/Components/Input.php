@@ -98,7 +98,7 @@ class Input extends Component
         $this->value        = $value;
         $this->placeholder  = $placeholder;
         $this->help         = $help;
-        $this->size         = !empty($size) ? 'form-control-'.$size : '';
+        $this->size         = $size;
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;

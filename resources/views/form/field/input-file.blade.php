@@ -1,5 +1,5 @@
 {{-- Bootstrap 5
-<div class="form-file {{ $size }}">
+<div class="form-file {{ !empty($size) ? 'form-file-'.$size : '' }}">
   <input
     type="file"
     name="{{ $name }}"

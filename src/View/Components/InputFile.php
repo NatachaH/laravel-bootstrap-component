@@ -82,7 +82,7 @@ class InputFile extends Component
         $this->placeholder  = $placeholder;
         $this->button       = $button;
         $this->help         = $help;
-        $this->size         = !empty($size) ? 'form-file-'.$size : '';
+        $this->size         = $size;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->isInputGroup = $inputGroup;

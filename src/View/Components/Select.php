@@ -116,7 +116,7 @@ class Select extends Component
         $this->name             = $name;
         $this->options          = $options;
         $this->help             = $help;
-        $this->size             = !empty($size) ? 'form-select-'.$size : '';
+        $this->size             = $size;
         $this->optionsSelected  = (array)$selected;
         $this->isMultiple       = $multiple;
         $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make the select disabled
