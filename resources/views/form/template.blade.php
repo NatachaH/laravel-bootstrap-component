@@ -4,7 +4,7 @@
     <label for="{{ $name.'Field' }}" class="form-label">{{ $label }} @if($isRequired) <i class="text-muted">*</i> @endif</label>
   @endif
 
-  @if($isInputGroup)
+  @if(!empty($isInputGroup))
     <div class="input-group">
         @isset($before)
           {!! $before !!}
@@ -19,7 +19,7 @@
   @else
     @includeIf($field)
   @endif
-  
+
   @if($help)
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
