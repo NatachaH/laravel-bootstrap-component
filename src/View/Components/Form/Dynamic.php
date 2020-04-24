@@ -1,6 +1,6 @@
 <?php
 
-namespace Nh\BsComponent\View\Components;
+namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 
@@ -128,6 +128,6 @@ class Dynamic extends Component
      */
     public function render()
     {
-        return view('bs-component::dynamic');
+        return view('bs-component::form.dynamic');
     }
 }

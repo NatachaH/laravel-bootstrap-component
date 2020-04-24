@@ -1,10 +1,10 @@
 <?php
 
-namespace Nh\BsComponent\View\Components;
+namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 
-class InputFile extends Component
+class Input extends Component
 {
     /**
      * The label of the input.
@@ -14,6 +14,14 @@ class InputFile extends Component
     public $label;
 
     /**
+     * The type of the input.
+     * Can be text, number, tel, phone, email, password etc.
+     *
+     * @var string
+     */
+    public $type;
+
+    /**
      * The name of the input.
      *
      * @var string
@@ -21,18 +29,18 @@ class InputFile extends Component
     public $name;
 
     /**
+     * The default value of the input.
+     *
+     * @var string
+     */
+    public $value;
+
+    /**
      * The placeholder of the input.
      *
      * @var string
      */
     public $placeholder;
-
-    /**
-     * The button of the input.
-     *
-     * @var string
-     */
-    public $button;
 
     /**
      * The help message of the input.
@@ -48,6 +56,13 @@ class InputFile extends Component
      * @var string
      */
     public $size;
+
+    /**
+     * Is the input readonly.
+     *
+     * @var boolean
+     */
+    public $isReadonly;
 
     /**
      * Is the input disabled.
@@ -75,14 +90,16 @@ class InputFile extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $placeholder = 'Choose a file...', $button = 'Browse', $help  = '', $size = '', $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = '', $type = 'text', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
+        $this->type         = $type;
         $this->name         = $name;
+        $this->value        = $value;
         $this->placeholder  = $placeholder;
-        $this->button       = $button;
         $this->help         = $help;
         $this->size         = $size;
+        $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->isInputGroup = $inputGroup;
@@ -95,6 +112,6 @@ class InputFile extends Component
      */
     public function render()
     {
-        return view('bs-component::form.template', ['field' => 'bs-component::form.field.input-file']);
+        return view('bs-component::form.template', ['field' => 'bs-component::form.field.input']);
     }
 }

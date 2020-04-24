@@ -1,6 +1,6 @@
 <?php
 
-namespace Nh\BsComponent\View\Components;
+namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 
