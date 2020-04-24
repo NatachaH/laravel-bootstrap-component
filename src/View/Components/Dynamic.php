@@ -36,7 +36,7 @@ class Dynamic extends Component
      * Default KEY to replace for the template
      * @var string
      */
-    public $key
+    public $key;
 
     /**
      * Is the list sortable ?
@@ -56,6 +56,12 @@ class Dynamic extends Component
      * @var string
      */
     public $viewItem;
+
+    /**
+     * Options to pass to the view
+     * @var array
+     */
+    public $viewItemOptions;
 
     /**
      * The help message of the fieldset.
@@ -97,21 +103,22 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $viewItemOptions = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
-        $this->legend       = $legend;
-        $this->min          = $min;
-        $this->max          = $max;
-        $this->name         = $name;
-        $this->key          = $key;
-        $this->sortable     = $sortable;
-        $this->items        = $items;
-        $this->viewItem     = $viewItem;
-        $this->help         = $help;
-        $this->btnAdd       = empty($btnAdd) ? config('dynamic.buttons.add') : $btnAdd;
-        $this->btnRemove    = empty($btnRemove) ? config('dynamic.buttons.remove') : $btnRemove;
-        $this->btnDelete    = empty($btnDelete) ? config('dynamic.buttons.delete') : $btnDelete;
-        $this->btnSortable  = empty($btnSortable) ? config('dynamic.buttons.sortable') : $btnSortable;
+        $this->legend           = $legend;
+        $this->min              = $min;
+        $this->max              = $max;
+        $this->name             = $name;
+        $this->key              = $key;
+        $this->sortable         = $sortable;
+        $this->items            = $items;
+        $this->viewItem         = $viewItem;
+        $this->viewItemOptions  = $viewItemOptions;
+        $this->help             = $help;
+        $this->btnAdd           = empty($btnAdd) ? config('dynamic.buttons.add') : $btnAdd;
+        $this->btnRemove        = empty($btnRemove) ? config('dynamic.buttons.remove') : $btnRemove;
+        $this->btnDelete        = empty($btnDelete) ? config('dynamic.buttons.delete') : $btnDelete;
+        $this->btnSortable      = empty($btnSortable) ? config('dynamic.buttons.sortable') : $btnSortable;
     }
 
     /**

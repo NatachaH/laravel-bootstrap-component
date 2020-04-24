@@ -14,12 +14,12 @@
               <input type="hidden" class="dynamic-position" name="{{ $name.'_to_update['.$item->id.'][position]' }}" value="{{ $item->position }}"/>
             @endif
 
-            @includeIf($viewItem)
+            @includeIf($viewItem, ['options' => $viewItemOptions])
 
             <div class="dynamic-item-btn btn-group-toggle ml-auto" data-toggle="buttons">
                <label class="btn {{ $btnDelete['class'] }}">
                    <input class="dynamic-delete" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">
-                   {!! {{ $btnDelete['value'] ?? __($btnDelete['label']) }} !!}
+                   {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
                </label>
             </div>
         </div>
@@ -33,7 +33,7 @@
         @if($help)
           <small class="form-text text-muted">{{ $help }}</small>
         @endif
-        <button type="button" class="ml-auto btn dynamic-add {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! {{ $btnAdd['value'] ?? __($btnAdd['label']) }} !!}</button>
+        <button type="button" class="ml-auto btn dynamic-add {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
     </div>
 
     <script type="text/template" data-template="dynamic-template">
