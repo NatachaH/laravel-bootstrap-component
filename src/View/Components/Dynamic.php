@@ -41,14 +41,14 @@ class Dynamic extends Component
     /**
      * Information for the add button
      * Class, label and value
-     * @var array
+     * @var string
      */
     public $btnAdd;
 
     /**
      * Information for the remove buttons
      * Class, label and value
-     * @var array
+     * @var string
      */
     public $btnRemove;
 
@@ -57,7 +57,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $isActive = true, $min = 1, $max = null, $help = '', $btnAdd = [], $btnRemove = [])
+    public function __construct($legend, $isActive = true, $min = 1, $max = null, $help = '', $btnAdd = 'Add', $btnRemove = 'Remove')
     {
         $this->legend       = $legend;
         $this->isActive     = $isActive;

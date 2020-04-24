@@ -25,6 +25,11 @@ class BsComponentServiceProvider extends ServiceProvider
     public function boot()
     {
 
+      // VENDORS
+      $this->publishes([
+          __DIR__.'/../config/bs-component.php' => config_path('bs-component.php')
+      ], 'bs-component');
+
       // VIEWS
       $this->loadViewsFrom(__DIR__.'/../resources/views', 'bs-component');
 
@@ -38,8 +43,6 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-dynamic', \Nh\BsComponent\View\Components\Dynamic::class);
 
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
-
-
 
     }
 }
