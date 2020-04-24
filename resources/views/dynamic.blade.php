@@ -43,7 +43,7 @@
           <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
             {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
           </button>
-          <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" value="{{ $item->position }}"/>
+          <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
         @endif
 
         {!! $template !!}
