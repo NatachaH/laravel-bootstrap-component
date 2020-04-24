@@ -7,11 +7,18 @@
       @forelse ($items as $key => $item)
         <div class="d-flex align-items-end dynamic-item dynamic-item-current">
 
+            @if($sortable)
+              <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ $btnSortable['label'] }}">
+                {!! $btnSortable['value'] ?? $btnSortable['label'] !!}
+              </button>
+              <input type="hidden" class="dynamic-position" name="{{ $name.'_to_update['.$item->id.'][position]' }}" value="{{ $item->position }}"/>
+            @endif
+
             @includeIf($viewItem)
 
             <div class="dynamic-item-btn btn-group-toggle ml-auto" data-toggle="buttons">
                <label class="btn {{ $btnDelete['class'] }}">
-                   <input class="dynamic-delete" type="checkbox" name="{{ $deleteName }}" value="{{ $item->id }}" aria-label="{{ $btnDelete['label'] }}">
+                   <input class="dynamic-delete" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ $btnDelete['label'] }}">
                    {!! {{ $btnDelete['value'] ?? $btnDelete['label'] }} !!}
                </label>
             </div>
@@ -31,6 +38,13 @@
 
     <script type="text/template" data-template="dynamic-template">
       <div class="d-flex align-items-end dynamic-item">
+
+        @if($sortable)
+          <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ $btnSortable['label'] }}">
+            {!! $btnSortable['value'] ?? $btnSortable['label'] !!}
+          </button>
+          <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" value="{{ $item->position }}"/>
+        @endif
 
         {!! $template !!}
 

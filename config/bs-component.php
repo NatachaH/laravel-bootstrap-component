@@ -26,6 +26,11 @@ return [
           'class' => 'btn-danger',
           'label' => 'Delete',
           'value' => null
+        ],
+        'sortable' => [
+          'class' => 'btn-info',
+          'label' => 'Move',
+          'value' => null
         ]
     ]
 
