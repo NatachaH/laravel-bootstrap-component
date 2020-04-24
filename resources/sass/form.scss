@@ -43,9 +43,6 @@ form {
         }
 
         &.dynamic-item-delete {
-          > .dynamic-item-btn .icon-trash:before{
-            content: "\e035" // Change the icon for a plus
-          }
           input {
             opacity: 0.25
           }
