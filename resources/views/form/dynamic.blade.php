@@ -4,7 +4,7 @@
 
     <div class="dynamic-list">
 
-      @forelse ($items as $key => $item)
+      @forelse ($items as $item)
         <div class="d-flex align-items-end dynamic-item dynamic-item-current">
 
             @if($sortable)
