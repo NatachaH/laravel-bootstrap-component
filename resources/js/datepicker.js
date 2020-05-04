@@ -40,10 +40,6 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
     // Get the default value
     var defaultDate = el.getAttribute('value');
 
-    // Get the option picker
-    var dataAllowInput = el.getAttribute('data-allow-input');
-    var allowInput     = dataAllowInput ? dataAllowInput : true;
-
     // Get the min and max date
     var minDate     = el.getAttribute('data-min-date');
     var maxDate     = el.getAttribute('data-max-date');
@@ -70,7 +66,7 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
         time_24hr: true,
         defaultDate: defaultDate,
         locale: currentLang,
-        allowInput: allowInput,
+        allowInput: true,
         minDate: minDate,
         maxDate: maxDate,
         onOpen: function(selectedDates, dateStr, instance) {

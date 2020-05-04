@@ -11,7 +11,6 @@
   {{ $isRequired ? 'required' : ''}}
   data-mode="{{ $mode }}"
   data-format="{{ $format }}"
-  data-allow-input="{{ $allowManual }}"
   data-min-date="{{ $min }}"
   data-max-date="{{ $max }}"
   data-min-date-input="{{ $minInput }}"

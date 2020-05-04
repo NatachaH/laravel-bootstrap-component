@@ -13,7 +13,6 @@ class Datepicker extends Component
      */
     public $label;
 
-
     /**
      * The name of the input.
      *
@@ -95,13 +94,6 @@ class Datepicker extends Component
     public $format;
 
     /**
-     * Allow to edit the input field
-     *
-     * @var boolean
-     */
-    public $allowManual;
-
-    /**
      * Minimum date
      *
      * @var string
@@ -134,10 +126,9 @@ class Datepicker extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false, $inputGroup = false, $mode = 'single', $format = 'datetime', $allowManual = true, $min = null, $max = null, $minInput = null, $maxInput = null)
+    public function __construct($label = '', $name, $value = '', $placeholder = '', $help  = '', $size = '', $readonly = false, $disabled = false, $required = false, $inputGroup = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
     {
         $this->label        = $label;
-        $this->type         = $type;
         $this->name         = $name;
         $this->value        = $value;
         $this->placeholder  = $placeholder;
@@ -149,7 +140,6 @@ class Datepicker extends Component
         $this->isInputGroup = $inputGroup;
         $this->mode         = !is_null($mode) && in_array($mode,['single','multiple','range']) ? $mode : 'single';
         $this->format       = !is_null($format) && in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
-        $this->allowManual  = $allowManual;
         $this->min          = $min;
         $this->max          = $max;
         $this->minInput     = $minInput;
