@@ -52,6 +52,9 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
     var maxDateInputData = el.getAttribute('data-max-date-input');
     var maxDateInput = maxDateInputData ? document.getElementsByName(maxDateInputData)[0] : false;
 
+    // Check if the input is readonly
+    var isReadonly = el.readOnly;
+
     // Get the options by format
     var options = get_option(format);
 
@@ -66,7 +69,7 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
         time_24hr: true,
         defaultDate: defaultDate,
         locale: currentLang,
-        allowInput: true,
+        allowInput: isReadonly,
         minDate: minDate,
         maxDate: maxDate,
         onOpen: function(selectedDates, dateStr, instance) {
