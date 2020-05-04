@@ -1,0 +1,662 @@
+/*
+|--------------------------------------------------------------------------
+| Datepicker "Flatpickr" Design
+|--------------------------------------------------------------------------
+|
+| Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Plugin: Flatpickr - https://flatpickr.js.org
+|
+*/
+
+
+@import "./variables/datepicker";
+
+// CALENDAR
+.flatpickr-calendar {
+  background: $calendar-bg;
+  width: $calendar-with;
+  font-size: 14px;
+  line-height: 24px;
+  border: 1px solid $calendar-border-color;
+  border-radius: $calendar-border-radius;
+  opacity: 0;
+  display: none;
+  text-align: center;
+  visibility: hidden;
+  padding: 0;
+  -webkit-animation: none;
+  animation: none;
+  direction: ltr;
+  position: absolute;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.open,
+  &.inline {
+    opacity: 1;
+    visibility: visible;
+    display: inline-block;
+    z-index: 99999;
+    &.animate {
+      -webkit-animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+  }
+
+  &.open {
+    display: inline-block;
+    z-index: 99999;
+    &.animate {
+      -webkit-animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+  }
+
+  &.inline {
+    display: block;
+    position: relative;
+    top: 2px;
+  }
+
+  &.static {
+    position: absolute;
+    top: calc(100% + 2px);
+    &.open {
+      display: block;
+    }
+  }
+
+  // ARROW
+  &:before,
+  &:after {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    left: 22px;
+  }
+
+  &:before {
+    border-width: 5px;
+    margin: 0 -5px;
+  }
+  &:after {
+    border-width: 4px;
+    margin: 0 -4px;
+  }
+
+  &.arrowTop {
+    &:before,
+    &:after {
+      bottom: 100%;
+    }
+
+    &:before {
+      border-bottom-color: $calendar-border-color;
+    }
+
+    &:after {
+      border-bottom-color: $month-bg;
+    }
+
+    &.noCalendar:after {
+      border-bottom-color: $calendar-bg;
+    }
+
+  }
+
+  &.arrowBottom {
+    &:before,
+    &:after {
+      top: 100%;
+    }
+
+    &:before {
+      border-top-color: $calendar-border-color;
+    }
+
+    &:after {
+      border-top-color: $calendar-bg;
+    }
+  }
+
+  .flatpickr-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .flatpickr-innerContainer {
+    display: block;
+    display: flex;
+    overflow: hidden;
+    .flatpickr-rContainer {
+      display: inline-block;
+      padding: 0;
+
+    }
+  }
+
+  // MONTHS
+  .flatpickr-months {
+    display: flex;
+    position: relative;
+    border-bottom:1px solid $month-border-color;
+
+    .flatpickr-month {
+      background: $month-bg;
+      color: $month-color;
+      fill: $month-color;
+      height: $month-height;
+      line-height: 1;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      border-top-left-radius: $calendar-border-radius;
+      border-top-right-radius: $calendar-border-radius;
+    }
+
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+      text-decoration: none;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 34px;
+      line-height: $month-height;
+      z-index: 3;
+      color: $month-color;
+      fill: $month-color;
+
+      &.flatpickr-disabled {
+        display: none;
+      }
+
+      i {
+        position: relative;
+      }
+
+      svg {
+        width: 14px;
+        height: 14px;
+        path {
+          -webkit-transition: fill 0.1s;
+          transition: fill 0.1s;
+          fill: inherit;
+        }
+      }
+
+      &:hover {
+        color: $month-hover-color;
+        background: $month-hover-bg;
+        svg {
+          fill: $month-hover-color;
+        }
+      }
+
+    }
+
+    .flatpickr-prev-month {
+      left: 0;
+      border-top-left-radius: $calendar-border-radius;
+    }
+
+    .flatpickr-next-month {
+      right: 0;
+      border-top-right-radius: $calendar-border-radius;
+    }
+
+    .flatpickr-current-month {
+      font-size:16px;
+      color: $month-color;
+      position: absolute;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0;
+      line-height: 1;
+      height: 100%;
+      display: flex;
+      text-align: center;
+
+      .numInputWrapper {
+        height: 100%;
+        width: 40%;
+
+        span {
+          &.arrowUp:after {
+            border-bottom-color: $month-color;
+          }
+          &.arrowDown:after {
+            border-top-color: $month-color;
+          }
+        }
+
+        &:hover {
+          background: $month-hover-bg;
+          input {
+            background: $month-hover-bg;
+            color: $month-hover-color;
+          }
+          span {
+            &.arrowUp:after {
+              border-bottom-color: $month-hover-color;
+            }
+            &.arrowDown:after {
+              border-top-color: $month-hover-color;
+            }
+          }
+        }
+
+      }
+
+      .flatpickr-monthDropdown-months {
+        text-transform: capitalize;
+        appearance: none;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+
+        color: inherit;
+        cursor: pointer;
+        font-size: inherit;
+        font-family: inherit;
+        height: 100%;
+        line-height: inherit;
+        outline: none;
+        padding: 0 24px;
+        position: relative;
+        vertical-align: initial;
+        width: 60%;
+        background-position: right 0.75rem center;
+        background-size: 9px;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='"+$month-select-arrow-color+"' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+        text-align-last:center;
+
+        &:focus,
+        &:active {
+          outline: none;
+        }
+
+        &:hover {
+          background-color: $month-hover-bg;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='"+$month-hover-select-arrow-color+"' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+          color: $month-hover-color;
+        }
+
+      }
+
+    }
+
+  }
+
+  // WEEKS
+  .flatpickr-weekdays {
+    background: $week-bg;
+    color: $week-color;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 28px;
+
+    .flatpickr-weekdaycontainer {
+      display: flex;
+      flex: 1;
+
+      span.flatpickr-weekday {
+        cursor: default;
+        font-size: 90%;
+        line-height: 1;
+        margin: 0;
+        text-align: center;
+        display: block;
+        flex: 1;
+        font-weight: bolder;
+      }
+
+    }
+
+  }
+
+  .flatpickr-weekwrapper {
+    background: $week-bg;
+    color: $week-color;
+
+    .flatpickr-weekday {
+      font-size: 90%;
+      font-weight: bolder;
+      float: none;
+      width: 100%;
+      line-height: 28px;
+    }
+
+    .flatpickr-weeks {
+      background: $calendar-bg;
+      padding: 0 12px;
+      border-right: 1px solid $calendar-border-color;
+
+      .flatpickr-day {
+        max-width: 39px;
+        height: 39px;
+        line-height: 39px;
+        display: block;
+        color: $day-disabled-color;
+        background: transparent;
+        cursor: default;
+        border: none;
+      }
+
+    }
+
+  }
+
+  // DAYS
+  .flatpickr-days {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+
+    &:focus {
+      outline: 0;
+    }
+
+    .dayContainer {
+      padding: 3px 3px 0 3px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      opacity: 1;
+
+      .flatpickr-day {
+        background: $day-bg;
+        color: $day-color;
+        border: 1px solid $day-border-color;
+        border-radius: $day-border-radius;
+        cursor: pointer;
+        font-weight: 400;
+        width: $day-size;
+        flex-basis: $day-size;
+        max-width: $day-size;
+        height: $day-size;
+        line-height: $day-size;
+        margin: 0 0 3px 0;
+
+        &.today {
+          background: $today-bg;
+          color: $today-color;
+          border-color: $today-border-color;
+        }
+
+        &.selected {
+          background: $day-selected-bg;
+          color: $day-selected-color;
+          border-color: $day-selected-border-color;
+        }
+
+        &.prevMonthDay,
+        &.nextMonthDay,
+        &.flatpickr-disabled,
+        &.notAllowed {
+          background: $day-disabled-bg;
+          color: $day-disabled-color;
+          border-color: $day-disabled-border-color;
+        }
+
+        &.flatpickr-disabled,
+        &.notAllowed {
+          cursor: not-allowed;
+          &:hover {
+            background: $day-disabled-bg;
+            color: $day-disabled-color;
+            border-color: $day-disabled-border-color;
+          }
+        }
+
+        &.startRange {
+          border-radius: 50px 0 0 50px;
+        }
+
+        &.endRange {
+          border-radius: 0 50px 50px 0;
+        }
+
+        &.inRange {
+          background: $day-range-bg;
+          color: $day-range-color;
+          border-color: $day-range-border-color;
+          border-radius: 0;
+          box-shadow: -5px 0 0 $day-range-bg, 5px 0 0 $day-range-bg;
+        }
+
+        .hidden {
+          visibility: hidden;
+        }
+
+        &:hover,
+        &:focus {
+          background: $day-hover-bg;
+          color: $day-hover-color;
+          border-color: $day-hover-border-color;
+        }
+
+      }
+
+    }
+
+  }
+
+  // TIME
+  &.hasTime {
+
+    .flatpickr-time {
+      background: $time-bg;
+      color: $time-color;
+      height: 40px;
+      border-top: 1px solid $calendar-border-color;
+      text-align: center;
+      outline: 0;
+      display: block;
+      line-height: 40px;
+      max-height: 40px;
+
+      overflow: hidden;
+      display: flex;
+      border-bottom-left-radius: $calendar-border-radius;
+      border-bottom-right-radius: $calendar-border-radius;
+
+      .numInputWrapper {
+        flex: 1;
+        width: 40%;
+        height: 40px;
+        float: left;
+
+        span {
+          &.arrowUp:after {
+            border-bottom-color: $time-color;
+          }
+          &.arrowDown:after {
+            border-top-color: $time-color;
+          }
+        }
+
+        &:hover {
+          background: $time-hover-bg;
+          input {
+            background: $time-hover-bg;
+            color: $time-hover-color;
+          }
+          span {
+            &.arrowUp:after {
+              border-bottom-color: $time-hover-color;
+            }
+            &.arrowDown:after {
+              border-top-color: $time-hover-color;
+            }
+          }
+        }
+
+      }
+
+      &.hasSeconds .numInputWrapper  {
+          width: 26%;
+      }
+
+      &.time24hr .numInputWrapper {
+        width: 49%;
+      }
+
+      .flatpickr-time-separator,
+      .flatpickr-am-pm {
+        height: inherit;
+        float: left;
+        line-height: inherit;
+        color: $time-color;
+        width: 2%;
+        user-select: none;
+        align-self: center;
+      }
+
+      .flatpickr-am-pm {
+        outline: 0;
+        width: 18%;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover {
+          background: $time-hover-bg;
+          color: $time-hover-color;
+        }
+
+      }
+
+    }
+
+  }
+
+  // INPUT NUMBER
+  .numInputWrapper {
+    position: relative;
+    height: auto;
+
+    input,
+    span {
+      display: inline-block;
+    }
+
+    input {
+      width: 100%;
+      background: transparent;
+      color: inherit;
+
+      cursor: text;
+      padding: 0 24px 0 0;
+      margin: 0;
+      display: inline-block;
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+      vertical-align: initial;
+      text-align: center;
+      appearance: textfield;
+
+
+      &::-ms-clear {
+        display: none;
+      }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+      }
+
+      &:focus {
+        background: transparent !important;
+      }
+    }
+
+    span {
+      position: absolute;
+      right: 0;
+      width: 24px;
+      height: 50%;
+      line-height: 50%;
+      opacity: 0;
+      cursor: pointer;
+
+
+      // Arrows
+      &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        left:50%;
+        transform: translateX(-50%);
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+      }
+
+      &.arrowUp {
+        top: 0;
+        border-bottom: 0;
+        &:after {
+          border-bottom: 4px solid transparent;
+          bottom: 20%;
+        }
+      }
+
+      &.arrowDown {
+        top: 50%;
+        &:after {
+          border-top: 4px solid transparent;
+          top: 20%;
+        }
+      }
+    }
+
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+
+  }
+
+}
+
+// ANIMATION
+@-webkit-keyframes fpFadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fpFadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
+            transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}

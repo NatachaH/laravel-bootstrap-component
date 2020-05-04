@@ -45,3 +45,9 @@ All the component manage the request old() value and the validation.
 ```
 <x-bs-input-file label="My label" name="fieldname" placeholder="Choose a file" button="Browse" help="Help message" size="lg" disabled required />
 ```
+
+## Datepicker
+
+```
+<x-bs-datepicker label="My label" name="fieldname" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-31"/>
+```

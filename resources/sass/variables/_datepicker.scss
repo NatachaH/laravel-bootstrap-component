@@ -1,0 +1,57 @@
+/*
+|--------------------------------------------------------------------------
+| Datepicker "Flatpickr" Variables
+|--------------------------------------------------------------------------
+|
+| Copyright © 2019 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Plugin: Name and url
+|
+*/
+
+$calendar-with: 280px;
+$calendar-border-color: $gray-200;
+$calendar-bg: $white;
+$calendar-border-radius: 5px;
+
+$month-height: 42px;
+$month-bg: $primary;
+$month-color: $white;
+$month-border-color: darken($primary,15%);
+$month-hover-bg: darken($primary,15%);
+$month-hover-color: $white;
+$month-select-arrow-color: 'transparent'; // %23 is for #
+$month-hover-select-arrow-color: 'transparent'; // %23 is for #
+
+$week-bg: $primary;
+$week-color: darken($primary,25%);
+
+$day-size: calc( #{$calendar-with} / 8);
+$day-bg: transparent;
+$day-color: $gray-800;
+$day-border-color: transparent;
+$day-border-radius: 150px;
+
+$today-bg: $gray-200;
+$today-color: $primary;
+$today-border-color: transparent;
+
+$day-hover-bg: $primary;
+$day-hover-color: $white;
+$day-hover-border-color: transparent;
+
+$day-selected-bg: $primary;
+$day-selected-color: $white;
+$day-selected-border-color: transparent;
+
+$day-range-bg: $gray-400;
+$day-range-color: inherit;
+$day-range-border-color: transparent;
+
+$day-disabled-bg: transparent;
+$day-disabled-color: $gray-400;
+$day-disabled-border-color: transparent;
+
+$time-bg: $white;
+$time-color: $day-color;
+$time-hover-bg: $gray-200;
+$time-hover-color: $day-color;

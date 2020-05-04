@@ -41,6 +41,7 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-select', \Nh\BsComponent\View\Components\Form\Select::class);
       Blade::component('bs-input-file', \Nh\BsComponent\View\Components\Form\InputFile::class);
       Blade::component('bs-dynamic', \Nh\BsComponent\View\Components\Form\Dynamic::class);
+      Blade::component('bs-datepicker', \Nh\BsComponent\View\Components\Form\Datepicker::class);
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
 
     }
