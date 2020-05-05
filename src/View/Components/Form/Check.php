@@ -65,6 +65,13 @@ class Check extends Component
     public $isChecked;
 
     /**
+     * Is the check a boolean value.
+     *
+     * @var boolean
+     */
+    public $isBoolean;
+
+    /**
      * Define the $isChecked by default value and old session
      * @param  boolean $default
      * @return boolean
@@ -107,7 +114,7 @@ class Check extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false)
+    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false, $boolean = false)
     {
         $this->label         = $label;
         $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
@@ -117,6 +124,7 @@ class Check extends Component
         $this->isChecked     = $this->defineIsChecked($checked);
         $this->isDisabled    = $disabled;
         $this->isRequired    = $required;
+        $this->isBoolean     = $boolean;
     }
 
     /**

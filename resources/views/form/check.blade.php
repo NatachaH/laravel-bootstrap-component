@@ -1,6 +1,10 @@
 {{-- Bootstrap 5
 <div {{ $attributes->merge(['class' => 'form-check']) }}>
 
+  @if($isBoolean)
+    <input type="hidden" value="{{ $value ? '0' : '1' }}" name="{{ $name }}"/>
+  @endif
+
   <input
     type="{{ $type }}"
     name="{{ $name }}"
@@ -34,6 +38,10 @@
 --}}
 
 <div {{ $attributes->merge(['class' => 'custom-control custom-'.$type]) }}>
+
+  @if($isBoolean)
+    <input type="hidden" value="{{ $value ? '0' : '1' }}" name="{{ $name }}"/>
+  @endif
 
   <input
     type="{{ $type }}"
