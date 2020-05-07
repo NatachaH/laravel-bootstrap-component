@@ -95,6 +95,6 @@ class InputFile extends Component
      */
     public function render()
     {
-        return view('bs-component::form.template', ['field' => 'bs-component::form.field.input-file']);
+        return view('bs-component::form.field-template', ['field' => 'bs-component::form.field.input-file']);
     }
 }

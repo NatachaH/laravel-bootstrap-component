@@ -153,6 +153,6 @@ class Datepicker extends Component
      */
     public function render()
     {
-        return view('bs-component::form.template', ['field' => 'bs-component::form.field.datepicker']);
+        return view('bs-component::form.field-template', ['field' => 'bs-component::form.field.datepicker']);
     }
 }

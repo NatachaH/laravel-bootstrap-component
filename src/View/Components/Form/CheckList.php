@@ -140,6 +140,6 @@ class CheckList extends Component
      */
     public function render()
     {
-        return view('bs-component::form.template', ['field' => 'bs-component::form.field.check-list']);
+        return view('bs-component::form.field-template', ['field' => 'bs-component::form.field.check-list']);
     }
 }

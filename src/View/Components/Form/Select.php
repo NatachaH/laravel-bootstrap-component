@@ -132,6 +132,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('bs-component::form.template', ['field' => 'bs-component::form.field.select']);
+        return view('bs-component::form.field-template', ['field' => 'bs-component::form.field.select']);
     }
 }
