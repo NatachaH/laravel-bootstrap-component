@@ -14,6 +14,18 @@ class Dynamic extends Component
     public $legend;
 
     /**
+     * The listing view path.
+     * @var string
+     */
+    public $listing;
+
+    /**
+     * The template view path.
+     * @var string
+     */
+    public $template;
+
+    /**
      * Minimum nbr of inputs
      * @var int
      */
@@ -50,18 +62,6 @@ class Dynamic extends Component
      * @var array
      */
     public $items;
-
-    /**
-     * The path for the current item view
-     * @var string
-     */
-    public $viewItem;
-
-    /**
-     * Options to pass to the view
-     * @var array
-     */
-    public $viewItemOptions;
 
     /**
      * The help message of the fieldset.
@@ -103,17 +103,17 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $template = null, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $viewItemOptions = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
         $this->legend           = $legend;
+        $this->listing          = $listing;
+        $this->template         = $template;
         $this->min              = $min;
         $this->max              = $max;
         $this->name             = $name;
         $this->key              = $key;
         $this->sortable         = $sortable;
         $this->items            = $items;
-        $this->viewItem         = $viewItem;
-        $this->viewItemOptions  = $viewItemOptions;
         $this->help             = $help;
         $this->btnAdd           = empty($btnAdd) ? config('dynamic.buttons.add') : $btnAdd;
         $this->btnRemove        = empty($btnRemove) ? config('dynamic.buttons.remove') : $btnRemove;
@@ -128,6 +128,6 @@ class Dynamic extends Component
      */
     public function render()
     {
-        return view('bs-component::form.dynamic');
+        return view('bs-component::form.dynamic-template');
     }
 }
