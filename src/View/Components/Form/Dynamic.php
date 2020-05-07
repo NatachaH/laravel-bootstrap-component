@@ -135,6 +135,6 @@ class Dynamic extends Component
      */
     public function render()
     {
-        return view('bs-component::form.dynamic-template', ['template' => $template]);
+        return view('bs-component::form.dynamic');
     }
 }
