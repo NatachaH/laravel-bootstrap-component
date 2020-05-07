@@ -1,0 +1,123 @@
+/*
+|--------------------------------------------------------------------------
+| Editor "QuillJS" Design
+|--------------------------------------------------------------------------
+*/
+
+.editor {
+
+  .ql-toolbar {
+
+      margin-bottom: 0.5rem;
+
+      .ql-formats {
+
+          border: 1px solid $border-color;
+          @include border-radius($btn-border-radius);
+          margin-right: 0.5rem;
+
+          &:last-child {
+              margin-right: 0;
+          }
+
+          button {
+              line-height: 0;
+              padding: 0.5rem;
+              background: $white;
+              &.ql-active,
+              &:hover {
+                background: $border-color;
+              }
+          }
+
+          .dropdown-toggle::after {
+              vertical-align: middle !important;
+          }
+
+          .dropdown-menu {
+              min-width: auto !important;
+          }
+      }
+
+  }
+
+  .ql-container {
+
+    .ql-editor {
+        background: $input-bg;
+        border: $input-border-width solid $input-border-color;
+        @include border-radius($input-border-radius);
+        padding: $input-padding-y $input-padding-x;
+        font-size: $input-font-size;
+        line-height: $input-line-height;
+        color: $input-color;
+        @include form-control-focus($ignore-warning: true);
+
+        > p:last-child {
+            margin-bottom: 0;
+        }
+
+        // Min height of editor = input height * 2
+        min-height: calc((#{$input-height-inner}*2) + 2px);
+
+        // Make all .ql-color- as the bootstrap class .text-
+        @each $color, $value in $theme-colors {
+          .ql-color-#{$color} {
+            color: $value;
+          }
+        }
+    }
+
+    &.is-invalid > .ql-editor{
+        border-color: $form-feedback-invalid-color;
+        @if $enable-validation-icons {
+          padding-right: $input-height-inner;
+          background-image: escape-svg($form-feedback-icon-invalid);
+          background-repeat: no-repeat;
+          background-position: top $input-height-inner-quarter right $input-height-inner-quarter;
+          background-size: $input-height-inner-half $input-height-inner-half;
+        }
+        &:focus {
+          border-color: $form-feedback-invalid-color;
+          box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
+        }
+    }
+
+    .ql-clipboard {
+        left:-100000px;
+        height: 1px;
+        overflow-y: hidden;
+        position: absolute;
+        top:50%;
+    }
+
+  }
+
+  .ql-textarea {
+      display:none;
+  }
+
+}
+
+// Bootstrap icon for keyboard
+kbd {
+  [class^="bi-"], [class*=" bi-"] {
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position: center;
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    margin-right: 0.2rem;
+  }
+}
+
+.bi-shift {
+  background-image: url('data:image/svg+xml,<svg viewBox="0 0 16 16" fill="%23FFF" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.27 2.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 01-1 1h-5a1 1 0 01-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047zM14.346 9.5L8 2.731 1.654 9.5H4.5a1 1 0 011 1v3h5v-3a1 1 0 011-1h2.846z" clip-rule="evenodd"/></svg>');
+}
+
+.bi-enter {
+  background-image: url('data:image/svg+xml,<svg viewBox="0 0 16 16" fill="%23FFF" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.854 5.646a.5.5 0 010 .708L3.207 9l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M13.5 2.5a.5.5 0 01.5.5v4a2.5 2.5 0 01-2.5 2.5H3a.5.5 0 010-1h8.5A1.5 1.5 0 0013 7V3a.5.5 0 01.5-.5z" clip-rule="evenodd"/></svg>');
+}
