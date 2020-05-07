@@ -46,7 +46,7 @@
           <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
         @endif
 
-        @includeIf($template)
+        {!! $template !!}
 
         <div class="dynamic-item-btn">
           <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ __($btnRemove['label']) }}">{!! $btnRemove['value'] ?? __($btnRemove['label']) !!}</button>
