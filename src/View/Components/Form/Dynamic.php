@@ -14,6 +14,12 @@ class Dynamic extends Component
     public $legend;
 
     /**
+     * The template path to copy.
+     * @var string
+     */
+    public $template;
+
+    /**
      * Minimum nbr of inputs
      * @var int
      */
@@ -103,9 +109,10 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $viewItemOptions = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $template, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $viewItem = '', $viewItemOptions = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
         $this->legend           = $legend;
+        $this->template         = $template;
         $this->min              = $min;
         $this->max              = $max;
         $this->name             = $name;
@@ -128,6 +135,6 @@ class Dynamic extends Component
      */
     public function render()
     {
-        return view('bs-component::form.dynamic');
+        return view('bs-component::form.dynamic-template', ['template' => $template]);
     }
 }
