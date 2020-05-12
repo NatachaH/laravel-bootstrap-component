@@ -52,6 +52,8 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-blockquote', \Nh\BsComponent\View\Components\Blockquote::class);
       Blade::component('bs-breadcrumb', \Nh\BsComponent\View\Components\Breadcrumb::class);
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
+      Blade::component('bs-loading', \Nh\BsComponent\View\Components\Loading::class);
+
 
     }
 }
