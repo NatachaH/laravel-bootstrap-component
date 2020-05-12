@@ -1,4 +1,4 @@
-@if(!empty($links))
+@isset($links)
   <nav {{ $attributes }} aria-label="breadcrumb">
     <ol class="breadcrumb">
 
@@ -14,4 +14,4 @@
 
     </ol>
   </nav>
-@endif
+@endisset
