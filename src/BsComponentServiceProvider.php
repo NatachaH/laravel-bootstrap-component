@@ -49,6 +49,7 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-editor', \Nh\BsComponent\View\Components\Form\Editor::class);
 
       Blade::component('bs-alert', \Nh\BsComponent\View\Components\Alert::class);
+      Blade::component('bs-breadcrumb', \Nh\BsComponent\View\Components\Breadcrumb::class);
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
 
     }
