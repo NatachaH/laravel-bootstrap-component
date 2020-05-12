@@ -53,6 +53,7 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-breadcrumb', \Nh\BsComponent\View\Components\Breadcrumb::class);
       Blade::component('bs-card', \Nh\BsComponent\View\Components\Card::class);
       Blade::component('bs-figure', \Nh\BsComponent\View\Components\Figure::class);
+      Blade::component('bs-modal', \Nh\BsComponent\View\Components\Modal::class);
       Blade::component('bs-loading', \Nh\BsComponent\View\Components\Loading::class);
       Blade::component('bs-progress', \Nh\BsComponent\View\Components\Progress::class);
       Blade::component('bs-toast', \Nh\BsComponent\View\Components\Toast::class);
