@@ -27,13 +27,19 @@ class Toast extends Component
      */
     public $img;
 
-
     /**
      * Has a close button.
      *
      * @var boolean
      */
     public $closable;
+
+    /**
+     * Is the toast auto hide.
+     *
+     * @var boolean
+     */
+    public $autohide;
 
     /**
      * The delay before autohide.
@@ -47,12 +53,13 @@ class Toast extends Component
      *
      * @return void
      */
-    public function __construct($title = null, $time = null, $img = null, $closable = false, $delay = 10000)
+    public function __construct($title = null, $time = null, $img = null, $closable = false, $autohide = false, $delay = 10000)
     {
         $this->title      = $title;
         $this->time       = $time;
         $this->img        = $img;
         $this->closable   = $closable;
+        $this->autohide   = $autohide;
         $this->delay      = $delay;
     }
 

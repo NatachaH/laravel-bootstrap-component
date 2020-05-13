@@ -69,7 +69,7 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
         time_24hr: true,
         defaultDate: defaultDate,
         locale: currentLang,
-        allowInput: isReadonly,
+        allowInput: !isReadonly,
         minDate: minDate,
         maxDate: maxDate,
         onOpen: function(selectedDates, dateStr, instance) {

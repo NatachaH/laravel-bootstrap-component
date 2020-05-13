@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'toast']) }} role="alert" aria-live="assertive" aria-atomic="true" @isset($delay) data-delay="{{ $delay }}" data-autohide="true" @endisset>
+<div {{ $attributes->merge(['class' => 'toast']) }} role="alert" aria-live="assertive" aria-atomic="true" data-delay="{{ $delay }}" data-autohide="{{ $autohide ? 'true' : 'false' }}" >
   @if(!empty($img) || !empty($title) || !empty($time) || $closable)
     <div class="toast-header">
       @isset($img)

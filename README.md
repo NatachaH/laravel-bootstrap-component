@@ -9,12 +9,18 @@ composer require nh/bs-component
 Add this to your packages.json
 
 ```
-"bootstrap" => "^4.4.1",
-"jquery" => "^3.4.1",
-"popper.js" => "^1.12",
-"quill" => "^1.3.6",
-"bs-custom-file-input" => "^1.3.4",
-"flatpickr" => "^4.6.3"
+"bootstrap" : "^4.4.1",
+"jquery" : "^3.4.1",
+"popper.js" : "^1.12",
+"quill" : "^1.3.6",
+"bs-custom-file-input" : "^1.3.4",
+"flatpickr" : "^4.6.3"
+```
+
+Publish the config
+
+```
+php artisan vendor:publish --tag=bs-components
 ```
 
 Javascript to include
@@ -193,10 +199,11 @@ Available components:
 | time      | string | null |
 | img       | string | null |
 | closable  | boolean | false |
+| autohide  | boolean | false |
 | delay     | int    | 10000 |
 
 ```
-<x-bs-toast class="show" title="My toast" time="11 min ago" img="https://fakeimg.pl/20x20/cccccc/?text=BS" closable delay="100">
+<x-bs-toast class="show" title="My toast" time="11 min ago" img="https://fakeimg.pl/20x20/007bff/fff" closable autohide delay="100">
   Hey this is a toast !
 </x-bs-toast>
 ```
@@ -283,27 +290,6 @@ All the component manage the request old() value and the validation.
 </x-bs-input>
 ```
 
-## Input
-
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| type      | string | text  |
-| name      | string |       |
-| value     | string | null  |
-| placeholder | string | null  |
-| help      | string | null  |
-| size      | string | null  |
-| readonly  | boolean | false |
-| disabled  | boolean | false |
-| required  | boolean | false |
-| input-group | boolean | false |
-
-*The name is required.*
-
-```
-<x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />
-```
 
 ## Input File
 
@@ -426,11 +412,11 @@ With this component you can add/remove input to add multiple field in your form 
 | btnSortable | array | []   |
 
 *The legend is required.*
-*The listing and template are path to the includes views.*
+*The listing and template are path to some includes views.*
 *For a global customization of all the buttons change it in the config file dynamic.php.*
 
 ```
-<x-bs-component legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" sortable :items="[]" help="Help message" />
+<x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" sortable :items="[]" help="Help message" />
 ```
 
 ## Editor
