@@ -120,7 +120,7 @@ class CheckList extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $options, $help  = '', $checked = [], $disabled = false, $required = false)
+    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $required = false)
     {
         $this->label            = $label;
         $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';

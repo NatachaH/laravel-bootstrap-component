@@ -47,7 +47,7 @@ class Toast extends Component
      *
      * @return void
      */
-    public function __construct($title = '', $time = null, $img = null, $closable = false, $delay = 10000)
+    public function __construct($title = null, $time = null, $img = null, $closable = false, $delay = 10000)
     {
         $this->title      = $title;
         $this->time       = $time;

@@ -11,7 +11,9 @@ return [
     |
     */
 
-    'close'     => 'Fermer',
-    'loading'   => 'Chargement...'
+    'close'         => 'Fermer',
+    'loading'       => 'Chargement...',
+    'choose-file'   => 'Choisir un fichier',
+    'browse'        => 'Parcourir'
 
 ];

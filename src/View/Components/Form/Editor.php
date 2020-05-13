@@ -88,7 +88,7 @@ class Editor extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $value = '', $help  = '', $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger')
+    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger')
     {
         $this->label        = $label;
         $this->name         = $name;

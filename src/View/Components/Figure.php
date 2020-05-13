@@ -14,7 +14,7 @@ class Figure extends Component
     public $caption;
 
     /**
-     * The alignement of the figure.
+     * The alignement of the figure caption.
      *
      * @var string
      */
@@ -25,7 +25,7 @@ class Figure extends Component
      *
      * @return void
      */
-    public function __construct($caption = '', $align = 'left')
+    public function __construct($caption = null, $align = 'left')
     {
         $this->caption = $caption;
         $this->align   = $align;

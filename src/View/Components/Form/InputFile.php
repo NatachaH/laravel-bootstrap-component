@@ -75,12 +75,12 @@ class InputFile extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $placeholder = 'Choose a file...', $button = 'Browse', $help  = '', $size = '', $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $name, $placeholder = null, $button = null, $help  = null, $size = null, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
         $this->name         = $name;
-        $this->placeholder  = $placeholder;
-        $this->button       = $button;
+        $this->placeholder  = is_null($placeholder) ? __('bs-component::button.choose-file') : $placeholder;
+        $this->button       = is_null($button) ? __('bs-component::button.browse') : $button;
         $this->help         = $help;
         $this->size         = $size;
         $this->isDisabled   = $disabled;

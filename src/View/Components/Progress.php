@@ -60,7 +60,7 @@ class Progress extends Component
      *
      * @return void
      */
-    public function __construct($color = 'primary', $value = 0, $min = 0, $max = 100, $caption = '', $stripped = false, $animated = false)
+    public function __construct($color = 'primary', $value = 0, $min = 0, $max = 100, $caption = null, $stripped = false, $animated = false)
     {
         $this->color      = $color;
         $this->value      = $value;

@@ -14,13 +14,21 @@ class Card extends Component
     public $title;
 
     /**
+     * The footer of the card.
+     *
+     * @var string
+     */
+    public $footer;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title = null)
+    public function __construct($title = null, $footer = null)
     {
-        $this->title = $title;
+        $this->title  = $title;
+        $this->footer = $footer;
     }
 
     /**

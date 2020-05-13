@@ -11,7 +11,9 @@ return [
     |
     */
 
-    'close'     => 'Close',
-    'loading'   => 'Loading...'
+    'close'         => 'Close',
+    'loading'       => 'Loading...',
+    'choose-file'   => 'Choose a file',
+    'browse'        => 'Browse'
 
 ];

@@ -12,16 +12,16 @@ class Breadcrumb extends Component
      *
      * @var array
      */
-    public $links;
+    public $items;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($links = null)
+    public function __construct($items = null)
     {
-        $this->links = $links;
+        $this->items = $items;
     }
 
     /**

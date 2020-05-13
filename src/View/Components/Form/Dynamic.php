@@ -103,7 +103,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $key = 'KEY', $sortable = false, $items = [], $help = '', $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -111,7 +111,7 @@ class Dynamic extends Component
         $this->min              = $min;
         $this->max              = $max;
         $this->name             = $name;
-        $this->key              = $key;
+        $this->key              = 'KEY';
         $this->sortable         = $sortable;
         $this->items            = $items;
         $this->help             = $help;

@@ -14,11 +14,11 @@ class Modal extends Component
     public $title;
 
     /**
-     * Has a close button.
+     * The footer of the modal.
      *
-     * @var boolean
+     * @var string
      */
-    public $closable;
+    public $footer;
 
     /**
      * The size of the modal.
@@ -28,18 +28,11 @@ class Modal extends Component
     public $size;
 
     /**
-     * Is the modal fullscreen.
+     * Has a close button.
      *
      * @var boolean
      */
-    public $isFullscreen;
-
-    /**
-     * The size below which the modal is fullscreen.
-     *
-     * @var string
-     */
-    public $fullscreenSize;
+    public $closable;
 
     /**
      * Is the modal centered.
@@ -54,6 +47,20 @@ class Modal extends Component
      * @var boolean
      */
     public $scrollable;
+
+    /**
+     * Is the modal fullscreen.
+     *
+     * @var boolean
+     */
+    public $isFullscreen;
+
+    /**
+     * The size below which the modal is fullscreen.
+     *
+     * @var string
+     */
+    public $fullscreenSize;
 
     /**
      * Get the fullscreen class.
@@ -74,15 +81,16 @@ class Modal extends Component
      *
      * @return void
      */
-    public function __construct($title = '', $closable = true, $size = 'md', $fullscreen = false, $fullscreenSize = null, $centered = true, $scrollable = false)
+    public function __construct($title = null, $footer = null, $size = 'md', $closable = false, $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null)
     {
         $this->title                = $title;
-        $this->closable             = $closable;
+        $this->footer               = $footer;
         $this->size                 = $size;
-        $this->isFullscreen         = $fullscreen;
-        $this->fullscreenSize       = $fullscreenSize;
+        $this->closable             = $closable;
         $this->isCentered           = $centered;
         $this->scrollable           = $scrollable;
+        $this->isFullscreen         = $fullscreen;
+        $this->fullscreenSize       = $fullscreenSize;
     }
 
     /**

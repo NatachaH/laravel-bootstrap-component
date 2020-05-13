@@ -114,7 +114,7 @@ class Check extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $type = 'checkbox', $name, $value = 'true', $help = '', $checked = false, $disabled = false, $required = false, $boolean = false)
+    public function __construct($label = null, $type = 'checkbox', $name, $value = '1', $help = null, $checked = false, $disabled = false, $required = false, $boolean = false)
     {
         $this->label         = $label;
         $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';

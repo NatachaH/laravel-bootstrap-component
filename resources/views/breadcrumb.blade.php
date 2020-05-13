@@ -1,13 +1,13 @@
-@isset($links)
+@isset($items)
   <nav {{ $attributes }} aria-label="breadcrumb">
     <ol class="breadcrumb">
 
-      @foreach ($links as $key => $value)
+      @foreach ($items as $key => $item)
 
           @if($loop->last)
             <li class="breadcrumb-item active" aria-current="page">{{ $key }}</li>
           @else
-            <li class="breadcrumb-item"><a href="{{ route($value) }}">{{ $key }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ Route::has($item) ? route($item) : $item }}">{{ $key }}</a></li>
           @endif
 
       @endforeach

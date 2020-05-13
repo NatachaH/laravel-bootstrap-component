@@ -110,7 +110,7 @@ class Select extends Component
      *
      * @return void
      */
-    public function __construct($label = '', $name, $options, $help  = '', $size = '', $selected = [],  $multiple = false, $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $name, $options, $help  = null, $size = null, $selected = [],  $multiple = false, $disabled = false, $required = false, $inputGroup = false)
     {
         $this->label            = $label;
         $this->name             = $name;
