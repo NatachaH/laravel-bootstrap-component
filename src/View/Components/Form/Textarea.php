@@ -78,7 +78,7 @@ class Textarea extends Component
      */
     public function cleanName()
     {
-         return Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
+         return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
     }
 
     /**
