@@ -53,14 +53,16 @@
       });
 
       // Delete
-      var deleteBtns = this.el.querySelectorAll('.dynamic-delete');
-      Array.prototype.forEach.call(deleteBtns, function(el, i) {
-        el.addEventListener('change',function(e){
-          var item = e.target.closest('.dynamic-item');
-          dynamicObject.delete(item,e.target.checked);
+      var currents = this.el.querySelectorAll('.dynamic-item-current');
+      Array.prototype.forEach.call(currents, function(el, i) {
+        el.querySelector('.dynamic-delete').addEventListener('click',function(e){
+          e.preventDefault();
+          var parent = e.target.closest('.dynamic-item-btn');
+          var input = parent.querySelector('.dynamic-delete-checkbox');
+          input.checked = !input.checked;
+          dynamicObject.delete(el,input.checked);
         });
       });
-
 
   }
 
@@ -163,12 +165,12 @@
   {
       if (checked) {
           item.classList.add('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete)').forEach(function(input){
+          item.querySelectorAll('input:not(.dynamic-delete-checkbox)').forEach(function(input){
             input.disabled=true;
           });
       } else {
           item.classList.remove('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete)').forEach(function(input){
+          item.querySelectorAll('input:not(.dynamic-delete-checkbox)').forEach(function(input){
             input.disabled=false;
           });
       }

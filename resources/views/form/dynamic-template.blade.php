@@ -16,12 +16,13 @@
 
             @includeIf($listing)
 
-            <div class="dynamic-item-btn btn-group-toggle ml-auto" data-toggle="buttons">
-               <label class="btn {{ $btnDelete['class'] }}">
-                   <input class="dynamic-delete" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">
+            <div class="dynamic-item-btn ml-auto" >
+               <button class="btn dynamic-delete {{ $btnDelete['class'] }}">
                    {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
-               </label>
+               </button>
+               <input class="dynamic-delete-checkbox d-none" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">
             </div>
+
         </div>
       @empty
           {!! $slot !!}
