@@ -130,7 +130,7 @@ class Datepicker extends Component
      */
     public function cleanName()
     {
-         Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
+         return Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
     }
 
     /**
