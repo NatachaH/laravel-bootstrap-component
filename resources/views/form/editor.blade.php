@@ -23,7 +23,7 @@
 
     </div>
 
-    <div class="ql-container @error($name) is-invalid @enderror">{!! old($name,$value) !!}</div>
+    <div class="ql-container @error($cleanName()) is-invalid @enderror">{!! old($name,$value) !!}</div>
 
     <textarea class="ql-textarea" name="{{ $name }}"></textarea>
 
@@ -33,7 +33,7 @@
       <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
     @endif
 
-    @error($name)
+    @error($cleanName())
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>

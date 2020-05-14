@@ -24,7 +24,7 @@
     <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
   @endif
 
-  @error($name)
+  @error($cleanName())
       <span class="invalid-feedback" role="alert">
           {{ $message }}
       </span>

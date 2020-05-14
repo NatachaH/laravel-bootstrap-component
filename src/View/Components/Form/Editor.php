@@ -84,6 +84,17 @@ class Editor extends Component
     public $toolbarColors;
 
     /**
+     * Clean the name
+     * Exemple: field[] become field
+     *
+     * @return string
+     */
+    public function cleanName()
+    {
+         Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
