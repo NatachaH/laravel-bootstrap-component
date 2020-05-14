@@ -47,34 +47,20 @@
 
       var dynamicObject = this;
 
-      // On Click
-      this.el.addEventListener('click',function(e){
-
-          var btn = e.target.closest('.btn');
-
-          // Add
-          if(btn !== null && btn.classList.contains('dynamic-add')){
-            dynamicObject.add();
-          }
-
-          // Remove
-          if(btn !== null && btn.classList.contains('dynamic-remove')){
-            var item = e.target.closest('.dynamic-item');
-            dynamicObject.remove(item);
-          }
-
+      // Add
+      this.el.querySelector('.dynamic-add').addEventListener('click',function(e){
+        dynamicObject.add();
       });
 
-      // On Change
-      this.el.addEventListener('change',function(e){
-
-          // Delete current dynamic (Toggle checkbox)
-          if(e.target.classList.contains('dynamic-delete')){
-            var item = e.target.closest('.dynamic-item');
-            dynamicObject.delete(item,e.target.checked);
-          }
-
+      // Delete
+      var deleteBtns = this.el.querySelectorAll('.dynamic-delete');
+      Array.prototype.forEach.call(deleteBtns, function(el, i) {
+        el.addEventListener('change',function(e){
+          var item = e.target.closest('.dynamic-item');
+          dynamicObject.delete(item,e.target.checked);
+        });
       });
+
 
   }
 
@@ -145,12 +131,17 @@
   {
       if(this.checkMax())
       {
+          var dynamicObject = this;
           var template = this.el.querySelector('script[data-template="dynamic-template"]').innerHTML.replace(/KEY/g,this.key++);
           var div = document.createElement('div');
           div.innerHTML = template;
           var item = div.children[0];
           this.el.querySelector('.dynamic-list').append(item);
           this.options.addCallback(item);
+          item.querySelector('.dynamic-remove').addEventListener('click',function(e){
+            dynamicObject.remove(item);
+          });
+
       }
 
       this.buttons();
