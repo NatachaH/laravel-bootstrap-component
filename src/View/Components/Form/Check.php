@@ -78,14 +78,8 @@ class Check extends Component
      */
     private function defineIsChecked($default)
     {
-        $old = old($this->cleanName());
-
-        if(!empty($old))
-        {
-           return is_array($old) ? in_array($this->value,$old) : $this->value == $old;
-        }
-
-        return $default;
+        $value = old($this->cleanName(), $this->value);
+        return is_array($value) ? in_array($this->value,$value) : $value;
     }
 
     /**
