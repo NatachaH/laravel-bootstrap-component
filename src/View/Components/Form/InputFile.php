@@ -3,6 +3,7 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Str;
 
 class InputFile extends Component
 {
