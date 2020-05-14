@@ -86,6 +86,17 @@ class Input extends Component
     public $isInputGroup;
 
     /**
+     * Clean the name
+     * Exemple: field[] become field
+     *
+     * @return string
+     */
+    public function cleanName()
+    {
+         Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void

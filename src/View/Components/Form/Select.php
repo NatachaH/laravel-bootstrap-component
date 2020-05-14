@@ -106,6 +106,45 @@ class Select extends Component
     public $isInputGroup;
 
     /**
+     * Clean the name
+     * Exemple: field[] become field
+     *
+     * @return string
+     */
+    public function cleanName()
+    {
+         Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
+    }
+
+    /**
+     * Clean the name
+     * Exemple: field[] become field
+     *
+     * @return string
+     */
+    public function cleanName()
+    {
+         $name = $this->name;
+
+         if(Str::contains($name, '[]'))
+         {
+           $name = Str::replace('[]','');
+         }
+
+         if(Str::contains($name, '['))
+         {
+           $name = Str::replace('[','.');
+         }
+
+         if(Str::contains($name, ']'))
+         {
+           $name = Str::replace(']','');
+         }
+
+         return $name;
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void

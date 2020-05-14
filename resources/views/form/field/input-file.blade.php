@@ -20,7 +20,7 @@
   <input
     type="file"
     name="{{ $name }}"
-    class="custom-file-input @error($name) is-invalid @enderror"
+    class="custom-file-input @error($cleanName()) is-invalid @enderror"
     id="{{ $name.'Field' }}"
     @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
     {{ $isDisabled ? 'disabled' : ''}}
