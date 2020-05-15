@@ -42,6 +42,10 @@ form {
             display:none;
         }
 
+        &:first-child .dynamic-item-btn {
+          padding-top: calc((#{$font-size-base} * #{$line-height-base}) + #{$label-margin-bottom})
+        }
+
         &.dynamic-item-delete {
           input {
             opacity: 0.25

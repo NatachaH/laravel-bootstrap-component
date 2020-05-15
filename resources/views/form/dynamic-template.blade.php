@@ -29,7 +29,7 @@
       @endforelse
 
       @foreach (old($name.'_to_add',[]) as $oldKey => $value)
-        <div class="d-flex align-items-end dynamic-item">
+        <div class="d-flex align-items-start dynamic-item">
 
           @if($sortable)
             <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
@@ -57,7 +57,7 @@
     </div>
 
     <script type="text/template" data-template="dynamic-template">
-      <div class="d-flex align-items-end dynamic-item">
+      <div class="d-flex align-items-start dynamic-item">
 
         @if($sortable)
           <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
