@@ -1,10 +1,10 @@
 <textarea
   name="{{ $name }}"
-  class="form-control @error($cleanName()) is-invalid @enderror"
-  id="{{ $name.'Field' }}"
+  class="form-control @error($cleanName) is-invalid @enderror"
+  id="{{ $cleanName.'Field' }}"
   @if($placeholder) placeholder="{{ $placeholder }}" @endif
-  @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
+  @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
->{{ old($name,$value) }}</textarea>
+>{{ old($cleanName,$value) }}</textarea>

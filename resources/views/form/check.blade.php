@@ -47,7 +47,7 @@
     type="{{ $type }}"
     name="{{ $name }}"
     value="{{ $value }}"
-    class="custom-control-input @error($cleanName()) is-invalid @enderror"
+    class="custom-control-input @error($cleanName) is-invalid @enderror"
     id="{{ $id.'Field' }}"
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}

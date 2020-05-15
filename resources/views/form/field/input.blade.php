@@ -1,11 +1,11 @@
 <input
   type="{{ $type }}"
   name="{{ $name }}"
-  value="{{ old($name,$value) }}"
-  class="form-control {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName()) is-invalid @enderror"
-  id="{{ $name.'Field' }}"
+  value="{{ old($cleanName,$value) }}"
+  class="form-control {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName) is-invalid @enderror"
+  id="{{ $cleanName.'Field' }}"
   @if($placeholder) placeholder="{{ $placeholder }}" @endif
-  @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
+  @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}

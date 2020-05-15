@@ -71,15 +71,12 @@ class Textarea extends Component
     public $isInputGroup;
 
     /**
-     * Clean the name
+     * Clean name
      * Exemple: field[] become field
      *
      * @return string
      */
-    public function cleanName()
-    {
-         return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
-    }
+    public $cleanName;
 
     /**
      * Create a new component instance.
@@ -97,6 +94,7 @@ class Textarea extends Component
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->isInputGroup = $inputGroup;
+        $this->cleanName    = array_to_dot($this->name);
     }
 
     /**

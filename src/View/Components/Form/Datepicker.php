@@ -123,15 +123,12 @@ class Datepicker extends Component
     public $maxInput;
 
     /**
-     * Clean the name
+     * Clean name
      * Exemple: field[] become field
      *
      * @return string
      */
-    public function cleanName()
-    {
-         return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
-    }
+    public $cleanName;
 
     /**
      * Create a new component instance.
@@ -156,6 +153,7 @@ class Datepicker extends Component
         $this->max          = $max;
         $this->minInput     = $minInput;
         $this->maxInput     = $maxInput;
+        $this->cleanName    = array_to_dot($this->name);
     }
 
     /**

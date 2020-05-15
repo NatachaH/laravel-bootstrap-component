@@ -85,15 +85,12 @@ class Editor extends Component
     public $toolbarColors;
 
     /**
-     * Clean the name
+     * Clean name
      * Exemple: field[] become field
      *
      * @return string
      */
-    public function cleanName()
-    {
-         return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
-    }
+    public $cleanName;
 
     /**
      * Create a new component instance.
@@ -107,6 +104,7 @@ class Editor extends Component
         $this->value        = $value;
         $this->help         = $help;
         $this->isRequired   = $required;
+        $this->cleanName    = array_to_dot($this->name);
 
         // Define the toolbar
         $toolbar = explode('|', $toolbar);

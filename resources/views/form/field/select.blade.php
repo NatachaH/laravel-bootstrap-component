@@ -1,6 +1,6 @@
 {{-- Bootstrap 5
 <select
-  class="form-select {{ !empty($size) ? 'form-select-'.$size : '' }} @error($name) is-invalid @enderror"
+  class="form-select {{ !empty($size) ? 'form-select-'.$size : '' }} @error($cleanName) is-invalid @enderror"
   name="{{ $name }}"
   {{ $isMultiple ? 'multiple' : ''}}
   {{ $isDisabled ? 'disabled' : ''}}
@@ -19,7 +19,7 @@
 --}}
 
 <select
-  class="custom-select {{ !empty($size) ? 'custom-select-'.$size : '' }} @error($cleanName()) is-invalid @enderror"
+  class="custom-select {{ !empty($size) ? 'custom-select-'.$size : '' }} @error($cleanName) is-invalid @enderror"
   name="{{ $name }}"
   {{ $isMultiple ? 'multiple' : ''}}
   {{ $isDisabled ? 'disabled' : ''}}

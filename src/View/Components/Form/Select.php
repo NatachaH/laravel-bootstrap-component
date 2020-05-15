@@ -57,7 +57,7 @@ class Select extends Component
      */
     public function isOptionSelected($option)
     {
-        $currentValues = old($this->name,$this->optionsSelected);
+        $currentValues = old($this->cleanName,$this->optionsSelected);
         return in_array($option, (array)$currentValues);
     }
 
@@ -107,15 +107,12 @@ class Select extends Component
     public $isInputGroup;
 
     /**
-     * Clean the name
+     * Clean name
      * Exemple: field[] become field
      *
      * @return string
      */
-    public function cleanName()
-    {
-        return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
-    }
+    public $cleanName;
 
     /**
      * Clean the name
@@ -163,6 +160,7 @@ class Select extends Component
         $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
         $this->isRequired       = $required;
         $this->isInputGroup     = $inputGroup;
+        $this->cleanName        = array_to_dot($this->name);
     }
 
     /**

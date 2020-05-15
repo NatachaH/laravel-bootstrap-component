@@ -9,6 +9,9 @@
         "email": "info@natachaherth.ch"
     },
     "autoload": {
+        "files": [
+            "src/Helpers/ArrayToDot.php"
+        ],
         "psr-4": {
             "Nh\\BsComponent\\": "src/"
         }

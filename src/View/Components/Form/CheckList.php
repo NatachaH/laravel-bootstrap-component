@@ -58,7 +58,7 @@ class CheckList extends Component
      */
     public function isOptionChecked($option)
     {
-        $currentValues = old($this->cleanName(),$this->optionsChecked);
+        $currentValues = old($this->cleanName,$this->optionsChecked);
         return in_array($option, $currentValues);
     }
 
@@ -105,15 +105,13 @@ class CheckList extends Component
      }
 
      /**
-      * Clean the name
+      * Clean name
       * Exemple: field[] become field
       *
       * @return string
       */
-     public function cleanName()
-     {
-          return (string)Str::of($this->name)->replace('[]', '')->replace('[', '.')->replace(']', '');
-     }
+     public $cleanName;
+
 
     /**
      * Create a new component instance.
@@ -131,6 +129,7 @@ class CheckList extends Component
         $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make all the options disabled
         $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
         $this->isRequired       = $required;
+        $this->cleanName        = array_to_dot($this->name);
     }
 
     /**

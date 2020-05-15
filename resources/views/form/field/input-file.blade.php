@@ -3,9 +3,9 @@
   <input
     type="file"
     name="{{ $name }}"
-    class="form-file-input @error($name) is-invalid @enderror"
-    id="{{ $name.'Field' }}"
-    @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
+    class="form-file-input @error($cleanName) is-invalid @enderror"
+    id="{{ $cleanName.'Field' }}"
+    @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
   />
@@ -20,11 +20,16 @@
   <input
     type="file"
     name="{{ $name }}"
-    class="custom-file-input @error($cleanName()) is-invalid @enderror"
-    id="{{ $name.'Field' }}"
-    @if($help) aria-describedby="{{ $name.'FieldHelp' }}" @endif
+    class="custom-file-input @error($cleanName) is-invalid @enderror"
+    id="{{ $cleanName.'Field' }}"
+    @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
   >
   <label class="custom-file-label" for="customFile">{{ $placeholder }}</label>
+  @error($cleanName)
+      <span class="invalid-feedback" role="alert">
+          {{ $message }}
+      </span>
+  @enderror
 </div>
