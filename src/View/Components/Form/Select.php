@@ -115,34 +115,6 @@ class Select extends Component
     public $cleanName;
 
     /**
-     * Clean the name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public function cleanName
-    {
-         $name = $this->name;
-
-         if(Str::contains($name, '[]'))
-         {
-           $name = Str::replace('[]','');
-         }
-
-         if(Str::contains($name, '['))
-         {
-           $name = Str::replace('[','.');
-         }
-
-         if(Str::contains($name, ']'))
-         {
-           $name = Str::replace(']','');
-         }
-
-         return $name;
-    }
-
-    /**
      * Create a new component instance.
      *
      * @return void
