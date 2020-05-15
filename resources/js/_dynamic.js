@@ -64,6 +64,14 @@
         });
       });
 
+      // Remove
+      var olds = this.el.querySelectorAll('.dynamic-item-old');
+      Array.prototype.forEach.call(olds, function(el, i) {
+        el.querySelector('.dynamic-remove').addEventListener('click',function(e){
+          dynamicObject.remove(el);
+        });
+      });
+
   }
 
   //------  METHODS ------//

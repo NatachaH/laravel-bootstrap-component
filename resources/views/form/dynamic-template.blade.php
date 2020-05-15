@@ -29,13 +29,15 @@
       @endforelse
 
       @foreach (old($name.'_to_add',[]) as $oldKey => $value)
-        <div class="d-flex align-items-start dynamic-item">
+        <div class="d-flex align-items-start dynamic-item dynamic-item-old">
 
           @if($sortable)
-            <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
-              {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
-            </button>
-            <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$oldKey.'][position]' }}" />
+            <div class="dynamic-item-btn">
+              <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
+                {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
+              </button>
+              <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$oldKey.'][position]' }}" />
+            </div>
           @endif
 
           @includeIf($template,['key' => $oldKey])
@@ -60,10 +62,12 @@
       <div class="d-flex align-items-start dynamic-item">
 
         @if($sortable)
-          <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
-            {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
-          </button>
-          <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
+          <div class="dynamic-item-btn">
+            <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
+              {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
+            </button>
+            <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
+          </div>
         @endif
 
         @includeIf($template)
