@@ -101,7 +101,7 @@ class CheckList extends Component
      */
      public function idOption($option)
      {
-        return $this->cleanName().Str::upper($option);
+        return $this->cleanName.Str::upper($option);
      }
 
      /**

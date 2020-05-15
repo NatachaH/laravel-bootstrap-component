@@ -95,7 +95,7 @@ class Check extends Component
      */
      public function id()
      {
-        return $this->cleanName().Str::upper($this->value);
+        return $this->cleanName.Str::upper($this->value);
      }
 
      /**

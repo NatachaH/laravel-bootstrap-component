@@ -120,7 +120,7 @@ class Select extends Component
      *
      * @return string
      */
-    public function cleanName()
+    public function cleanName
     {
          $name = $this->name;
 
