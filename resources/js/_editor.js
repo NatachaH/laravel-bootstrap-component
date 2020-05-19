@@ -11,6 +11,7 @@ import Quill from 'Quill';
 
 // Imports
 let ColorClass = Quill.import('attributors/class/color');
+let Delta = Quill.import('delta');
 import SmartBreak from './editor/smart-break';
 import HelperLink from './editor/helper-link';
 
@@ -20,6 +21,13 @@ Quill.register(ColorClass, true);
 
 // Add the smart break
 Quill.register(SmartBreak, true);
+
+// Function to replace <br> to smartbreak
+function lineBreakMatcher() {
+  var newDelta = new Delta();
+  newDelta.insert({'smartbreak': ''});
+  return newDelta;
+}
 
 // Select all .edito
 var editors = document.querySelectorAll('.editor');
@@ -37,6 +45,11 @@ Array.prototype.forEach.call(editors, function(el, i) {
 
     var ql = new Quill(editor, {
       modules: {
+          clipboard: {
+            matchers: [
+            ['br', lineBreakMatcher]
+          ]
+          },
           toolbar: {
               container: toolbar,
               handlers: {
