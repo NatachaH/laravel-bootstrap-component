@@ -55,7 +55,7 @@
         @if($help)
           <small class="form-text text-muted">{{ $help }}</small>
         @endif
-        <button type="button" class="ml-auto btn dynamic-add {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
+        <button type="button" class="ml-auto btn dynamic-add {{ $isDynamic() ? '' : 'd-none' }} {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
     </div>
 
     <script type="text/template" data-template="dynamic-template">
@@ -72,7 +72,7 @@
 
         @includeIf($template)
 
-        <div class="dynamic-item-btn">
+        <div class="dynamic-item-btn {{ $isDynamic() ? '' : 'd-none' }}">
           <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ __($btnRemove['label']) }}">{!! $btnRemove['value'] ?? __($btnRemove['label']) !!}</button>
         </div>
 

@@ -99,6 +99,15 @@ class Dynamic extends Component
     public $btnSortable;
 
     /**
+     * Check if is Dynamic and display the add/remove button
+     * @return boolean [description]
+     */
+    public function isDynamic()
+    {
+      return !is_null($this->max) && $this->max != 1;
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
