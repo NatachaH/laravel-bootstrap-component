@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'modal']) }}tabindex="-1" role="dialog">
+<div {{ $attributes->merge(['class' => 'modal']) }} tabindex="-1" role="dialog">
   <div class="modal-dialog modal-{{ $size }} {{ $isCentered ? 'modal-dialog-centered' : '' }} {{ $scrollable ? 'modal-dialog-scrollable' : '' }} {{ $fullscreenClass() }}">
     <div class="modal-content">
       @if(!empty($title) || $closable)
