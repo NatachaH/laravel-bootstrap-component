@@ -104,7 +104,7 @@ class Dynamic extends Component
      */
     public function isDynamic()
     {
-      return !is_null($this->max) && $this->max != 1;
+      return is_null($this->max) || $this->max != 1;
     }
 
     /**
