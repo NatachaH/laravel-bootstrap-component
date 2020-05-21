@@ -166,7 +166,7 @@ Available components:
 *The fullscreen options are for Bootstrap V5 only.*
 
 ```
-<x-bs-modal id="myModal" title="My modal" footer="The footer of the modal" size="sm" fullscreen fullscreen-size="md" closable centered  scrollable fullscreen fullscreen-size="md">
+<x-bs-modal id="myModal" title="My modal" footer="The footer of the modal" size="sm" closable centered  scrollable fullscreen fullscreen-size="md">
   Hey this a modal !
 </x-bs-modal>
 
@@ -433,9 +433,10 @@ To use the editor you need to install the JS plugin **QuillJS** !
 | required  | boolean | false |
 | toolbar   | string | header|format|list|link|color |
 | colors    | string | primary|success|warning|danger |
+| headers   | string | 1|2|3 |
 
 *The name is required.*
 
 ```
-<x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success"/>
+<x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
 ```
