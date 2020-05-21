@@ -270,8 +270,12 @@ All the component manage the request old() value and the validation.
 | disabled  | boolean | false |
 | required  | boolean | false |
 | input-group | boolean | false |
+| step      | float | 1 |
+| min       | float | null |
+| max       | float | null |
 
 *The name is required.*
+*The step, min and max are only for input of type number.*
 
 ```
 <x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />

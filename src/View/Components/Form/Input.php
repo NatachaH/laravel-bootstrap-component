@@ -95,11 +95,32 @@ class Input extends Component
     public $cleanName;
 
     /**
+     * Step for input of type number
+     *
+     * @return float
+     */
+    public $step;
+
+    /**
+     * Min for input of type number
+     *
+     * @return float
+     */
+    public $min;
+
+    /**
+     * Max for input of type number
+     *
+     * @return float
+     */
+    public $max;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = false, $step = 1, $min = null, $max = null)
     {
         $this->label        = $label;
         $this->type         = $type;
@@ -112,6 +133,9 @@ class Input extends Component
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->isInputGroup = $inputGroup;
+        $this->step         = $step;
+        $this->min          = $min;
+        $this->max          = $max;
         $this->cleanName    = array_to_dot($this->name);
     }
 

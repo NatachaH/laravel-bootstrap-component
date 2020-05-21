@@ -9,4 +9,7 @@
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
+  @if($type=='number') step="{{ $step }}" @endif
+  @if($type=='number' && !is_null($min)) min="{{ $min }}" @endif
+  @if($type=='number' && !is_null($max)) max="{{ $max }}" @endif
 />
