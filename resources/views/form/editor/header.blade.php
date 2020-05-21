@@ -17,17 +17,13 @@
             @lang('bs-component::editor.paragraphe')
           </button>
 
-          <button class="dropdown-item p-3 ql-header" value="1">
-            @lang('bs-component::editor.h1')
-          </button>
+          @foreach ($headers as $header)
 
-          <button class="dropdown-item p-3 ql-header" value="2">
-            @lang('bs-component::editor.h2')
-          </button>
+            <button class="dropdown-item p-3 ql-header" value="{{ $header }}">
+              @lang('bs-component::editor.h'.$header)
+            </button>
 
-          <button class="dropdown-item p-3 ql-header" value="3">
-            @lang('bs-component::editor.h3')
-          </button>
+          @endforeach
 
     </div>
 </div>

@@ -82,7 +82,14 @@ class Editor extends Component
      *
      * @var array
      */
-    public $toolbarColors;
+    public $colors;
+
+    /**
+     * Toolbar colors available
+     *
+     * @var array
+     */
+    public $headers;
 
     /**
      * Clean name
@@ -97,7 +104,7 @@ class Editor extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger')
+    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger', $headers = '1|2|3')
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -115,7 +122,8 @@ class Editor extends Component
         $this->toolbarHasColor  = in_array('color',$toolbar);
 
         // Define toolbar colors
-        $this->toolbarColors = explode('|', $colors);
+        $this->colors = explode('|', $colors);
+        $this->headers = explode('|', $headers);
     }
 
     /**
