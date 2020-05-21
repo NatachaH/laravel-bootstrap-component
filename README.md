@@ -403,6 +403,7 @@ With this component you can add/remove input to add multiple field in your form 
 | min       | int  | null    |
 | max       | int  | null    |
 | name      | string | dynamic |
+| type      | string | dynamic |
 | sortable  | boolean | false |
 | items     | array | []     |
 | help      | string | null |
@@ -416,7 +417,7 @@ With this component you can add/remove input to add multiple field in your form 
 *For a global customization of all the buttons change it in the config file dynamic.php.*
 
 ```
-<x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" sortable :items="[]" help="Help message" />
+<x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
 ```
 
 ## Editor

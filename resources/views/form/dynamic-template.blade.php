@@ -29,24 +29,26 @@
       @endforelse
 
       @foreach (old($name.'_to_add',[]) as $oldKey => $value)
-        <div class="d-flex align-items-start dynamic-item dynamic-item-old">
+        @if(Str::endsWith($oldKey, '_'.$type))
+          <div class="d-flex align-items-start dynamic-item dynamic-item-old">
 
-          @if($sortable)
+            @if($sortable)
+              <div class="dynamic-item-btn">
+                <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
+                  {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
+                </button>
+                <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$oldKey.'][position]' }}" />
+              </div>
+            @endif
+
+            @includeIf($template,['key' => $oldKey])
+
             <div class="dynamic-item-btn">
-              <button class="btn drag {{ $btnSortable['class'] }}" aria-label="{{ __($btnSortable['label']) }}">
-                {!! $btnSortable['value'] ?? __($btnSortable['label']) !!}
-              </button>
-              <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$oldKey.'][position]' }}" />
+              <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ __($btnRemove['label']) }}">{!! $btnRemove['value'] ?? __($btnRemove['label']) !!}</button>
             </div>
-          @endif
 
-          @includeIf($template,['key' => $oldKey])
-
-          <div class="dynamic-item-btn">
-            <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ __($btnRemove['label']) }}">{!! $btnRemove['value'] ?? __($btnRemove['label']) !!}</button>
           </div>
-
-        </div>
+        @endif
       @endforeach
 
     </div>

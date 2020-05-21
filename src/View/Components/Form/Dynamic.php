@@ -45,6 +45,13 @@ class Dynamic extends Component
     public $name;
 
     /**
+     * Type of dynamic
+     * If multiple dynamic on same page
+     * @var string
+     */
+    public $type;
+
+    /**
      * Default KEY to replace for the template
      * @var string
      */
@@ -112,7 +119,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -120,7 +127,8 @@ class Dynamic extends Component
         $this->min              = $min;
         $this->max              = $max;
         $this->name             = $name;
-        $this->key              = 'KEY';
+        $this->type             = $type;
+        $this->key              = 'KEY_'.$type;
         $this->sortable         = $sortable;
         $this->items            = $items;
         $this->help             = $help;
