@@ -59,7 +59,7 @@ class CheckList extends Component
     public function isOptionChecked($option)
     {
         $currentValues = old($this->cleanName,$this->optionsChecked);
-        return in_array($option, $currentValues);
+        return in_array($option, (array)$currentValues);
     }
 
     /**
