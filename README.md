@@ -142,12 +142,13 @@ Available components:
 | --------- | ---- | ------- |
 | type      | string | border |
 | color     | string | primary |   
-| title     | string | Loading... |           
+| title     | string | Loading... |    
+| size      | string | md |           
 
 *The default title is the 'bs-component::button.loading' translation.*
 
 ```
-<x-bs-loading type="grow" color="success" title="Custom loading text" />
+<x-bs-loading type="grow" color="success" title="Custom loading text" size="sm"/>
 ```
 
 ## Modal

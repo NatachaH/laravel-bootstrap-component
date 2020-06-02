@@ -29,15 +29,23 @@ class Loading extends Component
     public $title;
 
     /**
+     * The size of the loading.
+     *
+     * @var string
+     */
+    public $size;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type = 'border', $color = 'primary', $title = null)
+    public function __construct($type = 'border', $color = 'primary', $title = null, $size = 'md')
     {
         $this->type   = in_array($type,['border','grow']) ? $type : 'border';
         $this->color  = $color;
         $this->title  = is_null($title) ? __('bs-component::button.loading') : $title;
+        $this->size   = $size;
     }
 
     /**
