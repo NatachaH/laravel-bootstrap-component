@@ -173,12 +173,12 @@
   {
       if (checked) {
           item.classList.add('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete-checkbox)').forEach(function(input){
+          item.querySelectorAll('input:not(.dynamic-delete-checkbox),select:not(.dynamic-delete-checkbox),textarea:not(.dynamic-delete-checkbox)').forEach(function(input){
             input.disabled=true;
           });
       } else {
           item.classList.remove('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete-checkbox)').forEach(function(input){
+          item.querySelectorAll('input:not(.dynamic-delete-checkbox),select:not(.dynamic-delete-checkbox),textarea:not(.dynamic-delete-checkbox)').forEach(function(input){
             input.disabled=false;
           });
       }
