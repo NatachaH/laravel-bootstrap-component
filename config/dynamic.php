@@ -23,7 +23,7 @@ return [
           'value' => null
         ],
         'delete' => [
-          'class' => 'btn-danger',
+          'class' => 'btn-outline-danger',
           'label' => 'Delete',
           'value' => null
         ],

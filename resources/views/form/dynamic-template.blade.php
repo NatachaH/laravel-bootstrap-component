@@ -17,10 +17,8 @@
             @includeIf($listing)
 
             <div class="dynamic-item-btn ml-auto" >
-               <button class="btn dynamic-delete {{ $btnDelete['class'] }}">
-                   {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
-               </button>
-               <input class="dynamic-delete-checkbox d-none" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">
+              <input type="checkbox" class="btn-check dynamic-delete-checkbox" id="btn-check-{{ $item->id }}" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}" autocomplete="off" >
+              <label class="btn dynamic-delete {{ $btnDelete['class'] }}" for="btn-check-{{ $item->id }}">{!! $btnDelete['value'] ?? __($btnDelete['label']) !!}</label>
             </div>
 
         </div>
