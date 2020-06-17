@@ -15,11 +15,16 @@ var exports = module.exports = {};
  */
 exports.initTooltip = function()
 {
-    $('.ql-editor a').tooltip({
-      title : function(e,i){
-        return this.getAttribute('href').replace('mailto:','');
-      },
-      trigger: 'hover'
+    var tooltips = document.querySelectorAll('.ql-editor a');
+
+    Array.prototype.forEach.call(tooltips, function(el, i) {
+      new bootstrap.Tooltip(el, {
+        boundary: 'window',
+        title : function(e,i){
+          return this.getAttribute('href').replace('mailto:','');
+        },
+        trigger: 'hover'
+      })
     });
 };
 
