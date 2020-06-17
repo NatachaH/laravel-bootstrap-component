@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'alert alert-'.$color]) }}>
+<div {{ $attributes->merge(['class' => 'alert alert-'.$color.( $closable ? 'alert-dismissible' : '' )]) }}>
 
   {!! $slot !!}
 
