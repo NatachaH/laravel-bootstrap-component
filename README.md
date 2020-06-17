@@ -20,7 +20,7 @@ Add this to your packages.json
 Publish the config
 
 ```
-php artisan vendor:publish --tag=bs-components
+php artisan vendor:publish --tag=bs-component
 ```
 
 Javascript to include
