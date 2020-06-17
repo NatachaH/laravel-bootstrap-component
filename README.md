@@ -163,11 +163,10 @@ Available components:
 | scrollable | boolean | false |    
 | fullscreen | boolean | false |      
 | fullscreen-size | string | null |
-
-*The fullscreen options are for Bootstrap V5 only.*
+| is-static | boolean | false |
 
 ```
-<x-bs-modal id="myModal" title="My modal" footer="The footer of the modal" size="sm" closable centered  scrollable fullscreen fullscreen-size="md">
+<x-bs-modal id="myModal" title="My modal" footer="The footer of the modal" size="sm" closable centered  scrollable fullscreen fullscreen-size="md" is-static>
   Hey this a modal !
 </x-bs-modal>
 
