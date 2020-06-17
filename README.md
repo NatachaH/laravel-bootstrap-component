@@ -121,7 +121,7 @@ Available components:
 </x-bs-card>
 ```
 
-## Card
+## Figure
 
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
