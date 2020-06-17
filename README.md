@@ -439,3 +439,19 @@ To use the editor you need to install the JS plugin **QuillJS** !
 ```
 <x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
 ```
+
+## Checkbox All
+
+You can toggle all checkbox item.
+
+*Add the class checkbox-all to the checkbox that toggle the items*
+*Add the class checkbox-VALUE to the items*
+
+```
+<x-bs-check class="checkbox-all" label="Select All" name="checkboxAll[]" value="myvalue"/>
+<hr/>
+<x-bs-check class="checkbox-myvalue" label="One" name="check[]" value="1"/>
+<x-bs-check class="checkbox-myvalue" label="Two" name="check[]" value="2"/>
+<x-bs-check class="checkbox-myvalue" label="Three" name="check[]" value="3"/>
+
+```
