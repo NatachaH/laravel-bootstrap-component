@@ -282,14 +282,10 @@ All the component manage the request old() value and the validation.
 
 <x-bs-input label="My input group" type="text" name="myinputgroup" value="Default value" placeholder="My placeholder" help="Help message" input-group>
   <x-slot name="before">
-    <div class="input-group-prepend">
-       <span class="input-group-text">@</span>
-    </div>
+    <span class="input-group-text">@</span>
   </x-slot>
   <x-slot name="after">
-    <div class="input-group-append">
-       <span class="input-group-text">@</span>
-    </div>
+    <span class="input-group-text">@</span>
   </x-slot>
 </x-bs-input>
 ```
