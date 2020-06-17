@@ -100,13 +100,13 @@ Available components:
 
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
-| title     | string | null  |
+| header    | string | null  |
 | footer    | string | null  |           
 
-*The title and the footer can also be set as slot.*
+*The header and the footer can also be set as slot.*
 
 ```
-<x-bs-card title="My card title" footer="My card footer">
+<x-bs-card header="My card header" footer="My card footer">
 
   <x-slot name="before">
     Before the card body.

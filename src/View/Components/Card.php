@@ -7,11 +7,11 @@ use Illuminate\View\Component;
 class Card extends Component
 {
     /**
-     * The title of the card.
+     * The header of the card.
      *
      * @var string
      */
-    public $title;
+    public $header;
 
     /**
      * The footer of the card.
@@ -25,9 +25,9 @@ class Card extends Component
      *
      * @return void
      */
-    public function __construct($title = null, $footer = null)
+    public function __construct($header = null, $footer = null)
     {
-        $this->title  = $title;
+        $this->header = $header;
         $this->footer = $footer;
     }
 

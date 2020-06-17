@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'card']) }}>
 
-  @isset($title)
-    <h5 class="card-header">{{ $title }}</h5>
+  @isset($header)
+    <h5 class="card-header">{!! $header !!}</h5>
   @endisset
 
   @isset($before)
