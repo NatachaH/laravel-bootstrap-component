@@ -306,7 +306,6 @@ All the component manage the request old() value and the validation.
 | input-group | boolean | false |
 
 *The name is required.*
-*The button option is for Bootstrap V5 only.*
 *The default placeholder and button are the 'bs-component::button.choose-file' and 'bs-component::button.browse' translations.*
 
 ```
