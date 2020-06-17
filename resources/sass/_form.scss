@@ -4,56 +4,23 @@
 |--------------------------------------------------------------------------
 */
 
-form {
+.invalid-feedback {
+    text-align: left;
+}
 
-  // Fix for Bootstrap V5
-  //
-  .input-group {
+// Dynamic
+fieldset.dynamic-fieldset > .dynamic-list > .dynamic-item {
 
-      > :not(:last-child):not(input) {
-          border-right: none;
-          @include border-right-radius(0);
-      }
+  margin-bottom: 0.5rem;
 
-      > :not(:first-child):not(input) {
-          border-left: none;
-          @include border-left-radius(0);
-      }
-
-      > .btn:not([class*=" btn-outline-"]) {
-        border: none;
-      }
-
+  &:not(:first-child) label.form-label {
+      display:none;
   }
 
-  .invalid-feedback {
-      text-align: left;
-  }
-
-  // Dynamic
-
-  fieldset {
-
-      &.dynamic-fieldset > .dynamic-list > div {
-
-        margin-bottom: 0.5rem;
-
-        &:not(:first-child) label.form-label {
-            display:none;
-        }
-
-        &:first-child .dynamic-item-btn {
-          padding-top: calc((#{$font-size-base} * #{$line-height-base}) + #{$label-margin-bottom})
-        }
-
-        &.dynamic-item-delete {
-          input {
-            opacity: 0.25
-          }
-        }
-
-      }
-
+  &.dynamic-item-delete {
+    input {
+      opacity: 0.25
+    }
   }
 
 }
