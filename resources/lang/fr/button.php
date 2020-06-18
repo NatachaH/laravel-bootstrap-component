@@ -14,6 +14,8 @@ return [
     'close'         => 'Fermer',
     'loading'       => 'Chargement...',
     'choose-file'   => 'Choisir un fichier',
-    'browse'        => 'Parcourir'
+    'browse'        => 'Parcourir',
+    'confirm'       => 'Confirmer',
+    'cancel'        => 'annuler',
 
 ];

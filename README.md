@@ -175,6 +175,38 @@ Available components:
 </button>
 ```
 
+## Modal Confirm
+
+| Attribute | Type | Default |
+| --------- | ---- | ------- |
+| color     | string | primary |
+| icon      | string | null  |
+| title     | string | null  |
+| action    | string | #     |
+| method    | string | POST  |
+| footer    | string | null  |   
+| size      | string | md    |   
+| centered  | boolean | false |  
+| scrollable | boolean | false |    
+| fullscreen | boolean | false |      
+| fullscreen-size | string | null |
+| is-static | boolean | false |
+| btn-cancel | array | [] |
+| btn-confirm | array | [] |
+
+*You can globaly customize the classes of the buttons in the 'bs-component' config file*
+*Otherwise you can set an array with the custom values (class,label,value) for each button*
+
+```
+<x-bs-modal-confirm id="myModalConfirm" title="My modal confirm" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static :btn-cancel="['value' => 'My custom cancel button']">
+  Hey this a modal for confirmation !
+</x-bs-modal>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm">
+  Launch modal
+</button>
+```
+
 ## Progress
 
 | Attribute | Type | Default |
