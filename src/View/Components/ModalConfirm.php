@@ -120,9 +120,9 @@ class ModalConfirm extends Component
     }
 
     /**
-     * Get the fullscreen class.
+     * Define the buttons.
      *
-     * @var string
+     * @var array
      */
     private function defineButton($name, $custom = []){
 
