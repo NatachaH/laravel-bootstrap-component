@@ -17,5 +17,9 @@ return [
     'browse'        => 'Browse',
     'confirm'       => 'Confirm',
     'cancel'        => 'Cancel',
+    'add'           => 'Add',
+    'remove'        => 'Remove',
+    'delete'        => 'Delete',
+    'move'          => 'Drag & drop',
 
 ];

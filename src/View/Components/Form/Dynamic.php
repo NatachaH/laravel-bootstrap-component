@@ -115,11 +115,25 @@ class Dynamic extends Component
     }
 
     /**
+     * Define the buttons.
+     *
+     * @var array
+     */
+    private function defineButton($name, $custom = [])
+    {
+      return [
+        'class' => array_key_exists('class',$custom) ? $custom['class'] : config('bs-component.dynamic.buttons.'.$name),
+        'label' => array_key_exists('label',$custom) ? $custom['label'] : __('bs-component::button.'.$name),
+        'value' => array_key_exists('value',$custom) ? $custom['value'] : __('bs-component::button.'.$name)
+      ];
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnSortable = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -132,10 +146,10 @@ class Dynamic extends Component
         $this->sortable         = $sortable;
         $this->items            = $items;
         $this->help             = $help;
-        $this->btnAdd           = empty($btnAdd) ? config('dynamic.buttons.add') : $btnAdd;
-        $this->btnRemove        = empty($btnRemove) ? config('dynamic.buttons.remove') : $btnRemove;
-        $this->btnDelete        = empty($btnDelete) ? config('dynamic.buttons.delete') : $btnDelete;
-        $this->btnSortable      = empty($btnSortable) ? config('dynamic.buttons.sortable') : $btnSortable;
+        $this->btnAdd           = $this->defineButton('add',$btnAdd);
+        $this->btnRemove        = $this->defineButton('remove',$btnRemove);
+        $this->btnDelete        = $this->defineButton('delete',$btnDelete);
+        $this->btnMove          = $this->defineButton('move',$btnMove);
     }
 
     /**

@@ -44,6 +44,7 @@ Available components:
 - [X] Figure
 - [X] Loading (Spinner)
 - [X] Modal
+- [X] Modal Confirm
 - [X] Progress
 - [X] Toast
 - [X] Check (checkbox, radio or switch)
@@ -437,15 +438,16 @@ With this component you can add/remove input to add multiple field in your form 
 | type      | string | dynamic |
 | sortable  | boolean | false |
 | items     | array | []     |
-| help      | string | null |
+| help      | string | null  |
 | btnAdd    | array | []     |
 | btnRemove | array | []     |
 | btnDelete | array | []     |
-| btnSortable | array | []   |
+| btnMove   | array | []     |
 
 *The legend is required.*
 *The listing and template are path to some includes views.*
-*For a global customization of all the buttons change it in the config file dynamic.php.*
+*You can globaly customize the classes of the buttons in the 'bs-component' config file*
+*Otherwise you can set an array with the custom values (class,label,value) for each button*
 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
