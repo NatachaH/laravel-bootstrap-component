@@ -195,17 +195,25 @@ Available components:
 | btn-cancel | array | [] |
 | btn-confirm | array | [] |
 
-*You can globaly customize the classes of the buttons in the 'bs-component' config file*
-*Otherwise you can set an array with the custom values (class,label,value) for each button*
-
 ```
-<x-bs-modal-confirm id="myModalConfirm" title="My modal confirm" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static :btn-cancel="['value' => 'My custom cancel button']">
+<x-bs-modal-confirm id="myModalConfirm" title="My modal confirm" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static>
   Hey this a modal for confirmation !
 </x-bs-modal>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm">
   Launch modal
 </button>
+```
+
+## Customization
+
+You can globaly customize the buttons in the 'bs-component' config file.
+Or you can set an array with the custom values (class,label,value) for each button.
+
+```
+<x-bs-modal-confirm :btnConfirm="['class' => 'btn-success','label' => 'my.translation.path','value' => '<i class=icon-checkmark></i>']">
+  Hey this a modal for confirmation !
+</x-bs-modal>
 ```
 
 ## Progress
@@ -446,11 +454,18 @@ With this component you can add/remove input to add multiple field in your form 
 
 *The legend is required.*
 *The listing and template are path to some includes views.*
-*You can globaly customize the classes of the buttons in the 'bs-component' config file*
-*Otherwise you can set an array with the custom values (class,label,value) for each button*
 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
+```
+
+###Customization:
+
+You can globaly customize the buttons in the 'bs-component' config file.
+Or you can set an array with the custom values (class,label,value) for each button.
+
+```
+<x-bs-dynamic class="dynamic-automatic" legend="My custom dynamic" :btnAdd="['class' => 'btn-info','label' => 'my.translation.path','value' => '<i class=icon-plus></i>']"/>
 ```
 
 ## Editor

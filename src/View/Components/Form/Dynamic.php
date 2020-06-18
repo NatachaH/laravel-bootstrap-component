@@ -121,11 +121,17 @@ class Dynamic extends Component
      */
     private function defineButton($name, $custom = [])
     {
-      return [
-        'class' => array_key_exists('class',$custom) ? $custom['class'] : config('bs-component.dynamic.buttons.'.$name),
-        'label' => array_key_exists('label',$custom) ? $custom['label'] : __('bs-component::button.'.$name),
-        'value' => array_key_exists('value',$custom) ? $custom['value'] : __('bs-component::button.'.$name)
-      ];
+        $config = config('bs-component.dynamic.buttons.'.$name);
+
+        $class = $custom['class'] ?? $config['class'];
+        $label = $custom['label'] ?? $config['label'];
+        $value = $custom['value'] ?? $config['value'];
+
+        return [
+          'class' => $class,
+          'label' => \Lang::has($label) ? trans_choice($label,1) : $label,
+          'value' => \Lang::has($value) ? trans_choice($value,1) : $value,
+        ];
     }
 
     /**

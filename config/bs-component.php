@@ -13,8 +13,16 @@ return [
 
     'modal-confirm' => [
       'buttons' => [
-        'cancel'  => 'btn-outline-secondary',
-        'confirm' => 'btn-' // The color of the button is defined by the component
+        'cancel'  => [
+          'class' => 'btn-outline-secondary',
+          'label' => 'bs-component::button.cancel',
+          'value' => 'bs-component::button.cancel',
+        ],
+        'confirm'  => [
+          'class' => 'btn-', // The color of the button is defined by the component option
+          'label' => 'bs-component::button.cancel',
+          'value' => 'bs-component::button.cancel',
+        ]
       ]
     ],
 
@@ -29,11 +37,27 @@ return [
 
     'dynamic' => [
       'buttons' => [
-        'add'     => 'btn-primary',
-        'remove'  => 'btn-danger',
-        'delete'  => 'btn-outline-danger',
-        'move'    => 'btn-info',
-      ],
+        'add'  => [
+          'class' => 'btn-primary',
+          'label' => 'bs-component::button.add',
+          'value' => 'bs-component::button.add',
+        ],
+        'remove'  => [
+          'class' => 'btn-danger',
+          'label' => 'bs-component::button.remove',
+          'value' => 'bs-component::button.remove',
+        ],
+        'delete'  => [
+          'class' => 'btn-outline-danger',
+          'label' => 'bs-component::button.delete',
+          'value' => 'bs-component::button.delete',
+        ],
+        'move'  => [
+          'class' => 'btn-info',
+          'label' => 'bs-component::button.move',
+          'value' => 'bs-component::button.move',
+        ]
+      ]
     ],
 
 ];
