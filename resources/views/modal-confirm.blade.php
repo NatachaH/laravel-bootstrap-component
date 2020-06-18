@@ -17,11 +17,11 @@
           @method($method)
             {!! $slot !!}
             <button type="button" class="btn {{ $btnCancel['class'] }}" data-dismiss="modal" aria-label="{{ $btnCancel['label'] }}">
-              {{ $btnCancel['value'] }}
+              {!! $btnCancel['value'] !!}
             </button>
             <button type="submit" class="btn {{ $btnConfirm['class'].$color }}" aria-label="{{ $btnConfirm['label'] }}">
               <x-bs-loading class="d-none" type="border" size="sm" color="light"/>
-              {{ $btnConfirm['value'] }}
+              {!! $btnConfirm['value'] !!}
             </button>
         </form>
       </div>
