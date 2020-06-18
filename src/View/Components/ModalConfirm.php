@@ -124,16 +124,13 @@ class ModalConfirm extends Component
      *
      * @var array
      */
-    private function defineButton($name, $custom = []){
-
-      $btn = [
+    private function defineButton($name, $custom = [])
+    {
+      return [
         'class' => array_key_exists('class',$custom) ? $custom['class'] : config('bs-component.modal-confirm.buttons.'.$name),
         'label' => array_key_exists('label',$custom) ? $custom['label'] : __('bs-component::button.'.$name),
         'value' => array_key_exists('value',$custom) ? $custom['value'] : __('bs-component::button.'.$name)
       ];
-
-      return $btn;
-
     }
 
     /**
