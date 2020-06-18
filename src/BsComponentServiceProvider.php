@@ -27,7 +27,7 @@ class BsComponentServiceProvider extends ServiceProvider
 
       // VENDORS
       $this->publishes([
-          __DIR__.'/../config/dynamic.php' => config_path('dynamic.php')
+          __DIR__.'/../config/bs-component.php' => config_path('bs-component.php')
       ], 'bs-component');
 
       // VIEWS
