@@ -20,8 +20,8 @@ return [
         ],
         'confirm'  => [
           'class' => 'btn-', // The color of the button is defined by the component option
-          'label' => 'bs-component::button.cancel',
-          'value' => 'bs-component::button.cancel',
+          'label' => 'bs-component::button.confirm',
+          'value' => 'bs-component::button.confirm',
         ]
       ]
     ],
