@@ -14,6 +14,7 @@ let ColorClass = Quill.import('attributors/class/color');
 let Delta = Quill.import('delta');
 import SmartBreak from './editor/smart-break';
 import HelperLink from './editor/helper-link';
+import LeadFormat from './editor/lead-format';
 
 // Add class for colors
 ColorClass.keyName = 'ql-color'
@@ -21,6 +22,9 @@ Quill.register(ColorClass, true);
 
 // Add the smart break
 Quill.register(SmartBreak, true);
+
+// Add the smart break
+Quill.register(LeadFormat, true);
 
 // Function to replace <br> to smartbreak
 function lineBreakMatcher() {
@@ -79,7 +83,17 @@ Array.prototype.forEach.call(editors, function(el, i) {
                   } else {
                     this.quill.format('link', false);
                   }
+                },
+
+                'lead' : function(){
+                    var range = this.quill.getSelection();
+                    if (range == null || range.length == 0) return;
+
+                    this.quill.format('lead', 'block');
+
+
                 }
+
               }
           },
           keyboard: {
@@ -129,14 +143,20 @@ Array.prototype.forEach.call(editors, function(el, i) {
         // Header dropdown state
         if(headerDropdown)
         {
-          var headerValue = '';
+          var headerText = '';
+
           if(ql.getFormat().header) {
             headerDropdown.classList.add('ql-active');
-            headerValue = ql.getFormat().header;
+            headerText = document.querySelector('.ql-header[value="'+(ql.getFormat().header)+'"]').innerHTML;
+          } else if(ql.getFormat().lead){
+            headerDropdown.classList.add('ql-active');
+            headerText = document.querySelector('.ql-lead').innerHTML;
+            document.querySelector('.ql-header').classList.remove('ql-active');
           } else {
             headerDropdown.classList.remove('ql-active');
+            headerText = document.querySelector('.ql-header[value=""]').innerHTML;
           };
-          var headerText = document.querySelector('.ql-header[value="'+headerValue+'"]').innerHTML;
+
           headerDropdown.querySelector('small').textContent = headerText;
 
         }

@@ -17,6 +17,10 @@
             @lang('bs-component::editor.paragraphe')
           </button>
 
+          <button class="dropdown-item p-3 ql-lead">
+            @lang('bs-component::editor.lead')
+          </button>
+
           @foreach ($headers as $header)
 
             <button class="dropdown-item p-3 ql-header" value="{{ $header }}">
@@ -24,6 +28,8 @@
             </button>
 
           @endforeach
+
+
 
     </div>
 </div>
