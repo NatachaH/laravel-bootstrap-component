@@ -8,11 +8,12 @@
 
           <div class="ql-toolbar btn-toolbar">
 
-            @includeWhen($toolbarHasHeader, 'bs-component::form.editor.header', ['headers' => $headers])
-            @includeWhen($toolbarHasFormat, 'bs-component::form.editor.format')
-            @includeWhen($toolbarHasList, 'bs-component::form.editor.list')
-            @includeWhen($toolbarHasLink, 'bs-component::form.editor.link')
-            @includeWhen($toolbarHasColor, 'bs-component::form.editor.color', ['colors' => $colors])
+            @includeWhen(in_array('header',$toolbar), 'bs-component::form.editor.header', ['headers' => $headers])
+            @includeWhen(in_array('format',$toolbar), 'bs-component::form.editor.format', ['formats' => $formats])
+            @includeWhen(in_array('list',$toolbar), 'bs-component::form.editor.list')
+            @includeWhen(in_array('block',$toolbar), 'bs-component::form.editor.block', ['blocks' => $blocks])
+            @includeWhen(in_array('link',$toolbar), 'bs-component::form.editor.link')
+            @includeWhen(in_array('color',$toolbar), 'bs-component::form.editor.color', ['colors' => $colors])
 
             <div class="ql-formats btn-group">
               <button class="btn ql-clean" aria-label="@lang('bs-component::editor.clean')">

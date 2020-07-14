@@ -43,39 +43,11 @@ class Editor extends Component
     public $isRequired;
 
     /**
-     * Toolbar with Heading (p,h1,h2,h3)
+     * Toolbar options
      *
-     * @var boolean
+     * @var array
      */
-    public $toolbarHasHeader;
-
-    /**
-     * Toolbar with Formats (bold,italic,underline,strike)
-     *
-     * @var boolean
-     */
-    public $toolbarHasFormat;
-
-    /**
-     * Toolbar with Lists (ordered,bullet)
-     *
-     * @var boolean
-     */
-    public $toolbarHasList;
-
-    /**
-     * Toolbar with Link
-     *
-     * @var boolean
-     */
-    public $toolbarHasLink;
-
-    /**
-     * Toolbar with Colors
-     *
-     * @var boolean
-     */
-    public $toolbarHasColor;
+    public $toolbar;
 
     /**
      * Toolbar colors available
@@ -92,6 +64,20 @@ class Editor extends Component
     public $headers;
 
     /**
+     * Toolbar formats available
+     *
+     * @var array
+     */
+    public $formats;
+
+    /**
+     * Toolbar blocks available
+     *
+     * @var array
+     */
+    public $blocks;
+
+    /**
      * Clean name
      * Exemple: field[] become field
      *
@@ -104,7 +90,7 @@ class Editor extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger', $headers = '1|2|3')
+    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger', $headers = '1|2|3', $formats = 'bold|italic|underline|strike', $blocks = 'blockquote|code')
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -114,16 +100,13 @@ class Editor extends Component
         $this->cleanName    = array_to_dot($this->name);
 
         // Define the toolbar
-        $toolbar = explode('|', $toolbar);
-        $this->toolbarHasHeader = in_array('header',$toolbar);
-        $this->toolbarHasFormat = in_array('format',$toolbar);
-        $this->toolbarHasList   = in_array('list',$toolbar);
-        $this->toolbarHasLink   = in_array('link',$toolbar);
-        $this->toolbarHasColor  = in_array('color',$toolbar);
+        $this->toolbar = explode('|', $toolbar);
 
         // Define toolbar colors
         $this->colors = explode('|', $colors);
         $this->headers = explode('|', $headers);
+        $this->formats = explode('|', $formats);
+        $this->blocks = explode('|', $blocks);
     }
 
     /**

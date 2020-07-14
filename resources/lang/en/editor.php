@@ -28,6 +28,9 @@ return [
     'list-ordered'  => 'List ordered',
     'list-bullet'   => 'List bullet',
 
+    'blockquote'  => 'Quote',
+    'code'        => 'Code',
+
     'link' => 'Link',
 
     'color' => 'Text color',

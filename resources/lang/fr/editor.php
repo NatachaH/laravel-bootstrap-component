@@ -28,6 +28,9 @@ return [
     'list-ordered'  => 'Liste ordonnée',
     'list-bullet'   => 'Liste à puces',
 
+    'blockquote'  => 'Citation',
+    'code'        => 'Code',
+
     'link' => 'Lien',
 
     'color' => 'Couleur',
