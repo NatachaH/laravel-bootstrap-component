@@ -71,13 +71,6 @@ class Editor extends Component
     public $formats;
 
     /**
-     * Toolbar blocks available
-     *
-     * @var array
-     */
-    public $blocks;
-
-    /**
      * Clean name
      * Exemple: field[] become field
      *
@@ -90,7 +83,7 @@ class Editor extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger', $headers = '1|2|3', $formats = 'bold|italic|underline|strike', $blocks = 'blockquote|code')
+    public function __construct($label = null, $name, $value = null, $help  = null, $required = false, $toolbar = 'header|format|list|link|color', $colors = 'primary|success|warning|danger', $headers = 'lead|blockquote|1|2|3', $formats = 'bold|italic|underline|strike')
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -106,7 +99,6 @@ class Editor extends Component
         $this->colors = explode('|', $colors);
         $this->headers = explode('|', $headers);
         $this->formats = explode('|', $formats);
-        $this->blocks = explode('|', $blocks);
     }
 
     /**

@@ -17,15 +17,26 @@
             @lang('bs-component::editor.paragraphe')
           </button>
 
-          <button class="dropdown-item p-3 ql-lead">
-            @lang('bs-component::editor.lead')
-          </button>
-
           @foreach ($headers as $header)
 
-            <button class="dropdown-item p-3 ql-header" value="{{ $header }}">
-              @lang('bs-component::editor.h'.$header)
-            </button>
+              @switch($header)
+                  @case('lead')
+                    <button class="dropdown-item p-3 ql-lead">
+                      @lang('bs-component::editor.lead')
+                    </button>
+                  @break
+
+                  @case('blockquote')
+                    <button class="dropdown-item p-3 ql-blockquote">
+                      @lang('bs-component::editor.blockquote')
+                    </button>
+                  @break
+
+                  @default
+                    <button class="dropdown-item p-3 ql-header" value="{{ $header }}">
+                      @lang('bs-component::editor.h'.$header)
+                    </button>
+              @endswitch
 
           @endforeach
 

@@ -11,9 +11,10 @@
             @includeWhen(in_array('header',$toolbar), 'bs-component::form.editor.header', ['headers' => $headers])
             @includeWhen(in_array('format',$toolbar), 'bs-component::form.editor.format', ['formats' => $formats])
             @includeWhen(in_array('list',$toolbar), 'bs-component::form.editor.list')
-            @includeWhen(in_array('block',$toolbar), 'bs-component::form.editor.block', ['blocks' => $blocks])
             @includeWhen(in_array('link',$toolbar), 'bs-component::form.editor.link')
+            @includeWhen(in_array('code',$toolbar), 'bs-component::form.editor.code')
             @includeWhen(in_array('color',$toolbar), 'bs-component::form.editor.color', ['colors' => $colors])
+
 
             <div class="ql-formats btn-group">
               <button class="btn ql-clean" aria-label="@lang('bs-component::editor.clean')">
