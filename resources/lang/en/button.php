@@ -14,6 +14,7 @@ return [
     'close'         => 'Close',
     'loading'       => 'Loading...',
     'choose-file'   => 'Choose a file',
-    'browse'        => 'Browse'
+    'browse'        => 'Browse',
+    'clear'         => 'Clear',
 
 ];

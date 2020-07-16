@@ -135,7 +135,7 @@ class Datepicker extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = true, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
     {
         $this->label        = $label;
         $this->name         = $name;

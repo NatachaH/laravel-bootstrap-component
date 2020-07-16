@@ -58,7 +58,13 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
     // Get the options by format
     var options = get_option(format);
 
-    flatpickr(el, {
+    // Get the parent
+    var parent = el.parentNode;
+
+    // Get the clear button
+    var clearBtn = parent.querySelector('.btn-clear');
+
+    var flatpicker = flatpickr(el, {
         mode: mode,
         altInput: true,
         altFormat: options['format'],
@@ -81,7 +87,23 @@ Array.prototype.forEach.call(datepickers, function(el, i) {
             {
                 instance.config.maxDate = maxDateInput.value;
             }
+        },
+        onChange: function(selectedDates, dateStr, instance) {
+          parent.classList.add('date-picked');
+        },
+        onReady: function(selectedDates, dateStr, instance) {
+          parent.classList.add('input-group-date-picker');
+          if(dateStr)
+          {
+            parent.classList.add('date-picked');
+          }
         }
+    });
+
+    clearBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        flatpicker.clear();
+        parent.classList.remove('date-picked');
     });
 
 });

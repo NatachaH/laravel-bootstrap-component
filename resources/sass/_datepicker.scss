@@ -660,3 +660,32 @@
             transform: translate3d(0, 0, 0);
   }
 }
+
+// CUSTOM FOR CLEAR BUTTON
+.input-group-date-picker {
+
+  > .date-picker {
+    border-radius: $input-border-radius !important;
+  }
+
+  > .input-group-append {
+    display: none;
+    > .btn-clear {
+      background: $input-bg;
+      border: $input-border-width solid $input-border-color;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  &.date-picked {
+    > .date-picker {
+      border-top-right-radius: 0!important;
+      border-bottom-right-radius: 0!important;
+    }
+    > .input-group-append {
+      display: block;
+    }
+  }
+
+}
