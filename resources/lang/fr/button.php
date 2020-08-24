@@ -15,6 +15,10 @@ return [
     'loading'       => 'Chargement...',
     'choose-file'   => 'Choisir un fichier',
     'browse'        => 'Parcourir',
-    'clear'         => 'Effacer',
-
+    'confirm'       => 'Confirmer',
+    'cancel'        => 'Annuler',
+    'add'           => 'Ajouter',
+    'remove'        => 'Enlever',
+    'delete'        => 'Supprimer',
+    'move'          => 'Drag & drop',
 ];

@@ -15,6 +15,11 @@ return [
     'loading'       => 'Loading...',
     'choose-file'   => 'Choose a file',
     'browse'        => 'Browse',
-    'clear'         => 'Clear',
+    'confirm'       => 'Confirm',
+    'cancel'        => 'Cancel',
+    'add'           => 'Add',
+    'remove'        => 'Remove',
+    'delete'        => 'Delete',
+    'move'          => 'Drag & drop',
 
 ];

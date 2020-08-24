@@ -176,6 +176,46 @@ Available components:
 </button>
 ```
 
+## Modal Confirm
+
+| Attribute | Type | Default |
+| --------- | ---- | ------- |
+| color     | string | primary |
+| icon      | string | null  |
+| title     | string | null  |
+| action    | string | #     |
+| method    | string | POST  |
+| footer    | string | null  |   
+| size      | string | md    |   
+| centered  | boolean | false |  
+| scrollable | boolean | false |    
+| fullscreen | boolean | false |      
+| fullscreen-size | string | null |
+| is-static | boolean | false |
+| btn-cancel | array | [] |
+| btn-confirm | array | [] |
+
+```
+<x-bs-modal-confirm id="myModalConfirm" title="My modal confirm" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static>
+  Hey this a modal for confirmation !
+</x-bs-modal>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm">
+  Launch modal
+</button>
+```
+
+## Customization
+
+You can globaly customize the buttons in the 'bs-component' config file.
+Or you can set an array with the custom values (class,label,value) for each button.
+
+```
+<x-bs-modal-confirm :btnConfirm="['class' => 'btn-success','label' => 'my.translation.path','value' => '<i class=icon-checkmark></i>']">
+  Hey this a modal for confirmation !
+</x-bs-modal>
+```
+
 ## Progress
 
 | Attribute | Type | Default |
@@ -411,18 +451,26 @@ With this component you can add/remove input to add multiple field in your form 
 | type      | string | dynamic |
 | sortable  | boolean | false |
 | items     | array | []     |
-| help      | string | null |
+| help      | string | null  |
 | btnAdd    | array | []     |
 | btnRemove | array | []     |
 | btnDelete | array | []     |
-| btnSortable | array | []   |
+| btnMove   | array | []     |
 
 *The legend is required.*
 *The listing and template are path to some includes views.*
-*For a global customization of all the buttons change it in the config file dynamic.php.*
 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
+```
+
+###Customization:
+
+You can globaly customize the buttons in the 'bs-component' config file.
+Or you can set an array with the custom values (class,label,value) for each button.
+
+```
+<x-bs-dynamic class="dynamic-automatic" legend="My custom dynamic" :btnAdd="['class' => 'btn-info','label' => 'my.translation.path','value' => '<i class=icon-plus></i>']"/>
 ```
 
 ## Editor
