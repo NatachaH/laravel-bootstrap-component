@@ -35,7 +35,7 @@ function lineBreakMatcher() {
 
 // Select all .edito
 var editors = document.querySelectorAll('.editor');
-Array.prototype.forEach.call(editors, function(el, i) {
+editors.forEach((el, i) => {
     var parent = el.parentElement;
     var toolbar = parent.querySelector('.ql-toolbar');
     var editor = parent.querySelector('.ql-container');
@@ -165,7 +165,7 @@ Array.prototype.forEach.call(editors, function(el, i) {
     });
 
     // Remove the tabindex of the toolbar buttons
-    Array.prototype.forEach.call(toolbar.querySelectorAll('button'), function(el, i) {
+    toolbar.querySelectorAll('button').forEach((el, i) => {
       el.tabIndex = -1;
     });
 
@@ -178,7 +178,7 @@ HelperLink.initTooltip();
 var form = document.querySelector('form');
 form.onsubmit = function() {
   // Populate hidden form on submit
-  Array.prototype.forEach.call(editors, function(el, i) {
+  editors.forEach((el, i) => {
     var parent = el.parentElement;
     var textarea = parent.querySelector('.ql-textarea');
     var html = parent.querySelector('.ql-editor').innerHTML;

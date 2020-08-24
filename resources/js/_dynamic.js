@@ -54,7 +54,7 @@
 
       // Delete
       var currents = this.el.querySelectorAll('.dynamic-item-current');
-      Array.prototype.forEach.call(currents, function(el, i) {
+      currents.forEach((el, i) => {
         el.querySelector('.dynamic-delete').addEventListener('click',function(e){
           e.preventDefault();
           var parent = e.target.closest('.dynamic-item-btn');
@@ -66,7 +66,7 @@
 
       // Remove
       var olds = this.el.querySelectorAll('.dynamic-item-old');
-      Array.prototype.forEach.call(olds, function(el, i) {
+      olds.forEach((el, i) => {
         el.querySelector('.dynamic-remove').addEventListener('click',function(e){
           dynamicObject.remove(el);
         });
@@ -129,7 +129,7 @@
       if(removeBtns !== null)
       {
           var isDisabled = !this.checkMin();
-          Array.prototype.forEach.call(removeBtns, function(el, i) {
+          removeBtns.forEach((el, i) => {
               el.disabled = isDisabled;
           });
       }
@@ -209,6 +209,6 @@
 
 // Init the Dynamic to each .dynamic-automatic
 var dynamic = document.querySelectorAll('.dynamic-automatic');
-Array.prototype.forEach.call(dynamic, function(el, i) {
+dynamic.forEach((el, i) => {
     var myDynamic = new Dynamic(el);
 });

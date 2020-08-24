@@ -27,7 +27,7 @@ import { it } from "flatpickr/dist/l10n/it.js"
 var datepickers = document.querySelectorAll('.date-picker');
 var currentLang = document.documentElement.lang;
 
-Array.prototype.forEach.call(datepickers, function(el, i) {
+datepickers.forEach((el, i) => {
 
     // Get the mode
     var dataMode = el.getAttribute('data-mode');

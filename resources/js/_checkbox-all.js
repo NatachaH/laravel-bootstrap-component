@@ -10,8 +10,9 @@
 // Get the .checkbox-all inputs
 var checkboxes = document.querySelectorAll('.checkbox-all input');
 
-Array.prototype.forEach.call(checkboxes, function(parent, i) {
 
+
+checkboxes.forEach((parent, i) => {
   // Variables
   var childrenClass = parent.value;
   var children      = document.querySelectorAll('.checkbox-'+childrenClass+' input:not(:disabled)');
@@ -29,7 +30,7 @@ Array.prototype.forEach.call(checkboxes, function(parent, i) {
   });
 
   // On change a children, toggle the parent
-  Array.prototype.forEach.call(children, function(el, i) {
+  children.forEach((el, i) => {
     el.addEventListener('change', (event) => {
       toggleCheckboxAll(parent,children);
     });
@@ -45,7 +46,7 @@ Array.prototype.forEach.call(checkboxes, function(parent, i) {
  */
 function toggleChildren(children, value)
 {
-  Array.prototype.forEach.call(children, function(el, i) {
+  children.forEach((el, i) => {
     el.checked = value;
   });
 }
