@@ -128,7 +128,7 @@ class ModalConfirm extends Component
     {
         $config = config('bs-component.modal-confirm.buttons.'.$name);
 
-        $class = $custom['class'] ?? $config['class'];
+        $class = $custom['class'] ?? $config['class'].($name == 'confirm' ? $this->color : '');
         $label = $custom['label'] ?? $config['label'];
         $value = $custom['value'] ?? $config['value'];
 
