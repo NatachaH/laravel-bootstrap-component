@@ -176,23 +176,26 @@ HelperLink.initTooltip();
 
 // If a form is submit =>
 var form = document.querySelector('form');
-form.onsubmit = function() {
-  // Populate hidden form on submit
-  editors.forEach((el, i) => {
-    var parent = el.parentElement;
-    var textarea = parent.querySelector('.ql-textarea');
-    var html = parent.querySelector('.ql-editor').innerHTML;
+if(form !== null)
+{
+  form.onsubmit = function() {
+    // Populate hidden form on submit
+    editors.forEach((el, i) => {
+      var parent = el.parentElement;
+      var textarea = parent.querySelector('.ql-textarea');
+      var html = parent.querySelector('.ql-editor').innerHTML;
 
-    // Clean the <p><br/></p> to <br/>
-    html = html.replace(new RegExp('<p><br></p>', 'g'), '<br>');
-    html = html.replace(new RegExp('/^(\s*<br\s*\/?\s*>\s*)*|(\s*<br\s*\/?\s*>\s*)*\s*$','g'), '')
+      // Clean the <p><br/></p> to <br/>
+      html = html.replace(new RegExp('<p><br></p>', 'g'), '<br>');
+      html = html.replace(new RegExp('/^(\s*<br\s*\/?\s*>\s*)*|(\s*<br\s*\/?\s*>\s*)*\s*$','g'), '')
 
-    // Clean the .ql-color- as .text-
-    html = html.replace(/ql-color-/g, 'text-');
+      // Clean the .ql-color- as .text-
+      html = html.replace(/ql-color-/g, 'text-');
 
-    // Populate the textarea if not empty
-    if(html != '<br>') {
-        textarea.value = html;
-    }
-  });
-};
+      // Populate the textarea if not empty
+      if(html != '<br>') {
+          textarea.value = html;
+      }
+    });
+  };
+}
