@@ -44,6 +44,7 @@ Available components:
 - [X] Figure
 - [X] Loading (Spinner)
 - [X] Modal
+- [X] Modal Confirm
 - [X] Progress
 - [X] Toast
 - [X] Check (checkbox, radio or switch)
@@ -195,12 +196,14 @@ Available components:
 | btn-cancel | array | [] |
 | btn-confirm | array | [] |
 
+*The action can be overide by the data-action attribute in the link*
+
 ```
-<x-bs-modal-confirm id="myModalConfirm" title="My modal confirm" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static>
+<x-bs-modal-confirm id="myModalConfirm" color="danger" icon="icon-trash" title="My modal confirm" action="default.action" method="DELETE" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static>
   Hey this a modal for confirmation !
 </x-bs-modal>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm" data-action="custom.action">
   Launch modal
 </button>
 ```

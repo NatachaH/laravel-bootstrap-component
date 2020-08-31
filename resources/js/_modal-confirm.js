@@ -14,9 +14,11 @@ confirmModals.forEach((modal, i) => {
     var action = button.getAttribute('data-action');
     var form = modal.querySelector('form');
 
-    console.log(action);
+    if(action != null)
+    {
+      form.action = action;
+    }
 
-    form.action = action;
     form.onsubmit = function(e) {
       var loading = modal.querySelector('.spinner-border');
       loading.classList.remove('d-none');
@@ -29,7 +31,10 @@ confirmModals.forEach((modal, i) => {
     var action = button.getAttribute('data-action');
     var form = modal.querySelector('form');
 
-    console.log(action);
+    if(action != null)
+    {
+      form.action = action;
+    }
 
     form.action = action;
     form.onsubmit = function(e) {
