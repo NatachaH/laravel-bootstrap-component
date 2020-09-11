@@ -103,7 +103,7 @@ class Dynamic extends Component
      * Class, label and value
      * @var array
      */
-    public $btnSortable;
+    public $btnMove;
 
     /**
      * Check if is Dynamic and display the add/remove button
