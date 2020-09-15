@@ -4,6 +4,9 @@ namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+
 class Dynamic extends Component
 {
 
