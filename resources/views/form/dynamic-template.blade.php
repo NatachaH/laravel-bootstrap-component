@@ -28,8 +28,7 @@
           {!! $slot !!}
       @endforelse
 
-      @foreach (old($name.'_to_add',[]) as $oldKey => $value)
-        @if(Str::endsWith($oldKey, '_'.$type))
+      @foreach ($defaults as $defaultKey => $value)
           <div class="d-flex align-items-start dynamic-item dynamic-item-old">
 
             @if($sortable)
@@ -37,18 +36,17 @@
                 <button class="btn drag {{ $btnMove['class'] }}" aria-label="{{ __($btnMove['label']) }}">
                   {!! $btnMove['value'] ?? __($btnMove['label']) !!}
                 </button>
-                <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$oldKey.'][position]' }}" />
+                <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$defaultKey.'][position]' }}" />
               </div>
             @endif
 
-            @includeIf($template,['key' => $oldKey])
+            @includeIf($template,['key' => $defaultKey, 'default' => $value])
 
             <div class="dynamic-item-btn">
               <button type="button" class="btn dynamic-remove {{ $btnRemove['class'] }}" aria-label="{{ __($btnRemove['label']) }}">{!! $btnRemove['value'] ?? __($btnRemove['label']) !!}</button>
             </div>
 
           </div>
-        @endif
       @endforeach
 
     </div>

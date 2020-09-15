@@ -454,6 +454,7 @@ With this component you can add/remove input to add multiple field in your form 
 | type      | string | dynamic |
 | sortable  | boolean | false |
 | items     | array | []     |
+| defaults  | array | []     |
 | help      | string | null  |
 | btnAdd    | array | []     |
 | btnRemove | array | []     |
@@ -467,6 +468,10 @@ With this component you can add/remove input to add multiple field in your form 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
 ```
+
+In the template view you have access to the **$default**;
+In the listing view you have acces to the **$item**
+
 
 ###Customization:
 

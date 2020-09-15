@@ -71,6 +71,12 @@ class Dynamic extends Component
     public $items;
 
     /**
+     * The default items
+     * @var array
+     */
+    public $defaults;
+
+    /**
      * The help message of the fieldset.
      *
      * @var string
@@ -135,11 +141,39 @@ class Dynamic extends Component
     }
 
     /**
+     * Define the defaults.
+     *
+     * @var array
+     */
+    private function defineDefaults($defaults)
+    {
+        $old = old($this->name.'_to_add');
+        $defaultsItems = [];
+
+        if(!empty($old))
+        {
+
+            $defaultsItems = Arr::where($old, function ($value, $key) {
+                return Str::endsWith($key, '_'.$this->type);
+            });
+
+        } else if(!empty($defaults)) {
+
+            foreach ($defaults as $key => $value) {
+              $defaultsItems[$key.'_'.$this->type] = $value;
+            }
+
+        }
+
+        return $defaultsItems;
+    }
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -151,6 +185,7 @@ class Dynamic extends Component
         $this->key              = 'KEY_'.$type;
         $this->sortable         = $sortable;
         $this->items            = $items;
+        $this->defaults         = $this->defineDefaults($defaults);
         $this->help             = $help;
         $this->btnAdd           = $this->defineButton('add',$btnAdd);
         $this->btnRemove        = $this->defineButton('remove',$btnRemove);
