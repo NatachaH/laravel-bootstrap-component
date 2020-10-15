@@ -455,6 +455,7 @@ With this component you can add/remove input to add multiple field in your form 
 | sortable  | boolean | false |
 | items     | array | []     |
 | defaults  | array | []     |
+| itemsDisabled | array | []     |
 | help      | string | null  |
 | btnAdd    | array | []     |
 | btnRemove | array | []     |

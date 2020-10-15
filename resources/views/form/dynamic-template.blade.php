@@ -5,7 +5,7 @@
     <div class="dynamic-list">
 
       @forelse ($items as $item)
-        <div class="d-flex align-items-end dynamic-item dynamic-item-current">
+        <div class="d-flex align-items-end dynamic-item dynamic-item-current {{ $isItemDisabled($item->id) ? 'dynamic-item-disbaled' : ''}}">
 
             @if($sortable)
               <button class="btn drag {{ $btnMove['class'] }}" aria-label="{{ __($btnMove['label']) }}">
@@ -17,7 +17,7 @@
             @includeIf($listing)
 
             <div class="dynamic-item-btn ml-auto" >
-               <button class="btn dynamic-delete {{ $btnDelete['class'] }}">
+               <button class="btn dynamic-delete {{ $btnDelete['class'] }}" {{ $isItemDisabled($item->id) ? 'disabled' : '' }}>
                    {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
                </button>
                <input class="dynamic-delete-checkbox d-none" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">

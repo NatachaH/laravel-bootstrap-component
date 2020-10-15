@@ -80,6 +80,12 @@ class Dynamic extends Component
     public $defaults;
 
     /**
+     * The disabled items
+     * @var array
+     */
+    public $itemsDisabled;
+
+    /**
      * The help message of the fieldset.
      *
      * @var string
@@ -121,6 +127,16 @@ class Dynamic extends Component
     public function isDynamic()
     {
       return is_null($this->max) || $this->max != 1;
+    }
+
+    /**
+     * Check if an item is disabled
+     * @param  string  $item
+     * @return boolean
+     */
+    public function isItemDisabled($item)
+    {
+        return in_array($item, $this->itemsDisabled);
     }
 
     /**
@@ -176,7 +192,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $itemsDisabled = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -189,6 +205,7 @@ class Dynamic extends Component
         $this->sortable         = $sortable;
         $this->items            = $items;
         $this->defaults         = $this->defineDefaults($defaults);
+        $this->itemsDisabled    = is_array($itemsDisabled) ? $itemsDisabled : [$itemsDisabled];
         $this->help             = $help;
         $this->btnAdd           = $this->defineButton('add',$btnAdd);
         $this->btnRemove        = $this->defineButton('remove',$btnRemove);
