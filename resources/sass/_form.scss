@@ -6,33 +6,13 @@
 
 form {
 
-  // Fix for Bootstrap V5
-  //
-  .input-group {
-
-      > :not(:last-child):not(input) {
-          border-right: none;
-          @include border-right-radius(0);
-      }
-
-      > :not(:first-child):not(input) {
-          border-left: none;
-          @include border-left-radius(0);
-      }
-
-      > .btn:not([class*=" btn-outline-"]) {
-        border: none;
-      }
-
-  }
-
+  // Fix for invalide feedback outside of div
   .invalid-feedback {
       text-align: left;
       display: block;
   }
 
   // Dynamic
-
   fieldset {
 
       &.dynamic-fieldset > .dynamic-list > div {
