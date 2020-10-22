@@ -51,7 +51,7 @@
         font-size: $input-font-size;
         line-height: $input-line-height;
         color: $input-color;
-        @include form-control-focus($ignore-warning: true);
+        //@include form-control-focus($ignore-warning: true);
 
         > p:last-child {
             margin-bottom: 0;

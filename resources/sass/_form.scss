@@ -44,7 +44,7 @@ form {
         }
 
         &:first-child .dynamic-item-btn {
-          padding-top: calc((#{$font-size-base} * #{$line-height-base}) + #{$label-margin-bottom})
+          padding-top: calc((#{$font-size-base} * #{$line-height-base}) + #{$form-label-margin-bottom})
         }
 
         &.dynamic-item-delete {

@@ -9,9 +9,7 @@
         <small>{{ $time }}</small>
       @endisset
       @if($closable)
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="@lang('bs-component::button.close')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="@lang('bs-component::button.close')"></button>
       @endif
     </div>
   @endif

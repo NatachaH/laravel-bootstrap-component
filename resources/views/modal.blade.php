@@ -5,9 +5,7 @@
         <div class="modal-header">
           <h5 class="modal-title">{{ $title }}</h5>
           @if($closable)
-            <button type="button" class="close" data-dismiss="modal" aria-label="@lang('bs-component::button.close')">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="@lang('bs-component::button.close')"></button>
           @endif
         </div>
       @endif
