@@ -15,11 +15,14 @@ var exports = module.exports = {};
  */
 exports.initTooltip = function()
 {
-    $('.ql-editor a').tooltip({
-      title : function(e,i){
-        return this.getAttribute('href').replace('mailto:','');
-      },
-      trigger: 'hover'
+    var tooltips = [].slice.call(document.querySelectorAll('.ql-editor a'))
+    tooltips.map(function (tooltip) {
+      return new bootstrap.Tooltip(tooltip,{
+        title : function(e,i){
+          return this.getAttribute('href').replace('mailto:','');
+        },
+        trigger: 'hover'
+      })
     });
 };
 
