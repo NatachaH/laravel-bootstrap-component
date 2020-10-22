@@ -9,8 +9,7 @@ composer require nh/bs-component
 Add this to your packages.json
 
 ```
-"bootstrap" : "^4.4.1",
-"jquery" : "^3.4.1",
+"bootstrap" : "^5.0.0-alpha2",
 "popper.js" : "^1.12",
 "quill" : "^1.3.6",
 "bs-custom-file-input" : "^1.3.4",
