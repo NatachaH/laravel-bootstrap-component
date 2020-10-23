@@ -275,7 +275,7 @@ All the component manage the request old() value and the validation.
 ```
 <x-bs-check label="My custom check" type="checkbox" name="one" value="thevalue" help="Help message." checked disabled required boolean/>
 
-<x-bs-check class="custom-switch" label="My switch check" type="checkbox" name="three" />
+<x-bs-check class="form-switch" label="My switch check" type="checkbox" name="three" />
 ```
 
 ## CheckList
