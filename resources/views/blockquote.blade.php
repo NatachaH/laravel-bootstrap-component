@@ -1,10 +1,10 @@
-<blockquote {{ $attributes->merge(['class' => 'blockquote text-'.$align]) }}>
-  <p class="mb-0">
+<figure {{ $attributes->merge(['class' => 'text-'.$align]) }}>
+  <blockquote class="blockquote">
     {!! $slot !!}
-  </p>
+  </blockquote>
   @isset($source)
-    <footer class="blockquote-footer">
+    <figcaption class="blockquote-footer">
         {!! $source !!}
-    </footer>
+    </figcaption>
   @endisset
-</blockquote>
+</figure>
