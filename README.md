@@ -281,6 +281,7 @@ All the component manage the request old() value and the validation.
 
 ```
 <x-bs-check label="Boolean checkbox" type="checkbox" name="boolean" boolean required/>
+<x-bs-check class="form-switch" label="Boolean switch" type="checkbox" name="switch" boolean />
 
 <x-bs-check label="My check one" type="checkbox" name="checkbox[]" value="one" help="Help message." checked />
 <x-bs-check label="My check two" type="checkbox" name="checkbox[]" value="two"/>
