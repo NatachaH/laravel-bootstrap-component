@@ -19,5 +19,6 @@ return [
     'remove'        => 'Remove',
     'delete'        => 'Delete',
     'move'          => 'Drag & drop',
+    'clear'         => 'Clear'
 
 ];

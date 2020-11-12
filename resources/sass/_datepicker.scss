@@ -668,22 +668,22 @@
     border-radius: $input-border-radius !important;
   }
 
-  > .input-group-append {
+
+  > .btn-clear {
     display: none;
-    > .btn-clear {
-      background: $input-bg;
-      border: $input-border-width solid $input-border-color;
-      font-size: 1.5rem;
-      line-height: 1.5rem;
-    }
+    background: $input-bg;
+    border: $input-border-width solid $input-border-color;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
   }
+
 
   &.date-picked {
     > .date-picker {
       border-top-right-radius: 0!important;
       border-bottom-right-radius: 0!important;
     }
-    > .input-group-append {
+    > .btn-clear {
       display: block;
     }
   }

@@ -135,7 +135,7 @@ class Datepicker extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = true, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -146,7 +146,7 @@ class Datepicker extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->isInputGroup = $inputGroup;
+        $this->isInputGroup = true;
         $this->mode         = !is_null($mode) && in_array($mode,['single','multiple','range']) ? $mode : 'single';
         $this->format       = !is_null($format) && in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
         $this->min          = $min;

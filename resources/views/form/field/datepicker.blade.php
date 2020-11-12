@@ -17,10 +17,6 @@
   data-max-date-input="{{ $maxInput }}"
 />
 
-
-
-<div @if($isInputGroup) class="input-group-append" @endif>
-  <button class="btn btn-clear" aria-label="@lang('bs-component::button.clear')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+<button class="btn btn-clear" aria-label="@lang('bs-component::button.clear')">
+  <span aria-hidden="true">&times;</span>
+</button>

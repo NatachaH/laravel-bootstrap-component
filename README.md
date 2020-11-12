@@ -438,7 +438,6 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 | readonly  | boolean | false |
 | disabled  | boolean | false |
 | required  | boolean | false |
-| input-group | boolean | false |
 | mode      | string | single |
 | format    | string | datetime |
 | min       | string | null  |
@@ -450,6 +449,11 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 *You can set a min/max date or define by another input name (min-input/max-input).*
 *The mode can be single, multiple or range.*
 *The format can be datetime, datetime-short, date, time, time-short, db-datetime, db-date, db-time.*
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';
+```
 
 ```
 <x-bs-datepicker label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>

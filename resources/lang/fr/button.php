@@ -19,4 +19,5 @@ return [
     'remove'        => 'Enlever',
     'delete'        => 'Supprimer',
     'move'          => 'Drag & drop',
+    'clear'         => 'Nettoyer'
 ];
