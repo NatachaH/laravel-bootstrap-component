@@ -53,6 +53,7 @@ Available components:
 - [X] Input
 - [X] Input file
 - [X] Select
+- [X] Datalist
 - [X] Textarea
 
 # Components
@@ -396,6 +397,31 @@ All the component manage the request old() value and the validation.
 <x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" :selected="[2]" multiple disabled required />
 
 <x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" before="A" after="B" />
+```
+
+## Datalist
+
+| Attribute | Type | Default |
+| --------- | ---- | ------- |
+| label     | string | null  |
+| name      | string |       |
+| value     | string | null  |
+| placeholder | string | null  |
+| options   | array  |       |
+| help      | string | null  |
+| size      | string | null  |
+| readonly  | boolean | false  |
+| disabled  | boolean | false  |
+| required  | boolean | false |
+| before    | string | null |
+| after     | string | null |
+
+*The name and the options are required.*
+
+```
+<x-bs-datalist label="My label" name="myinput" value="Default value" placeholder="My placeholder" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" readonly disabled required />
+
+<x-bs-datalist label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" before="A" after="B" />
 ```
 
 ## Textarea
