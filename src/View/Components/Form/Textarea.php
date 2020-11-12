@@ -72,12 +72,6 @@ class Textarea extends Component
     public $cleanName;
 
     /**
-     * Is an input group
-     * @var boolean
-     */
-    public $isInputGroup;
-    
-    /**
      * Input group before
      * @var string
      */
@@ -105,7 +99,6 @@ class Textarea extends Component
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->cleanName    = array_to_dot($this->name);
-        $this->isInputGroup = !empty($before) || !empty($after);
         $this->before       = $before;
         $this->after        = $after;
     }

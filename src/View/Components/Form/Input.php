@@ -109,12 +109,6 @@ class Input extends Component
     public $max;
 
     /**
-     * Is an input group
-     * @var boolean
-     */
-    public $isInputGroup;
-
-    /**
      * Input group before
      * @var string
      */
@@ -125,7 +119,7 @@ class Input extends Component
      * @var string
      */
     public $after;
-
+    
     /**
      * Create a new component instance.
      *
@@ -147,7 +141,6 @@ class Input extends Component
         $this->min          = $min;
         $this->max          = $max;
         $this->cleanName    = array_to_dot($this->name);
-        $this->isInputGroup = !empty($before) || !empty($after);
         $this->before       = $before;
         $this->after        = $after;
     }

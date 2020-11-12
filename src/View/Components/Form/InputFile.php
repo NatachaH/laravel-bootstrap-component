@@ -65,12 +65,6 @@ class InputFile extends Component
     public $cleanName;
 
     /**
-     * Is an input group
-     * @var boolean
-     */
-    public $isInputGroup;
-    
-    /**
      * Input group before
      * @var string
      */
@@ -97,7 +91,6 @@ class InputFile extends Component
         $this->isRequired   = $required;
         $this->isMultiple   = $multiple;
         $this->cleanName    = array_to_dot($this->name);
-        $this->isInputGroup = !empty($before) || !empty($after);
         $this->before       = $before;
         $this->after        = $after;
     }

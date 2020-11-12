@@ -664,9 +664,17 @@
 // CUSTOM FOR CLEAR BUTTON
 .input-group-date-picker {
 
-  > .date-picker {
-    border-radius: $input-border-radius !important;
+  > :nth-child(2) {
+    border-top-left-radius: $input-border-radius !important;
+    border-bottom-left-radius: $input-border-radius !important;
   }
+
+
+  > :nth-last-child(2) {
+    border-top-right-radius: $input-border-radius !important;
+    border-bottom-right-radius: $input-border-radius !important;
+  }
+
 
 
   > .btn-clear {

@@ -122,7 +122,7 @@ class Datepicker extends Component
      * @return string
      */
     public $cleanName;
-    
+
     /**
      * Is an input group
      * @var boolean
