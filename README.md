@@ -252,6 +252,10 @@ Or you can set an array with the custom values (class,label,value) for each butt
 <x-bs-toast class="show" title="My toast" time="11 min ago" img="https://fakeimg.pl/20x20/007bff/fff" closable autohide delay="100">
   Hey this is a toast !
 </x-bs-toast>
+
+<x-bs-toast class="show" time="11 min ago" img="https://fakeimg.pl/20x20/007bff/fff" closable autohide delay="100">
+  Hey this is a toast !
+</x-bs-toast>
 ```
 
 # Form Components
