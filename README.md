@@ -302,14 +302,20 @@ All the component manage the request old() value and the validation.
 | options   | array  |       |
 | help      | string | null  |
 | checked   | string/array | [] |
-| disabled  | boolean/array | false  |
+| disabled  | boolean/array | false |
+| inline    | boolean | false |
 | required  | boolean | false  |
 
 *The name and the options are required.*
 *You can pass an array with the disabled values or disabled them all.*
 
 ```
-<x-bs-check-list label="My label" type="checkbox" name="fieldname[]" :options="[1 => 'one', 2 => 'two']" help="Help message" :checked="[2]" disabled required />
+<x-bs-check-list label="My label" type="checkbox" name="checkbox_list[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" :checked="[2]" :disabled="[3]" required />
+<x-bs-check-list label="My label" type="radio" name="radio_list[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" :checked="[2]" :disabled="[3]" required />
+
+<x-bs-check-list label="My label" type="checkbox" name="checkbox_list_inline[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" inline />
+<x-bs-check-list label="My label" type="radio" name="radio_list_inline[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" inline />
+
 ```
 
 ## Input

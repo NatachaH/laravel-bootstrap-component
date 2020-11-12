@@ -87,6 +87,13 @@ class CheckList extends Component
     }
 
     /**
+     * Is the check list inline.
+     *
+     * @var boolean
+     */
+    public $isInline;
+
+    /**
      * Is the input required.
      *
      * @var boolean
@@ -112,13 +119,12 @@ class CheckList extends Component
       */
      public $cleanName;
 
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $required = false)
+    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $inline = false, $required = false)
     {
         $this->label            = $label;
         $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
@@ -128,6 +134,7 @@ class CheckList extends Component
         $this->optionsChecked   = (array)$checked;
         $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make all the options disabled
         $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
+        $this->isInline         = $inline;
         $this->isRequired       = $required;
         $this->cleanName        = array_to_dot($this->name);
     }
