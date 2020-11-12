@@ -49,6 +49,13 @@ class Modal extends Component
     public $scrollable;
 
     /**
+     * Is the modal backdrop static.
+     *
+     * @var boolean
+     */
+    public $isStatic;
+
+    /**
      * Is the modal fullscreen.
      *
      * @var boolean
@@ -81,7 +88,7 @@ class Modal extends Component
      *
      * @return void
      */
-    public function __construct($title = null, $footer = null, $size = 'md', $closable = false, $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null)
+    public function __construct($title = null, $footer = null, $size = 'md', $closable = false, $centered = false, $scrollable = false, $isStatic = false, $fullscreen = false, $fullscreenSize = null)
     {
         $this->title                = $title;
         $this->footer               = $footer;
@@ -89,6 +96,7 @@ class Modal extends Component
         $this->closable             = $closable;
         $this->isCentered           = $centered;
         $this->scrollable           = $scrollable;
+        $this->isStatic             = $isStatic;
         $this->isFullscreen         = $fullscreen;
         $this->fullscreenSize       = $fullscreenSize;
     }
