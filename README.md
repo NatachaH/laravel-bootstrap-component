@@ -492,7 +492,7 @@ With this component you can add/remove input to add multiple field in your form 
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_dynamic');```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/dynamic';
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/dynamic';```
 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
@@ -535,3 +535,21 @@ To use the editor you need to install the JS plugin **QuillJS** !
 ```
 <x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
 ```
+
+## Checkbox all
+
+If you need a checkbox to check all his children:
+
+```
+<x-bs-check class="checkbox-all" label="Check them all" name="checkboxAll[]" value="my-children"/>
+
+<x-bs-check class="checkbox-my-children" label="AAA" name="children[]" value="AAA"/>
+<x-bs-check class="checkbox-my-children" label="BBB" name="children[]" value="BBB"/>
+<x-bs-check class="checkbox-my-children" label="CCC" name="children[]" value="CCC"/>
+```
+
+*The parent checkbox need the class checkbox-all and the value xxx*
+*The children checkbox need the class checkbox-xxx*
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_checkbox-all');```
