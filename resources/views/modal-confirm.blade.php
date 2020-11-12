@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'modal modal-confirm fade']) }} tabindex="-1" @if($isStatic) data-backdrop="static" @endif>
+<div {{ $attributes->merge(['class' => 'modal modal-confirm fade']) }} data-backdrop="static" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-{{ $size }} {{ $isCentered ? 'modal-dialog-centered' : '' }} {{ $scrollable ? 'modal-dialog-scrollable' : '' }} {{ $fullscreenClass() }}">
     <div class="modal-content">
 
@@ -32,5 +32,6 @@
         </div>
       @endif
     </div>
+
   </div>
 </div>

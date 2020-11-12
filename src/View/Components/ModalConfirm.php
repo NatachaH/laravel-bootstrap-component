@@ -85,13 +85,6 @@ class ModalConfirm extends Component
     public $fullscreenSize;
 
     /**
-     * Is the modal backdrop static.
-     *
-     * @var boolean
-     */
-    public $isStatic;
-
-    /**
      * Information for the cancel button
      * Class, label and value
      * @var array
@@ -144,7 +137,7 @@ class ModalConfirm extends Component
      *
      * @return void
      */
-    public function __construct($color = 'primary', $icon = null, $title = null, $action = '#', $method = 'POST', $footer = null, $size = 'md', $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null, $isStatic = false, $btnCancel = [], $btnConfirm = [])
+    public function __construct($color = 'primary', $icon = null, $title = null, $action = '#', $method = 'POST', $footer = null, $size = 'md', $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null, $btnCancel = [], $btnConfirm = [])
     {
         $this->color                = $color;
         $this->icon                 = $icon;
@@ -157,7 +150,6 @@ class ModalConfirm extends Component
         $this->scrollable           = $scrollable;
         $this->isFullscreen         = $fullscreen;
         $this->fullscreenSize       = $fullscreenSize;
-        $this->isStatic             = $isStatic;
         $this->btnCancel            = $this->defineButton('cancel',$btnCancel);
         $this->btnConfirm           = $this->defineButton('confirm',$btnConfirm);
     }

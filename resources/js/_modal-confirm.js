@@ -19,11 +19,10 @@ confirmModals.forEach((modal, i) => {
       form.action = action;
     }
 
-    form.action = action;
     form.onsubmit = function(e) {
       var loading = modal.querySelector('.spinner-border');
       loading.classList.remove('d-none');
     }
   })
-  
+
 });

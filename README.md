@@ -19,7 +19,7 @@ Add this to your packages.json
 Publish the config
 
 ```
-php artisan vendor:publish --tag=bs-components
+php artisan vendor:publish --tag=bs-component
 ```
 
 Javascript to include
@@ -190,19 +190,23 @@ Available components:
 | scrollable | boolean | false |    
 | fullscreen | boolean | false |      
 | fullscreen-size | string | null |
-| is-static | boolean | false |
 | btn-cancel | array | [] |
 | btn-confirm | array | [] |
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_modal-confirm');```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/modal-confirm';
+```
 
 *The action can be overide by the data-action attribute in the link*
 
 ```
-<x-bs-modal-confirm id="myModalConfirm" color="danger" icon="icon-trash" title="My modal confirm" action="default.action" method="DELETE" footer="The footer of the modal" size="sm" centered scrollable fullscreen fullscreen-size="md" is-static>
-  Hey this a modal for confirmation !
+<x-bs-modal-confirm id="myModalConfirm" color="danger" icon="icon-trash" title="My modal confirm" action="default.action" method="DELETE" size="md" centered >
+  <p>Hey this a modal for confirmation !</p>
 </x-bs-modal>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm" data-action="custom.action">
-  Launch modal
+  Launch modal confirm
 </button>
 ```
 
