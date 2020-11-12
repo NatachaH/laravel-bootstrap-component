@@ -24,7 +24,7 @@
   </label>
 
   @if($help)
-    <small id="{{ $id.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
+    <small id="{{ $id.'FieldHelp' }}" class="form-text">{{ $help }}</small>
   @endif
 
   @error($name)

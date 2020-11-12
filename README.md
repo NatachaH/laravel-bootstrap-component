@@ -280,9 +280,15 @@ All the component manage the request old() value and the validation.
 *If the boolean option is set to true, a hidden input with the value opposite value is created.*
 
 ```
-<x-bs-check label="My custom check" type="checkbox" name="one" value="thevalue" help="Help message." checked disabled required boolean/>
+<x-bs-check label="Boolean checkbox" type="checkbox" name="boolean" boolean required/>
 
-<x-bs-check class="form-switch" label="My switch check" type="checkbox" name="three" />
+<x-bs-check label="My check one" type="checkbox" name="checkbox[]" value="one" help="Help message." checked />
+<x-bs-check label="My check two" type="checkbox" name="checkbox[]" value="two"/>
+<x-bs-check label="My check three" type="checkbox" name="checkbox[]" value="three" disabled />
+
+<x-bs-check label="My radio one" type="radio" name="radio" value="one" help="Help message." checked />
+<x-bs-check label="My radio two" type="radio" name="radio" value="two" />
+<x-bs-check label="My radio three" type="radio" name="radio" value="three" help="Help message." disabled />
 ```
 
 ## CheckList
