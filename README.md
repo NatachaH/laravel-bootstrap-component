@@ -490,13 +490,16 @@ With this component you can add/remove input to add multiple field in your form 
 *The listing and template are path to some includes views.*
 *The Drag&Drop is NOT initialize, you have to add the JS for that functionnality*
 
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_dynamic');```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/dynamic';
+
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
 ```
 
 In the template view you have access to the **$default**;
 In the listing view you have acces to the **$item**
-
 
 ###Customization:
 
