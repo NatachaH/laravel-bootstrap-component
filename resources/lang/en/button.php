@@ -13,8 +13,6 @@ return [
 
     'close'         => 'Close',
     'loading'       => 'Loading...',
-    'choose-file'   => 'Choose a file',
-    'browse'        => 'Browse',
     'confirm'       => 'Confirm',
     'cancel'        => 'Cancel',
     'add'           => 'Add',

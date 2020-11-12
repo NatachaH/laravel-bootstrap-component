@@ -12,7 +12,6 @@ Add this to your packages.json
 "bootstrap" : "^5.0.0-alpha2",
 "popper.js" : "^1.12",
 "quill" : "^1.3.6",
-"bs-custom-file-input" : "^1.3.4",
 "flatpickr" : "^4.6.3"
 ```
 
@@ -364,20 +363,20 @@ All the component manage the request old() value and the validation.
 | --------- | ---- | ------- |
 | label     | string | null  |
 | name      | string |       |
-| placeholder | string | null  |
-| button    | string | null  |
 | help      | string | null  |
 | size      | string | null  |
 | disabled  | boolean | false |
+| multiple  | boolean | false |
 | required  | boolean | false |
 | input-group | boolean | false |
 
 *The name is required.*
-*The button option is for Bootstrap V5 only.*
-*The default placeholder and button are the 'bs-component::button.choose-file' and 'bs-component::button.browse' translations.*
 
 ```
-<x-bs-input-file label="My input file" name="myinput" placeholder="Choose a file" button="Browse" help="Help message" size="lg" disabled required />
+<x-bs-input-file label="My input file" name="myinput" help="Help message" />
+<x-bs-input-file label="My input file multiple" name="myinput" help="Help message" multiple/>
+<x-bs-input-file label="My input file" name="myinput" help="Help message" size="lg" disabled required />
+
 ```
 
 ## Select

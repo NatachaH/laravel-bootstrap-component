@@ -3,7 +3,6 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
 
 class InputFile extends Component
 {
@@ -20,20 +19,6 @@ class InputFile extends Component
      * @var string
      */
     public $name;
-
-    /**
-     * The placeholder of the input.
-     *
-     * @var string
-     */
-    public $placeholder;
-
-    /**
-     * The button of the input.
-     *
-     * @var string
-     */
-    public $button;
 
     /**
      * The help message of the input.
@@ -56,6 +41,13 @@ class InputFile extends Component
      * @var boolean
      */
     public $isDisabled;
+
+    /**
+     * Is the input multiple.
+     *
+     * @var boolean
+     */
+    public $isMultiple;
 
     /**
      * Is the input required.
@@ -84,16 +76,15 @@ class InputFile extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $placeholder = null, $button = null, $help  = null, $size = null, $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $inputGroup = false)
     {
         $this->label        = $label;
         $this->name         = $name;
-        $this->placeholder  = is_null($placeholder) ? __('bs-component::button.choose-file') : $placeholder;
-        $this->button       = is_null($button) ? __('bs-component::button.browse') : $button;
         $this->help         = $help;
         $this->size         = $size;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
+        $this->isMultiple   = $multiple;
         $this->isInputGroup = $inputGroup;
         $this->cleanName    = array_to_dot($this->name);
     }
