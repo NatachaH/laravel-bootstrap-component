@@ -32,10 +32,10 @@
           <textarea class="ql-textarea" name="{{ $name }}"></textarea>
     </div>
 
-    <small class="form-text text-muted">{!! __('bs-component::editor.line-break') !!}</small>
+    <small class="form-text">{!! __('bs-component::editor.line-break') !!}</small>
 
     @if($help)
-      <small id="{{ $name.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
+      <small id="{{ $name.'FieldHelp' }}" class="form-text">{{ $help }}</small>
     @endif
 
     @error($cleanName)

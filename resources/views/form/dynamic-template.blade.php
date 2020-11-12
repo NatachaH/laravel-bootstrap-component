@@ -53,7 +53,7 @@
 
     <div class="d-flex align-items-enter">
         @if($help)
-          <small class="form-text text-muted">{{ $help }}</small>
+          <small class="form-text">{{ $help }}</small>
         @endif
         <button type="button" class="ml-auto btn dynamic-add {{ $isDynamic() ? '' : 'd-none' }} {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
     </div>

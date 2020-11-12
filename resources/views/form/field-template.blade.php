@@ -21,11 +21,11 @@
   @endif
 
   @if($help)
-    <small id="{{ $cleanName.'FieldHelp' }}" class="form-text text-muted">{{ $help }}</small>
+    <small id="{{ $cleanName.'FieldHelp' }}" class="form-text">{{ $help }}</small>
   @endif
 
   @error($cleanName)
-      <span class="invalid-feedback" role="alert">
+      <span class="invalid-feedback">
           {{ $message }}
       </span>
   @enderror
