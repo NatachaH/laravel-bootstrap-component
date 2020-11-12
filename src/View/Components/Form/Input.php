@@ -80,13 +80,6 @@ class Input extends Component
     public $isRequired;
 
     /**
-     * Is the input is an input group.
-     *
-     * @var boolean
-     */
-    public $isInputGroup;
-
-    /**
      * Clean name
      * Exemple: field[] become field
      *
@@ -116,11 +109,29 @@ class Input extends Component
     public $max;
 
     /**
+     * Is an input group
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
+     * Input group before
+     * @var string
+     */
+    public $before;
+
+    /**
+     * Input group after
+     * @var string
+     */
+    public $after;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $inputGroup = false, $step = 1, $min = null, $max = null)
+    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null)
     {
         $this->label        = $label;
         $this->type         = $type;
@@ -132,11 +143,13 @@ class Input extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->isInputGroup = $inputGroup;
         $this->step         = $step;
         $this->min          = $min;
         $this->max          = $max;
         $this->cleanName    = array_to_dot($this->name);
+        $this->isInputGroup = !empty($before) || !empty($after);
+        $this->before       = $before;
+        $this->after        = $after;
     }
 
     /**

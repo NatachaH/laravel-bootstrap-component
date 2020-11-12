@@ -7,13 +7,13 @@
   @if(!empty($isInputGroup))
     <div class="input-group">
         @isset($before)
-          {!! $before !!}
+          <span class="input-group-text">{!! $before !!}</span>
         @endisset
 
         @includeIf($field)
 
         @isset($after)
-          {!! $after !!}
+          <span class="input-group-text">{!! $after !!}</span>
         @endisset
     </div>
   @else

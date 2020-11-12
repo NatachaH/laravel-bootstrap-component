@@ -64,13 +64,6 @@ class Textarea extends Component
     public $isRequired;
 
     /**
-     * Is the textarea is an input group.
-     *
-     * @var boolean
-     */
-    public $isInputGroup;
-
-    /**
      * Clean name
      * Exemple: field[] become field
      *
@@ -79,11 +72,29 @@ class Textarea extends Component
     public $cleanName;
 
     /**
+     * Is an input group
+     * @var boolean
+     */
+    public $isInputGroup;
+    
+    /**
+     * Input group before
+     * @var string
+     */
+    public $before;
+
+    /**
+     * Input group after
+     * @var string
+     */
+    public $after;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $readonly = false, $disabled = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -93,8 +104,10 @@ class Textarea extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->isInputGroup = $inputGroup;
         $this->cleanName    = array_to_dot($this->name);
+        $this->isInputGroup = !empty($before) || !empty($after);
+        $this->before       = $before;
+        $this->after        = $after;
     }
 
     /**

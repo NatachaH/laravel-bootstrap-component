@@ -72,13 +72,6 @@ class Datepicker extends Component
     public $isRequired;
 
     /**
-     * Is the input is an input group.
-     *
-     * @var boolean
-     */
-    public $isInputGroup;
-
-    /**
      * Mode of the Datepicker
      * Available: single|multiple|range
      *
@@ -129,13 +122,31 @@ class Datepicker extends Component
      * @return string
      */
     public $cleanName;
+    
+    /**
+     * Is an input group
+     * @var boolean
+     */
+    public $isInputGroup;
+
+    /**
+     * Input group before
+     * @var string
+     */
+    public $before;
+
+    /**
+     * Input group after
+     * @var string
+     */
+    public $after;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null, $before = null, $after = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -146,7 +157,6 @@ class Datepicker extends Component
         $this->isReadonly   = $readonly;
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->isInputGroup = true;
         $this->mode         = !is_null($mode) && in_array($mode,['single','multiple','range']) ? $mode : 'single';
         $this->format       = !is_null($format) && in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
         $this->min          = $min;
@@ -154,6 +164,9 @@ class Datepicker extends Component
         $this->minInput     = $minInput;
         $this->maxInput     = $maxInput;
         $this->cleanName    = array_to_dot($this->name);
+        $this->isInputGroup = true;
+        $this->before       = $before;
+        $this->after        = $after;
     }
 
     /**

@@ -9,7 +9,7 @@ composer require nh/bs-component
 Add this to your packages.json
 
 ```
-"bootstrap" : "^5.0.0-alpha2",
+"bootstrap" : "^5.0.0-alpha3",
 "popper.js" : "^1.12",
 "quill" : "^1.3.6",
 "flatpickr" : "^4.6.3"
@@ -331,10 +331,11 @@ All the component manage the request old() value and the validation.
 | readonly  | boolean | false |
 | disabled  | boolean | false |
 | required  | boolean | false |
-| input-group | boolean | false |
 | step      | float | 1 |
 | min       | float | null |
 | max       | float | null |
+| before    | string | null |
+| after     | string | null |
 
 *The name is required.*
 *The step, min and max are only for input of type number.*
@@ -342,18 +343,8 @@ All the component manage the request old() value and the validation.
 ```
 <x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />
 
-<x-bs-input label="My input group" type="text" name="myinputgroup" value="Default value" placeholder="My placeholder" help="Help message" input-group>
-  <x-slot name="before">
-    <div class="input-group-prepend">
-       <span class="input-group-text">@</span>
-    </div>
-  </x-slot>
-  <x-slot name="after">
-    <div class="input-group-append">
-       <span class="input-group-text">@</span>
-    </div>
-  </x-slot>
-</x-bs-input>
+<x-bs-input label="My input" type="text" name="myinput" before="A" after="B" />
+
 ```
 
 
@@ -368,7 +359,8 @@ All the component manage the request old() value and the validation.
 | disabled  | boolean | false |
 | multiple  | boolean | false |
 | required  | boolean | false |
-| input-group | boolean | false |
+| before    | string | null |
+| after     | string | null |
 
 *The name is required.*
 
@@ -376,6 +368,8 @@ All the component manage the request old() value and the validation.
 <x-bs-input-file label="My input file" name="myinput" help="Help message" />
 <x-bs-input-file label="My input file multiple" name="myinput" help="Help message" multiple/>
 <x-bs-input-file label="My input file" name="myinput" help="Help message" size="lg" disabled required />
+
+<x-bs-input-file label="My input file" name="myinput" before="A" after="B" />
 
 ```
 
@@ -392,13 +386,16 @@ All the component manage the request old() value and the validation.
 | multiple  | boolean | false |
 | disabled  | boolean/array | false  |
 | required  | boolean | false |
-| input-group | boolean | false |
+| before    | string | null |
+| after     | string | null |
 
 *The name and the options are required.*
 *You can pass an array with the disabled values or disabled them all.*
 
 ```
 <x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" :selected="[2]" multiple disabled required />
+
+<x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" before="A" after="B" />
 ```
 
 ## Textarea
@@ -413,12 +410,15 @@ All the component manage the request old() value and the validation.
 | readonly  | boolean | false |
 | disabled  | boolean | false |
 | required  | boolean | false |
-| input-group | boolean | false |
+| before    | string | null |
+| after     | string | null |
 
 *The name is required.*
 
 ```
 <x-bs-textarea label="My label" name="mytextarea" value="Default value" placeholder="My placeholder" help="Help message" readonly disabled required />
+
+<x-bs-textarea label="My label" name="mytextarea" before="A" after="B" />
 ```
 
 # JS Component
@@ -444,6 +444,8 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 | max       | string | null  |
 | min-input | string | null  |
 | max-input | string | null  |
+| before    | string | null |
+| after     | string | null |
 
 *The name is required.*
 *You can set a min/max date or define by another input name (min-input/max-input).*

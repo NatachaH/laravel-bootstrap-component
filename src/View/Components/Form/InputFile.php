@@ -57,13 +57,6 @@ class InputFile extends Component
     public $isRequired;
 
     /**
-     * Is the input is an input group.
-     *
-     * @var boolean
-     */
-    public $isInputGroup;
-
-    /**
      * Clean name
      * Exemple: field[] become field
      *
@@ -72,11 +65,29 @@ class InputFile extends Component
     public $cleanName;
 
     /**
+     * Is an input group
+     * @var boolean
+     */
+    public $isInputGroup;
+    
+    /**
+     * Input group before
+     * @var string
+     */
+    public $before;
+
+    /**
+     * Input group after
+     * @var string
+     */
+    public $after;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $inputGroup = false)
+    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -85,8 +96,10 @@ class InputFile extends Component
         $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
         $this->isMultiple   = $multiple;
-        $this->isInputGroup = $inputGroup;
         $this->cleanName    = array_to_dot($this->name);
+        $this->isInputGroup = !empty($before) || !empty($after);
+        $this->before       = $before;
+        $this->after        = $after;
     }
 
     /**
