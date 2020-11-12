@@ -522,6 +522,11 @@ To use the editor you need to install the JS plugin **QuillJS** !
 
 *The name is required.*
 
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_editor');```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';
+```
+
 ```
 <x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
 ```
