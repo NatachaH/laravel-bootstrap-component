@@ -99,11 +99,37 @@ class Datalist extends Component
     public $after;
 
     /**
+     * Display an hidden field next the input.
+     * @var boolean
+     */
+    public $withHidden;
+
+    /**
+     * Name of the hidden field.
+     * @var string
+     */
+    public $hiddenName;
+
+    /**
+     * Value of the hidden field.
+     * @var string
+     */
+    public $hiddenValue;
+
+    /**
+     * Clean hidden name
+     * Exemple: field[] become field
+     *
+     * @return string
+     */
+    public $cleanHiddenName;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null)
     {
         $this->label            = $label;
         $this->name             = $name;
@@ -118,6 +144,10 @@ class Datalist extends Component
         $this->cleanName        = array_to_dot($this->name);
         $this->before           = $before;
         $this->after            = $after;
+        $this->withHidden       = $withHidden;
+        $this->hiddenName       = $hiddenName;
+        $this->hiddenValue      = $hiddenValue;
+        $this->cleanHiddenName  = array_to_dot($this->hiddenName);
     }
 
     /**

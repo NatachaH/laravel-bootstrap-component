@@ -415,13 +415,19 @@ All the component manage the request old() value and the validation.
 | required  | boolean | false |
 | before    | string | null |
 | after     | string | null |
+| with-hidden | boolean | false |
+| hidden-name | string | id |
+| hidden-field | string | null |
 
 *The name and the options are required.*
+*You can add an hidden input with custom name and value. When a user choose an option it will set the value with the option data-value.*
 
 ```
 <x-bs-datalist label="My label" name="myinput" value="Default value" placeholder="My placeholder" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" readonly disabled required />
 
 <x-bs-datalist label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" before="A" after="B" />
+
+<x-bs-datalist label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" value="one" with-hidden hidden-name="hiddenid" hidden-value="1" />
 ```
 
 ## Textarea
