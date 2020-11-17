@@ -195,8 +195,7 @@ Available components:
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_modal-confirm');```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/modal-confirm';
-```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/modal-confirm';```
 
 *The action can be overide by the data-action attribute in the link*
 
@@ -315,7 +314,6 @@ All the component manage the request old() value and the validation.
 
 <x-bs-check-list label="My label" type="checkbox" name="checkbox_list_inline[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" inline />
 <x-bs-check-list label="My label" type="radio" name="radio_list_inline[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" inline />
-
 ```
 
 ## Input
@@ -345,7 +343,6 @@ All the component manage the request old() value and the validation.
 <x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />
 
 <x-bs-input label="My input" type="text" name="myinput" before="A" after="B" />
-
 ```
 
 
@@ -371,7 +368,6 @@ All the component manage the request old() value and the validation.
 <x-bs-input-file label="My input file" name="myinput" help="Help message" size="lg" disabled required />
 
 <x-bs-input-file label="My input file" name="myinput" before="A" after="B" />
-
 ```
 
 ## Select
@@ -486,8 +482,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';
-```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';```
 
 ```
 <x-bs-datepicker label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>
@@ -561,8 +556,7 @@ To use the editor you need to install the JS plugin **QuillJS** !
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_editor');```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';
-```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```
 
 ```
 <x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
