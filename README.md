@@ -416,14 +416,18 @@ All the component manage the request old() value and the validation.
 | hidden-field | string | null |
 
 *The name and the options are required.*
-*You can add an hidden input with custom name and value. When a user choose an option it will set the value with the option data-value.*
+*You can add an hidden input with custom name and value. To activate the functionnality you have to add the class .datalist.*
+*You can transform a datalist to an autocomplete: Check the JS for more information*
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_datalist');```
 
 ```
 <x-bs-datalist label="My label" name="myinput" value="Default value" placeholder="My placeholder" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" readonly disabled required />
 
 <x-bs-datalist label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" before="A" after="B" />
 
-<x-bs-datalist label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" value="one" with-hidden hidden-name="hiddenid" hidden-value="1" />
+<x-bs-datalist class="datalist" label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" value="one" with-hidden hidden-name="hiddenid" hidden-value="1" />
 ```
 
 ## Textarea
@@ -579,3 +583,61 @@ If you need a checkbox to check all his children:
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_checkbox-all');```
+
+## Autocomplete
+
+If you need an autocomplete datalist:
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_datalist');```
+
+HTML:
+
+```
+<div>
+<x-bs-datalist class="mydatalist" label="My autocomplete" name="myinput" :options="[]" with-hidden hidden-name="id" />
+<x-bs-input label="Hidden field" name="hiddenField" />
+<x-bs-input label="Other field" name="otherField" />
+</div>
+
+<datalist id="myCustomDatalist">
+</datalist>
+```
+
+JS:
+
+| Option | Type | Default | Informations |
+| --------- | ------ | ----------------------------- | --- |
+| url       | string | el.getAttribute('data-url')   | Url for the axio request (POST) |
+| field     | string | el.getAttribute('data-field') | Field to use for the options value and input |
+| datalist  | HTML   | el.querySelector('datalist')  | The datalist object |
+| hidden.input  | HTML   | el.querySelector('.input-hidden')  | Input hidden to fill when option is selected |
+| hidden.field  | string   | el.getAttribute('data-hidden-field')  | Field to use for the hidden input value |
+| onChanged | function | function(e){} | Callback function |
+
+*The url must return a JSON list*
+*You can set the data-url data-field and data-hidden-field over the js option*
+
+
+```
+var datalists = document.querySelectorAll('.mydatalist');
+Array.prototype.forEach.call(datalists, function(el, i) {
+    var datalist = new Datalist(el,{
+      url: 'myurlstring',
+      field: 'name',
+      datalist: document.querySelector('#myCustomDatalist'),
+      hidden: {
+        input: el.parentNode.querySelector('input[name="hiddenField"]'),
+        field: 'id'
+      },
+      onChanged: function(option){
+        el.parentNode.querySelector('input[name="otherField"]').value = option ? option.price : '';
+      }
+    });
+});
+```
+
+In this exemple the **#myCustomDatalist** datalist options will be contruct via the url request.
+Exemple of datas items: { id: 1, name: 'My item', 'price': 10.00}
+
+When the user will select an option, the **Hidden field** will be set with the **id** and the **Other field** will be set with the **price** of the JSON item.
