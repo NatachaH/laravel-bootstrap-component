@@ -516,6 +516,8 @@ With this component you can add/remove input to add multiple field in your form 
 | btnRemove | array | []     |
 | btnDelete | array | []     |
 | btnMove   | array | []     |
+| before    | string | null |
+| after     | string | null |
 
 *The legend is required.*
 *The listing and template are path to some includes views.*
