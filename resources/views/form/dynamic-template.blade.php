@@ -2,6 +2,10 @@
 
     <legend>{{ $legend }}</legend>
 
+    @isset($before)
+      {!! $before !!}
+    @endisset
+
     <div class="dynamic-list">
 
       @forelse ($items as $item)
@@ -57,6 +61,10 @@
         @endif
         <button type="button" class="ml-auto btn dynamic-add {{ $isDynamic() ? '' : 'd-none' }} {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
     </div>
+
+    @isset($after)
+      {!! $after !!}
+    @endisset
 
     <script type="text/template" data-template="dynamic-template">
       <div class="d-flex align-items-start dynamic-item">

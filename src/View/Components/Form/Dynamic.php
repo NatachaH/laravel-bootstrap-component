@@ -188,11 +188,23 @@ class Dynamic extends Component
     }
 
     /**
+     * Input group before
+     * @var string
+     */
+    public $before;
+
+    /**
+     * Input group after
+     * @var string
+     */
+    public $after;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $itemsDisabled = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [])
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $itemsDisabled = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [], $before = null, $after = null)
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -211,6 +223,8 @@ class Dynamic extends Component
         $this->btnRemove        = $this->defineButton('remove',$btnRemove);
         $this->btnDelete        = $this->defineButton('delete',$btnDelete);
         $this->btnMove          = $this->defineButton('move',$btnMove);
+        $this->before           = $before;
+        $this->after            = $after;
     }
 
     /**
