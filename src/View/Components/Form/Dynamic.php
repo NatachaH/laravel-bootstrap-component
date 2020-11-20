@@ -144,7 +144,7 @@ class Dynamic extends Component
      *
      * @var array
      */
-    private function defineButton($name, $custom = [])
+    protected function defineButton($name, $custom = [])
     {
         $config = config('bs-component.dynamic.buttons.'.$name);
 
@@ -164,7 +164,7 @@ class Dynamic extends Component
      *
      * @var array
      */
-    private function defineDefaults($defaults)
+    protected function defineDefaults($defaults)
     {
         $old = old($this->name.'_to_add');
         $defaultsItems = [];
