@@ -489,9 +489,9 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';```
 
 ```
-<x-bs-datepicker label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>
+<x-bs-datepicker class="datepicker-automatic" label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>
 
-<x-bs-datepicker label="End date" name="endInputName" mode="single" format="datetime" min-input="startInputName" />
+<x-bs-datepicker class="datepicker-automatic" label="End date" name="endInputName" mode="single" format="datetime" min-input="startInputName" />
 ```
 
 ## Dynamic
