@@ -388,6 +388,7 @@ All the component manage the request old() value and the validation.
 
 *The name and the options are required.*
 *You can pass an array with the disabled values or disabled them all.*
+*You can pass a multi-level array for make optgroup: 'Label' => [1 => 'Name']*
 
 ```
 <x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" :selected="[2]" multiple disabled required />

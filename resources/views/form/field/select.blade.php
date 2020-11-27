@@ -7,7 +7,15 @@
 >
 
   @foreach ($options as $key => $value)
-    <option value="{{ $key }}" {{ $isOptionSelected($key) ? 'selected' : '' }} {{ $isOptionDisabled($key) ? 'disabled' : '' }}>{{ $value }}</option>
+    @if(is_array($value))
+      <optgroup label="{{ $key }}">
+        @foreach ($value as $k => $val)
+          <option value="{{ $k }}" {{ $isOptionSelected($k) ? 'selected' : '' }} {{ $isOptionDisabled($k) ? 'disabled' : '' }}>{{ $val }}</option>
+        @endforeach
+      </optgroup>
+    @else
+      <option value="{{ $key }}" {{ $isOptionSelected($key) ? 'selected' : '' }} {{ $isOptionDisabled($key) ? 'disabled' : '' }}>{{ $value }}</option>
+    @endif
   @endforeach
 
 </select>
