@@ -88,7 +88,7 @@ class InputFile extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null, $relatedError = null)
+    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null, $relatedError = '')
     {
         $this->label        = $label;
         $this->name         = $name;

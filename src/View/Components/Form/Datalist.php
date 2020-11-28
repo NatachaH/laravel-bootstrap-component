@@ -136,7 +136,7 @@ class Datalist extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null, $relatedError = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null, $relatedError = '')
     {
         $this->label            = $label;
         $this->name             = $name;

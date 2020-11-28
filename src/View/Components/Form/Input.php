@@ -131,7 +131,7 @@ class Input extends Component
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null, $relatedError = null)
+    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null, $relatedError = '')
     {
         $this->label        = $label;
         $this->type         = $type;
