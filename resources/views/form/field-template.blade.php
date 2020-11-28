@@ -30,4 +30,10 @@
       </span>
   @enderror
 
+  @error($relatedError)
+      <span class="invalid-feedback">
+          {{ $message }}
+      </span>
+  @enderror
+
 </div>

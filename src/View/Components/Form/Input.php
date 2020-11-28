@@ -119,13 +119,19 @@ class Input extends Component
      * @var string
      */
     public $after;
-    
+
+    /**
+     * Name of related error (ex: for hidden input)
+     * @var string
+     */
+    public $relatedError;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null)
+    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null, $relatedError = null)
     {
         $this->label        = $label;
         $this->type         = $type;
@@ -143,6 +149,7 @@ class Input extends Component
         $this->cleanName    = array_to_dot($this->name);
         $this->before       = $before;
         $this->after        = $after;
+        $this->relatedError = $relatedError;
     }
 
     /**

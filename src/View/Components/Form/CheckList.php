@@ -119,12 +119,19 @@ class CheckList extends Component
       */
      public $cleanName;
 
+     /**
+      * Name of related error (ex: for hidden input)
+      * @var string
+      */
+     public $relatedError;
+
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $inline = false, $required = false)
+    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $inline = false, $required = false, $relatedError = null)
     {
         $this->label            = $label;
         $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
@@ -137,6 +144,7 @@ class CheckList extends Component
         $this->isInline         = $inline;
         $this->isRequired       = $required;
         $this->cleanName        = array_to_dot($this->name);
+        $this->relatedError     = $relatedError;
     }
 
     /**

@@ -125,11 +125,18 @@ class Datalist extends Component
     public $cleanHiddenName;
 
     /**
+     * Name of related error (ex: for hidden input)
+     * @var string
+     */
+    public $relatedError;
+
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null, $relatedError = null)
     {
         $this->label            = $label;
         $this->name             = $name;
@@ -148,6 +155,7 @@ class Datalist extends Component
         $this->hiddenName       = $hiddenName;
         $this->hiddenValue      = $hiddenValue;
         $this->cleanHiddenName  = array_to_dot($this->hiddenName);
+        $this->relatedError     = $relatedError;
     }
 
     /**

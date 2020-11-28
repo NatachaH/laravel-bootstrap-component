@@ -1,6 +1,6 @@
 <textarea
   name="{{ $name }}"
-  class="form-control @error($cleanName) is-invalid @enderror"
+  class="form-control @error($cleanName) is-invalid @enderror @error($relatedError) is-invalid @enderror"
   id="{{ $cleanName.'Field' }}"
   @if($placeholder) placeholder="{{ $placeholder }}" @endif
   @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif

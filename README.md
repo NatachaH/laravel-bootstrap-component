@@ -304,6 +304,8 @@ All the component manage the request old() value and the validation.
 | disabled  | boolean/array | false |
 | inline    | boolean | false |
 | required  | boolean | false  |
+| related-error | string | null  |
+
 
 *The name and the options are required.*
 *You can pass an array with the disabled values or disabled them all.*
@@ -335,9 +337,11 @@ All the component manage the request old() value and the validation.
 | max       | float | null |
 | before    | string | null |
 | after     | string | null |
+| related-error | string | null  |
 
 *The name is required.*
 *The step, min and max are only for input of type number.*
+*The related-error is for display input as error via another field(ex: hidden id)*
 
 ```
 <x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />
@@ -359,6 +363,7 @@ All the component manage the request old() value and the validation.
 | required  | boolean | false |
 | before    | string | null |
 | after     | string | null |
+| related-error | string | null  |
 
 *The name is required.*
 
@@ -385,6 +390,7 @@ All the component manage the request old() value and the validation.
 | required  | boolean | false |
 | before    | string | null |
 | after     | string | null |
+| related-error | string | null  |
 
 *The name and the options are required.*
 *You can pass an array with the disabled values or disabled them all.*
@@ -415,6 +421,7 @@ All the component manage the request old() value and the validation.
 | with-hidden | boolean | false |
 | hidden-name | string | id |
 | hidden-field | string | null |
+| related-error | string | null  |
 
 *The name and the options are required.*
 *You can add an hidden input with custom name and value. To activate the functionnality you have to add the class .datalist.*
@@ -445,6 +452,7 @@ All the component manage the request old() value and the validation.
 | required  | boolean | false |
 | before    | string | null |
 | after     | string | null |
+| related-error | string | null  |
 
 *The name is required.*
 
@@ -479,6 +487,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 | max-input | string | null  |
 | before    | string | null |
 | after     | string | null |
+| related-error | string | null  |
 
 *The name is required.*
 *You can set a min/max date or define by another input name (min-input/max-input).*

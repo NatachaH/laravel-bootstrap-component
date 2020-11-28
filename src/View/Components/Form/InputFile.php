@@ -77,11 +77,18 @@ class InputFile extends Component
     public $after;
 
     /**
+     * Name of related error (ex: for hidden input)
+     * @var string
+     */
+    public $relatedError;
+
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null)
+    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null, $relatedError = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -93,6 +100,7 @@ class InputFile extends Component
         $this->cleanName    = array_to_dot($this->name);
         $this->before       = $before;
         $this->after        = $after;
+        $this->relatedError = $relatedError;
     }
 
     /**

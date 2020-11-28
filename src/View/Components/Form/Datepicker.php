@@ -142,11 +142,18 @@ class Datepicker extends Component
     public $after;
 
     /**
+     * Name of related error (ex: for hidden input)
+     * @var string
+     */
+    public $relatedError;
+
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null, $before = null, $after = null)
+    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null, $before = null, $after = null, $relatedError = null)
     {
         $this->label        = $label;
         $this->name         = $name;
@@ -167,6 +174,7 @@ class Datepicker extends Component
         $this->isInputGroup = true;
         $this->before       = $before;
         $this->after        = $after;
+        $this->relatedError = $relatedError;
     }
 
     /**
