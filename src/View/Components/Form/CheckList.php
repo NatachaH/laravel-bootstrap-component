@@ -120,6 +120,18 @@ class CheckList extends Component
      public $cleanName;
 
      /**
+      * Input group before
+      * @var string
+      */
+     public $before;
+
+     /**
+      * Input group after
+      * @var string
+      */
+     public $after;
+
+     /**
       * Name of related error (ex: for hidden input)
       * @var string
       */
@@ -144,6 +156,8 @@ class CheckList extends Component
         $this->isInline         = $inline;
         $this->isRequired       = $required;
         $this->cleanName        = array_to_dot($this->name);
+        $this->before           = false;
+        $this->after            = false;
         $this->relatedError     = $relatedError;
     }
 
