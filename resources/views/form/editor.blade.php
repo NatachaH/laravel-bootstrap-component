@@ -35,7 +35,7 @@
     <small class="form-text">{!! __('bs-component::editor.line-break') !!}</small>
 
     @if($help)
-      <small id="{{ $name.'FieldHelp' }}" class="form-text">{{ $help }}</small>
+      <small id="{{ $name.'FieldHelp' }}" class="form-text">{!! $help !!}</small>
     @endif
 
     @error($cleanName)

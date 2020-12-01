@@ -21,7 +21,7 @@
   @endif
 
   @if($help)
-    <small id="{{ $cleanName.'FieldHelp' }}" class="form-text">{{ $help }}</small>
+    <small id="{{ $cleanName.'FieldHelp' }}" class="form-text">{!! $help !!}</small>
   @endif
 
   @error($cleanName)
