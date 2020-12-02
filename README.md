@@ -596,6 +596,29 @@ If you need a checkbox to check all his children:
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_checkbox-all');```
 
+## toggle switch
+
+If you need a checkbox to show/hide some classes:
+
+```
+<div>
+  <x-bs-check class="form-switch toggle-switch" label="Toggle" type="checkbox" name="toggle" value="1" boolean/>
+
+  <div class="toggle-switch-false">
+    Display this div if toggle IS NOT checked
+  </div>
+
+  <div class="toggle-switch-true">
+    Display this div if toggle IS checked
+  </div>
+</div>
+```
+
+*The toggle switch and div to hide/show should be wrap in a parent div*
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-switch');```
+
 ## Autocomplete
 
 If you need an autocomplete datalist:
