@@ -7,13 +7,21 @@
   @if($before or $after or isset($isInputGroup))
     <div class="input-group">
         @isset($before)
-          <span class="input-group-text">{!! $before !!}</span>
+          @if(has_html($before,'i|b'))
+            {!! $before !!}
+          @else
+            <span class="input-group-text">{!! $before !!}</span>
+          @endif
         @endisset
 
         @includeIf($field)
 
         @isset($after)
-          <span class="input-group-text">{!! $after !!}</span>
+          @if(has_html($after,'i|b'))
+            {!! $after !!}
+          @else
+            <span class="input-group-text">{!! $after !!}</span>
+          @endif
         @endisset
     </div>
   @else

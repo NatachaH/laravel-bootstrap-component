@@ -10,7 +10,8 @@
     },
     "autoload": {
         "files": [
-            "src/Helpers/ArrayToDot.php"
+            "src/Helpers/ArrayToDot.php",
+            "src/Helpers/HasHtml.php"
         ],
         "psr-4": {
             "Nh\\BsComponent\\": "src/"
