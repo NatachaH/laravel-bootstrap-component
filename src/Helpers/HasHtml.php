@@ -17,6 +17,6 @@ if (!function_exists('has_html'))
         $regex = "/<([\w]+)([^>]*>)?/";
       }
 
-      return preg_match($regex,$string,$m); != 0;
+      return preg_match($regex,$string,$m) != 0;
   }
 }
