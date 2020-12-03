@@ -175,7 +175,7 @@ editors.forEach((el, i) => {
 HelperLink.initTooltip();
 
 // If a form is submit =>
-var form = document.querySelector('form');
+var form = document.querySelector('form:not(.d-none)');
 if(form !== null)
 {
   form.onsubmit = function() {
