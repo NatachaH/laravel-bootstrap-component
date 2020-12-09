@@ -25,7 +25,7 @@ class Figure extends Component
      *
      * @return void
      */
-    public function __construct($caption = null, $align = 'left')
+    public function __construct($caption = null, $align = 'start')
     {
         $this->caption = $caption;
         $this->align   = $align;

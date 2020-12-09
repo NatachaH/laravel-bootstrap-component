@@ -76,7 +76,7 @@ Available components:
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
 | source    | string | null  |           
-| align     | string | left  |
+| align     | string | start  |
 
 ```
 <x-bs-blockquote source="Natacha Herth" align="right">
@@ -126,7 +126,7 @@ Available components:
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
 | caption   | string | null  |
-| align     | string | left  |           
+| align     | string | start  |           
 
 *The align is for the caption.*
 

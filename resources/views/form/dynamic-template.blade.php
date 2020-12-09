@@ -20,7 +20,7 @@
 
             @includeIf($listing)
 
-            <div class="dynamic-item-btn ml-auto" >
+            <div class="dynamic-item-btn ms-auto" >
                <button class="btn dynamic-delete {{ $btnDelete['class'] }}" {{ $isItemDisabled($item->id) ? 'disabled' : '' }}>
                    {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
                </button>
@@ -59,7 +59,7 @@
         @if($help)
           <small class="form-text">{!! $help !!}</small>
         @endif
-        <button type="button" class="ml-auto btn dynamic-add {{ $isDynamic() ? '' : 'd-none' }} {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
+        <button type="button" class="ms-auto btn dynamic-add {{ $isDynamic() ? '' : 'd-none' }} {{ $btnAdd['class'] }}" aria-label="{{ __($btnAdd['label']) }}">{!! $btnAdd['value'] ?? __($btnAdd['label']) !!}</button>
     </div>
 
     @isset($after)

@@ -25,7 +25,7 @@ class Blockquote extends Component
      *
      * @return void
      */
-    public function __construct($source = null, $align = 'left')
+    public function __construct($source = null, $align = 'start')
     {
         $this->source = $source;
         $this->align  = $align;
