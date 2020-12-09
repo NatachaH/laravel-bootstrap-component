@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'modal modal-confirm fade']) }} data-backdrop="static" tabindex="-1" aria-hidden="true">
+<div {{ $attributes->merge(['class' => 'modal modal-confirm fade']) }} data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-{{ $size }} {{ $isCentered ? 'modal-dialog-centered' : '' }} {{ $scrollable ? 'modal-dialog-scrollable' : '' }} {{ $fullscreenClass() }}">
     <div class="modal-content">
 
@@ -16,7 +16,7 @@
           @csrf
           @method($method)
             {!! $slot !!}
-            <button type="button" class="btn {{ $btnCancel['class'] }}" data-dismiss="modal" aria-label="{{ $btnCancel['label'] }}">
+            <button type="button" class="btn {{ $btnCancel['class'] }}" data-bs-dismiss="modal" aria-label="{{ $btnCancel['label'] }}">
               {!! $btnCancel['value'] !!}
             </button>
             <button type="submit" class="btn {{ $btnConfirm['class'] }}" aria-label="{{ $btnConfirm['label'] }}">

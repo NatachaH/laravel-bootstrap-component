@@ -15,7 +15,7 @@
         @endisset
 
         @if($closable)
-          <button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="@lang('bs-component::button.close')"></button>
+          <button type="button" class="ml-2 mb-1 btn-close" data-bs-dismiss="toast" aria-label="@lang('bs-component::button.close')"></button>
         @endif
 
       </div>
@@ -45,7 +45,7 @@
       </div>
 
       @if($closable)
-        <button type="button" class="btn-close ml-auto mr-2" data-dismiss="toast" aria-label="@lang('bs-component::button.close')"></button>
+        <button type="button" class="btn-close ml-auto mr-2" data-bs-dismiss="toast" aria-label="@lang('bs-component::button.close')"></button>
       @endif
 
   </div>
