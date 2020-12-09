@@ -17,7 +17,7 @@ exports.initTooltip = function()
 {
     var tooltips = [].slice.call(document.querySelectorAll('.ql-editor a'))
     tooltips.map(function (tooltip) {
-      return new bootstrap.Tooltip(tooltip,{
+      return new Bootstrap.Tooltip(tooltip,{
         title : function(e,i){
           return this.getAttribute('href').replace('mailto:','');
         },
