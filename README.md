@@ -56,6 +56,14 @@ Available components:
 - [X] Datalist
 - [X] Textarea
 
+Available JS:
+
+- [X] Datepicker (Flatpickr)
+- [X] Editor (QuillJS)
+- [X] Checkbox all
+- [X] Toggle switch
+- [X] Autocomplete
+
 # Components
 
 ## Alert
