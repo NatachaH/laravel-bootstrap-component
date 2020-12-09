@@ -170,7 +170,7 @@ Available components:
   Hey this a modal !
 </x-bs-modal>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
   Launch modal
 </button>
 ```
@@ -204,7 +204,7 @@ Available components:
   <p>Hey this a modal for confirmation !</p>
 </x-bs-modal>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalConfirm" data-action="custom.action">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalConfirm" data-action="custom.action">
   Launch modal confirm
 </button>
 ```
