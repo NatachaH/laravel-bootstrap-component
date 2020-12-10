@@ -12,7 +12,7 @@
         <div class="d-flex align-items-end dynamic-item dynamic-item-current {{ $isItemDisabled($item->id) ? 'dynamic-item-disbaled' : ''}}">
 
             @if($sortable)
-              <button class="btn drag {{ $btnMove['class'] }}" aria-label="{{ __($btnMove['label']) }}">
+              <button class="btn drag {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
                 {!! $btnMove['value'] ?? __($btnMove['label']) !!}
               </button>
               <input type="hidden" class="dynamic-position" name="{{ $name.'_to_update['.$item->id.'][position]' }}" value="{{ $item->position }}"/>
@@ -37,7 +37,7 @@
 
             @if($sortable)
               <div class="dynamic-item-btn">
-                <button class="btn drag {{ $btnMove['class'] }}" aria-label="{{ __($btnMove['label']) }}">
+                <button class="btn drag {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
                   {!! $btnMove['value'] ?? __($btnMove['label']) !!}
                 </button>
                 <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$defaultKey.'][position]' }}" />
@@ -71,7 +71,7 @@
 
         @if($sortable)
           <div class="dynamic-item-btn">
-            <button class="btn drag {{ $btnMove['class'] }}" aria-label="{{ __($btnMove['label']) }}">
+            <button class="btn drag {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
               {!! $btnMove['value'] ?? __($btnMove['label']) !!}
             </button>
             <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
