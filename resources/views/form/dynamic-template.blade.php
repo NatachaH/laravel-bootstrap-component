@@ -9,7 +9,7 @@
     <div class="dynamic-list">
 
       @forelse ($items as $item)
-        <div class="d-flex align-items-end dynamic-item dynamic-item-current {{ $isItemDisabled($item->id) ? 'dynamic-item-disbaled' : ''}}">
+        <div class="d-flex align-items-end dynamic-item dynamic-item-current {{ $isItemDisabled($item->id) ? 'dynamic-item-disbaled' : ''}} {{ $isItemDeleted($item->id) ? 'dynamic-item-delete' : '' }}">
 
             @if($sortable)
               <button class="btn drag {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
@@ -24,7 +24,7 @@
                <button class="btn dynamic-delete {{ $btnDelete['class'] }}" {{ $isItemDisabled($item->id) ? 'disabled' : '' }}>
                    {!! $btnDelete['value'] ?? __($btnDelete['label']) !!}
                </button>
-               <input class="dynamic-delete-checkbox d-none" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}">
+               <input class="dynamic-delete-checkbox d-none" type="checkbox" name="{{ $name.'_to_delete[]' }}" value="{{ $item->id }}" aria-label="{{ __($btnDelete['label']) }}" {{ $isItemDeleted($item->id) ? 'checked' : '' }}>
             </div>
 
         </div>
