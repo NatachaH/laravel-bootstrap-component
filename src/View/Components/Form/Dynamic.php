@@ -93,6 +93,12 @@ class Dynamic extends Component
     public $help;
 
     /**
+     * Default config for buttons
+     * @var string
+     */
+    public $btnConfig;
+
+    /**
      * Information for the add button
      * Class, label and value
      * @var array
@@ -154,18 +160,14 @@ class Dynamic extends Component
      *
      * @var array
      */
-    protected function defineButton($name, $custom = [])
+    protected function defineButton($name)
     {
-        $config = config('bs-component.dynamic.buttons.'.$name);
-
-        $class = $custom['class'] ?? $config['class'];
-        $label = $custom['label'] ?? $config['label'];
-        $value = $custom['value'] ?? $config['value'];
+        $config = config($this->btnConfig.'.'.$name);
 
         return [
-          'class' => $class,
-          'label' => \Lang::has($label) ? trans_choice($label,1) : $label,
-          'value' => \Lang::has($value) ? trans_choice($value,1) : $value,
+          'class' => $config['class'],
+          'label' => \Lang::has($config['label']) ? trans_choice($config['label'],1) : $config['label'],
+          'value' => \Lang::has($config['value']) ? trans_choice($config['value'],1) : $config['value'],
         ];
     }
 
@@ -214,7 +216,7 @@ class Dynamic extends Component
      *
      * @return void
      */
-    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $itemsDisabled = [], $help = null, $btnAdd = [], $btnRemove = [], $btnDelete = [], $btnMove = [], $before = null, $after = null)
+    public function __construct($legend, $listing = null, $template = null, $min = null, $max = null, $name = 'dynamic', $type = 'dynamic', $sortable = false, $items = [], $defaults = [], $itemsDisabled = [], $help = null, $btnConfig = 'bs-component.dynamic.buttons', $before = null, $after = null)
     {
         $this->legend           = $legend;
         $this->listing          = $listing;
@@ -229,10 +231,11 @@ class Dynamic extends Component
         $this->defaults         = $this->defineDefaults($defaults);
         $this->itemsDisabled    = is_array($itemsDisabled) ? $itemsDisabled : [$itemsDisabled];
         $this->help             = $help;
-        $this->btnAdd           = $this->defineButton('add',$btnAdd);
-        $this->btnRemove        = $this->defineButton('remove',$btnRemove);
-        $this->btnDelete        = $this->defineButton('delete',$btnDelete);
-        $this->btnMove          = $this->defineButton('move',$btnMove);
+        $this->btnConfig        = $btnConfig;
+        $this->btnAdd           = $this->defineButton('add');
+        $this->btnRemove        = $this->defineButton('remove');
+        $this->btnDelete        = $this->defineButton('delete');
+        $this->btnMove          = $this->defineButton('move');
         $this->before           = $before;
         $this->after            = $after;
     }

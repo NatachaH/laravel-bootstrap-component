@@ -530,10 +530,7 @@ With this component you can add/remove input to add multiple field in your form 
 | defaults  | array | []     |
 | itemsDisabled | array | []     |
 | help      | string | null  |
-| btnAdd    | array | []     |
-| btnRemove | array | []     |
-| btnDelete | array | []     |
-| btnMove   | array | []     |
+| btnConfig | string | bs-component.dynamic.buttons |
 | before    | string | null |
 | after     | string | null |
 
@@ -554,11 +551,10 @@ In the listing view you have acces to the **$item**
 
 ###Customization:
 
-You can globaly customize the buttons in the 'bs-component' config file.
-Or you can set an array with the custom values (class,label,value) for each button.
+You can globaly customize the buttons in the 'bs-component' config file or you can specify a custom config file/array to use.
 
 ```
-<x-bs-dynamic class="dynamic-automatic" legend="My custom dynamic" :btnAdd="['class' => 'btn-info','label' => 'my.translation.path','value' => '<i class=icon-plus></i>']"/>
+<x-bs-dynamic class="dynamic-automatic" legend="My custom dynamic" btnConfig="my.custom.config.file"/>
 ```
 
 ## Editor
