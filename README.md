@@ -505,9 +505,9 @@ To use the editor you need to install the JS plugin **QuillJS** !
 | value     | string  | null    |
 | help      | string  | null    |
 | required  | boolean | false   |
-| toolbar   | string  | header|format|list|link|color |
-| colors    | string  | primary|success|warning|danger |
-| headers   | string  | 1|2|3 |
+| toolbar   | string  | 'headerformat|list|link|color' |
+| colors    | string  | 'primary|success|warning|danger' |
+| headers   | string  | '1|2|3' |
 | error     | string  | null   |
 | errorBag  | string  | null   |
 
