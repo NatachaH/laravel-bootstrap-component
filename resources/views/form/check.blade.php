@@ -33,10 +33,12 @@
     </span>
   @enderror
 
-  @error($errorRelated,$errorBag)
-      <span class="invalid-feedback" role="alert">
-          {{ $message }}
-      </span>
-  @enderror
+  @if($errorRelated)
+    @error($errorRelated,$errorBag)
+        <span class="invalid-feedback" role="alert">
+            {{ $message }}
+        </span>
+    @enderror
+  @endif
 
 </div>
