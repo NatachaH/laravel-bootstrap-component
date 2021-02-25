@@ -97,7 +97,7 @@ class CheckList extends FieldTemplate
 
       $type     = 'checkbox',
       $options  = [],
-      $inline   = false
+      $inline   = false,
       $checked  = []
     )
     {

@@ -5,7 +5,7 @@ namespace Nh\BsComponent\View\Components\Form;
 use Illuminate\View\Component;
 use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Datepicker extends FieldTemplate;
+class Datepicker extends FieldTemplate
 {
 
     /**
