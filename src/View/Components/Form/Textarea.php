@@ -3,30 +3,10 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Textarea extends Component
+class Textarea extends FieldTemplate
 {
-    /**
-     * The label of the textarea.
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * The name of the textarea.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The default value of the textarea.
-     *
-     * @var string
-     */
-    public $value;
 
     /**
      * The placeholder of the textarea.
@@ -36,79 +16,40 @@ class Textarea extends Component
     public $placeholder;
 
     /**
-     * The help message of the textarea.
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
-     * Is the textarea readonly.
-     *
-     * @var boolean
-     */
-    public $isReadonly;
-
-    /**
-     * Is the textarea disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Is the textarea required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Clean name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public $cleanName;
-
-    /**
-     * Input group before
-     * @var string
-     */
-    public $before;
-
-    /**
-     * Input group after
-     * @var string
-     */
-    public $after;
-
-    /**
-     * Name of related error (ex: for hidden input)
-     * @var string
-     */
-    public $relatedError;
-
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      $readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $placeholder = null
+    )
     {
         $this->label        = $label;
         $this->name         = $name;
         $this->value        = $value;
-        $this->placeholder  = $placeholder;
         $this->help         = $help;
-        $this->isReadonly   = $readonly;
-        $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->cleanName    = array_to_dot($this->name);
+        $this->isDisabled   = $disabled;
+        $this->isReadonly   = $readonly;
         $this->before       = $before;
         $this->after        = $after;
-        $this->relatedError = $relatedError;
+        $this->error        = $error;
+        $this->errorBag     = $errorBag;
+
+        $this->cleanName    = array_to_dot($this->name);
+        $this->placeholder  = $placeholder;
     }
 
     /**

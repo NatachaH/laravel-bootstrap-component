@@ -3,30 +3,10 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Datepicker extends Component
+class Datepicker extends FieldTemplate;
 {
-    /**
-     * The label of the input.
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * The name of the input.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The default value of the input.
-     *
-     * @var string
-     */
-    public $value;
 
     /**
      * The placeholder of the input.
@@ -36,40 +16,12 @@ class Datepicker extends Component
     public $placeholder;
 
     /**
-     * The help message of the input.
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
      * The size of the input.
      * Can be sm or lg
      *
      * @var string
      */
     public $size;
-
-    /**
-     * Is the input readonly.
-     *
-     * @var boolean
-     */
-    public $isReadonly;
-
-    /**
-     * Is the input disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Is the input required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
 
     /**
      * Mode of the Datepicker
@@ -116,65 +68,61 @@ class Datepicker extends Component
     public $maxInput;
 
     /**
-     * Clean name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public $cleanName;
-
-    /**
      * Is an input group
      * @var boolean
      */
     public $isInputGroup;
 
     /**
-     * Input group before
-     * @var string
-     */
-    public $before;
-
-    /**
-     * Input group after
-     * @var string
-     */
-    public $after;
-
-    /**
-     * Name of related error (ex: for hidden input)
-     * @var string
-     */
-    public $relatedError;
-
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $mode = 'single', $format = 'datetime', $min = null, $max = null, $minInput = null, $maxInput = null, $before = null, $after = null, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      $readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $placeholder = null,
+      $size = null,
+      $mode = 'single',
+      $format = 'datetime',
+      $min = null,
+      $max = null,
+      $minInput = null,
+      $maxInput = null
+    )
     {
         $this->label        = $label;
         $this->name         = $name;
         $this->value        = $value;
-        $this->placeholder  = $placeholder;
         $this->help         = $help;
-        $this->size         = $size;
-        $this->isReadonly   = $readonly;
-        $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->mode         = !is_null($mode) && in_array($mode,['single','multiple','range']) ? $mode : 'single';
-        $this->format       = !is_null($format) && in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
+        $this->isDisabled   = $disabled;
+        $this->isReadonly   = $readonly;
+        $this->before       = $before;
+        $this->after        = $after;
+        $this->error        = $error;
+        $this->errorBag     = $errorBag;
+
+        $this->cleanName    = array_to_dot($this->name);
+        $this->placeholder  = $placeholder;
+        $this->size         = $size;
+        $this->mode         = in_array($mode,['single','multiple','range']) ? $mode : 'single';
+        $this->format       = in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
         $this->min          = $min;
         $this->max          = $max;
         $this->minInput     = $minInput;
         $this->maxInput     = $maxInput;
-        $this->cleanName    = array_to_dot($this->name);
         $this->isInputGroup = true;
-        $this->before       = $before;
-        $this->after        = $after;
-        $this->relatedError = $relatedError;
     }
 
     /**

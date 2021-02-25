@@ -4,16 +4,10 @@ namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class CheckList extends Component
+class CheckList extends FieldTemplate
 {
-    /**
-     * The label of the check list.
-     *
-     * @var string
-     */
-    public $label;
-
     /**
      * The type of the check.
      * Can be checkbox or radio
@@ -21,13 +15,6 @@ class CheckList extends Component
      * @var string
      */
     public $type;
-
-    /**
-     * The name of the check list.
-     *
-     * @var string
-     */
-    public $name;
 
     /**
      * The options of the check list.
@@ -38,11 +25,11 @@ class CheckList extends Component
     public $options;
 
     /**
-     * The help message of the check list.
+     * Is the check list inline.
      *
-     * @var string
+     * @var boolean
      */
-    public $help;
+    public $isInline;
 
     /**
      * Array of the checked options
@@ -50,6 +37,13 @@ class CheckList extends Component
      * @var array
      */
     private $optionsChecked;
+
+    /**
+     * Array of the disabled options
+     *
+     * @var array
+     */
+    private $optionsDisabled;
 
     /**
      * Check if an option is checked
@@ -63,20 +57,6 @@ class CheckList extends Component
     }
 
     /**
-     * Is the check list disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Array of the disabled options
-     *
-     * @var array
-     */
-    private $optionsDisabled;
-
-    /**
      * Check if an option is disabled
      * @param  string  $option
      * @return boolean
@@ -85,20 +65,6 @@ class CheckList extends Component
     {
         return in_array($option, $this->optionsDisabled);
     }
-
-    /**
-     * Is the check list inline.
-     *
-     * @var boolean
-     */
-    public $isInline;
-
-    /**
-     * Is the input required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
 
     /**
      * Generate the id of the option
@@ -111,54 +77,46 @@ class CheckList extends Component
         return $this->cleanName.Str::upper($option);
      }
 
-     /**
-      * Clean name
-      * Exemple: field[] become field
-      *
-      * @return string
-      */
-     public $cleanName;
-
-     /**
-      * Input group before
-      * @var string
-      */
-     public $before;
-
-     /**
-      * Input group after
-      * @var string
-      */
-     public $after;
-
-     /**
-      * Name of related error (ex: for hidden input)
-      * @var string
-      */
-     public $relatedError;
-
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'checkbox', $name, $options, $help  = null, $checked = [], $disabled = false, $inline = false, $required = false, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      //$readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $type     = 'checkbox',
+      $options  = [],
+      $inline   = false
+      $checked  = []
+    )
     {
         $this->label            = $label;
-        $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->name             = $name;
-        $this->options          = $options;
         $this->help             = $help;
-        $this->optionsChecked   = (array)$checked;
-        $this->isDisabled       = is_bool($disabled) ? $disabled : false; // Make all the options disabled
-        $this->optionsDisabled  = is_array($disabled) ? $disabled : []; // Array of the key option that are disabled
-        $this->isInline         = $inline;
         $this->isRequired       = $required;
-        $this->cleanName        = array_to_dot($this->name);
+        $this->isDisabled       = is_bool($disabled) ? $disabled : false;
         $this->before           = false;
         $this->after            = false;
-        $this->relatedError     = $relatedError;
+        $this->error            = $error;
+        $this->errorBag         = $errorBag;
+
+        $this->cleanName        = array_to_dot($this->name);
+        $this->type             = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
+        $this->options          = $options;
+        $this->isInline         = $inline;
+        $this->optionsChecked   = (array)$checked;
+        $this->optionsDisabled  = is_array($disabled) ? $disabled : [];
     }
 
     /**

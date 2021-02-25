@@ -4,15 +4,10 @@ namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Check extends Component
+class Check extends FieldTemplate
 {
-    /**
-     * The label of the check.
-     *
-     * @var string
-     */
-    public $label;
 
     /**
      * The type of the check.
@@ -23,42 +18,7 @@ class Check extends Component
     public $type;
 
     /**
-     * The name of the check.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The value of the check.
-     *
-     * @var string
-     */
-    public $value;
-
-    /**
-     * The help message of the check.
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
-     * Is the check disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Is the check required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Is the check disabled.
+     * Is the field checked.
      *
      * @var boolean
      */
@@ -98,31 +58,42 @@ class Check extends Component
         return $this->cleanName.Str::upper($this->value);
      }
 
-     /**
-      * Clean name
-      * Exemple: field[] become field
-      *
-      * @return string
-      */
-     public $cleanName;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'checkbox', $name, $value = '1', $help = null, $checked = false, $disabled = false, $required = false, $boolean = false)
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = '1',
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      //$readonly = false,
+      //$before   = null,
+      //$after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $type = 'checkbox',
+      $checked = false,
+      $boolean = false
+    )
     {
         $this->label         = $label;
-        $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->name          = $name;
         $this->value         = $value;
         $this->help          = $help;
-        $this->isDisabled    = $disabled;
         $this->isRequired    = $required;
-        $this->isBoolean     = $boolean;
+        $this->isDisabled    = $disabled;
+        $this->error         = $error;
+        $this->errorBag      = $errorBag;
+
         $this->cleanName     = array_to_dot($this->name);
+        $this->type          = in_array($type, ['checkbox','radio']) ? $type : 'checkbox';
         $this->isChecked     = $this->defineIsChecked($checked);
+        $this->isBoolean     = $boolean;
     }
 
     /**

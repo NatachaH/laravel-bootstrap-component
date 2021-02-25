@@ -32,14 +32,14 @@
     <small id="{{ $cleanName.'FieldHelp' }}" class="form-text">{!! $help !!}</small>
   @endif
 
-  @error($cleanName)
-      <span class="invalid-feedback">
+  @error($cleanName,$errorBag)
+      <span class="invalid-feedback" role="alert">
           {{ $message }}
       </span>
   @enderror
 
-  @error($relatedError)
-      <span class="invalid-feedback">
+  @error($error,$errorBag)
+      <span class="invalid-feedback" role="alert">
           {{ $message }}
       </span>
   @enderror

@@ -3,17 +3,10 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Input extends Component
+class Input extends FieldTemplate
 {
-    /**
-     * The label of the input.
-     *
-     * @var string
-     */
-    public $label;
-
     /**
      * The type of the input.
      * Can be text, number, tel, phone, email, password etc.
@@ -23,32 +16,11 @@ class Input extends Component
     public $type;
 
     /**
-     * The name of the input.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The default value of the input.
-     *
-     * @var string
-     */
-    public $value;
-
-    /**
      * The placeholder of the input.
      *
      * @var string
      */
     public $placeholder;
-
-    /**
-     * The help message of the input.
-     *
-     * @var string
-     */
-    public $help;
 
     /**
      * The size of the input.
@@ -57,35 +29,6 @@ class Input extends Component
      * @var string
      */
     public $size;
-
-    /**
-     * Is the input readonly.
-     *
-     * @var boolean
-     */
-    public $isReadonly;
-
-    /**
-     * Is the input disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Is the input required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Clean name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public $cleanName;
 
     /**
      * Step for input of type number
@@ -109,47 +52,50 @@ class Input extends Component
     public $max;
 
     /**
-     * Input group before
-     * @var string
-     */
-    public $before;
-
-    /**
-     * Input group after
-     * @var string
-     */
-    public $after;
-
-    /**
-     * Name of related error (ex: for hidden input)
-     * @var string
-     */
-    public $relatedError;
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $type = 'text', $name, $value = null, $placeholder = null, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $step = 1, $min = null, $max = null, $before = null, $after = null, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      $readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $type = 'text',
+      $placeholder = null,
+      $size = null,
+      $step = 1,
+      $min = null,
+      $max = is_null
+    )
     {
         $this->label        = $label;
-        $this->type         = $type;
         $this->name         = $name;
         $this->value        = $value;
-        $this->placeholder  = $placeholder;
         $this->help         = $help;
-        $this->size         = $size;
-        $this->isReadonly   = $readonly;
-        $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
+        $this->isDisabled   = $disabled;
+        $this->isReadonly   = $readonly;
+        $this->before       = $before;
+        $this->after        = $after;
+        $this->error        = $error;
+        $this->errorBag     = $errorBag;
+
+        $this->cleanName    = array_to_dot($this->name);
+        $this->type         = $type;
+        $this->placeholder  = $placeholder;
+        $this->size         = $size;
         $this->step         = $step;
         $this->min          = $min;
         $this->max          = $max;
-        $this->cleanName    = array_to_dot($this->name);
-        $this->before       = $before;
-        $this->after        = $after;
-        $this->relatedError = $relatedError;
     }
 
     /**

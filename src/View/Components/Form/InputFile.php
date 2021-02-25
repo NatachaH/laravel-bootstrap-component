@@ -3,30 +3,10 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class InputFile extends Component
+class InputFile extends FieldTemplate
 {
-    /**
-     * The label of the input.
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * The name of the input.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The help message of the input.
-     *
-     * @var string
-     */
-    public $help;
-
     /**
      * The size of the input.
      * Can be sm or lg
@@ -36,13 +16,6 @@ class InputFile extends Component
     public $size;
 
     /**
-     * Is the input disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
      * Is the input multiple.
      *
      * @var boolean
@@ -50,57 +23,40 @@ class InputFile extends Component
     public $isMultiple;
 
     /**
-     * Is the input required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Clean name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public $cleanName;
-
-    /**
-     * Input group before
-     * @var string
-     */
-    public $before;
-
-    /**
-     * Input group after
-     * @var string
-     */
-    public $after;
-
-    /**
-     * Name of related error (ex: for hidden input)
-     * @var string
-     */
-    public $relatedError;
-
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $help  = null, $size = null, $disabled = false, $multiple = false, $required = false, $before = null, $after = null, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      //$value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      //$readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $size = null,
+      $multiple = false
+    )
     {
         $this->label        = $label;
         $this->name         = $name;
         $this->help         = $help;
-        $this->size         = $size;
-        $this->isDisabled   = $disabled;
         $this->isRequired   = $required;
-        $this->isMultiple   = $multiple;
-        $this->cleanName    = array_to_dot($this->name);
+        $this->isDisabled   = $disabled;
         $this->before       = $before;
         $this->after        = $after;
-        $this->relatedError = $relatedError;
+        $this->error        = $error;
+        $this->errorBag     = $errorBag;
+
+        $this->cleanName    = array_to_dot($this->name);
+        $this->size         = $size;
+        $this->isMultiple   = $multiple;
     }
 
     /**

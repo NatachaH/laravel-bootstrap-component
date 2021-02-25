@@ -8,7 +8,7 @@
     type="{{ $type }}"
     name="{{ $name }}"
     value="{{ $value }}"
-    class="form-check-input @error($name) is-invalid @enderror"
+    class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @error($error,$errorBag) is-invalid @enderror"
     id="{{ $id.'Field' }}"
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
@@ -27,10 +27,16 @@
     <small id="{{ $id.'FieldHelp' }}" class="form-text">{!! $help !!}</small>
   @endif
 
-  @error($name)
+  @error($cleanName,$errorBag)
     <span class="invalid-feedback" role="alert">
         {{ $message }}
     </span>
+  @enderror
+
+  @error($error,$errorBag)
+      <span class="invalid-feedback" role="alert">
+          {{ $message }}
+      </span>
   @enderror
 
 </div>

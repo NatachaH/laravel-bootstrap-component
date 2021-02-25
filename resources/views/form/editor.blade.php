@@ -15,7 +15,6 @@
             @includeWhen(in_array('code',$toolbar), 'bs-component::form.editor.code')
             @includeWhen(in_array('color',$toolbar), 'bs-component::form.editor.color', ['colors' => $colors])
 
-
             <div class="ql-formats btn-group">
               <button class="btn ql-clean" aria-label="@lang('bs-component::editor.clean')">
                 <svg class="bi bi-slash-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +26,7 @@
 
           </div>
 
-          <div class="ql-container @error($cleanName) is-invalid @enderror">{!! old($name,$value) !!}</div>
+          <div class="ql-container @error($cleanName,$errorBag) is-invalid @enderror @error($error,$errorBag) is-invalid @enderror">{!! old($name,$value) !!}</div>
 
           <textarea class="ql-textarea" name="{{ $name }}"></textarea>
     </div>
@@ -38,7 +37,13 @@
       <small id="{{ $name.'FieldHelp' }}" class="form-text">{!! $help !!}</small>
     @endif
 
-    @error($cleanName)
+    @error($cleanName,$errorBag)
+        <span class="invalid-feedback" role="alert">
+            {{ $message }}
+        </span>
+    @enderror
+
+    @error($error,$errorBag)
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>

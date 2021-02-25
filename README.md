@@ -269,21 +269,32 @@ Or you can set an array with the custom values (class,label,value) for each butt
 
 All the component manage the request old() value and the validation.
 
+Here the default attributes:
+
+| Attribute | Type    | Default|
+| --------- | ------- | ------ |
+| label     | string  | null   |
+| name      | string  | null   |
+| value     | string  | null   |
+| help      | string  | null   |
+| required  | boolean | false  |
+| disabled  | boolean | false  |
+| readonly  | boolean | false  |
+| before    | string  | null   |
+| after     | string  | null   |
+| error     | string  | null   |
+| errorBag  | string  | null   |
+
+
 ## Check
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| type      | string | checkbox |
-| name      | string |       |
-| value     | string | 1     |
-| help      | string | null  |
-| checked   | boolean | false  |
-| disabled  | boolean | false  |
-| required  | boolean | false  |
-| boolean   | boolean | false  |
+| Attribute | Type    | Default  |
+| --------- | ------- | -------- |
+| type      | string  | checkbox |
+| value     | string  | 1        |
+| checked   | boolean | false    |
+| boolean   | boolean | false    |
 
-*The name is required.*
 *If the boolean option is set to true, a hidden input with the value opposite value is created.*
 
 ```
@@ -301,22 +312,13 @@ All the component manage the request old() value and the validation.
 
 ## CheckList
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| type      | string | checkbox |
-| name      | string |       |
-| options   | array  |       |
-| help      | string | null  |
-| checked   | string/array | [] |
-| disabled  | boolean/array | false |
-| inline    | boolean | false |
-| required  | boolean | false  |
-| related-error | string | null  |
-
-
-*The name and the options are required.*
-*You can pass an array with the disabled values or disabled them all.*
+| Attribute | Type    | Default  | Option         |
+| --------- | ------- | -------- | -------------- |
+| disabled  | mixed   | false    | boolean/array  |
+| type      | string  | checkbox | checkbox/radio |
+| options   | array   | []       |                |
+| checked   | mixed   | []       | string/array   |
+| inline    | boolean | false    |                |
 
 ```
 <x-bs-check-list label="My label" type="checkbox" name="checkbox_list[]" :options="[1 => 'one', 2 => 'two', 3 => 'three']" help="Help message" :checked="[2]" :disabled="[3]" required />
@@ -328,28 +330,17 @@ All the component manage the request old() value and the validation.
 
 ## Input
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| type      | string | text  |
-| name      | string |       |
-| value     | string | null  |
-| placeholder | string | null  |
-| help      | string | null  |
-| size      | string | null  |
-| readonly  | boolean | false |
-| disabled  | boolean | false |
-| required  | boolean | false |
-| step      | float | 1 |
-| min       | float | null |
-| max       | float | null |
-| before    | string | null |
-| after     | string | null |
-| related-error | string | null  |
+| Attribute | Type     | Default  | Option         |
+| --------- | -------- | -------- | -------------- |
+| type      | string   | text     | text/number/phone/email/password |
+| placeholder | string | null     |                |
+| size      | string   | null     |                |
+| step      | float    | 1        |                |
+| min       | float    | null     |                |
+| max       | float    | null     |                |
 
-*The name is required.*
+
 *The step, min and max are only for input of type number.*
-*The related-error is for display input as error via another field(ex: hidden id)*
 
 ```
 <x-bs-input label="My input" type="text" name="myinput" value="Default value" placeholder="My placeholder" help="Help message" size="lg" readonly disabled required />
@@ -360,20 +351,10 @@ All the component manage the request old() value and the validation.
 
 ## Input File
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| help      | string | null  |
-| size      | string | null  |
-| disabled  | boolean | false |
-| multiple  | boolean | false |
-| required  | boolean | false |
-| before    | string | null |
-| after     | string | null |
-| related-error | string | null  |
-
-*The name is required.*
+| Attribute | Type    | Default |
+| --------- | ------- | ------- |
+| size      | string  | null    |
+| multiple  | boolean | false   |
 
 ```
 <x-bs-input-file label="My input file" name="myinput" help="Help message" />
@@ -385,23 +366,15 @@ All the component manage the request old() value and the validation.
 
 ## Select
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| options   | array  |       |
-| help      | string | null  |
-| size      | string | null  |
-| selected  | string/array | [] |
-| multiple  | boolean | false |
-| disabled  | boolean/array | false  |
-| required  | boolean | false |
-| before    | string | null |
-| after     | string | null |
-| related-error | string | null  |
+| Attribute | Type    | Default  | Option         |
+| --------- | ------- | -------- | -------------- |
+| disabled  | mixed   | false    | boolean/array  |
+| options   | array   | []       |                |
+| size      | string  | null     |                |
+| selected  | mixed   | []       | string/array   |
+| multiple  | boolean | false    |                |
 
-*The name and the options are required.*
-*You can pass an array with the disabled values or disabled them all.*
+
 *You can pass a multi-level array for make optgroup: 'Label' => [1 => 'Name']*
 
 ```
@@ -412,28 +385,17 @@ All the component manage the request old() value and the validation.
 
 ## Datalist
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| value     | string | null  |
-| placeholder | string | null  |
-| options   | array  |       |
-| help      | string | null  |
-| size      | string | null  |
-| readonly  | boolean | false  |
-| disabled  | boolean | false  |
-| required  | boolean | false |
-| before    | string | null |
-| after     | string | null |
-| with-hidden | boolean | false |
-| hidden-name | string | id |
-| hidden-field | string | null |
-| related-error | string | null  |
+| Attribute   | Type    | Default |
+| ----------- | ------- | ------- |
+| placeholder | string  | null    |
+| options     | array   | []      |
+| size        | string  | null    |
+| with-hidden | boolean | false   |
+| hidden-name | string  | id      |
+| hidden-field | string | null    |
 
-*The name and the options are required.*
-*You can add an hidden input with custom name and value. To activate the functionnality you have to add the class .datalist.*
-*You can transform a datalist to an autocomplete: Check the JS for more information*
+*You can add an hidden input with custom name and value. To activate the functionality you have to add the class .datalist.*
+*You can transform a datalist to an autocomplete: Check the JS section for more information*
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_datalist');```
@@ -450,19 +412,7 @@ All the component manage the request old() value and the validation.
 
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| value     | string | null  |
 | placeholder | string | null  |
-| help      | string | null  |
-| readonly  | boolean | false |
-| disabled  | boolean | false |
-| required  | boolean | false |
-| before    | string | null |
-| after     | string | null |
-| related-error | string | null  |
-
-*The name is required.*
 
 ```
 <x-bs-textarea label="My label" name="mytextarea" value="Default value" placeholder="My placeholder" help="Help message" readonly disabled required />
@@ -476,31 +426,18 @@ All the component manage the request old() value and the validation.
 
 To use the datepicker you need to install the JS plugin **Flatpickr** !
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| value     | string | null  |
-| placeholder | string | null |
-| help      | string | null  |
-| size      | string | null  |
-| readonly  | boolean | false |
-| disabled  | boolean | false |
-| required  | boolean | false |
-| mode      | string | single |
-| format    | string | datetime |
-| min       | string | null  |
-| max       | string | null  |
-| min-input | string | null  |
-| max-input | string | null  |
-| before    | string | null |
-| after     | string | null |
-| related-error | string | null  |
+| Attribute   | Type   | Default  | Option         |
+| ----------- | ------ | -------- | -------------- |
+| placeholder | string | null     |                |
+| size        | string | null     |                |
+| mode        | string | single   | single/multiple/range |
+| format      | string | datetime | datetime/datetime-short/date/time/time-short/db-datetime/db-date/db-time |
+| min         | string | null     |                |
+| max         | string | null     |                |
+| min-input   | string | null     |                |
+| max-input   | string | null     |                |
 
-*The name is required.*
 *You can set a min/max date or define by another input name (min-input/max-input).*
-*The mode can be single, multiple or range.*
-*The format can be datetime, datetime-short, date, time, time-short, db-datetime, db-date, db-time.*
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
@@ -561,16 +498,18 @@ You can globaly customize the buttons in the 'bs-component' config file or you c
 
 To use the editor you need to install the JS plugin **QuillJS** !
 
-| Attribute | Type | Default |
-| --------- | ---- | ------- |
-| label     | string | null  |
-| name      | string |       |
-| value     | string | null  |
-| help      | string | null  |
-| required  | boolean | false |
-| toolbar   | string | header|format|list|link|color |
-| colors    | string | primary|success|warning|danger |
-| headers   | string | 1|2|3 |
+| Attribute | Type    | Default |
+| --------- | ------- | ------- |
+| label     | string  | null    |
+| name      | string  | null    |
+| value     | string  | null    |
+| help      | string  | null    |
+| required  | boolean | false   |
+| toolbar   | string  | header|format|list|link|color |
+| colors    | string  | primary|success|warning|danger |
+| headers   | string  | 1|2|3 |
+| error     | string  | null   |
+| errorBag  | string  | null   |
 
 *The name is required.*
 

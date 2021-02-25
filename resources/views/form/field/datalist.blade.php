@@ -2,7 +2,7 @@
   type="text"
   name="{{ $name }}"
   value="{{ old($cleanName,$value) }}"
-  class="form-control {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName) is-invalid @enderror @error($relatedError) is-invalid @enderror"
+  class="form-control {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName,$errorBag) is-invalid @enderror @error($relatedError,$errorBag) is-invalid @enderror"
   list="{{ $cleanName.'FieldOptions' }}"
   id="{{ $cleanName.'Field' }}"
   @if($placeholder) placeholder="{{ $placeholder }}" @endif

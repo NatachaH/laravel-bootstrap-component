@@ -3,30 +3,10 @@
 namespace Nh\BsComponent\View\Components\Form;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Str;
+use Nh\BsComponent\View\Components\Form\FieldTemplate;
 
-class Datalist extends Component
+class Datalist extends FieldTemplate
 {
-    /**
-     * The label of the select.
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * The name of the select.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * The default value of the input.
-     *
-     * @var string
-     */
-    public $value;
 
     /**
      * The placeholder of the input.
@@ -43,60 +23,12 @@ class Datalist extends Component
     public $options;
 
     /**
-     * The help message of the select.
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
      * The size of the select.
      * Can be sm or lg
      *
      * @var string
      */
     public $size;
-
-    /**
-     * Is the input readonly.
-     *
-     * @var boolean
-     */
-    public $isReadonly;
-
-    /**
-     * Is the select disabled.
-     *
-     * @var boolean
-     */
-    public $isDisabled;
-
-    /**
-     * Is the select required.
-     *
-     * @var boolean
-     */
-    public $isRequired;
-
-    /**
-     * Clean name
-     * Exemple: field[] become field
-     *
-     * @return string
-     */
-    public $cleanName;
-
-    /**
-     * Input group before
-     * @var string
-     */
-    public $before;
-
-    /**
-     * Input group after
-     * @var string
-     */
-    public $after;
 
     /**
      * Display an hidden field next the input.
@@ -125,37 +57,51 @@ class Datalist extends Component
     public $cleanHiddenName;
 
     /**
-     * Name of related error (ex: for hidden input)
-     * @var string
-     */
-    public $relatedError;
-
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = null, $name, $value = null, $placeholder = null, $options, $help  = null, $size = null, $readonly = false, $disabled = false, $required = false, $before = null, $after = null, $withHidden = false, $hiddenName = 'id', $hiddenValue = null, $relatedError = '')
+    public function __construct(
+      $label    = null,
+      $name     = null,
+      $value    = null,
+      $help     = null,
+      $required = false,
+      $disabled = false,
+      $readonly = false,
+      $before   = null,
+      $after    = null,
+      $error    = null,
+      $errorBag = null,
+
+      $placeholder = null,
+      $options     = [],
+      $size        = null,
+      $withHidden  = false,
+      $hiddenName  = 'id',
+      $hiddenValue = null
+    )
     {
         $this->label            = $label;
         $this->name             = $name;
         $this->value            = $value;
-        $this->placeholder      = $placeholder;
-        $this->options          = $options;
         $this->help             = $help;
-        $this->size             = $size;
-        $this->isReadonly       = $readonly;
-        $this->isDisabled       = $disabled;
         $this->isRequired       = $required;
-        $this->cleanName        = array_to_dot($this->name);
+        $this->isDisabled       = $disabled;
+        $this->isReadonly       = $readonly;
         $this->before           = $before;
         $this->after            = $after;
+        $this->error            = $error;
+        $this->errorBag         = $errorBag;
+
+        $this->cleanName        = array_to_dot($this->name);
+        $this->placeholder      = $placeholder;
+        $this->options          = $options;
+        $this->size             = $size;
         $this->withHidden       = $withHidden;
         $this->hiddenName       = $hiddenName;
         $this->hiddenValue      = $hiddenValue;
         $this->cleanHiddenName  = array_to_dot($this->hiddenName);
-        $this->relatedError     = $relatedError;
     }
 
     /**

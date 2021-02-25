@@ -1,5 +1,5 @@
 <select
-  class="form-select {{ !empty($size) ? 'form-select-'.$size : '' }} @error($cleanName) is-invalid @enderror @error($relatedError) is-invalid @enderror"
+  class="form-select {{ !empty($size) ? 'form-select-'.$size : '' }} @error($cleanName,$errorBag) is-invalid @enderror @error($error,$errorBag) is-invalid @enderror"
   name="{{ $name }}"
   {{ $isMultiple ? 'multiple' : ''}}
   {{ $isDisabled ? 'disabled' : ''}}
