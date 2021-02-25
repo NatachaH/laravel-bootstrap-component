@@ -50,7 +50,7 @@ class Editor extends FieldTemplate
       //$readonly = false,
       //$before   = null,
       //$after    = null,
-      $error    = null,
+      $errorRelated = null,
       $errorBag = null,
 
       $toolbar = 'header|format|list|link|color',
@@ -64,7 +64,7 @@ class Editor extends FieldTemplate
         $this->value        = $value;
         $this->help         = $help;
         $this->isRequired   = $required;
-        $this->error        = $error;
+        $this->errorRelated = $errorRelated;
         $this->errorBag     = $errorBag;
 
         $this->cleanName    = array_to_dot($this->name);

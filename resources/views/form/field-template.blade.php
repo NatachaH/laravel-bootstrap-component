@@ -38,7 +38,7 @@
       </span>
   @enderror
 
-  @error($error,$errorBag)
+  @error($errorRelated,$errorBag)
       <span class="invalid-feedback" role="alert">
           {{ $message }}
       </span>

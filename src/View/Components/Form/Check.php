@@ -73,7 +73,7 @@ class Check extends FieldTemplate
       //$readonly = false,
       //$before   = null,
       //$after    = null,
-      $error    = null,
+      $errorRelated  = null,
       $errorBag = null,
 
       $type = 'checkbox',
@@ -87,7 +87,7 @@ class Check extends FieldTemplate
         $this->help          = $help;
         $this->isRequired    = $required;
         $this->isDisabled    = $disabled;
-        $this->error         = $error;
+        $this->errorRelated  = $errorRelated;
         $this->errorBag      = $errorBag;
 
         $this->cleanName     = array_to_dot($this->name);

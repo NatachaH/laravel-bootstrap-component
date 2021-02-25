@@ -79,7 +79,7 @@ class FieldTemplate extends Component
      * Name of related error (ex: for hidden input)
      * @var string
      */
-    public $error;
+    public $errorRelated;
 
     /**
      * Name of error bag
@@ -92,19 +92,7 @@ class FieldTemplate extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render(
-      $label    = null,
-      $name     = null,
-      $value    = null,
-      $help     = null,
-      $required = false,
-      $disabled = false,
-      $readonly = false,
-      $before   = null,
-      $after    = null,
-      $error    = null,
-      $errorBag = null,
-    )
+    public function render()
     {
         return false;
     }

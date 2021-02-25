@@ -71,7 +71,7 @@ class Datalist extends FieldTemplate
       $readonly = false,
       $before   = null,
       $after    = null,
-      $error    = null,
+      $errorRelated = null,
       $errorBag = null,
 
       $placeholder = null,
@@ -91,7 +91,7 @@ class Datalist extends FieldTemplate
         $this->isReadonly       = $readonly;
         $this->before           = $before;
         $this->after            = $after;
-        $this->error            = $error;
+        $this->errorRelated     = $errorRelated;
         $this->errorBag         = $errorBag;
 
         $this->cleanName        = array_to_dot($this->name);

@@ -26,7 +26,7 @@
 
           </div>
 
-          <div class="ql-container @error($cleanName,$errorBag) is-invalid @enderror @error($error,$errorBag) is-invalid @enderror">{!! old($name,$value) !!}</div>
+          <div class="ql-container @error($cleanName,$errorBag) is-invalid @enderror @error($errorRelated,$errorBag) is-invalid @enderror">{!! old($name,$value) !!}</div>
 
           <textarea class="ql-textarea" name="{{ $name }}"></textarea>
     </div>
@@ -43,7 +43,7 @@
         </span>
     @enderror
 
-    @error($error,$errorBag)
+    @error($errorRelated,$errorBag)
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>

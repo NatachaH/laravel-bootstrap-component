@@ -8,7 +8,7 @@
     type="{{ $type }}"
     name="{{ $name }}"
     value="{{ $value }}"
-    class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @error($error,$errorBag) is-invalid @enderror"
+    class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @error($errorRelated,$errorBag) is-invalid @enderror"
     id="{{ $id.'Field' }}"
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
@@ -33,7 +33,7 @@
     </span>
   @enderror
 
-  @error($error,$errorBag)
+  @error($errorRelated,$errorBag)
       <span class="invalid-feedback" role="alert">
           {{ $message }}
       </span>

@@ -271,19 +271,19 @@ All the component manage the request old() value and the validation.
 
 Here the default attributes:
 
-| Attribute | Type    | Default|
-| --------- | ------- | ------ |
-| label     | string  | null   |
-| name      | string  | null   |
-| value     | string  | null   |
-| help      | string  | null   |
-| required  | boolean | false  |
-| disabled  | boolean | false  |
-| readonly  | boolean | false  |
-| before    | string  | null   |
-| after     | string  | null   |
-| error     | string  | null   |
-| errorBag  | string  | null   |
+| Attribute    | Type    | Default|
+| ------------ | ------- | ------ |
+| label        | string  | null   |
+| name         | string  | null   |
+| value        | string  | null   |
+| help         | string  | null   |
+| required     | boolean | false  |
+| disabled     | boolean | false  |
+| readonly     | boolean | false  |
+| before       | string  | null   |
+| after        | string  | null   |
+| errorRelated | string  | null   |
+| errorBag     | string  | null   |
 
 
 ## Check
