@@ -8,7 +8,7 @@
     type="{{ $type }}"
     name="{{ $name }}"
     value="{{ $value }}"
-    class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @error($errorRelated,$errorBag) is-invalid @enderror"
+    class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif"
     id="{{ $id.'Field' }}"
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}

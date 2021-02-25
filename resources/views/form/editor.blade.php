@@ -26,7 +26,7 @@
 
           </div>
 
-          <div class="ql-container @error($cleanName,$errorBag) is-invalid @enderror @error($errorRelated,$errorBag) is-invalid @enderror">{!! old($name,$value) !!}</div>
+          <div class="ql-container @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif">{!! old($name,$value) !!}</div>
 
           <textarea class="ql-textarea" name="{{ $name }}"></textarea>
     </div>
