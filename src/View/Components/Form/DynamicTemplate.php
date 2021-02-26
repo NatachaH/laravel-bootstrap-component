@@ -151,7 +151,7 @@ class DynamicTemplate extends Component
      */
     public function isItemDeleted($item)
     {
-        return in_array($item, old('media_to_delete',[]));
+        return in_array($item, old($this->name.'_to_delete',[]));
     }
 
     /**
