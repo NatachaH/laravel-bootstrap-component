@@ -12,7 +12,7 @@
       </div>
 
       <div class="modal-body text-center">
-        <form action="{{ $action }}" method="POST">
+        <form action="{{ $action }}" method="POST" @if($withFile) enctype="multipart/form-data" @endif>
           @csrf
           @method($method)
             {!! $slot !!}

@@ -198,6 +198,7 @@ Available JS:
 | scrollable | boolean | false |    
 | fullscreen | boolean | false |      
 | fullscreen-size | string | null |
+| with-file | boolean | false |      
 | btn-cancel | array | [] |
 | btn-confirm | array | [] |
 

@@ -85,6 +85,13 @@ class ModalConfirm extends Component
     public $fullscreenSize;
 
     /**
+     * Form with enctype file
+     *
+     * @var boolean
+     */
+    public $withFile;
+
+    /**
      * Information for the cancel button
      * Class, label and value
      * @var array
@@ -137,7 +144,7 @@ class ModalConfirm extends Component
      *
      * @return void
      */
-    public function __construct($color = 'primary', $icon = null, $title = null, $action = '#', $method = 'POST', $footer = null, $size = 'md', $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null, $btnCancel = [], $btnConfirm = [])
+    public function __construct($color = 'primary', $icon = null, $title = null, $action = '#', $method = 'POST', $footer = null, $size = 'md', $centered = false, $scrollable = false, $fullscreen = false, $fullscreenSize = null, $withFile = false, $btnCancel = [], $btnConfirm = [])
     {
         $this->color                = $color;
         $this->icon                 = $icon;
@@ -150,6 +157,7 @@ class ModalConfirm extends Component
         $this->scrollable           = $scrollable;
         $this->isFullscreen         = $fullscreen;
         $this->fullscreenSize       = $fullscreenSize;
+        $this->withFile             = $withFile;
         $this->btnCancel            = $this->defineButton('cancel',$btnCancel);
         $this->btnConfirm           = $this->defineButton('confirm',$btnConfirm);
     }
