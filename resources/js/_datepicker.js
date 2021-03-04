@@ -43,17 +43,38 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
       this.lang       = document.documentElement.lang;
       this.clearBtn   = this.parent.querySelector('.btn-clear');
 
-      var options = this.setOptionByFormat(this.format );
-      this.altFormat      = options['format'];
-      this.dateFormat     = options['dbformat'];
-      this.noCalendar     = options['calendar'];
-      this.enableTime     = options['time'];
-      this.enableSeconds  = options['second'];
+      // Define option defaults
+      var defaults = {
+          changedCallback: function(e){}
+      };
+
+      // Create options by extending defaults with the passed in arugments
+      var customOptions = (options && typeof options === "object" ? options : null );
+      this.options = this.setOption(defaults, options);
+
+      var optionsByFormat = this.setOptionByFormat(this.format );
+      this.altFormat      = optionsByFormat['format'];
+      this.dateFormat     = optionsByFormat['dbformat'];
+      this.noCalendar     = optionsByFormat['calendar'];
+      this.enableTime     = optionsByFormat['time'];
+      this.enableSeconds  = optionsByFormat['second'];
 
       // Init the events
       this.init();
 
   };
+
+  // SetOptions
+  Datepicker.prototype.setOption = function(source, properties)
+  {
+      var property;
+      for (property in properties) {
+        if (properties.hasOwnProperty(property)) {
+          source[property] = properties[property];
+        }
+      }
+      return source;
+  }
 
   Datepicker.prototype.setOptionByFormat = function(name)
   {
@@ -163,6 +184,7 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
             },
             onChange: function(selectedDates, dateStr, instance) {
               myObject.inputGroup.classList.add('date-picked');
+              myObject.options.changedCallback(selectedDates);
             },
             onReady: function(selectedDates, dateStr, instance) {
               myObject.inputGroup.classList.add('input-group-date-picker');
@@ -175,9 +197,14 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
 
         myObject.clearBtn.addEventListener('click', (event) => {
             event.preventDefault();
-            myObject.flatepicker.clear();
-            myObject.inputGroup.classList.remove('date-picked');
+            myObject.clear();
         });
+  }
+
+  Datepicker.prototype.clear = function()
+  {
+      this.flatepicker.clear();
+      this.inputGroup.classList.remove('date-picked');
   }
 
 }());
