@@ -174,10 +174,9 @@ editors.forEach((el, i) => {
 // Init the first time the tooltip
 HelperLink.initTooltip();
 
-// If a form is submit =>
-var form = document.querySelector('form:not(.d-none)');
-if(form !== null)
-{
+// If a form is submit
+var forms = document.querySelectorAll('form:not(.d-none)');
+forms.forEach((form, i) => {
   form.onsubmit = function() {
     // Populate hidden form on submit
     editors.forEach((el, i) => {
@@ -198,4 +197,4 @@ if(form !== null)
       }
     });
   };
-}
+});
