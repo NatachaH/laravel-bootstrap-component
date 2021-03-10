@@ -11,7 +11,7 @@ confirmModals.forEach((modal, i) => {
 
   modal.addEventListener('show.bs.modal', function(event) {
     var button = event.relatedTarget
-    var action = button.getAttribute('data-action');
+    var action = typeof(button) !== 'undefined' ? button.getAttribute('data-action') : null;
     var form = modal.querySelector('form');
 
     if(action != null)
