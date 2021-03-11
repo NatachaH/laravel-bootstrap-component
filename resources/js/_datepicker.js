@@ -27,21 +27,30 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
 
   this.Datepicker = function(el,options = null) {
 
+
       this.parent      = el;
       this.inputGroup  = el.querySelector('.input-group');
       this.input       = el.querySelector('.date-picker');
+
       this.flatepicker = null;
 
       this.mode       = this.input.getAttribute('data-mode') ?? 'single';
       this.format     = this.input.getAttribute('data-format') ?? 'datetime';
       this.default    = this.input.value ?? null;
-      this.min        = this.input.getAttribute('data-min-date') ?? null;
-      this.max        = this.input.getAttribute('data-max-date') ?? null;
-      this.minInput   = document.getElementsByName(this.input.getAttribute('data-min-date-input'))[0]
-      this.maxInput   = document.getElementsByName(this.input.getAttribute('data-max-date-input'))[0]
       this.isReadonly = this.input.readOnly;
       this.lang       = document.documentElement.lang;
       this.clearBtn   = this.parent.querySelector('.btn-clear');
+      this.inline     = this.input.getAttribute('data-inline') ? Boolean(this.input.getAttribute('data-inline')) :  false;
+      this.calendar   = this.inline ? this.parent.querySelector('.calendar') : this.parent;
+
+      this.inputFrom   = this.parent.querySelector('.datepicker-input-from') ?? null;
+      this.inputTo     = this.parent.querySelector('.datepicker-input-to') ?? null;
+
+      this.disabled   = this.input.getAttribute('data-disabled') ? JSON.parse(this.input.getAttribute('data-disabled')) : [];
+      this.events     = this.input.getAttribute('data-events') ? JSON.parse(this.input.getAttribute('data-events')) : [];
+
+      // Define the min and max value
+      this.defineMinMax(this.input.getAttribute('data-min'),this.input.getAttribute('data-max'));
 
       // Define option defaults
       var defaults = {
@@ -172,6 +181,10 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
             allowInput:     !myObject.isReadonly,
             minDate:        myObject.min,
             maxDate:        myObject.max,
+            disable:        myObject.disabled,
+            inline:         myObject.inline,
+            appendTo:       myObject.calendar,
+
             onOpen: function(selectedDates, dateStr, instance) {
                 if(myObject.minInput)
                 {
@@ -182,17 +195,55 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
                     instance.config.maxDate = myObject.maxInput.value;
                 }
             },
+
             onChange: function(selectedDates, dateStr, instance) {
               myObject.inputGroup.classList.add('date-picked');
               myObject.options.changedCallback(selectedDates);
+
+              if(myObject.mode == 'range')
+              {
+                  const [to, from] = selectedDates;
+                  myObject.inputFrom.value = to ? instance.formatDate(to, myObject.dateFormat) : '';
+                  myObject.inputTo.value = from ? instance.formatDate(from, myObject.dateFormat) : '';
+              }
+
             },
+
             onReady: function(selectedDates, dateStr, instance) {
               myObject.inputGroup.classList.add('input-group-date-picker');
               if(dateStr)
               {
                 myObject.inputGroup.classList.add('date-picked');
               }
+              if(myObject.inline)
+              {
+                myObject.inputGroup.classList.add('input-group-date-picker-inline');
+              }
+
+
+            },
+
+            onDayCreate: function(dObj, dStr, instance, dayElem){
+                // Utilize dayElem.dateObj, which is the corresponding Date
+                var key = instance.formatDate(dayElem.dateObj, myObject.dateFormat);
+                var myEvent = myObject.events[key] ?? null;
+                if(myEvent)
+                {
+                    var className = 'event ' + 'bg-' + myEvent.color;
+                    if(myEvent.title)
+                    {
+                        dayElem.innerHTML += "<span class='" + className + "' data-bs-toggle='tooltip'></span>";
+                        var tooltips = new Bootstrap.Tooltip(dayElem.querySelector('.event'), {
+                          container: dayElem,
+                          trigger: 'hover',
+                          title: myEvent.title
+                        });
+                    } else {
+                        dayElem.innerHTML += "<span class='" + className + "'></span>";
+                    }
+                }
             }
+
         });
 
         myObject.clearBtn.addEventListener('click', (event) => {
@@ -205,6 +256,39 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
   {
       this.flatepicker.clear();
       this.inputGroup.classList.remove('date-picked');
+  }
+
+  Datepicker.prototype.defineMinMax = function(min,max)
+  {
+      this.min = null;
+      this.minInput = null;
+
+      if(min)
+      {
+          if(isNaN(Date.parse(min)))
+          {
+            // If not date, get the input
+            this.minInput = document.getElementsByName(min)[0];
+          } else {
+            // If a date
+            this.min = min;
+          }
+      }
+
+      this.max = null;
+      this.maxInput = null;
+
+      if(max)
+      {
+          if(isNaN(Date.parse(max)))
+          {
+            // If not date, get the input
+            this.maxInput = document.getElementsByName(max)[0];
+          } else {
+            // If a date
+            this.max = max;
+          }
+      }
   }
 
 }());

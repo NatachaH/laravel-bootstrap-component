@@ -392,6 +392,8 @@
         height: $day-size;
         line-height: $day-size;
         margin: 0 0 3px 0;
+        position: relative;
+
 
         &.today {
           background: $today-bg;
@@ -451,9 +453,20 @@
           border-color: $day-hover-border-color;
         }
 
+        > .event {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          border-radius: 10px;
+          bottom: 0;
+          left: calc(50% - 2.5px);
+          display: block;
+        }
+
       }
 
     }
+
 
   }
 
@@ -664,17 +677,24 @@
 // CUSTOM FOR CLEAR BUTTON
 .input-group-date-picker {
 
-  > :nth-child(2) {
-    border-top-left-radius: $input-border-radius !important;
-    border-bottom-left-radius: $input-border-radius !important;
-  }
+    > input {
+      border-radius: $input-border-radius !important;
+    }
 
 
-  > :nth-last-child(2) {
-    border-top-right-radius: $input-border-radius !important;
-    border-bottom-right-radius: $input-border-radius !important;
-  }
+    &.input-group-with-before > input{
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
 
+    &.input-group-with-after > input{
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    &.input-group-with-before.input-group-with-after > input{
+      border-radius: 0 !important;
+    }
 
 
   > .btn-clear {
@@ -686,13 +706,20 @@
   }
 
 
-  &.date-picked {
-    > .date-picker {
-      border-top-right-radius: 0!important;
-      border-bottom-right-radius: 0!important;
+  &.date-picked
+  {
+    > input {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
     }
+
+    &.input-group-date-picker-inline > .btn-clear {
+      border-top-right-radius: $input-border-radius !important;
+      border-bottom-right-radius: $input-border-radius !important;
+    }
+
     > .btn-clear {
-      display: block;
+        display: block;
     }
   }
 

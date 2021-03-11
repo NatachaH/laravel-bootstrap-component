@@ -433,12 +433,18 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 | size        | string | null     |                |
 | mode        | string | single   | single/multiple/range |
 | format      | string | datetime | datetime/datetime-short/date/time/time-short/db-datetime/db-date/db-time |
-| min         | string | null     |                |
-| max         | string | null     |                |
-| min-input   | string | null     |                |
-| max-input   | string | null     |                |
+| min         | string | null     | can be a date or the name of an input |
+| max         | string | null     | can be a date or the name of an input |
+| inline      | boolean | false   |  |
+| input-from  | string | null     |  |
+| input-to    | string | null     |  |
+| disabled-dates | array | []  |  |
+| events      | array  | []  |  |
 
-*You can set a min/max date or define by another input name (min-input/max-input).*
+*You can set a min/max date or define by another input name.*
+*For range you can add 2 hidden input to set the from/to values*
+*You can set the disabled dates with an array, exemple ['2021-01-05','2021-05-11']*
+*You can set some events dates with an array, exemple ['2021-01-05' => ['color' => 'danger'] ,'2021-05-11' => ['color' => 'warning']]*
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
@@ -447,7 +453,9 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 ```
 <x-bs-datepicker class="datepicker-automatic" label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>
 
-<x-bs-datepicker class="datepicker-automatic" label="End date" name="endInputName" mode="single" format="datetime" min-input="startInputName" />
+<x-bs-datepicker class="datepicker-automatic" label="End date" name="endInputName" mode="single" format="datetime" min="startInputName" />
+
+<x-bs-datepicker class="datepicker-automatic" label="End date" name="range" mode="range" format="datetime" input-from="start_at" input-to="end_at"/>
 ```
 
 ## Dynamic

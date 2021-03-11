@@ -54,24 +54,40 @@ class Datepicker extends FieldTemplate
     public $max;
 
     /**
-     * Name of input with minimum date
-     *
-     * @var string
-     */
-    public $minInput;
-
-    /**
-     * Name of input with maximum date
-     *
-     * @var string
-     */
-    public $maxInput;
-
-    /**
      * Is an input group
      * @var boolean
      */
     public $isInputGroup;
+
+    /**
+     * Is inline
+     * @var boolean
+     */
+    public $inline;
+
+    /**
+     * For range inputs
+     * @var string
+     */
+    public $inputFrom;
+
+    /**
+     * For range inputs
+     * @var string
+     */
+    public $inputTo;
+
+    /**
+     * Array of disabled dates
+     * @var array
+     */
+    public $disabledDates;
+
+    /**
+     * Array of events
+     * @var array
+     */
+    public $events;
 
     /**
      * Create a new component instance.
@@ -92,13 +108,16 @@ class Datepicker extends FieldTemplate
       $errorBag = null,
 
       $placeholder = null,
-      $size = null,
-      $mode = 'single',
-      $format = 'datetime',
-      $min = null,
-      $max = null,
-      $minInput = null,
-      $maxInput = null
+      $size        = null,
+      $mode        = 'single',
+      $format      = 'datetime',
+      $min         = null,
+      $max         = null,
+      $inline      = false,
+      $inputFrom   = null,
+      $inputTo     = null,
+      $disabledDates = [],
+      $events      = []
     )
     {
         $this->label        = $label;
@@ -120,9 +139,12 @@ class Datepicker extends FieldTemplate
         $this->format       = in_array($format,['datetime','datetime-short','date','time','time-short','db-datetime','db-date','db-time']) ? $format : 'datetime';
         $this->min          = $min;
         $this->max          = $max;
-        $this->minInput     = $minInput;
-        $this->maxInput     = $maxInput;
         $this->isInputGroup = true;
+        $this->inline       = $inline;
+        $this->inputFrom    = $inputFrom;
+        $this->inputTo      = $inputTo;
+        $this->disabledDates= $disabledDates;
+        $this->events       = $events;
     }
 
     /**
