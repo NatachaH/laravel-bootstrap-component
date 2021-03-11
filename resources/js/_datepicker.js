@@ -206,7 +206,6 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
                   myObject.inputFrom.value = to ? instance.formatDate(to, myObject.dateFormat) : '';
                   myObject.inputTo.value = from ? instance.formatDate(from, myObject.dateFormat) : '';
               }
-
             },
 
             onReady: function(selectedDates, dateStr, instance) {
@@ -219,8 +218,6 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
               {
                 myObject.inputGroup.classList.add('input-group-date-picker-inline');
               }
-
-
             },
 
             onDayCreate: function(dObj, dStr, instance, dayElem){
@@ -230,16 +227,19 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
                 if(myEvent)
                 {
                     var className = 'event ' + 'bg-' + myEvent.color;
+                    dayElem.innerHTML += "<span class='" + className + "'></span>";
+
                     if(myEvent.title)
                     {
-                        dayElem.innerHTML += "<span class='" + className + "' data-bs-toggle='tooltip'></span>";
-                        var tooltips = new Bootstrap.Tooltip(dayElem.querySelector('.event'), {
+                        dayElem.classList.add('flatpickr-event');
+                        dayElem.setAttribute('data-bs-toggle','tooltip');
+
+                        var tooltips = new Bootstrap.Tooltip(dayElem, {
+                          placement: 'top',
                           container: dayElem,
                           trigger: 'hover',
                           title: myEvent.title
                         });
-                    } else {
-                        dayElem.innerHTML += "<span class='" + className + "'></span>";
                     }
                 }
             }
