@@ -75,8 +75,12 @@ editors.forEach((el, i) => {
                     if (!HelperLink.isUrl(href) && !HelperLink.isEmail(href)) return;
 
                     // Set the link and init the tooltip
-                    if(HelperLink.isEmail(href)) href = 'mailto:'+href ;
-                    if(href.substring(0, 4) !== 'http') href = 'http://'+href;
+                    if(HelperLink.isEmail(href))
+                    {
+                      href = 'mailto:'+href;
+                    } else if(href.substring(0, 4) !== 'http') {
+                      href = 'http://'+href;
+                    }
                     this.quill.format('link', href);
                     HelperLink.initTooltip();
 
