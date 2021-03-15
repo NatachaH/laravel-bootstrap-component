@@ -110,7 +110,7 @@ editors.forEach((el, i) => {
                     if (nextLeaf === null || (currentLeaf.parent !== nextLeaf.parent)) {
                       this.quill.insertEmbed(range.index, 'smartbreak', true, 'user');
                     }
-                    this.quill.setSelection(range.index + 2, 'silent');
+                    this.quill.setSelection(range.index + 1, 'silent');
                   }
           		},
               tab: {
