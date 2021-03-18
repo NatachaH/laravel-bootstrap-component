@@ -4,7 +4,7 @@
 
     @if(is_array($value))
 
-      <div {{ $attributes->merge(['class' => 'form-check-group '.($isInline ? 'form-check-group-inline' : '')]) }}>
+      <div class="form-check-group">
 
         <label>{{ $key }}</label>
         <div>
