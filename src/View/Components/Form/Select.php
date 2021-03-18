@@ -34,7 +34,7 @@ class Select extends FieldTemplate
      *
      * @var array
      */
-    private $optionsSelected;
+    public $optionsSelected;
 
     /**
      * Array of the disabled options
@@ -77,7 +77,7 @@ class Select extends FieldTemplate
       $help     = null,
       $required = false,
       $disabled = false,
-      //$readonly = false,
+      $readonly = false,
       $before   = null,
       $after    = null,
       $errorRelated = null,
@@ -94,6 +94,7 @@ class Select extends FieldTemplate
         $this->help             = $help;
         $this->isRequired       = $required;
         $this->isDisabled       = is_bool($disabled) ? $disabled : false;
+        $this->isReadonly       = $readonly;
         $this->before           = $before;
         $this->after            = $after;
         $this->errorRelated     = $errorRelated;

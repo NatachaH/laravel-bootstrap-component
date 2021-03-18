@@ -2,7 +2,7 @@
   class="form-select {{ !empty($size) ? 'form-select-'.$size : '' }} @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif"
   name="{{ $name }}"
   {{ $isMultiple ? 'multiple' : ''}}
-  {{ $isDisabled ? 'disabled' : ''}}
+  {{ $isDisabled || $isReadonly ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
 >
 
@@ -20,6 +20,8 @@
 
 </select>
 
-@if($isDisabled && !empty($values))
-  <input type="hidden" name="disabled_{{ $name }}" value="{{ $values }}"/>
+@if($isReadonly && !empty($optionsSelected))
+  @foreach ($optionsSelected as $key => $optionSelected)
+    <input type="hidden" name="{{ $name }}" value="{{ $optionSelected }}"/>
+  @endforeach
 @endif

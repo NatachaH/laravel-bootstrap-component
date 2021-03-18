@@ -370,6 +370,7 @@ Here the default attributes:
 | Attribute | Type    | Default  | Option         |
 | --------- | ------- | -------- | -------------- |
 | disabled  | mixed   | false    | boolean/array  |
+| readonly  | boolean | false    |                |
 | options   | array   | []       |                |
 | size      | string  | null     |                |
 | selected  | mixed   | []       | string/array   |
@@ -377,6 +378,7 @@ Here the default attributes:
 
 
 *You can pass a multi-level array for make optgroup: 'Label' => [1 => 'Name']*
+*If the select is readonly, the value(s) will be set in hidden field(s)*
 
 ```
 <x-bs-select label="My label" name="myinput" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" :selected="[2]" multiple disabled required />
