@@ -9,10 +9,10 @@ composer require nh/bs-component
 Add this to your packages.json
 
 ```
-"bootstrap" : "^5.0.0-beta1",
-"popper.js" : "^1.12",
+"@popperjs/core": "^2.6.0",
+"bootstrap" : "^5.0.0-beta3",
 "quill" : "^1.3.6",
-"flatpickr" : "^4.6.3"
+"flatpickr" : "^4.6.7"
 ```
 
 Publish the config
