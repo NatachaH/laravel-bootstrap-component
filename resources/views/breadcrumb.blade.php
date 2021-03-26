@@ -15,5 +15,8 @@
       @endforeach
 
     </ol>
+
+    {!! $slot !!}
+
   </nav>
 @endisset
