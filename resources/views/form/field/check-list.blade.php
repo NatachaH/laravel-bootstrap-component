@@ -16,7 +16,7 @@
                 type="{{ $type }}"
                 name="{{ $name }}"
                 value="{{ $k }}"
-                class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif"
+                class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif @if($isDisabled || $isOptionDisabled($k)) is-disabled @endif"
                 id="{{ $idOption($k).'Field' }}"
                 {{ $isDisabled || $isOptionDisabled($k) ? 'disabled' : '' }}
                 {{ $isOptionChecked($k) ? 'checked' : '' }}
@@ -42,7 +42,7 @@
           type="{{ $type }}"
           name="{{ $name }}"
           value="{{ $key }}"
-          class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif"
+          class="form-check-input @error($cleanName,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif @if($isDisabled || $isOptionDisabled($key)) is-disabled @endif"
           id="{{ $idOption($key).'Field' }}"
           {{ $isDisabled || $isOptionDisabled($key) ? 'disabled' : '' }}
           {{ $isOptionChecked($key) ? 'checked' : '' }}

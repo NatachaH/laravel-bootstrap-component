@@ -75,7 +75,7 @@
   // Disable the input, select and co
   ToggleSwitch.prototype.disabled = function(element,disabled)
   {
-      var inputs = element.querySelectorAll('input,textarea,select');
+      var inputs = element.querySelectorAll('input:not(.is-disabled),textarea:not(.is-disabled),select:not(.is-disabled)');
       inputs.forEach(function(el){
         el.disabled = disabled;
       });
