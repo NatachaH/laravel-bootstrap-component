@@ -6,7 +6,7 @@
 
 (function() {
 
-  this.ToggleSwitch = function(el) {
+  this.ToggleSwitch = function(el,options = null) {
 
       // Variables
       this.input = el.querySelector('input[type="checkbox"]');
@@ -14,9 +14,27 @@
       this.elToDisplayIfChecked = this.parent.querySelectorAll('.toggle-switch-true');
       this.elToDisplayIfNotChecked = this.parent.querySelectorAll('.toggle-switch-false');
 
+      var defaults = {
+        onChanged    : function(e){} // Callback function
+      };
+
+      // Create options by extending defaults with the passed in arugments
+      this.options = this.setOption(defaults, options)
+
       this.init();
 
   };
+
+  ToggleSwitch.prototype.setOption = function(source, properties)
+  {
+      var property;
+      for (property in properties) {
+        if (properties.hasOwnProperty(property)) {
+          source[property] = properties[property];
+        }
+      }
+      return source;
+  }
 
   // Init
   ToggleSwitch.prototype.init = function()
@@ -50,6 +68,8 @@
         toggleSwitch.disabled(el,isChecked);
       });
 
+      // Run the custom callback
+      toggleSwitch.options.onChanged(isChecked);
   }
 
   // Disable the input, select and co

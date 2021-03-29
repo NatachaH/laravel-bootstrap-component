@@ -38,7 +38,6 @@
       };
 
       // Create options by extending defaults with the passed in arugments
-      var customOptions = (options && typeof options === "object" ? options : null );
       this.options = this.setOption(defaults, options);
 
       // Init variables and number of inputs

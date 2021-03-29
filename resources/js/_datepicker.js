@@ -58,7 +58,6 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
       };
 
       // Create options by extending defaults with the passed in arugments
-      var customOptions = (options && typeof options === "object" ? options : null );
       this.options = this.setOption(defaults, options);
 
       var optionsByFormat = this.setOptionByFormat(this.format );
