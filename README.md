@@ -63,6 +63,7 @@ Available JS:
 - [X] Checkbox all
 - [X] Toggle switch
 - [X] Autocomplete
+- [X] Table link
 
 # Components
 
@@ -644,3 +645,37 @@ In this exemple the **#myCustomDatalist** datalist options will be contruct via 
 Exemple of datas items: { id: 1, name: 'My item', 'price': 10.00}
 
 When the user will select an option, the **Hidden field** will be set with the **id** and the **Other field** will be set with the **price** of the JSON item.
+
+## Table link
+
+If you need to make a row of a table as a link:
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_table-link');```
+
+HTML:
+
+```
+<table id="myTableLink" class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr data-url="my-custom-url">
+        <td>My title</td>
+      </tr>
+  </tbody>
+</table>
+
+```
+
+JS:
+
+```
+var table = document.getElementById('#myTableLink');
+var myTable = new TableLink(table);
+```
+
+*The tablelink will be automatic on table with class .table-link*

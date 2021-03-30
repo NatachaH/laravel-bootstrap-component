@@ -1,0 +1,14 @@
+/*
+|--------------------------------------------------------------------------
+| Table link Design
+|--------------------------------------------------------------------------
+|
+| Copyright © 2021 Natacha Herth, design & web development | https://www.natachaherth.ch/
+|
+*/
+
+.table-link {
+  tbody > tr:hover {
+      cursor: pointer;
+  }
+}
