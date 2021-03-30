@@ -183,6 +183,20 @@ Available JS:
 </button>
 ```
 
+You can load by axios the content of the modal:
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_modal-load');```
+
+```
+<x-bs-modal id="myModalLoad" class="modal-load"></x-bs-modal>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalLoad" data-action="my-url-where-to-load">
+  Launch modal
+</button>
+```
+
+
 ## Modal Confirm
 
 | Attribute | Type | Default |
