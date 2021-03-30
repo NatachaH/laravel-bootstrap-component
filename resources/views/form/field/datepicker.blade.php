@@ -2,7 +2,7 @@
   type="text"
   name="{{ $name }}"
   value="{{ old($cleanName,$value) }}"
-  class="form-control date-picker {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName,$errorBag) is-invalid @enderror @error($inputFrom,$errorBag) is-invalid @enderror @error($inputTo,$errorBag) is-invalid @enderror @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif @if($isDisabled) is-disabled @endif"
+  class="form-control date-picker {{ !empty($size) ? 'form-control-'.$size : '' }} @error($cleanName,$errorBag) is-invalid @enderror @if($mode == 'range' && !empty($inputFrom) && !empty($inputTo)) @error($inputFrom,$errorBag) is-invalid @enderror @error($inputTo,$errorBag) is-invalid @enderror @endif @if($errorRelated) @error($errorRelated,$errorBag) is-invalid @enderror @endif @if($isDisabled) is-disabled @endif"
   id="{{ $cleanName.'Field' }}"
   @if($placeholder) placeholder="{{ $placeholder }}" @endif
   @if($help) aria-describedby="{{ $cleanName.'FieldHelp' }}" @endif
@@ -21,7 +21,6 @@
 <button class="btn btn-clear" aria-label="@lang('bs-component::button.clear')">
   <span aria-hidden="true">&times;</span>
 </button>
-
 
 @if($mode == 'range' && !empty($inputFrom) && !empty($inputTo))
 
