@@ -55,6 +55,7 @@ Available components:
 - [X] Select
 - [X] Datalist
 - [X] Textarea
+- [X] Color
 
 Available JS:
 
@@ -436,6 +437,16 @@ Here the default attributes:
 <x-bs-textarea label="My label" name="mytextarea" value="Default value" placeholder="My placeholder" help="Help message" readonly disabled required />
 
 <x-bs-textarea label="My label" name="mytextarea" before="A" after="B" />
+```
+
+## Color
+
+| Attribute | Type | Default |
+| --------- | ---- | ------- |
+| options   | array | []     |
+
+```
+<x-bs-color :label="Choose a color" name="color" :options="['primary' => 'Primary','secondary' => 'Secondary','success' => 'Success']" help="Help message" required disabled />
 ```
 
 # JS Component
