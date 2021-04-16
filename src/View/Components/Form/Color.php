@@ -37,6 +37,7 @@ class Color extends FieldTemplate
     {
         $this->label            = $label;
         $this->name             = $name;
+        $this->value            = $value;
         $this->help             = $help;
         $this->isRequired       = $required;
         $this->isDisabled       = is_bool($disabled) ? $disabled : false;
