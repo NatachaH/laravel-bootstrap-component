@@ -32,6 +32,12 @@
                     </button>
                   @break
 
+                  @case('highlight')
+                    <button class="dropdown-item p-3 ql-highlightblock">
+                      @lang('bs-component::editor.highlight')
+                    </button>
+                  @break
+
                   @default
                     <button class="dropdown-item p-3 ql-header" value="{{ $header }}">
                       @lang('bs-component::editor.h'.$header)

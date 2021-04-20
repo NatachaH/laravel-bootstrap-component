@@ -535,18 +535,20 @@ You can globaly customize the buttons in the 'bs-component' config file or you c
 
 To use the editor you need to install the JS plugin **QuillJS** !
 
-| Attribute | Type    | Default |
-| --------- | ------- | ------- |
-| label     | string  | null    |
-| name      | string  | null    |
-| value     | string  | null    |
-| help      | string  | null    |
-| required  | boolean | false   |
-| toolbar   | string  | header&#124;format&#124;list&#124;link&#124;color |
-| colors    | string  | primary&#124;success&#124;warning&#124;danger |
-| headers   | string  | 1&#124;2&#124;3 |
-| error     | string  | null   |
-| errorBag  | string  | null   |
+| Attribute | Type    | Default | Available |
+| --------- | ------- | ------- | --------- |
+| label     | string  | null    |           |
+| name      | string  | null    |           |
+| value     | string  | null    |           |
+| help      | string  | null    |           |
+| required  | boolean | false   |           |
+| toolbar   | string  | header&#124;format&#124;list&#124;link&#124;color | header&#124;format&#124;list&#124;link&#124;color&#124;code |
+| colors    | string  | primary&#124;success&#124;warning&#124;danger | |
+| headers   | string  | lead&#124;1&#124;2&#124;3 | lead&#124;blockquote&#124;highlight&#124;1&#124;2&#124;3&#124;4&#124;5&#124;6 |
+| formats   | string  | bold&#124;italic&#124;underline&#124;strike |  |
+| error     | string  | null   |           |
+| errorBag  | string  | null   |           |
+
 
 *The name is required.*
 

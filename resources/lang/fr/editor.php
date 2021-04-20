@@ -15,6 +15,7 @@ return [
     'paragraphe'  => 'Paragraphe',
     'lead'        => 'Chapô',
     'blockquote'  => 'Citation',
+    'highlight'   => 'Mise en avant',
     'h1'          => 'Titre 1',
     'h2'          => 'Titre 2',
     'h3'          => 'Titre 3',
@@ -29,7 +30,7 @@ return [
 
     'list-ordered'  => 'Liste ordonnée',
     'list-bullet'   => 'Liste à puces',
-    
+
     'code'        => 'Code',
 
     'link' => 'Lien',

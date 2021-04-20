@@ -14,6 +14,8 @@ return [
     'heading'     => 'Heading',
     'paragraphe'  => 'Paragraphe',
     'lead'        => 'Lead',
+    'blockquote'  => 'Quote',
+    'highlight'   => 'Highlight',
     'h1'          => 'Heading 1',
     'h2'          => 'Heading 2',
     'h3'          => 'Heading 3',

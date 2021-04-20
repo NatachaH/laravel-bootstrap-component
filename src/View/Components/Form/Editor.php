@@ -55,7 +55,7 @@ class Editor extends FieldTemplate
 
       $toolbar = 'header|format|list|link|color',
       $colors = 'primary|success|warning|danger',
-      $headers = 'lead|blockquote|1|2|3',
+      $headers = 'lead|1|2|3',
       $formats = 'bold|italic|underline|strike'
     )
     {
