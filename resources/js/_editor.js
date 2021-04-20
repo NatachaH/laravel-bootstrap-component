@@ -163,6 +163,10 @@ editors.forEach((el, i) => {
             headerDropdown.classList.add('ql-active');
             headerText = document.querySelector('.ql-lead').innerHTML;
             document.querySelector('.ql-header').classList.remove('ql-active');
+          } else if(ql.getFormat().blockquote){
+            headerDropdown.classList.add('ql-active');
+            headerText = document.querySelector('.ql-blockquote').innerHTML;
+            document.querySelector('.ql-header').classList.remove('ql-active');
           } else if(ql.getFormat().highlightblock){
             headerDropdown.classList.add('ql-active');
             headerText = document.querySelector('.ql-highlightblock').innerHTML;
