@@ -136,6 +136,20 @@ editors.forEach((el, i) => {
       }
     });
 
+    // Clean copy/paste
+    ql.clipboard.addMatcher(Node.ELEMENT_NODE, (node, delta) => {
+      let ops = []
+      delta.ops.forEach(op => {
+        if (op.insert && typeof op.insert === 'string') {
+          ops.push({
+            insert: op.insert
+          })
+        }
+      })
+      delta.ops = ops
+      return delta
+    });
+
     // When selection change
     ql.on('selection-change', function() {
 
