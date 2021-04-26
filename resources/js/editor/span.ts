@@ -1,11 +1,11 @@
-import Paragraph from '@tiptap/extension-paragraph'
+import TextStyle from '@tiptap/extension-text-style'
 
-const CustomParagraph = Paragraph.extend({
+const Span = TextStyle.extend({
 
   parseHTML() {
     return [
       {
-        tag: 'p',
+        tag: 'span',
         getAttrs: element => {
           const hasClasses = element.hasAttribute('class')
           return hasClasses ? {} : false;
@@ -16,4 +16,4 @@ const CustomParagraph = Paragraph.extend({
 
 });
 
-export default CustomParagraph;
+export default Span;

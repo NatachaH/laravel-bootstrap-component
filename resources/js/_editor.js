@@ -36,10 +36,12 @@ import Gapcursor from '@tiptap/extension-gapcursor'
 
 // Customs
 import CustomParagraph from './editor/paragraph.ts'
+import Span from './editor/span.ts'
 import Color from './editor/color.ts'
 import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
 import DivStyle from './editor/div-style.ts'
+
 
 (function() {
 
@@ -89,7 +91,7 @@ import DivStyle from './editor/div-style.ts'
             Document,
             CustomParagraph,
             Text,
-            TextStyle,
+            Span,
             History,
             HardBreak,
             Bold,

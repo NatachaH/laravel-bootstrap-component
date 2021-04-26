@@ -16,7 +16,10 @@ const ParagraphStyle = Node.create({
             default: null,
             renderHTML: attributes => ({
               class: attributes.paragraphStyle,
-            })
+            }),
+            parseHTML: element => ({
+              paragraphStyle: element.getAttribute('class').replace(/['"]+/g, ''),
+            }),
           },
         },
       },

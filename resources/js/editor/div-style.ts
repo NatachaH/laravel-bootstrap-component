@@ -14,9 +14,18 @@ const DivStyle = Node.create({
         attributes: {
           divStyle: {
             default: null,
-            renderHTML: attributes => ({
-              class: attributes.divStyle,
-            })
+            renderHTML: attributes => {
+              if (!attributes.divStyle) {
+                return {}
+              }
+
+              return {
+                class: attributes.divStyle,
+              }
+            },
+            parseHTML: element => ({
+              divStyle: element.getAttribute('class').replace(/['"]+/g, ''),
+            }),
           },
         },
       },

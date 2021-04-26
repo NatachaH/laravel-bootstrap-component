@@ -13,14 +13,6 @@ const Div = Node.create({
 
   defining: true,
 
-  addAttributes() {
-    return {
-      class: {
-        default: null
-      }
-    }
-  },
-
   parseHTML() {
     return [{
       tag: 'div',

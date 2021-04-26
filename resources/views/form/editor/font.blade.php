@@ -15,20 +15,20 @@
 
       @if($headings)
         @foreach ($headings as $heading)
-          <button class="dropdown-item editor-btn-heading" value="{{ $heading }}">
+          <button type="button" class="dropdown-item editor-btn-heading" value="{{ $heading }}">
             @lang('bs-component::editor.h'.$heading)
           </button>
         @endforeach
         <hr class="dropdown-divider">
       @endif
 
-      <button class="dropdown-item editor-btn-paragraph" value="null">
+      <button type="button" class="dropdown-item editor-btn-paragraph" value="null">
         @lang('bs-component::editor.paragraph')
       </button>
 
       @if($paragraphs)
         @foreach ($paragraphs as $paragraph)
-          <button class="dropdown-item editor-btn-paragraph" value="{{ $paragraph }}">
+          <button type="button" class="dropdown-item editor-btn-paragraph" value="{{ $paragraph }}">
             {{ \Lang::has('bs-component::editor.'.$paragraph) ? __('bs-component::editor.'.$paragraph) : (\Lang::has('editor.'.$paragraph) ? __('editor.'.$paragraph) : $paragraph) }}
           </button>
         @endforeach
@@ -40,11 +40,11 @@
 
         @foreach ($divs as $div)
           @if($div == 'blockquote')
-            <button class="dropdown-item editor-btn-blockquote">
+            <button type="button" class="dropdown-item editor-btn-blockquote">
               @lang('bs-component::editor.blockquote')
             </button>
           @else
-            <button class="dropdown-item editor-btn-div" value="{{ $div }}">
+            <button type="button" class="dropdown-item editor-btn-div" value="{{ $div }}">
               {{ \Lang::has('bs-component::editor.'.$div) ? __('bs-component::editor.'.$div) : (\Lang::has('editor.'.$div) ? __('editor.'.$div) : $div) }}
             </button>
           @endif
