@@ -91,6 +91,15 @@
           margin-bottom: 1rem;
           border-left: 5px solid $secondary;
         }
+
+
+        > table {
+            border: 1px dashed $secondary;
+            width:100%;
+            td {
+                border: 1px dashed $secondary;
+            }
+        }
     }
 
     &.is-invalid > .ProseMirror{
