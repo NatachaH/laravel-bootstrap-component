@@ -67,7 +67,7 @@ class Editor extends FieldTemplate
       $errorRelated = null,
       $errorBag = null,
 
-      $toolbar    = 'font|format|list|link|color|table',
+      $toolbar    = 'font|format|list|link|color',
       $headings   = '1|2|3',
       $paragraphs = 'lead',
       $divs       = 'blockquote',
