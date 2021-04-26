@@ -6,11 +6,11 @@
 
 .editor {
 
-  .ql-toolbar {
+  .editor-toolbar {
 
       margin-bottom: 0.5rem;
 
-      .ql-formats {
+      .btn-group {
 
           border: 1px solid $border-color;
           @include border-radius($btn-border-radius);
@@ -24,9 +24,15 @@
               line-height: 0;
               padding: 0.5rem;
               background: $white;
-              &.ql-active,
+              &.active,
               &:hover {
                 background: $border-color;
+              }
+              &.dropdown-item {
+                padding: 1rem;
+                &.active {
+                  color:inherit;
+                }
               }
           }
 
@@ -36,14 +42,20 @@
 
           .dropdown-menu {
               min-width: auto !important;
+              .dropdown-divider {
+                margin:0;
+              }
+              .btn-group {
+                border:none;
+              }
           }
       }
 
   }
 
-  .ql-container {
+  .editor-container {
 
-    .ql-editor {
+    .ProseMirror {
         background: $input-bg;
         border: $input-border-width solid $input-border-color;
         @include border-radius($input-border-radius);
@@ -66,19 +78,12 @@
           }
         }
 
-        > p:last-child {
+        p:last-child {
             margin-bottom: 0;
         }
 
         // Min height of editor = input height * 2
         min-height: calc((#{$input-height-inner}*2) + 2px);
-
-        // Make all .ql-color- as the bootstrap class .text-
-        @each $color, $value in $theme-colors {
-          .ql-color-#{$color} {
-            color: $value;
-          }
-        }
 
         // Blockquote
         > blockquote {
@@ -86,23 +91,9 @@
           margin-bottom: 1rem;
           border-left: 5px solid $secondary;
         }
-
-        // Highlight
-        > .highlight-block {
-          padding:1rem;
-          margin-bottom: 1rem;
-          background: $gray-200;
-        }
-
-        // Code
-        > pre {
-          background: $gray-100;
-          padding: .5rem .75rem;
-          @include border-radius($input-border-radius);
-        }
     }
 
-    &.is-invalid > .ql-editor{
+    &.is-invalid > .ProseMirror{
         border-color: $form-feedback-invalid-color;
         @if $enable-validation-icons {
           padding-right: $input-height-inner;
@@ -116,18 +107,9 @@
           box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
         }
     }
-
-    .ql-clipboard {
-        left:-100000px;
-        height: 1px;
-        overflow-y: hidden;
-        position: absolute;
-        top:50%;
-    }
-
   }
 
-  .ql-textarea {
+  .editor-textarea {
       display:none;
   }
 
@@ -135,7 +117,7 @@
 
 // Bootstrap icon for keyboard
 kbd {
-  [class^="bi-"], [class*=" bi-"] {
+  [class^="editor-icon"] {
     display: inline-block;
     content: "";
     background-repeat: no-repeat;

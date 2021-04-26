@@ -11,8 +11,8 @@ return [
     |
     */
 
-    'heading'     => 'Heading',
-    'paragraphe'  => 'Paragraphe',
+    'font'        => 'Font',
+    'paragraph'   => 'Paragraphe',
     'lead'        => 'Lead',
     'blockquote'  => 'Quote',
     'highlight'   => 'Highlight',
@@ -32,11 +32,22 @@ return [
     'list-bullet'   => 'List bullet',
 
     'blockquote'  => 'Quote',
-    'code'        => 'Code',
 
     'link' => 'Link',
 
     'color' => 'Text color',
+
+    'table' => [
+      'table'       => 'Table',
+      'create'      => 'Create a table',
+      'delete'      => 'Delete the table',
+      'col-left'    => 'Add column to the left',
+      'col-right'   => 'Add column to the right',
+      'col-delete'  => 'Delete the column',
+      'row-above'   => 'Add row above',
+      'row-below'   => 'Add row below',
+      'row-delete'  => 'Delete the row',
+    ],
 
     'clean' => 'Clean the style',
 

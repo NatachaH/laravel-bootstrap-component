@@ -11,8 +11,8 @@ return [
     |
     */
 
-    'heading'     => 'Titre',
-    'paragraphe'  => 'Paragraphe',
+    'font'        => 'Typographie',
+    'paragraph'   => 'Paragraphe',
     'lead'        => 'Chapô',
     'blockquote'  => 'Citation',
     'highlight'   => 'Mise en avant',
@@ -36,6 +36,18 @@ return [
     'link' => 'Lien',
 
     'color' => 'Couleur',
+
+    'table' => [
+      'table'       => 'Tableau',
+      'create'      => 'Créer un tableau',
+      'delete'      => 'Supprimer le tableau',
+      'col-left'    => 'Ajouter une colonne à gauche',
+      'col-right'   => 'Ajouter une colonne à droite',
+      'col-delete'  => 'Supprimer la colonne',
+      'row-above'   => 'Ajouter une ligne au-dessus',
+      'row-below'   => 'Ajouter une ligne en-dessous',
+      'row-delete'  => 'Supprimer la ligne',
+    ],
 
     'clean' => 'Enlever le style',
 

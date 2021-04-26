@@ -11,8 +11,16 @@ Add this to your packages.json
 ```
 "@popperjs/core": "^2.6.0",
 "bootstrap" : "^5.0.0-beta3",
-"quill" : "^1.3.6",
-"flatpickr" : "^4.6.7"
+"flatpickr" : "^4.6.7",
+"@tiptap/core": "*",
+"@tiptap/starter-kit": "*",
+"@tiptap/extension-text-style": "*",
+"@tiptap/extension-underline": "*",
+"@tiptap/extension-link": "*",
+"@tiptap/extension-table": "*",
+"@tiptap/extension-table-cell": "*",
+"@tiptap/extension-table-header": "*",
+"@tiptap/extension-table-row": "*",
 ```
 
 Publish the config
@@ -533,7 +541,7 @@ You can globaly customize the buttons in the 'bs-component' config file or you c
 
 ## Editor
 
-To use the editor you need to install the JS plugin **QuillJS** !
+To use the editor you need to install the JS plugin **TipTap** !
 
 | Attribute | Type    | Default | Available |
 | --------- | ------- | ------- | --------- |
@@ -542,10 +550,12 @@ To use the editor you need to install the JS plugin **QuillJS** !
 | value     | string  | null    |           |
 | help      | string  | null    |           |
 | required  | boolean | false   |           |
-| toolbar   | string  | header&#124;format&#124;list&#124;link&#124;color | header&#124;format&#124;list&#124;link&#124;color&#124;code |
-| colors    | string  | primary&#124;success&#124;warning&#124;danger | |
-| headers   | string  | lead&#124;1&#124;2&#124;3 | lead&#124;blockquote&#124;highlight&#124;1&#124;2&#124;3&#124;4&#124;5&#124;6 |
+| toolbar   | string  | font&#124;format&#124;list&#124;link&#124;color | font&#124;format&#124;list&#124;link&#124;color&#124;table |
+| headings   | string | 1&#124;2&#124;3 | 1&#124;2&#124;3&#124;4&#124;5&#124;6 |
+| paragraphs | string | lead | free to add any class |
+| divs      | string  | blockquote | free to add any class |
 | formats   | string  | bold&#124;italic&#124;underline&#124;strike |  |
+| colors    | string  | primary&#124;success&#124;warning&#124;danger | free to add any class |
 | error     | string  | null   |           |
 | errorBag  | string  | null   |           |
 
@@ -557,8 +567,10 @@ To use the editor you need to install the JS plugin **QuillJS** !
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```
 
 ```
-<x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="color" colors="primary|success" headers="1|2|3|4|5|6"/>
+<x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="font|format|list|link|color|table" headings="1|2|3|4|5|6" paragraphs="lead|my-class" divs="blockquote|highlight" formats="bold|italic|underline|strike" colors="primary|success|warning|danger"/>
 ```
+
+If you add some paragraphs and divs you can create a language file **editor.php** to display the name of your items.
 
 ## Checkbox all
 
