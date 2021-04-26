@@ -591,7 +591,7 @@ forms.forEach((form, i) => {
     });
 
     // Prevent sent for test
-    e.preventDefault();
+    //e.preventDefault();
 
   };
 });
