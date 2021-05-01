@@ -34,8 +34,11 @@
 
         myObject.rows.forEach((row, i) => {
           row.addEventListener('click',function(event){
-            var action = this.getAttribute('data-url') ?? null;
-            window.location = action;
+            if(!event.target.classList.contains('table-link-disable'))
+            {
+              var action = this.getAttribute('data-url') ?? null;
+              window.location = action;
+            }
           });
         });
   }

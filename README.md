@@ -685,11 +685,13 @@ HTML:
   <thead>
     <tr>
       <th>Title</th>
+      <th>Disabled</th>
     </tr>
   </thead>
   <tbody>
       <tr data-url="my-custom-url">
         <td>My title</td>
+        <td class="table-link-disable">Disabled</td>
       </tr>
   </tbody>
 </table>
