@@ -69,9 +69,10 @@ Available components:
 Available JS:
 
 - [X] Datepicker (Flatpickr)
-- [X] Editor (QuillJS)
+- [X] Editor (TipTap)
 - [X] Checkbox all
 - [X] Toggle switch
+- [X] Toggle select
 - [X] Autocomplete
 - [X] Table link
 
@@ -628,6 +629,41 @@ If you need a checkbox to show/hide some classes:
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-switch');```
+
+## toggle select
+
+If you need a select to show/hide some classes:
+
+```
+<div>
+<x-bs-select id="mySelect" label="Toggle" name="toggle" :options="[]" />
+
+  <div class="toggle-switch-false">
+    Display this div if toggle IS NOT checked
+  </div>
+
+  <div class="toggle-switch-true">
+    Display this div if toggle IS checked
+  </div>
+</div>
+```
+
+*The toggle switch and div to hide/show should be wrap in a parent div*
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-select');```
+
+```
+var selectField = document.getElementById('mySelect');
+var myToggleSelect = new ToggleSelect(selectField, {
+    field        : 'option',
+    parent       : selectField.parentNode.parentNode,
+    onChanged    : function(e){},
+  });
+```
+
+*field could be option or group, depend if you want to trigger by simple option or by option group*
+*parent determine where to look for div to hide/show*
 
 ## Autocomplete
 

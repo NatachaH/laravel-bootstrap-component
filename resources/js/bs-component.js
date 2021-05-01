@@ -13,4 +13,5 @@ require('./_editor');
 require('./_modal-confirm');
 require('./_modal-load');
 require('./_table-link');
+require('./_toggle-select');
 require('./_toggle-switch');
