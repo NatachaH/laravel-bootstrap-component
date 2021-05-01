@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'bs-calendar calendar-automatic '.(!empty($color) ? 'bs-calendar-'.$color : '')]) }} @if($eventsLoadUrl) data-events="{{ $eventsLoadUrl }}" @endif>
+<div {{ $attributes->merge(['class' => 'bs-calendar '.(!empty($color) ? 'bs-calendar-'.$color : '')]) }} @if($eventsLoadUrl) data-events="{{ $eventsLoadUrl }}" @endif>
   <div class="header">
     <div class="month">
       <i class="prev icon-chevron-left" aria-label="@lang('bs-component::calendar.prev-month')" title="@lang('bs-component::calendar.prev-month')"></i>
