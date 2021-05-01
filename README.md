@@ -64,6 +64,7 @@ Available components:
 - [X] Datalist
 - [X] Textarea
 - [X] Color
+- [X] Calendar
 
 Available JS:
 
@@ -288,6 +289,21 @@ Or you can set an array with the custom values (class,label,value) for each butt
 <x-bs-toast class="show" time="11 min ago" img="https://fakeimg.pl/20x20/007bff/fff" closable autohide delay="100">
   Hey this is a toast !
 </x-bs-toast>
+```
+
+## Calendar
+
+| Attribute | Type | Default |
+| --------- | ---- | ------- |
+| color     | string | null |           
+| events-load-url | string | null |
+
+**Require**
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_calendar');```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/calendar';```
+
+```
+<x-bs-calendar color="success" :events-load-url="route('my-route-to-load-events-my-month')" />
 ```
 
 # Form Components

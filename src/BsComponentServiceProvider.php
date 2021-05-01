@@ -60,6 +60,8 @@ class BsComponentServiceProvider extends ServiceProvider
       Blade::component('bs-loading', \Nh\BsComponent\View\Components\Loading::class);
       Blade::component('bs-progress', \Nh\BsComponent\View\Components\Progress::class);
       Blade::component('bs-toast', \Nh\BsComponent\View\Components\Toast::class);
+      Blade::component('bs-calendar', \Nh\BsComponent\View\Components\Calendar::class);
+
 
     }
 }

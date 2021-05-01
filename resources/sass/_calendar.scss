@@ -1,0 +1,98 @@
+/*
+|--------------------------------------------------------------------------
+| Calendar Design
+|--------------------------------------------------------------------------
+|
+| Copyright © 2021 Natacha Herth, design & web development | https://www.natachaherth.ch/
+|
+*/
+
+.bs-calendar {
+
+  border: 1px solid $border-color;
+  background: $white;
+  @include border-radius($border-radius);
+
+  > .header {
+    display: flex;
+    align-items: center;
+    > .month,
+    > .year {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      i {
+        font-size: 1.25rem;
+        line-height: 1.25;
+        padding: .5rem;
+        &:hover {
+          cursor: pointer;
+          background: $border-color;
+        }
+      }
+      span {
+        font-size: $h2-font-size;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  table {
+    margin: 0;
+    > thead > tr > th,
+    > tbody > tr > td {
+      text-align: center;
+      font-weight: normal;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      position: relative;
+    }
+    > thead > tr > th {
+      font-size: $h3-font-size;
+      text-transform: uppercase;
+    }
+    > tbody > tr > td {
+      .day-events {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 0;
+        > span {
+          display: block;
+          width: 8px;
+          height: 8px;
+          margin: 0 2px;
+        }
+      }
+    }
+  }
+
+  @each $color, $value in $theme-colors {
+    &.bs-calendar-#{$color} {
+        > .header {
+          background: $value;
+          color:$white;
+          i:hover {
+            background: darken($value, 25%);
+          }
+        }
+        table {
+          > thead > tr > th {
+            border-bottom: 1px solid $border-color;
+          }
+          > tbody > tr > td {
+            &.day.current {
+              background: $border-color;
+              font-weight: $font-weight-bold;
+            }
+          }
+        }
+    }
+  }
+
+}
