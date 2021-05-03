@@ -71,7 +71,7 @@
   ToggleSelect.prototype.toggle = function(div,value)
   {
       var isVisible = div.classList.contains('toggle-select-'+value);
-      var inputs = div.querySelectorAll('select,textarea,input:not([type="hidden"],[type="checkbox"])');
+      var inputs = div.querySelectorAll('select,textarea,input:not([type="hidden"],[type="checkbox"],[type="radio"])');
 
       // Toggle the visible div
       isVisible ? div.classList.remove('d-none') : div.classList.add('d-none');
