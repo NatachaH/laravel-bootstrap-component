@@ -64,6 +64,7 @@
         font-size: $input-font-size;
         line-height: $input-line-height;
         color: $input-color;
+        white-space: pre-wrap;
         //@include form-control-focus($ignore-warning: true);
 
         &:focus {
