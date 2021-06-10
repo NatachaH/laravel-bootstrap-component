@@ -94,6 +94,7 @@ class Datalist extends FieldTemplate
         $this->after            = $after;
         $this->errorRelated     = $errorRelated;
         $this->errorBag         = $errorBag;
+        $this->autocomplete     = $autocomplete;
 
         $this->cleanName        = array_to_dot($this->name);
         $this->placeholder      = $placeholder;
