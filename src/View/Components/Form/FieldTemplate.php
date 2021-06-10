@@ -88,6 +88,12 @@ class FieldTemplate extends Component
     public $errorBag;
 
     /**
+     * Available autocomplete
+     * @var boolean
+     */
+    public $autocomplete;
+
+    /**
      * Get the view / contents that represent the component.
      *
      * @return \Illuminate\View\View|string

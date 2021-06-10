@@ -9,6 +9,7 @@
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
+  @if(!$autocomplete) autocomplete="no" @endif
   data-mode="{{ $mode }}"
   data-format="{{ $format }}"
   data-min="{{ $min }}"

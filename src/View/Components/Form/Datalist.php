@@ -73,6 +73,7 @@ class Datalist extends FieldTemplate
       $after    = null,
       $errorRelated = null,
       $errorBag = null,
+      $autocomplete = false,
 
       $placeholder = null,
       $options     = [],

@@ -106,6 +106,7 @@ class Datepicker extends FieldTemplate
       $after    = null,
       $errorRelated = null,
       $errorBag = null,
+      $autocomplete = false,
 
       $placeholder = null,
       $size        = null,

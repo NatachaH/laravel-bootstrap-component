@@ -10,6 +10,7 @@
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
+  @if(!$autocomplete) autocomplete="no" @endif
 />
 
 @if($withHidden)

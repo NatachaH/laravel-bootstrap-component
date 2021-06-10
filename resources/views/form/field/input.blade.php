@@ -9,6 +9,7 @@
   {{ $isReadonly ? 'readonly' : '' }}
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
+  @if(!$autocomplete) autocomplete="no" @endif
   @if($type=='number')
     step="{{ $step }}"
     min="{{ $min }}"

@@ -68,6 +68,7 @@ class Input extends FieldTemplate
       $after    = null,
       $errorRelated = null,
       $errorBag = null,
+      $autocomplete = false,
 
       $type = 'text',
       $placeholder = null,

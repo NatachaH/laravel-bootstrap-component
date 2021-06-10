@@ -326,7 +326,9 @@ Here the default attributes:
 | after        | string  | null   |
 | errorRelated | string  | null   |
 | errorBag     | string  | null   |
+| autocomplete | boolean | false   |
 
+*You can enable the browser autocomplete only for the datalist, input and datepicker*
 
 ## Check
 
