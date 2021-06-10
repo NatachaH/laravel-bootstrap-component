@@ -8,7 +8,7 @@
 |
 */
 
-$calendar-with: 280px;
+$calendar-width: 280px;
 $calendar-border-color: $gray-200;
 $calendar-bg: $white;
 $calendar-border-radius: 5px;
@@ -25,7 +25,7 @@ $month-hover-select-arrow-color: 'transparent'; // %23 is for #
 $week-bg: $primary;
 $week-color: darken($primary,25%);
 
-$day-size: calc( #{$calendar-with} / 8);
+$day-size: calc( #{$calendar-width} / 8);
 $day-bg: transparent;
 $day-color: $gray-800;
 $day-border-color: transparent;
