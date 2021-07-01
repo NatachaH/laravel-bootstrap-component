@@ -300,7 +300,8 @@ import DivStyle from './editor/div-style.ts'
   // Export the editor content to the textarea
   Editor.prototype.exportToTextarea = function()
   {
-      this.textarea.value = this.editor.getHTML();
+    var value = this.editor.getHTML() !== '<p></p>' ? this.editor.getHTML() : null;
+    this.textarea.value = value;
   }
 
   /*
