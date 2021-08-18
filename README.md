@@ -569,12 +569,13 @@ To use the editor you need to install the JS plugin **TipTap** !
 | value     | string  | null    |           |
 | help      | string  | null    |           |
 | required  | boolean | false   |           |
-| toolbar   | string  | font&#124;format&#124;list&#124;link&#124;color | font&#124;format&#124;list&#124;link&#124;color&#124;table |
+| toolbar   | string  | font&#124;format&#124;list&#124;link&#124;color&#124; | font&#124;format&#124;list&#124;link&#124;color&#124;table&#124;emoji |
 | headings   | string | 1&#124;2&#124;3 | 1&#124;2&#124;3&#124;4&#124;5&#124;6 |
 | paragraphs | string | lead | free to add any class |
 | divs      | string  | blockquote | free to add any class |
 | formats   | string  | bold&#124;italic&#124;underline&#124;strike |  |
 | colors    | string  | primary&#124;success&#124;warning&#124;danger | free to add any class |
+| emojis    | string  | bi-emoji-smile&#124;bi-emoji-neutral&#124;bi-emoji-frown&#124;bi-emoji-heart-eyes&#124;bi-emoji-wink&#124;bi-hand-thumbs-up&#124;bi-hand-thumbs-down | free to add any class |
 | error     | string  | null   |           |
 | errorBag  | string  | null   |           |
 

@@ -41,6 +41,7 @@ import Color from './editor/color.ts'
 import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
 import DivStyle from './editor/div-style.ts'
+import Emoji from './editor/emoji.ts'
 
 
 (function() {
@@ -69,6 +70,7 @@ import DivStyle from './editor/div-style.ts'
         color:      '.editor-btn-color',
         paragraph:  '.editor-btn-paragraph',
         div:        '.editor-btn-div',
+        emoji:      '.editor-btn-emoji',
         clear:      '.editor-btn-clear',
       };
 
@@ -112,7 +114,8 @@ import DivStyle from './editor/div-style.ts'
             Color,
             ParagraphStyle,
             Div,
-            DivStyle
+            DivStyle,
+            Emoji
           ],
           content: this.textarea.value,
           injectCSS: false,
@@ -148,6 +151,7 @@ import DivStyle from './editor/div-style.ts'
       this.color();
       this.paragraphStyle();
       this.divStyle();
+      this.emoji();
       this.clear();
   }
 
@@ -279,6 +283,7 @@ import DivStyle from './editor/div-style.ts'
           this.editor.isActive({ divStyle: div.getAttribute('value')}) ? div.classList.add('active') : div.classList.remove('active');
         });
       }
+
   }
 
   // Set current font value
@@ -551,6 +556,23 @@ import DivStyle from './editor/div-style.ts'
               } else {
                 editor.chain().focus().setDiv().setDivStyle(value).run();
               }
+          });
+        });
+      }
+  }
+
+  // Emoji
+  Editor.prototype.emoji = function()
+  {
+      var module = this;
+      var editor = this.editor;
+      var btns = this.toolbar.querySelectorAll(this.buttons.emoji);
+      if(btns)
+      {
+        btns.forEach((btn, i) => {
+          btn.addEventListener('click', (event) => {
+              var value = module.getButtonValue(event);
+              editor.chain().focus().setEmoji(value).run();
           });
         });
       }

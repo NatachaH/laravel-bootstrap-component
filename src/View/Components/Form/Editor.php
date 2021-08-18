@@ -50,6 +50,13 @@ class Editor extends FieldTemplate
     public $colors;
 
     /**
+     * Toolbar emojis available
+     *
+     * @var array
+     */
+    public $emojis;
+
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -72,7 +79,9 @@ class Editor extends FieldTemplate
       $paragraphs = 'lead',
       $divs       = 'blockquote',
       $formats    = 'bold|italic|underline|strike',
-      $colors     = 'primary|success|warning|danger'
+      $colors     = 'primary|success|warning|danger',
+      $emojis     = 'bi-emoji-smile|bi-emoji-neutral|bi-emoji-frown|bi-emoji-heart-eyes|bi-emoji-wink|bi-hand-thumbs-up|bi-hand-thumbs-down'
+
     )
     {
         $this->label        = $label;
@@ -90,6 +99,8 @@ class Editor extends FieldTemplate
         $this->divs         = !empty($divs) ? explode('|', $divs) : null;
         $this->formats      = explode('|', $formats);
         $this->colors       = explode('|', $colors);
+        $this->emojis       = explode('|', $emojis);
+        
     }
 
     /**

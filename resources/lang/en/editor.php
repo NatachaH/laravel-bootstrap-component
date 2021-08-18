@@ -37,6 +37,8 @@ return [
 
     'color' => 'Text color',
 
+    'emoji' => 'Emoji',
+
     'table' => [
       'table'       => 'Table',
       'create'      => 'Create a table',
