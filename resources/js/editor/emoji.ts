@@ -1,6 +1,7 @@
 import {Command,Node,mergeAttributes} from '@tiptap/core'
 
 const Emoji = Node.create({
+
   name: 'emoji',
 
   defaultOptions: {
@@ -18,23 +19,24 @@ const Emoji = Node.create({
   addAttributes() {
     return {
       class: {
-        default: null
+        default: 'emoji'
       }
     }
   },
 
   parseHTML() {
+
     return [{
-      tag: 'i',
+      tag: 'span',
       getAttrs: element => {
-        const hasClasses = element.hasAttribute('class')
+        const hasClasses = element.hasAttribute('class') && element.classList.contains('emoji');
         return hasClasses ? {} : false;
       },
     }]
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    return ['i', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   },
 
   addCommands() {
@@ -49,7 +51,7 @@ const Emoji = Node.create({
         commands.insertContent({
           type: 'emoji',
           attrs: {
-            class: value
+            class: 'emoji ' + value
           }
         });
 

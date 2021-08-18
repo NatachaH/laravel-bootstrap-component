@@ -13,7 +13,7 @@
             @includeWhen(in_array('list',$toolbar), 'bs-component::form.editor.list')
             @includeWhen(in_array('link',$toolbar), 'bs-component::form.editor.link')
             @includeWhen(in_array('color',$toolbar), 'bs-component::form.editor.color', ['colors' => $colors])
-            @includeWhen(in_array('emoji',$emoji), 'bs-component::form.editor.emoji', ['emojis' => $emojis])
+            @includeWhen(in_array('emoji',$toolbar), 'bs-component::form.editor.emoji', ['emojis' => $emojis])
             @includeWhen(in_array('table',$toolbar), 'bs-component::form.editor.table')
 
             <div class="btn-group" role="group">

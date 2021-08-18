@@ -20,8 +20,16 @@ const Color = Mark.create({
       {
         tag: 'span',
         getAttrs: element => {
-          const hasClasses = element.hasAttribute('class')
-          return hasClasses ? {} : false;
+          const hasClasses = element.hasAttribute('class');
+          var hasColorClass = false;
+
+          element.classList.forEach(el => {
+            if(el.match('^text-')) {
+              hasColorClass = true;
+            };
+          });
+
+          return hasClasses && hasColorClass ? {} : false;
         },
       },
     ]
