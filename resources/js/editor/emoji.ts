@@ -27,7 +27,7 @@ const Emoji = Node.create({
   parseHTML() {
 
     return [{
-      tag: 'span',
+      tag: 'i',
       getAttrs: element => {
         const hasClasses = element.hasAttribute('class') && element.classList.contains('emoji');
         return hasClasses ? {} : false;
@@ -36,7 +36,7 @@ const Emoji = Node.create({
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    return ['i', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   },
 
   addCommands() {

@@ -19,7 +19,7 @@ import HardBreak from '@tiptap/extension-hard-break'
 
 // Functionnalities
 import Bold from '@tiptap/extension-bold'
-import Italic from '@tiptap/extension-italic'
+//import Italic from '@tiptap/extension-italic'
 import Underline from '@tiptap/extension-underline'
 import Strike from '@tiptap/extension-strike'
 import Heading from '@tiptap/extension-heading'
@@ -40,6 +40,7 @@ import Color from './editor/color.ts'
 import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
 import DivStyle from './editor/div-style.ts'
+import Italic from './editor/italic.ts'
 import Emoji from './editor/emoji.ts'
 
 
