@@ -282,6 +282,21 @@ import Emoji from './editor/emoji.ts'
         });
       }
 
+      // Emoji
+      var emoji = this.toolbar.querySelector('.editor-dropdown-emoji');
+      if(emoji)
+      {
+        this.editor.isActive('emoji') ? emoji.classList.add('active') : emoji.classList.remove('active');
+      }
+      var emojis = this.toolbar.querySelectorAll(this.buttons.emoji);
+      if(emojis)
+      {
+        emojis.forEach((emoji, i) => {
+          console.log(emoji);
+          this.editor.isActive({ class: 'emoji '+emoji.getAttribute('value')}) ? emoji.classList.add('active') : emoji.classList.remove('active');
+        });
+      }
+
   }
 
   // Set current font value
