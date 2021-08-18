@@ -36,7 +36,6 @@ import Gapcursor from '@tiptap/extension-gapcursor'
 
 // Customs
 import CustomParagraph from './editor/paragraph.ts'
-import Span from './editor/span.ts'
 import Color from './editor/color.ts'
 import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
@@ -93,7 +92,6 @@ import Emoji from './editor/emoji.ts'
             Document,
             CustomParagraph,
             Text,
-            Span,
             History,
             HardBreak,
             Bold,
@@ -251,13 +249,13 @@ import Emoji from './editor/emoji.ts'
       var color = this.toolbar.querySelector('.editor-dropdown-color');
       if(color)
       {
-        this.editor.isActive('textStyle') ? color.classList.add('active') : color.classList.remove('active');
+        this.editor.isActive('color') ? color.classList.add('active') : color.classList.remove('active');
       }
       var colors = this.toolbar.querySelectorAll(this.buttons.color);
       if(colors)
       {
         colors.forEach((color, i) => {
-          this.editor.isActive({ color: color.getAttribute('value')}) ? color.classList.add('active') : color.classList.remove('active');
+          this.editor.isActive({ class: color.getAttribute('value')}) ? color.classList.add('active') : color.classList.remove('active');
         });
       }
 

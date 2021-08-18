@@ -4,7 +4,7 @@ const Color = Mark.create({
   name: 'color',
 
   defaultOptions: {
-    types: ['textStyle'],
+    HTMLAttributes: {},
   },
 
   addAttributes() {
@@ -39,33 +39,16 @@ const Color = Mark.create({
     return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   },
 
-  addGlobalAttributes() {
-    return [
-      {
-        types: this.options.types,
-        attributes: {
-          color: {
-            default: null,
-            renderHTML: attributes => ({
-              class: attributes.color,
-            })
-          },
-        },
-      },
-    ]
-  },
-
-
   addCommands() {
     return {
-      setColor: color => ({ commands }) => {
-        return commands.setMark('textStyle', {color});
+      setColor: value => ({ commands }) => {
+        return commands.setMark('color', {class:value});
       },
-      toggleColor: color => ({ commands }) => {
-        return commands.toggleMark('textStyle',{color});
+      toggleColor: value => ({ commands }) => {
+        return commands.toggleMark('color',{class:value});
       },
       unsetColor: () => ({ commands }) => {
-        return commands.unsetMark('textStyle');
+        return commands.unsetMark('color');
       },
     }
   },
