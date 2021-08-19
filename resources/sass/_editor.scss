@@ -41,13 +41,20 @@
           }
 
           .dropdown-menu {
-              min-width: auto !important;
+              min-width: 8.5rem;
+              overflow: hidden;
               .dropdown-divider {
                 margin:0;
                 opacity: 1;
               }
               .btn-group {
                 border:none;
+              }
+              .row {
+                margin: 0;
+                .col.btn {
+                  border-radius: 0;
+                }
               }
           }
       }

@@ -9,10 +9,10 @@
 
     <div class="dropdown-menu p-0" >
 
-      <div class="btn-group">
+      <div class="row row-cols-4">
 
         @foreach ($colors as $color)
-            <button type="button" class="btn editor-btn-color" value="text-{{ $color }}">
+            <button type="button" class="col btn editor-btn-color" value="text-{{ $color }}">
               <svg class="editor-icon text-{{ $color }}" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <rect width="16" height="16" rx="2"/>
               </svg>

@@ -7,12 +7,12 @@
       </svg>
     </button>
 
-    <div class="dropdown-menu p-0" >
+    <div class="dropdown-menu p-0">
 
-      <div class="btn-group">
+      <div class="row row-cols-4">
 
         @foreach ($emojis as $emoji)
-            <button type="button" class="btn editor-btn-emoji" value="{{ $emoji }}">
+            <button type="button" class="col btn editor-btn-emoji" value="{{ $emoji }}">
               <i class="{{ $emoji }}"></i>
             </button>
         @endforeach
