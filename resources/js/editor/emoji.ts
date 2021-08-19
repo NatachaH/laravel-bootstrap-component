@@ -16,6 +16,8 @@ const Emoji = Node.create({
 
   selectable: true,
 
+  atom: true,
+
   defining: true,
 
   addAttributes() {
