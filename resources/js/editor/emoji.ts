@@ -47,7 +47,7 @@ const Emoji = Node.create({
 
       setEmoji: (value) => ({ commands,state }) => {
 
-        var position = state.selection.anchor + 3;
+        var position = state.selection.anchor + 4;
 
         commands.insertContent(' ');
 
