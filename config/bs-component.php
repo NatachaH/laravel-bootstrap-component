@@ -60,4 +60,25 @@ return [
       ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Editor
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the defualt values for the editor
+    |
+    */
+
+    'editor' => [
+      'toolbar'    => ['font','format','list','link','color'],
+      'headings'   => ['1','2','3'],
+      'paragraphs' => ['lead'],
+      'divs'       => ['blockquote'],
+      'formats'    => ['bold','italic','underline','strike'],
+      'colors'     => ['primary','success','warning','danger'],
+      'emojis'     => ['bi-emoji-smile','bi-emoji-neutral','bi-emoji-frown','bi-emoji-heart-eyes','bi-emoji-wink','bi-hand-thumbs-up','bi-hand-thumbs-down']
+    ],
+
+
+
 ];

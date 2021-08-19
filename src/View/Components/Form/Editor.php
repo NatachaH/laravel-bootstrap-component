@@ -74,13 +74,13 @@ class Editor extends FieldTemplate
       $errorRelated = null,
       $errorBag = null,
 
-      $toolbar    = 'font|format|list|link|color',
-      $headings   = '1|2|3',
-      $paragraphs = 'lead',
-      $divs       = 'blockquote',
-      $formats    = 'bold|italic|underline|strike',
-      $colors     = 'primary|success|warning|danger',
-      $emojis     = 'bi-emoji-smile|bi-emoji-neutral|bi-emoji-frown|bi-emoji-heart-eyes|bi-emoji-wink|bi-hand-thumbs-up|bi-hand-thumbs-down'
+      $toolbar    = null,
+      $headings   = null,
+      $paragraphs = null,
+      $divs       = null,
+      $formats    = null,
+      $colors     = null,
+      $emojis     = null
 
     )
     {
@@ -93,14 +93,14 @@ class Editor extends FieldTemplate
         $this->errorBag     = $errorBag;
 
         $this->cleanName    = array_to_dot($this->name);
-        $this->toolbar      = explode('|', $toolbar);
-        $this->headings     = !empty($headings) ? explode('|', $headings) : null;
-        $this->paragraphs   = !empty($paragraphs) ? explode('|', $paragraphs) : null;
-        $this->divs         = !empty($divs) ? explode('|', $divs) : null;
-        $this->formats      = explode('|', $formats);
-        $this->colors       = explode('|', $colors);
-        $this->emojis       = explode('|', $emojis);
-        
+        $this->toolbar      = is_null($toolbar) ? config('bs-component.editor.toolbar') : explode('|', $toolbar);
+        $this->headings     = is_null($headings) ? config('bs-component.editor.headings') : explode('|', $headings);
+        $this->paragraphs   = is_null($paragraphs) ? config('bs-component.editor.paragraphs') : explode('|', $paragraphs);
+        $this->divs         = is_null($divs) ? config('bs-component.editor.divs') : explode('|', $divs);
+        $this->formats      = is_null($formats) ? config('bs-component.editor.formats') : explode('|', $formats);
+        $this->colors       = is_null($colors) ? config('bs-component.editor.colors') : explode('|', $colors);
+        $this->emojis       = is_null($emojis) ? config('bs-component.editor.emojis') : explode('|', $emojis);
+
     }
 
     /**

@@ -584,6 +584,8 @@ To use the editor you need to install the JS plugin **TipTap** !
 *The colors classes will start by .text-*
 *The emojis will have a .emoji class*
 
+*For global customization of the options, you can update the config file in config.bs-component.editor*
+
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_editor');```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```
