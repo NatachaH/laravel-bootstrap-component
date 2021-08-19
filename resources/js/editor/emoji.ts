@@ -8,13 +8,15 @@ const Emoji = Node.create({
     HTMLAttributes: {},
   },
 
+  content: 'text*',
+
   group: 'inline',
 
   inline: true,
 
   selectable: true,
 
-  atom: false,
+  defining: true,
 
   addAttributes() {
     return {
@@ -25,7 +27,6 @@ const Emoji = Node.create({
   },
 
   parseHTML() {
-
     return [{
       tag: 'i',
       getAttrs: element => {

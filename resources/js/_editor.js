@@ -293,7 +293,6 @@ import Emoji from './editor/emoji.ts'
       if(emojis)
       {
         emojis.forEach((emoji, i) => {
-          console.log(emoji);
           this.editor.isActive({ class: 'emoji '+emoji.getAttribute('value')}) ? emoji.classList.add('active') : emoji.classList.remove('active');
         });
       }
