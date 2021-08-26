@@ -802,7 +802,7 @@ If you need to make a row of a table as a link:
 HTML:
 
 ```
-<table id="myTableLink" class="table">
+<table id="myTableLink" class="table table-link">
   <thead>
     <tr>
       <th>Title</th>
@@ -819,7 +819,7 @@ HTML:
 
 ```
 
-JS:
+By default the class .table-link make a new TableLink. But you can customize it in JS:
 
 ```
 var table = document.getElementById('#myTableLink');
