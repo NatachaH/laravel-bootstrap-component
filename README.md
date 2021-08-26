@@ -294,6 +294,8 @@ Or you can set an array with the custom values (class,label,value) for each butt
 
 ## Calendar
 
+Display a calendar with events that are loaded per month
+
 | Attribute | Type | Default |
 | --------- | ---- | ------- |
 | color     | string | null |           
@@ -304,8 +306,61 @@ Or you can set an array with the custom values (class,label,value) for each butt
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/calendar';```
 
 ```
-<x-bs-calendar color="success" :events-load-url="route('my-route-to-load-events-my-month')" />
+<x-bs-calendar class="calendar-automatic" color="success" :events-load-url="route('my-route-to-load-events-per-month')" />
 ```
+
+In the controller you must return a JSON with the events:
+
+```
+/**
+ * Get the events for the calendar
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return Illuminate\Database\Eloquent\Collection
+ */
+public function loadEventPerMonth(Request $request)
+{
+  // Define the events for the month
+  $events[] = [
+    'title'   => 'My event',
+    'content' => 'The description',
+    'color'   => 'primary',
+    'days'    => [14,15,16]
+  ];
+
+  $events[] = [
+    'title'   => 'Another event',
+    'content' => 'The description',
+    'color'   => 'danger',
+    'days'    => [28]
+  ];
+
+  // Retune the JSON
+  return $events;
+}
+```
+
+This is an exemple for add JS interaction on days and events:
+
+```
+new Calendar(document.querySelector('.calendar-automatic),{
+  onDayCreated: function(object,date){
+    object.addEventListener('click', function(e){
+         // Do something when day is created (For exemple add a modal interaction on click on the day)
+         // Check if there is any event : this.classList.contains('day-with-events')
+    });
+  },
+  onEventCreated: function(object,event){
+    // Do something when event is created (For exemple add a popover interaction on the event)
+    new Bootstrap.Popover(object,{
+      trigger: 'hover',
+      content: object.getAttribute('data-content'),
+      html: true
+    })
+  },
+});
+```
+
 
 # Form Components
 

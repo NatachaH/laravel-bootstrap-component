@@ -22,17 +22,21 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      i {
-        font-size: 1.25rem;
-        line-height: 1.25;
+      button {
+        background: transparent;
+        border:none;
+        //line-height: $line-height-lg;
         padding: .5rem;
+        > svg {
+          vertical-align: text-top;
+        }
         &:hover {
           cursor: pointer;
           background: $border-color;
         }
       }
       span {
-        font-size: $h2-font-size;
+        font-size: $font-size-lg;
         text-transform: uppercase;
       }
     }
@@ -50,7 +54,7 @@
       position: relative;
     }
     > thead > tr > th {
-      font-size: $h3-font-size;
+      font-size: $font-size-base;
       text-transform: uppercase;
     }
     > tbody > tr > td {
@@ -77,8 +81,11 @@
         > .header {
           background: $value;
           color:$white;
-          i:hover {
-            background: darken($value, 25%);
+          button {
+            color:$white;
+            &:hover {
+              background: darken($value, 25%);
+            }
           }
         }
         table {

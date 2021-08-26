@@ -7,14 +7,14 @@ use Illuminate\View\Component;
 class Calendar extends Component
 {
     /**
-     * The color of the alert.
+     * The color of the calendar.
      *
      * @var string
      */
     public $color;
 
     /**
-     * Has a close button.
+     * Url for loading events per month.
      *
      * @var boolean
      */
