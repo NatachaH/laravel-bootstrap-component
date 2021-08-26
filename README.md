@@ -651,6 +651,13 @@ To use the editor you need to install the JS plugin **TipTap** !
 
 If you add some paragraphs and divs you can create a language file **editor.php** to display the name of your items.
 
+For the emojis you can use the Bootstrap icon:
+
+```
+npm i bootstrap-icons
+```
+
+
 ## Checkbox all
 
 If you need a checkbox to check all his children:
