@@ -9,11 +9,11 @@
   this.ToggleSelect = function(el,options = null) {
 
       // Variables
-      this.select = el;
+      this.select = el.tagName == 'SELECT' ? el : el.querySelector('select');
 
       var defaults = {
         field        : 'option', // Could be option or group label
-        parent       : el.parentNode.parentNode,
+        parent       : this.select.parentNode.parentNode,
         onChanged    : function(e){}, // Callback function
       };
 

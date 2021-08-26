@@ -701,23 +701,42 @@ If you need a checkbox to show/hide some classes:
 
 ## toggle select
 
-If you need a select to show/hide some classes:
+If you need a select to toggle some elements:
 
 ```
 <div>
-<x-bs-select id="mySelect" label="Toggle" name="toggle" :options="[]" />
-
-  <div class="toggle-switch-false">
-    Display this div if toggle IS NOT checked
+    <x-bs-select class="mySelect toggle-select" label="Toggle" name="toggle" :options="['aaa' => 'Aaa','bbb'=> 'Bbb']" />
+    <div class="toggle-select-aaa">
+      Display this div if select option is Aaa
+    </div>
+    <div class="toggle-select-bbb">
+      Display this div if select option is Bbb
+    </div>
   </div>
+```
 
-  <div class="toggle-switch-true">
-    Display this div if toggle IS checked
+*The toggle switch and div to hide/show should be wrap in a parent div*
+
+You can also toggle elements via the group label:
+
+```
+<div>
+  <x-bs-select id="customToggleSelect" class="mySelect" label="Toggle" name="toggle" :options="['first' => ['a' => 'A','b' => 'B'],'second'=> ['c' => 'C','d' => 'D']]" />
+  <div class="toggle-select-first">
+    Display this div if select option group is first
+  </div>
+  <div class="toggle-select-second">
+    Display this div if select option group is second
   </div>
 </div>
 ```
 
-*The toggle switch and div to hide/show should be wrap in a parent div*
+```
+var myCustomSelect = new ToggleSelect(document.querySelector('#customToggleSelect'),{
+  field: 'group', // Otherwise set to 'option'
+  onChanged    : function(e){}
+});
+```
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-select');```
