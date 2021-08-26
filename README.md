@@ -11,7 +11,7 @@ Add this to your packages.json
 ```
 "@popperjs/core": "^2.6.0",
 "bootstrap" : "^5.0.0-beta3",
-"flatpickr" : "^4.6.7",
+"flatpickr" : "4.6.7",
 "@tiptap/core": "*",
 "@tiptap/starter-kit": "*",
 "@tiptap/extension-text-style": "*",
@@ -473,7 +473,7 @@ Here the default attributes:
 | options   | array | []     |
 
 ```
-<x-bs-color :label="Choose a color" name="color" :options="['primary' => 'Primary','secondary' => 'Secondary','success' => 'Success']" help="Help message" required disabled />
+<x-bs-color label="Choose a color" name="color" :options="['primary' => 'Primary','secondary' => 'Secondary','success' => 'Success']" help="Help message" required disabled />
 ```
 
 # JS Component
