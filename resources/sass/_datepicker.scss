@@ -703,6 +703,9 @@
     border: $input-border-width solid $input-border-color;
     font-size: 1.5rem;
     line-height: 1.5rem;
+    > svg {
+      vertical-align: baseline;
+    }
   }
 
 
@@ -720,6 +723,9 @@
 
     > .btn-clear {
         display: block;
+        &:hover {
+          background: $input-border-color;
+        }
     }
   }
 

@@ -11,7 +11,7 @@ Add this to your packages.json
 ```
 "@popperjs/core": "^2.6.0",
 "bootstrap" : "^5.0.0-beta3",
-"flatpickr" : "4.6.7",
+"flatpickr" : "^4.6.7",
 "@tiptap/core": "*",
 "@tiptap/starter-kit": "*",
 "@tiptap/extension-text-style": "*",
