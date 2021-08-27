@@ -764,7 +764,7 @@ HTML:
 
 ```
 <div>
-<x-bs-datalist class="autocomplete mycustomautocomplete" label="My autocomplete" name="myautocomplete" with-hidden hidden-name="id" />
+<x-bs-datalist class="autocomplete mycustomautocomplete" label="My autocomplete" name="myautocomplete" with-hidden hidden-name="id" data-url="my_url_for_autocomplete" data-field="name" data-hidden-field="id"/>
 <x-bs-input label="Hidden field" name="hiddenField" />
 <x-bs-input label="Other field" name="otherField" />
 </div>

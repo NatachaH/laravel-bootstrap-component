@@ -6,7 +6,7 @@
 
 require('./_calendar');
 require('./_checkbox-all');
-require('./_datalist');
+require('./_autocomplete');
 require('./_datepicker');
 require('./_dynamic');
 require('./_editor');
