@@ -1,6 +1,6 @@
 /*
 |--------------------------------------------------------------------------
-| Datalist - Script
+| Autocomplete - Script
 |--------------------------------------------------------------------------
 |
 | Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
@@ -9,7 +9,7 @@
 
 (function() {
 
-  this.Datalist = function(el,options = null) {
+  this.Autocomplete = function(el,options = null) {
 
       this.parent = el;
       this.input  = el.querySelector('input');
@@ -34,7 +34,7 @@
 
   };
 
-  Datalist.prototype.setOption = function(source, properties)
+  Autocomplete.prototype.setOption = function(source, properties)
   {
       var property;
       for (property in properties) {
@@ -45,7 +45,7 @@
       return source;
   }
 
-  Datalist.prototype.init = function()
+  Autocomplete.prototype.init = function()
   {
       var myObject = this;
 
@@ -80,7 +80,7 @@
       });
   }
 
-  Datalist.prototype.load = function(e)
+  Autocomplete.prototype.load = function(e)
   {
         axios({
             method: 'post',
@@ -96,7 +96,7 @@
         }).catch((error)=>{});
   }
 
-  Datalist.prototype.createOptions = function(e)
+  Autocomplete.prototype.createOptions = function(e)
   {
         var myObject = this;
 
@@ -116,8 +116,8 @@
 }());
 
 
-// Init the Datalist to each .datalist
-var datalists = document.querySelectorAll('.datalist');
-Array.prototype.forEach.call(datalists, function(el, i) {
-    var datalist = new Datalist(el);
+// Init the Autocomplete to each .datalist
+var autocompletes = document.querySelectorAll('.autocomplete');
+Array.prototype.forEach.call(autocompletes, function(el, i) {
+    var autocomplete = new Autocomplete(el);
 });

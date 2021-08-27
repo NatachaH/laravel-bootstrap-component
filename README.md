@@ -676,7 +676,7 @@ If you need a checkbox to check all his children:
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_checkbox-all');```
 
-## toggle switch
+## Toggle switch
 
 If you need a checkbox to show/hide some classes:
 
@@ -699,7 +699,7 @@ If you need a checkbox to show/hide some classes:
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-switch');```
 
-## toggle select
+## Toggle select
 
 If you need a select to toggle some elements:
 
@@ -758,19 +758,18 @@ var myToggleSelect = new ToggleSelect(selectField, {
 If you need an autocomplete datalist:
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_datalist');```
+- JS: ```require('../../vendor/nh/bs-component/resources/js/_autocomplete');```
 
 HTML:
 
 ```
 <div>
-<x-bs-datalist class="mydatalist" label="My autocomplete" name="myinput" :options="[]" with-hidden hidden-name="id" />
+<x-bs-datalist class="autocomplete mycustomautocomplete" label="My autocomplete" name="myautocomplete" with-hidden hidden-name="id" />
 <x-bs-input label="Hidden field" name="hiddenField" />
 <x-bs-input label="Other field" name="otherField" />
 </div>
 
-<datalist id="myCustomDatalist">
-</datalist>
+<datalist id="myCustomDatalist"></datalist>
 ```
 
 JS:
@@ -789,9 +788,9 @@ JS:
 
 
 ```
-var datalists = document.querySelectorAll('.mydatalist');
-Array.prototype.forEach.call(datalists, function(el, i) {
-    var datalist = new Datalist(el,{
+var autocompletes = document.querySelectorAll('.mycustomautocomplete');
+Array.prototype.forEach.call(autocompletes, function(el, i) {
+    var autocomplete = new Autocomplete(el,{
       url: 'myurlstring',
       field: 'name',
       datalist: document.querySelector('#myCustomDatalist'),
