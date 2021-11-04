@@ -18,13 +18,12 @@ const DivStyle = Node.create({
               if (!attributes.divStyle) {
                 return {}
               }
-
               return {
-                class: attributes.divStyle,
+                class: attributes.divStyle.class,
               }
             },
             parseHTML: element => ({
-              divStyle: element.getAttribute('class').replace(/['"]+/g, ''),
+              class: element.getAttribute('class').replace(/['"]+/g, ''),
             }),
           },
         },
