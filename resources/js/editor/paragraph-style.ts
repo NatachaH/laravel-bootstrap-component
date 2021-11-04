@@ -34,7 +34,7 @@ const ParagraphStyle = Node.create({
   addCommands() {
     return {
       setParagraphStyle: (style) => ({ commands }) => {
-        return this.options.types.every(type => commands.updateAttributes(type, { paragraphStyle: style }))
+        return this.options.types.every(type => commands.updateAttributes(type, { paragraphStyle: {class:style} }))
       },
       unsetParagraphStyle: () => ({ commands }) => {
         return this.options.types.every(type => commands.resetAttributes(type, 'paragraphStyle'))

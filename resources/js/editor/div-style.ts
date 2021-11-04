@@ -34,7 +34,7 @@ const DivStyle = Node.create({
   addCommands() {
     return {
       setDivStyle: (style) => ({ commands }) => {
-        return this.options.types.every(type => commands.updateAttributes(type, { divStyle: style }))
+        return this.options.types.every(type => commands.updateAttributes(type, { divStyle: {class:style} }))
       },
       unsetDivStyle: () => ({ commands }) => {
         return this.options.types.every(type => commands.resetAttributes(type, 'divStyle'))
