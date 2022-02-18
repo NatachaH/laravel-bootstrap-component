@@ -34,7 +34,6 @@ import Gapcursor from '@tiptap/extension-gapcursor'
 // Customs
 import CustomParagraph from './editor/paragraph.ts'
 import Color from './editor/color.ts'
-import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
 import Italic from './editor/italic.ts'
 import Emoji from './editor/emoji.ts'
