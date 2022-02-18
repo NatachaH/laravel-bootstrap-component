@@ -72,7 +72,7 @@ return [
     'editor' => [
       'toolbar'    => ['font','div','format','list','link','color'],
       'headings'   => ['1','2','3'],
-      'paragraphs' => ['lead'],
+      'paragraphs' => ['lead','p'],
       'divs'       => ['blockquote'],
       'formats'    => ['bold','italic','underline','strike'],
       'colors'     => ['primary','success','warning','danger'],
