@@ -70,7 +70,7 @@ return [
     */
 
     'editor' => [
-      'toolbar'    => ['font','format','list','link','color'],
+      'toolbar'    => ['font','div','format','list','link','color'],
       'headings'   => ['1','2','3'],
       'paragraphs' => ['lead'],
       'divs'       => ['blockquote'],

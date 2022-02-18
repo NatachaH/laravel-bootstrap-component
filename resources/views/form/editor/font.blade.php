@@ -1,6 +1,6 @@
 <div class="btn-group editor-font" role="group">
 
-    <button type="button" class="btn dropdown-toggle editor-dropdown-font" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="@lang('bs-component::editor.heading')" title="@lang('bs-component::editor.font')">
+    <button type="button" class="btn dropdown-toggle editor-dropdown-font" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="@lang('bs-component::editor.font')" title="@lang('bs-component::editor.font')">
       <svg class="editor-icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M14 9a1 1 0 100-2 1 1 0 000 2zm0 1a2 2 0 100-4 2 2 0 000 4zM2 9a1 1 0 100-2 1 1 0 000 2zm0 1a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
         <path fill-rule="evenodd" d="M1.5 2.5A1.5 1.5 0 013 1h10a1.5 1.5 0 011.5 1.5v4h-1v-4A.5.5 0 0013 2H3a.5.5 0 00-.5.5v4h-1v-4zm1 7v4a.5.5 0 00.5.5h10a.5.5 0 00.5-.5v-4h1v4A1.5 1.5 0 0113 15H3a1.5 1.5 0 01-1.5-1.5v-4h1z" clip-rule="evenodd"/>
@@ -31,23 +31,6 @@
           <button type="button" class="dropdown-item editor-btn-paragraph" value="{{ $paragraph }}">
             {{ \Lang::has('bs-component::editor.'.$paragraph) ? __('bs-component::editor.'.$paragraph) : (\Lang::has('editor.'.$paragraph) ? __('editor.'.$paragraph) : $paragraph) }}
           </button>
-        @endforeach
-      @endif
-
-      @if($divs)
-
-        <hr class="dropdown-divider">
-
-        @foreach ($divs as $div)
-          @if($div == 'blockquote')
-            <button type="button" class="dropdown-item editor-btn-blockquote">
-              @lang('bs-component::editor.blockquote')
-            </button>
-          @else
-            <button type="button" class="dropdown-item editor-btn-div" value="{{ $div }}">
-              {{ \Lang::has('bs-component::editor.'.$div) ? __('bs-component::editor.'.$div) : (\Lang::has('editor.'.$div) ? __('editor.'.$div) : $div) }}
-            </button>
-          @endif
         @endforeach
       @endif
 

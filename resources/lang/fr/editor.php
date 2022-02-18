@@ -12,6 +12,7 @@ return [
     */
 
     'font'        => 'Typographie',
+    'div'         => 'Bloc',
     'paragraph'   => 'Paragraphe',
     'lead'        => 'Chapô',
     'blockquote'  => 'Citation',

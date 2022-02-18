@@ -12,6 +12,7 @@ return [
     */
 
     'font'        => 'Font',
+    'div'         => 'Block',
     'paragraph'   => 'Paragraphe',
     'lead'        => 'Lead',
     'blockquote'  => 'Quote',

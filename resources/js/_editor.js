@@ -11,15 +11,12 @@
 // Base
 import { Editor as TipTapEditor } from '@tiptap/core'
 import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
-import TextStyle from '@tiptap/extension-text-style'
 import History from '@tiptap/extension-history'
 import HardBreak from '@tiptap/extension-hard-break'
 
 // Functionnalities
 import Bold from '@tiptap/extension-bold'
-//import Italic from '@tiptap/extension-italic'
 import Underline from '@tiptap/extension-underline'
 import Strike from '@tiptap/extension-strike'
 import Heading from '@tiptap/extension-heading'
@@ -39,7 +36,6 @@ import CustomParagraph from './editor/paragraph.ts'
 import Color from './editor/color.ts'
 import ParagraphStyle from './editor/paragraph-style.ts'
 import Div from './editor/div.ts'
-import DivStyle from './editor/div-style.ts'
 import Italic from './editor/italic.ts'
 import Emoji from './editor/emoji.ts'
 
@@ -111,9 +107,7 @@ import Emoji from './editor/emoji.ts'
             TableHeader,
             Gapcursor,
             Color,
-            ParagraphStyle,
             Div,
-            DivStyle,
             Emoji
           ],
           content: this.textarea.value,
@@ -128,6 +122,7 @@ import Emoji from './editor/emoji.ts'
           onSelectionUpdate({ editor }) {
             module.toggleButtonsState();
             module.setCurrentFont();
+            module.setCurrentDiv();
           },
 
       });
@@ -148,8 +143,8 @@ import Emoji from './editor/emoji.ts'
       this.link();
       this.table();
       this.color();
-      this.paragraphStyle();
-      this.divStyle();
+      this.paragraph();
+      this.div();
       this.emoji();
       this.clear();
   }
@@ -267,9 +262,9 @@ import Emoji from './editor/emoji.ts'
         paragraphs.forEach((paragraph, i) => {
           if(paragraph.getAttribute('value') == 'null')
           {
-            this.editor.isActive({ paragraphStyle: null}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
+            this.editor.isActive('paragraph',{ class: null}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
           } else {
-            this.editor.isActive({ paragraphStyle: paragraph.getAttribute('value')}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
+            this.editor.isActive('paragraph',{ class: paragraph.getAttribute('value')}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
           }
         });
       }
@@ -279,7 +274,7 @@ import Emoji from './editor/emoji.ts'
       if(divs)
       {
         divs.forEach((div, i) => {
-          this.editor.isActive({ divStyle: div.getAttribute('value')}) ? div.classList.add('active') : div.classList.remove('active');
+          this.editor.isActive('div',{ class: div.getAttribute('value')}) ? div.classList.add('active') : div.classList.remove('active');
         });
       }
 
@@ -314,6 +309,23 @@ import Emoji from './editor/emoji.ts'
         }
       }
   }
+
+  // Set current div value
+  Editor.prototype.setCurrentDiv = function(value = null)
+  {
+      var activeBtn  = this.toolbar.querySelector('.editor-div .dropdown-item.active');
+      if(activeBtn)
+      {
+        var active     = value ?? activeBtn.firstChild.nodeValue;
+        var currentBtn = this.toolbar.querySelector('.editor-dropdown-div small');
+        var current    = currentBtn.firstChild.nodeValue;
+        if(active !== current)
+        {
+          currentBtn.firstChild.nodeValue = active;
+        }
+      }
+  }
+
 
   // Export the editor content to the textarea
   Editor.prototype.exportToTextarea = function()
@@ -405,7 +417,16 @@ import Emoji from './editor/emoji.ts'
       if(btn)
       {
         btn.addEventListener('click', (event) => {
-          editor.chain().focus().toggleBlockquote().run();
+
+          var command = editor.chain().focus();
+
+          // If it's a blockquote it can't be a div !
+          if(editor.isActive('div'))
+          {
+            command.unsetDiv();
+          }
+
+          command.toggleBlockquote().run();
         });
       }
   }
@@ -530,8 +551,8 @@ import Emoji from './editor/emoji.ts'
       }
   }
 
-  // Paragraph style
-  Editor.prototype.paragraphStyle = function()
+  // Paragraph
+  Editor.prototype.paragraph = function()
   {
       var module = this;
       var editor = this.editor;
@@ -541,19 +562,19 @@ import Emoji from './editor/emoji.ts'
         btns.forEach((btn, i) => {
           btn.addEventListener('click', (event) => {
             var value = module.getButtonValue(event);
-            if(editor.isActive({ paragraphStyle: value }) || value == 'null')
+            if(editor.isActive('paragraph',{ class: value }) || value == 'null')
             {
-              editor.chain().focus().setParagraph().unsetParagraphStyle().run();
+              editor.chain().focus().unsetParagraph().run();
             } else {
-              editor.chain().focus().setParagraphStyle(value).run();
+              editor.chain().focus().setParagraph(value).run();
             }
           });
         });
       }
   }
 
-  // Div style
-  Editor.prototype.divStyle = function()
+  // Div
+  Editor.prototype.div = function()
   {
       var module = this;
       var editor = this.editor;
@@ -563,11 +584,22 @@ import Emoji from './editor/emoji.ts'
         btns.forEach((btn, i) => {
           btn.addEventListener('click', (event) => {
               var value = module.getButtonValue(event);
-              if(editor.isActive({ divStyle: value }))
+
+              var command =  editor.chain().focus();
+
+              // If it's a blockquote it can't be a div !
+              if(editor.isActive('blockquote'))
               {
-                editor.chain().focus().unsetDiv().run();
+                command.unsetBlockquote();
+              }
+
+              if(editor.isActive('div',{ class: value }))
+              {
+                command.unsetDiv().run();
+              } if(editor.isActive('div')) {
+                command.unsetDiv().setDiv(value).run();
               } else {
-                editor.chain().focus().setDiv().setDivStyle(value).run();
+                command.setDiv(value).run();
               }
           });
         });

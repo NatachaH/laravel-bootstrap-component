@@ -2,6 +2,15 @@ import Paragraph from '@tiptap/extension-paragraph'
 
 const CustomParagraph = Paragraph.extend({
 
+
+  addAttributes() {
+    return {
+      class: {
+        default: null
+      }
+    }
+  },
+
   parseHTML() {
     return [
       {
@@ -12,6 +21,20 @@ const CustomParagraph = Paragraph.extend({
         },
       },
     ]
+  },
+
+  addCommands() {
+    return {
+      setParagraph: (style) => ({ commands }) => {
+        return commands.setNode('paragraph', {class:style})
+      },
+      toggleParagraph: (style) => ({ commands }) => {
+        return commands.toggleNode('paragraph', {class:style})
+      },
+      unsetParagraph: () => ({ commands }) => {
+        return commands.clearNodes()
+      },
+    }
   },
 
 });

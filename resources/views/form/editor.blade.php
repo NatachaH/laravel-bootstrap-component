@@ -8,7 +8,8 @@
 
           <div class="editor-toolbar">
 
-            @includeWhen(in_array('font',$toolbar), 'bs-component::form.editor.font', ['headings' => $headings,'paragraphs' => $paragraphs,'divs' => $divs])
+            @includeWhen(in_array('font',$toolbar), 'bs-component::form.editor.font', ['headings' => $headings,'paragraphs' => $paragraphs])
+            @includeWhen(in_array('div',$toolbar), 'bs-component::form.editor.div', ['divs' => $divs])
             @includeWhen(in_array('format',$toolbar), 'bs-component::form.editor.format', ['formats' => $formats])
             @includeWhen(in_array('list',$toolbar), 'bs-component::form.editor.list')
             @includeWhen(in_array('link',$toolbar), 'bs-component::form.editor.link')
