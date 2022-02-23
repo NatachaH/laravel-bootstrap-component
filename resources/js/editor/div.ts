@@ -13,6 +13,14 @@ const Div = Node.create({
 
   defining: true,
 
+  addAttributes() {
+    return {
+      class: {
+        default: null
+      }
+    }
+  },
+
   parseHTML() {
     return [{
       tag: 'div',
@@ -30,10 +38,10 @@ const Div = Node.create({
   addCommands() {
     return {
       setDiv: (style) => ({ commands }) => {
-        return commands.wrapIn('div')
+        return commands.wrapIn('div', {class:style})
       },
-      toggleDiv: () => ({ commands }) => {
-        return commands.toggleWrap('div')
+      toggleDiv: (style) => ({ commands }) => {
+        return commands.toggleWrap('div', {class:style})
       },
       unsetDiv: () => ({ commands }) => {
         return commands.lift('div')
