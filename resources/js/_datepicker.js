@@ -41,6 +41,7 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
       this.lang       = document.documentElement.lang;
       this.clearBtn   = this.parent.querySelector('.btn-clear');
       this.inline     = this.input.getAttribute('data-inline') ? Boolean(this.input.getAttribute('data-inline')) :  false;
+      this.static     = this.input.getAttribute('data-static') ? Boolean(this.input.getAttribute('data-static')) :  false;
       this.calendar   = this.inline ? this.parent.querySelector('.calendar') : this.parent;
 
       this.inputFrom   = this.parent.querySelector('.datepicker-input-from') ?? null;
@@ -182,6 +183,7 @@ const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
             maxDate:        myObject.max,
             disable:        myObject.disabled,
             inline:         myObject.inline,
+            static:         myObject.static,
             appendTo:       myObject.calendar,
 
             onOpen: function(selectedDates, dateStr, instance) {

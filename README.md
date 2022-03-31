@@ -546,6 +546,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 | min         | string | null     | can be a date or the name of an input |
 | max         | string | null     | can be a date or the name of an input |
 | inline      | boolean | false   |  |
+| static      | boolean | false   |  |
 | input-from  | string | null     |  |
 | input-to    | string | null     |  |
 | disabled-dates | array | []  |  |
@@ -555,6 +556,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 *For range you can add 2 hidden input to set the from/to values*
 *You can set the disabled dates with an array, exemple ['2021-01-05','2021-05-11']*
 *You can set some events dates with an array, exemple ['2021-01-05' => ['color' => 'danger'] ,'2021-05-11' => ['color' => 'warning']]*
+*Set static to true if the datepicker is in a parent with relative position*
 
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
@@ -624,7 +626,7 @@ To use the editor you need to install the JS plugin **TipTap** !
 | value     | string  | null    |           |
 | help      | string  | null    |           |
 | required  | boolean | false   |           |
-| toolbar   | string  | font&#124;format&#124;list&#124;link&#124;color&#124; | font&#124;format&#124;list&#124;link&#124;color&#124;table&#124;emoji |
+| toolbar   | string  | font&#124;div&#124;format&#124;list&#124;link&#124;color&#124; | font&#124;format&#124;list&#124;link&#124;color&#124;table&#124;emoji |
 | headings   | string | 1&#124;2&#124;3 | 1&#124;2&#124;3&#124;4&#124;5&#124;6 |
 | paragraphs | string | lead | free to add any class |
 | divs      | string  | blockquote | free to add any class |

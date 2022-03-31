@@ -16,6 +16,7 @@
   data-max="{{ $max }}"
   data-disabled="{{ json_encode($disabledDates) }}"
   data-inline="{{ $inline }}"
+  data-static="{{ $static }}"
   data-events="{{ json_encode($events) }}"
 />
 

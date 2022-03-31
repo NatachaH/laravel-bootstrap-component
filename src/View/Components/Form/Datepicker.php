@@ -66,6 +66,12 @@ class Datepicker extends FieldTemplate
     public $inline;
 
     /**
+     * Is static
+     * @var boolean
+     */
+    public $static;
+
+    /**
      * For range inputs
      * @var string
      */
@@ -115,6 +121,7 @@ class Datepicker extends FieldTemplate
       $min         = null,
       $max         = null,
       $inline      = false,
+      $static      = false,
       $inputFrom   = null,
       $inputTo     = null,
       $disabledDates = [],
@@ -143,6 +150,7 @@ class Datepicker extends FieldTemplate
         $this->max          = $max;
         $this->isInputGroup = true;
         $this->inline       = $inline;
+        $this->static       = $static;
         $this->inputFrom    = $inputFrom;
         $this->inputTo      = $inputTo;
         $this->disabledDates= $disabledDates;

@@ -681,6 +681,12 @@
       border-radius: $input-border-radius !important;
     }
 
+    > .flatpickr-wrapper {
+      position: relative;
+      flex: 1 1 auto;
+      width: 1%;
+      min-width: 0;
+    }
 
     &.input-group-with-before > input{
       border-top-left-radius: 0 !important;
