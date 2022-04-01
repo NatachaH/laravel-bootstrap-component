@@ -722,6 +722,11 @@
       border-bottom-right-radius: 0 !important;
     }
 
+    > .flatpickr-wrapper > input {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
     &.input-group-date-picker-inline > .btn-clear {
       border-top-right-radius: $input-border-radius !important;
       border-bottom-right-radius: $input-border-radius !important;
