@@ -92,6 +92,12 @@
       var daysInMonth = 32 - new Date(this.year, this.month, 32).getDate();
       var rows = Math.ceil(daysInMonth/7)+1;
 
+      // Update the first day becaus eif it's 0 === 'sunday' and in french calendar it's the 7th day of the week
+      if(firstDayOfTheMonth === 0)
+      {
+        firstDayOfTheMonth = 7;
+      }
+
       this.layout.month.innerHTML = this.months[this.month];
       this.layout.year.innerHTML  = this.year;
       this.layout.dates.innerHTML = '';
