@@ -643,6 +643,8 @@ To use the editor you need to install the JS plugin **TipTap** !
 
 *For global customization of the options, you can update the config file in config.bs-component.editor*
 
+*If you want to remove the headings for one editor type :headings="false"*
+
 **Require**
 - JS: ```require('../../vendor/nh/bs-component/resources/js/_editor');```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```

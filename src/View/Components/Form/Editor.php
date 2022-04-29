@@ -94,7 +94,7 @@ class Editor extends FieldTemplate
 
         $this->cleanName    = array_to_dot($this->name);
         $this->toolbar      = is_null($toolbar) ? config('bs-component.editor.toolbar') : explode('|', $toolbar);
-        $this->headings     = is_null($headings) ? config('bs-component.editor.headings') : explode('|', $headings);
+        $this->headings     = is_null($headings) ? config('bs-component.editor.headings') : ($headings ? explode('|', $headings) : []);
         $this->paragraphs   = is_null($paragraphs) ? config('bs-component.editor.paragraphs') : explode('|', $paragraphs);
         $this->divs         = is_null($divs) ? config('bs-component.editor.divs') : explode('|', $divs);
         $this->formats      = is_null($formats) ? config('bs-component.editor.formats') : explode('|', $formats);
