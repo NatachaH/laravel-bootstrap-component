@@ -14,6 +14,7 @@
       var defaults = {
         field        : 'option', // Could be option or group label
         parent       : this.select.parentNode.parentNode,
+        changeOnInit : true, // Make a change() on the init 
         onChanged    : function(e){}, // Callback function
       };
 
@@ -40,8 +41,11 @@
   {
       var toggleSelect = this;
 
-      //Hide/Show at render page
-      toggleSelect.change();
+      if(toggleSelect.options.changeOnInit)
+      {
+        //Hide/Show at render page
+        toggleSelect.change();
+      }
 
       // Hide/Show when change the switch
       toggleSelect.select.addEventListener('change',function(e){

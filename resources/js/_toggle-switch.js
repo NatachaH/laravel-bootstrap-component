@@ -15,6 +15,7 @@
       this.elToDisplayIfNotChecked = this.parent.querySelectorAll('.toggle-switch-false');
 
       var defaults = {
+        changeOnInit : true, // Make a change() on the init 
         onChanged    : function(e){} // Callback function
       };
 
@@ -42,8 +43,11 @@
 
       var toggleSwitch = this;
 
-      //Hide/Show at render page
-      toggleSwitch.change();
+      if(toggleSwitch.options.changeOnInit)
+      {
+        //Hide/Show at render page
+        toggleSwitch.change();
+      }
 
       // Hide/Show when change the switch
       toggleSwitch.input.addEventListener('change',function(e){

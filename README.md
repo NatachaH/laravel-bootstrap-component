@@ -750,6 +750,7 @@ var selectField = document.getElementById('mySelect');
 var myToggleSelect = new ToggleSelect(selectField, {
     field        : 'option',
     parent       : selectField.parentNode.parentNode,
+    changeOnInit : true, // Make a change() on the init
     onChanged    : function(e){},
   });
 ```
