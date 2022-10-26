@@ -20,7 +20,7 @@
               {!! $btnCancel['value'] !!}
             </button>
             <button type="submit" class="btn {{ $btnConfirm['class'] }}" aria-label="{{ $btnConfirm['label'] }}">
-              <x-bs-loading class="d-none" type="border" size="sm" color="light"/>
+              <x-bs-loading class="d-none" type="border" size="sm" color="light">
               {!! $btnConfirm['value'] !!}
             </button>
         </form>

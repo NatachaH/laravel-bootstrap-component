@@ -20,10 +20,10 @@
                 id="{{ $idOption($k).'Field' }}"
                 {{ $isDisabled || $isOptionDisabled($k) ? 'disabled' : '' }}
                 {{ $isOptionChecked($k) ? 'checked' : '' }}
-              />
+              >
 
               @if(($isDisabled || $isOptionDisabled($k)) && $isOptionChecked($k))
-                <input type="hidden" name="disabled_{{ $name }}" value="{{ $k }}"/>
+                <input type="hidden" name="disabled_{{ $name }}" value="{{ $k }}">
               @endif
 
               <label class="form-check-label" for="{{ $idOption($k).'Field' }}">
@@ -46,10 +46,10 @@
           id="{{ $idOption($key).'Field' }}"
           {{ $isDisabled || $isOptionDisabled($key) ? 'disabled' : '' }}
           {{ $isOptionChecked($key) ? 'checked' : '' }}
-        />
+        >
 
         @if(($isDisabled || $isOptionDisabled($key)) && $isOptionChecked($key))
-          <input type="hidden" name="disabled_{{ $name }}" value="{{ $key }}"/>
+          <input type="hidden" name="disabled_{{ $name }}" value="{{ $key }}">
         @endif
 
         <label class="form-check-label" for="{{ $idOption($key).'Field' }}">

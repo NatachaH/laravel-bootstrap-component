@@ -15,4 +15,4 @@
     min="{{ $min }}"
     max="{{ $max }}"
   @endif
-/>
+>

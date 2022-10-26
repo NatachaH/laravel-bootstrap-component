@@ -15,7 +15,7 @@
               <button class="btn drag me-2 {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
                 {!! $btnMove['value'] ?? __($btnMove['label']) !!}
               </button>
-              <input type="hidden" class="dynamic-position" name="{{ $name.'_to_update['.$item->id.'][position]' }}" value="{{ $item->position }}"/>
+              <input type="hidden" class="dynamic-position" name="{{ $name.'_to_update['.$item->id.'][position]' }}" value="{{ $item->position }}">
             @endif
 
             @includeIf($listing)
@@ -40,7 +40,7 @@
                 <button class="btn drag me-2 {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
                   {!! $btnMove['value'] ?? __($btnMove['label']) !!}
                 </button>
-                <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$defaultKey.'][position]' }}" />
+                <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$defaultKey.'][position]' }}" >
               </div>
             @endif
 
@@ -74,7 +74,7 @@
             <button class="btn drag me-2 {{ $btnMove['class'] }}" type="button" aria-label="{{ __($btnMove['label']) }}">
               {!! $btnMove['value'] ?? __($btnMove['label']) !!}
             </button>
-            <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" />
+            <input type="hidden" class="dynamic-position" name="{{ $name.'_to_add['.$key.'][position]' }}" >
           </div>
         @endif
 

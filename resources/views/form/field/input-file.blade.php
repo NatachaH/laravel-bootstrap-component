@@ -7,4 +7,4 @@
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isMultiple ? 'multiple' : ''}}
   {{ $isRequired ? 'required' : ''}}
-/>
+>

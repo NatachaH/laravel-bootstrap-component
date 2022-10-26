@@ -11,7 +11,7 @@
   {{ $isDisabled ? 'disabled' : ''}}
   {{ $isRequired ? 'required' : ''}}
   @if(!$autocomplete) autocomplete="off" @endif
-/>
+>
 
 @if($withHidden)
   <input type="hidden" id="{{ $cleanHiddenName.'Field' }}" class="input-hidden" name="{{ $hiddenName }}" value="{{ old($cleanHiddenName,$hiddenValue) }}">

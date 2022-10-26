@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'form-check']) }}>
 
   @if($isBoolean)
-    <input type="hidden" value="{{ $value ? '0' : '1' }}" name="{{ $name }}"/>
+    <input type="hidden" value="{{ $value ? '0' : '1' }}" name="{{ $name }}">
   @endif
 
   <input
@@ -13,10 +13,10 @@
     {{ $isDisabled ? 'disabled' : ''}}
     {{ $isRequired ? 'required' : ''}}
     {{ $isChecked ? 'checked' : ''}}
-  />
+  >
 
   @if($isDisabled && $isChecked)
-    <input type="hidden" name="disabled_{{ $name }}" value="{{ $value }}"/>
+    <input type="hidden" name="disabled_{{ $name }}" value="{{ $value }}">
   @endif
 
   <label class="form-check-label" for="{{ $id.'Field' }}">

@@ -23,6 +23,6 @@
 
 @if($isReadonly && !empty($optionsSelected))
   @foreach ($optionsSelected as $key => $optionSelected)
-    <input type="hidden" name="{{ $name }}" value="{{ is_bool($optionSelected) ? ($optionSelected ? '1' : '0') : $optionSelected }}"/>
+    <input type="hidden" name="{{ $name }}" value="{{ is_bool($optionSelected) ? ($optionSelected ? '1' : '0') : $optionSelected }}">
   @endforeach
 @endif
