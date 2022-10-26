@@ -751,6 +751,7 @@ var myToggleSelect = new ToggleSelect(selectField, {
     field        : 'option',
     parent       : selectField.parentNode.parentNode,
     changeOnInit : true, // Make a change() on the init
+    withDisabled : false, // Make fields (select, inputs and co) disabled in case you need to not send the fields when they are hidden
     onChanged    : function(e){},
   });
 ```

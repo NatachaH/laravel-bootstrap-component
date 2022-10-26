@@ -15,6 +15,7 @@
         field        : 'option', // Could be option or group label
         parent       : this.select.parentNode.parentNode,
         changeOnInit : true, // Make a change() on the init 
+        withDisabled : false, // Make fields (select, inputs and co) disabled in case you need to not send the fields to not send the fields when they are hidden
         onChanged    : function(e){}, // Callback function
       };
 
@@ -84,10 +85,14 @@
       if(inputs)
       {
         this.required(inputs,isVisible);
+        if(this.options.withDisabled)
+        {
+          this.disabled(inputs,isVisible);
+        }
       }
   }
 
-  // Disable the input, select and co
+  // Toggle the required attribute
   ToggleSelect.prototype.required = function(elements,show)
   {
       elements.forEach((el, i) => {
@@ -98,6 +103,19 @@
         } else {
             el.value = null;
             if(parent.classList.contains('field-required')) { el.required = false; }
+        }
+      });
+  }
+
+  // Toggle disabled attribute
+  ToggleSelect.prototype.disabled = function(elements,show)
+  {
+      elements.forEach((el, i) => {
+        if(show)
+        {
+            el.disabled = false;
+        } else {
+            el.disabled = true;
         }
       });
   }
