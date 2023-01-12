@@ -10,7 +10,7 @@ Add this to your packages.json
 
 ```
 "@popperjs/core": "^2.6.0",
-"bootstrap" : "^5.0.0-beta3",
+"bootstrap" : "^5.2.0",
 "flatpickr" : "^4.6.7",
 "@tiptap/core": "*",
 "@tiptap/starter-kit": "*",
