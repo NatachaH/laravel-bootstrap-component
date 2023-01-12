@@ -322,6 +322,9 @@ import Emoji from './editor/emoji.ts'
         {
           currentBtn.firstChild.nodeValue = active;
         }
+      } else {
+        var currentBtn = this.toolbar.querySelector('.editor-dropdown-div small');
+        currentBtn.firstChild.nodeValue = '--';
       }
   }
 

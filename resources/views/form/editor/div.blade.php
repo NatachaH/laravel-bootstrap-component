@@ -13,9 +13,6 @@
     <div class="dropdown-menu p-0" >
 
       @if($divs)
-
-        <hr class="dropdown-divider">
-
         @foreach ($divs as $div)
           @if($div == 'blockquote')
             <button type="button" class="dropdown-item editor-btn-blockquote">
