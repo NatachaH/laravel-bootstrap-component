@@ -18,10 +18,10 @@ data-max-date-input: Name of input with maximum date
 
 */
 
-const flatpickr = require("flatpickr").default;
-const flatpickrFr = require("flatpickr/dist/l10n/fr.js").default.fr;
-const flatpickrDe = require("flatpickr/dist/l10n/fr.js").default.de;
-const flatpickrIt = require("flatpickr/dist/l10n/fr.js").default.it;
+import flatpickr from "flatpickr";
+import { French } from "flatpickr/dist/l10n/fr.js";
+import { German } from "flatpickr/dist/l10n/de.js";
+import { Italian } from "flatpickr/dist/l10n/it.js";
 
 (function() {
 

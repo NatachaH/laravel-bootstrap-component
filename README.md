@@ -32,7 +32,7 @@ php artisan vendor:publish --tag=bs-component
 Javascript to include
 
 ```
-require('../../vendor/nh/bs-component/resources/js/bs-component');
+import '../../vendor/nh/bs-component/resources/js/bs-component';
 ```
 
 SASS to include
@@ -198,7 +198,7 @@ Available JS:
 You can load by axios the content of the modal:
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_modal-load');```
+- JS: ``` import '../../vendor/nh/bs-component/resources/js/_modal-load';```
 
 ```
 <x-bs-modal id="myModalLoad" class="modal-load"></x-bs-modal>
@@ -229,7 +229,7 @@ You can load by axios the content of the modal:
 | btn-confirm | array | [] |
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_modal-confirm');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_modal-confirm';```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/modal-confirm';```
 
 *The action can be overide by the data-action attribute in the link*
@@ -302,7 +302,7 @@ Display a calendar with events that are loaded per month
 | events-load-url | string | null |
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_calendar');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_calendar';```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/calendar';```
 
 ```
@@ -499,7 +499,7 @@ Here the default attributes:
 *You can transform a datalist to an autocomplete: Check the JS section for more information*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_datalist');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_datalist';```
 
 ```
 <x-bs-datalist label="My label" name="myinput" value="Default value" placeholder="My placeholder" :options="[1 => 'one', 2 => 'two']" help="Help message" size="lg" readonly disabled required />
@@ -559,7 +559,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 *Set static to true if the datepicker is in a parent with relative position*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_datepicker');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_datepicker';```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';```
 
 ```
@@ -597,7 +597,7 @@ With this component you can add/remove input to add multiple field in your form 
 *The Drag&Drop is NOT initialize, you have to add the JS for that functionnality*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_dynamic');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_dynamic';```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/dynamic';```
 
 ```
@@ -646,7 +646,7 @@ To use the editor you need to install the JS plugin **TipTap** !
 *If you want to remove the headings for one editor type :headings="false"*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_editor');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_editor';```
 - SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```
 
 ```
@@ -678,7 +678,7 @@ If you need a checkbox to check all his children:
 *The children checkbox need the class checkbox-xxx*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_checkbox-all');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_checkbox-all';```
 
 ## Toggle switch
 
@@ -701,7 +701,7 @@ If you need a checkbox to show/hide some classes:
 *The toggle switch and div to hide/show should be wrap in a parent div*
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-switch');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_toggle-switch';```
 
 ## Toggle select
 
@@ -743,7 +743,7 @@ var myCustomSelect = new ToggleSelect(document.querySelector('#customToggleSelec
 ```
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_toggle-select');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_toggle-select';```
 
 ```
 var selectField = document.getElementById('mySelect');
@@ -764,7 +764,7 @@ var myToggleSelect = new ToggleSelect(selectField, {
 If you need an autocomplete datalist:
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_autocomplete');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_autocomplete';```
 
 HTML:
 
@@ -821,7 +821,7 @@ When the user will select an option, the **Hidden field** will be set with the *
 If you need to make a row of a table as a link:
 
 **Require**
-- JS: ```require('../../vendor/nh/bs-component/resources/js/_table-link');```
+- JS: ```import '../../vendor/nh/bs-component/resources/js/_table-link';```
 
 HTML:
 

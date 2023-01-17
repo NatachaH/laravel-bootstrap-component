@@ -4,14 +4,14 @@
 |--------------------------------------------------------------------------
 */
 
-require('./_calendar');
-require('./_checkbox-all');
-require('./_autocomplete');
-require('./_datepicker');
-require('./_dynamic');
-require('./_editor');
-require('./_modal-confirm');
-require('./_modal-load');
-require('./_table-link');
-require('./_toggle-select');
-require('./_toggle-switch');
+import './_calendar';
+import './_checkbox-all';
+import './_autocomplete';
+import './_datepicker';
+import './_dynamic';
+import './_editor';
+import './_modal-confirm';
+import './_modal-load';
+import './_table-link';
+import './_toggle-select';
+import './_toggle-switch';
