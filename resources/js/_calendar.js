@@ -7,6 +7,9 @@
 |
 */
 
+import axios from 'axios'
+window.axios = axios;
+
 (function() {
 
   window.Calendar = function(el,options = null) {

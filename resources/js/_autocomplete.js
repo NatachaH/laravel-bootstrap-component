@@ -7,6 +7,9 @@
 |
 */
 
+import axios from 'axios'
+window.axios = axios;
+
 (function() {
 
     window.Autocomplete = function(el,options = null) {

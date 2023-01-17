@@ -9,6 +9,7 @@ composer require nh/bs-component
 Add this to your packages.json
 
 ```
+"axios": "^1.1.2",
 "@popperjs/core": "^2.6.0",
 "bootstrap" : "^5.2.0",
 "flatpickr" : "^4.6.7",
