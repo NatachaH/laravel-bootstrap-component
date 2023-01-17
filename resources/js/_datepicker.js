@@ -25,7 +25,7 @@ import { Italian } from "flatpickr/dist/l10n/it.js";
 
 (function() {
 
-  this.Datepicker = function(el,options = null) {
+  window.Datepicker = function(el,options = null) {
 
 
       this.parent      = el;

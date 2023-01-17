@@ -8,7 +8,7 @@
 (function() {
 
   // Define the module
-  this.ModalLoad = function(el,options = null) {
+  window.ModalLoad = function(el,options = null) {
 
       // Variables
       this.modal = el;

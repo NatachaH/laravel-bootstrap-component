@@ -9,7 +9,7 @@
 
 (function() {
 
-  this.Calendar = function(el,options = null) {
+  window.Calendar = function(el,options = null) {
 
       // Variables
       this.calendar = el;

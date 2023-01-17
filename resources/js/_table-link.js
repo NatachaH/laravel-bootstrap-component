@@ -8,7 +8,7 @@
 (function() {
 
   // Define the module
-  this.TableLink = function(el,options = null) {
+  window.TableLink = function(el,options = null) {
 
       // Variables
       this.table = el;

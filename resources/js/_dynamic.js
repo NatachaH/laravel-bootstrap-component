@@ -12,7 +12,7 @@
 (function() {
 
   // Define the module
-  this.Dynamic = function(el,options = null) {
+  window.Dynamic = function(el,options = null) {
 
       // Variables
       this.el = null;

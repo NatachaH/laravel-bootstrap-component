@@ -6,7 +6,7 @@
 
 (function() {
 
-  this.ToggleSelect = function(el,options = null) {
+  window.ToggleSelect = function(el,options = null) {
 
       // Variables
       this.select = el.tagName == 'SELECT' ? el : el.querySelector('select');

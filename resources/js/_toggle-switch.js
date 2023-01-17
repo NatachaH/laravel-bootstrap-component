@@ -6,7 +6,7 @@
 
 (function() {
 
-  this.ToggleSwitch = function(el,options = null) {
+  window.ToggleSwitch = function(el,options = null) {
 
       // Variables
       this.input = el.querySelector('input[type="checkbox"]');

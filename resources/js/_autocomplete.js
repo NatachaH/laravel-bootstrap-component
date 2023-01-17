@@ -9,7 +9,7 @@
 
 (function() {
 
-  this.Autocomplete = function(el,options = null) {
+    window.Autocomplete = function(el,options = null) {
 
       this.parent = el;
       this.input  = el.querySelector('input');
