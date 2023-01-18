@@ -39,7 +39,7 @@ import '../../vendor/nh/bs-component/resources/js/bs-component';
 SASS to include
 
 ```
-@import '../../vendor/nh/bs-component/resources/sass/bs-component';
+@import '../../vendor/nh/bs-component/resources/scss/bs-component';
 ```
 
 Available components:
@@ -231,7 +231,7 @@ You can load by axios the content of the modal:
 
 **Require**
 - JS: ```import '../../vendor/nh/bs-component/resources/js/_modal-confirm';```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/modal-confirm';```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/scss/modal-confirm';```
 
 *The action can be overide by the data-action attribute in the link*
 
@@ -304,7 +304,7 @@ Display a calendar with events that are loaded per month
 
 **Require**
 - JS: ```import '../../vendor/nh/bs-component/resources/js/_calendar';```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/calendar';```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/scss/calendar';```
 
 ```
 <x-bs-calendar class="calendar-automatic" color="success" :events-load-url="route('my-route-to-load-events-per-month')" />
@@ -561,7 +561,7 @@ To use the datepicker you need to install the JS plugin **Flatpickr** !
 
 **Require**
 - JS: ```import '../../vendor/nh/bs-component/resources/js/_datepicker';```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/datepicker';```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/scss/datepicker';```
 
 ```
 <x-bs-datepicker class="datepicker-automatic" label="Start date" name="startInputName" value="2020-05-04" placeholder="Select a date" help="Help message" size="lg" readonly disabled required mode="single" format="datetime" min="2020-05-01" max="2020-05-30"/>
@@ -599,7 +599,7 @@ With this component you can add/remove input to add multiple field in your form 
 
 **Require**
 - JS: ```import '../../vendor/nh/bs-component/resources/js/_dynamic';```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/dynamic';```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/scss/dynamic';```
 
 ```
 <x-bs-dynamic class="dynamic-automatic" legend="My dynamic field" listing="default.view.listing" template="default.view.template" min="1" max="5" name="mydynamic" type="mytype" sortable :items="[]" help="Help message" />
@@ -648,7 +648,7 @@ To use the editor you need to install the JS plugin **TipTap** !
 
 **Require**
 - JS: ```import '../../vendor/nh/bs-component/resources/js/_editor';```
-- SASS: ```@import '../../vendor/nh/bs-component/resources/sass/editor';```
+- SASS: ```@import '../../vendor/nh/bs-component/resources/scss/editor';```
 
 ```
 <x-bs-editor label="My editor" name="editor" value="Default text" help="Help message" required toolbar="font|format|list|link|color|table" headings="1|2|3|4|5|6" paragraphs="lead|my-class" divs="blockquote|highlight" formats="bold|italic|underline|strike" colors="primary|success|warning|danger"/>
