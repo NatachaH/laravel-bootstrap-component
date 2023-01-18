@@ -1,65 +1,53 @@
 /*
 |--------------------------------------------------------------------------
-| Table Link - Script
+| Table link - Script
 |--------------------------------------------------------------------------
+|
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
+|
 */
 
-// Table Link MODULE
-(function() {
+export default class TableLink {
 
-  // Define the module
-  window.TableLink = function(el,options = null) {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-      // Variables
-      this.table = el;
-      this.rows = el.querySelectorAll('tbody tr');
+    // Get the element
+    this.el = el;
 
-      // Define option defaults
-      var defaults = {};
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options);
+    // Get the rows
+    this.rows = el.querySelectorAll('tbody tr');
 
-      // Init
-      this.init();
+    // Init the ToggleSwitch
+    this.init();
 
   }
 
-  //------  METHODS ------//
+  /**
+   * Init the Table Link
+   */
+  init() {
 
-  // Init
-  TableLink.prototype.init = function()
-  {
-        var myObject = this;
-
-        myObject.rows.forEach((row, i) => {
-          row.addEventListener('click',function(event){
-            if(!event.target.classList.contains('table-link-disable'))
-            {
-              var action = this.getAttribute('data-url') ?? null;
-              window.location = action;
-            }
-          });
-        });
-  }
-
-
-  // SetOptions
-  TableLink.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
+    this.rows.forEach(row => {
+      row.addEventListener('click', event => {
+        if(!event.target.classList.contains('table-link-disable'))
+        {
+          var action = row.getAttribute('data-url') ?? null;
+          window.location = action;
         }
-      }
-      return source;
+      });
+    });
+
   }
 
-}());
+}
 
-// Init the Table Link to each .table-link
-var tableLinks = document.querySelectorAll('.table-link');
-tableLinks.forEach((el, i) => {
-    var myTable = new TableLink(el);
-});

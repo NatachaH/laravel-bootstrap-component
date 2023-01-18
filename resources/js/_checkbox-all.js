@@ -1,74 +1,80 @@
 /*
 |--------------------------------------------------------------------------
-| Checkbox All Script
+| Checkbox All - Script
 |--------------------------------------------------------------------------
 |
-| Allow to check all checkbox in one
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
 |
 */
 
-// Get the .checkbox-all inputs
-var checkboxes = document.querySelectorAll('.checkbox-all input');
+export default class CheckboxAll {
 
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} parent The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(parent){
 
+    // Get the parent => checkbox with .checkbox-all class
+    this.parent = parent;
 
-checkboxes.forEach((parent, i) => {
-  // Variables
-  var childrenClass = parent.value;
-  var children      = document.querySelectorAll('.checkbox-'+childrenClass+' input:not(:disabled)');
+    // Get all the children by class
+    const childrenClass = parent.value; // Is the value of the checkbox-all 
+    this.children = document.querySelectorAll('.checkbox-'+childrenClass+' input:not(:disabled)');
 
-  // Toggle the .checkbox-all
-  toggleCheckboxAll(parent,children);
+    // Init the ToggleSwitch
+    this.init();
 
-  // On change the .checkbox-all, toggle the children
-  parent.addEventListener('change', (event) => {
-      if (event.target.checked) {
-        toggleChildren(children,true);
-      } else {
-        toggleChildren(children,false);
-      }
-  });
+  }
 
-  // On change a children, toggle the parent
-  children.forEach((el, i) => {
-    el.addEventListener('change', (event) => {
-      toggleCheckboxAll(parent,children);
-    });
-  });
+  /**
+   * Init the Checkbox All
+   */
+  init() {
 
-});
+    this.toggleParent();
 
-/**
- * Toggle the children checkbox
- * @param  array List of children checkbox
- * @param  boolean Is checked ?
- * @return void
- */
-function toggleChildren(children, value)
-{
-  children.forEach((el, i) => {
-    el.checked = value;
-  });
-}
+    // On toggle the parent 
+    this.parent.addEventListener('change', event => this.toggleChildren(event.target.checked));
 
-/**
- * Toggle the . checkbox-all if all children are checked
- * @param  string value
- * @return void
- */
-function toggleCheckboxAll(parent, children)
-{
-    var isChecked = false;
+    // On toggle a child
+    this.children.forEach(child => child.addEventListener('change', event => this.toggleParent()));
 
-    for(var i=0;i<children.length; ++i)
+  }
+
+  /**
+   * Toggle the children
+   * @param {boolean} value The value of the checkboxes
+   */
+  toggleChildren(value) {
+
+    this.children.forEach(child => child.checked = value);
+
+  }
+
+  /**
+   * Toggle the parent checkbox
+   */
+  toggleParent() {
+
+    let isChecked = false;
+
+    for(let i=0;i<this.children.length; ++i)
     {
-      if(!children[i].checked)
-      {
-        isChecked = false;
-        break;
-      }
-      isChecked = true;
+        if(!this.children[i].checked)
+        {
+          isChecked = false;
+          break;
+        }
+        isChecked = true;
     }
 
-    parent.checked = isChecked;
+    this.parent.checked = isChecked;
+
+  }
+
 }
+

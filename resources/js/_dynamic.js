@@ -3,211 +3,252 @@
 | Dynamic - Script
 |--------------------------------------------------------------------------
 |
-| Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
 |
 */
 
+export default class Dynamic {
 
-// DYNAMIC MODULE
-(function() {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-  // Define the module
-  window.Dynamic = function(el,options = null) {
+    // Get the element
+    this.el = el;
 
-      // Variables
-      this.el = null;
-      this.key = 0;
-      this.min = 0;
-      this.max = 0;
-      this.nbr = function(){
-          return this.el.querySelectorAll('.dynamic-item:not(.dynamic-item-delete)').length;
-      };
-      this.checkMin = function(){
-          var nbr = this.nbr() - 1;
-          return this.min == null || nbr >= this.min;
-      };
-      this.checkMax = function(){
-          var nbr = this.nbr() + 1;
-          return this.max == null || nbr <= this.max;
-      };
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Define option defaults
-      var defaults = {
-          addCallback: function(e){},
-          removeCallback: function(e){}
-      };
+    // Dynamic key for the elements
+    this.key = this.el.querySelectorAll('.dynamic-item').length ?? 0;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options);
+    // Get the min elements available
+    this.minData = parseInt(this.el.getAttribute('data-min'));
+    this.min = this.minData != 0 ? this.minData : 1;
 
-      // Init variables and number of inputs
-      this.el = el ? el : '.dynamic';
-      this.init();
+    // Get the max elements available
+    this.maxData = parseInt(this.el.getAttribute('data-max'));
+    this.max = this.maxData != 0 ? this.maxData : null;
 
-      var dynamicObject = this;
+    // Get the add button
+    this.addBtn = el.querySelector('.dynamic-add'); 
 
-      // Add
-      this.el.querySelector('.dynamic-add').addEventListener('click',function(e){
-        dynamicObject.add();
-      });
+    // Get the removes buttons
+    this.removeBtns = el.querySelectorAll('.dynamic-remove');
 
-      // Delete
-      var currents = this.el.querySelectorAll('.dynamic-item-current');
-      currents.forEach((el, i) => {
-        el.querySelector('.dynamic-delete').addEventListener('click',function(e){
-          e.preventDefault();
-          var parent = e.target.closest('.dynamic-item-btn');
-          var input = parent.querySelector('.dynamic-delete-checkbox');
-          input.checked = !input.checked;
-          dynamicObject.delete(el,input.checked);
-        });
-      });
+    // Get old rows
+    this.oldRows = el.querySelectorAll('.dynamic-item-old');
 
-      // Remove
-      var olds = this.el.querySelectorAll('.dynamic-item-old');
-      olds.forEach((el, i) => {
-        el.querySelector('.dynamic-remove').addEventListener('click',function(e){
-          dynamicObject.remove(el);
-        });
-      });
+    // Get current rows
+    this.currentRows = el.querySelectorAll('.dynamic-item-current');
+
+    // Get the template
+    this.template = el.querySelector('script[data-template="dynamic-template"]');
+
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
+
+    // Init the ToggleSwitch
+    this.init();
 
   }
 
-  //------  METHODS ------//
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
 
-  // Init
-  Dynamic.prototype.init = function()
-  {
-      var min = this.el.getAttribute('data-min');
-      var max = this.el.getAttribute('data-max');
+    // Variables that you can set as options
+    const defaultOptions = {
+      addCallback(e){}, // Callback function for the add method
+      removeCallback(e){} // Callback function for the remove method
+    }
 
-      this.key = this.el.querySelectorAll('.dynamic-item').length;
-      this.min = min != '' && min != 0 ? min : 1;
-      this.max = max != '' && max != 0 ? max : null;
-
-      // Init the enable/disable buttons
-      this.buttons();
-
-      // Create empty row if min < nbr
-      if(this.nbr() < this.min)
-      {
-          var nbr = this.min - this.nbr();
-          for(var i = 1; i <= nbr; i++ )
-          {
-            this.add();
-          }
-
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
       }
+    }
+
+    // Return the object
+    return defaultOptions;
+
   }
 
+  /**
+   * Init the Dynamic
+   */
+  init() {
 
-  // SetOptions
-  Dynamic.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
+    // Init the enable/disable buttons
+    this.toggleButtons();
+
+    // Create empty row if min < nbr
+    if(this.getNumber() < this.min)
+    {
+        for(let i = 1; i <= (this.min - this.getNumber()); i++ )
+        {
+          this.add();
         }
-      }
-      return source;
+    }
+
+    // Add Event
+    this.addBtn.addEventListener('click', () => this.add());
+
+    // Remove Event
+    this.oldRows.forEach(el => {
+      el.querySelector('.dynamic-remove').addEventListener('click', () => this.remove(el));
+    });
+
+    // Delete Event
+    this.currentRows.forEach(el => {
+      el.querySelector('.dynamic-delete').addEventListener('click', e => {
+        e.preventDefault();
+        let input = e.target.closest('.dynamic-item-btn').querySelector('.dynamic-delete-checkbox');
+        input.checked = !input.checked;
+        this.delete(el,input.checked);
+      });
+    });
+
   }
 
-  // Disable buttons
-  Dynamic.prototype.buttons = function()
-  {
-      // Disabled the Add button
-      var addBtn = this.el.querySelector('.dynamic-add');
-      if(addBtn !== null)
-      {
-        addBtn.disabled = !this.checkMax();
-      }
-
-      // Disabled the Remove buttons
-      var removeBtns = this.el.querySelectorAll('.dynamic-remove');
-      if(removeBtns !== null)
-      {
-          var isDisabled = !this.checkMin();
-          removeBtns.forEach((el, i) => {
-              el.disabled = isDisabled;
-          });
-      }
+  /**
+   * Get the number of elements
+   * @return {number} The number of object.
+   */
+  getNumber() {
+    return this.el.querySelectorAll('.dynamic-item:not(.dynamic-item-delete)').length;
   }
 
+  /**
+   * Check the minimum
+   * @return {boolean} 
+   */
+  checkMin() {
+    return this.min == null || (this.getNumber() - 1) >= this.min;
+  }
 
-  // Add
-  Dynamic.prototype.add = function()
-  {
-      if(this.checkMax())
+  /**
+   * Check the maximum
+   * @return {boolean}
+   */
+  checkMax() {
+    return this.max == null || (this.getNumber() + 1) <= this.max;
+  }
+
+  /**
+   * Toggle buttons
+   */
+  toggleButtons() {
+
+    // Disabled the add button if is max
+    if(this.addBtn)
+    {
+      this.addBtn.disabled = !this.checkMax();
+    }
+
+    // Disabled the remove buttons if not the minimum
+    if(this.removeBtns)
+    {
+      this.removeBtns.forEach(removeBtn => removeBtn.disabled = !this.checkMin())
+    }
+
+  }
+
+  /**
+   * Add a row
+   */
+  add() {
+    
+    if(this.checkMax())
       {
-          var dynamicObject = this;
-          var template = this.el.querySelector('script[data-template="dynamic-template"]').innerHTML.replace(/KEY/g,this.key++);
-          var div = document.createElement('div');
+
+          // Get the template and replace the key
+          const template = this.template.innerHTML.replace(/KEY/g,this.key++);
+
+          // Create a new row
+          const div = document.createElement('div')
           div.innerHTML = template;
-          var item = div.children[0];
-          this.el.querySelector('.dynamic-list').append(item);
-          this.options.addCallback(item);
-          item.querySelector('.dynamic-remove').addEventListener('click',function(e){
-            dynamicObject.remove(item);
-          });
+          const newRow = div.children[0];
+
+          // Append the new row to the list
+          this.el.querySelector('.dynamic-list').append(newRow);
+
+          // Add the event listener for the remove btn
+          newRow.querySelector('.dynamic-remove').addEventListener('click', () => this.remove(newRow));
+
+          // Make the custom add callback
+          this.options.addCallback(newRow);
 
       }
 
-      this.buttons();
+      this.toggleButtons();
+
   }
 
-  // Remove
-  Dynamic.prototype.remove = function(item)
-  {
-      if(this.checkMin())
-      {
-          item.remove();
-          this.options.removeCallback(item);
-      }
-      this.buttons();
+  /**
+   * Remove a row
+   * @param {object} row The row to remove
+   */
+  remove(row) {
+    
+    if(this.checkMin())
+    {
+        row.remove();
+        this.options.removeCallback(row);
+    }
+
+    this.toggleButtons();
+
   }
 
-  // Delete
-  Dynamic.prototype.delete = function(item,checked)
-  {
-      if (checked) {
-          item.classList.add('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete-checkbox),select:not(.dynamic-delete-checkbox),textarea:not(.dynamic-delete-checkbox)').forEach(function(input){
-            input.disabled=true;
-          });
-      } else {
-          item.classList.remove('dynamic-item-delete');
-          item.querySelectorAll('input:not(.dynamic-delete-checkbox),select:not(.dynamic-delete-checkbox),textarea:not(.dynamic-delete-checkbox)').forEach(function(input){
-            input.disabled=false;
-          });
-      }
+  /**
+   * Delete a row
+   * @param {object} row The row to delete
+   * @param {boolean} checked The checkbox is checked
+   */
+  delete(row,checked) {
+    
+    const formFields = row.querySelectorAll('input:not(.dynamic-delete-checkbox),select:not(.dynamic-delete-checkbox),textarea:not(.dynamic-delete-checkbox)');
 
-      // Check if max and remove input if needed
-      if(this.max)
-      {
-          var nbr = this.nbr() - this.max;
-          for (var i = 0; i < nbr; i++) {
-              var item = this.el.querySelector('.dynamic-list').lastElementChild;
-              this.remove(item);
-          }
-      }
+    if (checked) {
+        row.classList.add('dynamic-item-delete');
+        formFields.forEach(field => field.disabled=true);
+    } else {
+        row.classList.remove('dynamic-item-delete');
+        formFields.forEach(field => field.disabled=false);
+    }
 
-      // Check if min and add input if needed
-      if(this.min)
-      {
-          var nbr = this.min - this.nbr();
-          for (var i = 0; i < nbr; i++) {
-              this.add();
-          }
-      }
+    // Check if max and remove input if needed
+    if(this.max)
+    {
+        for (let i = 0; i < (this.getNumber() - this.max); i++) {
+            var row = this.el.querySelector('.dynamic-list').lastElementChild;
+            this.remove(row);
+        }
+    }
 
-      this.buttons();
+    // Check if min and add input if needed
+    if(this.min)
+    {
+        for (let i = 0; i < (this.min - this.getNumber()); i++) {
+            this.add();
+        }
+    }
+
+    // Toggle the buttons
+    this.toggleButtons();
+
   }
 
-}());
+}
 
-// Init the Dynamic to each .dynamic-automatic
-var dynamic = document.querySelectorAll('.dynamic-automatic');
-dynamic.forEach((el, i) => {
-    var myDynamic = new Dynamic(el);
-});

@@ -1,301 +1,304 @@
 /*
 |--------------------------------------------------------------------------
-| Modal form javascript
+| Datepicker - Script
 |--------------------------------------------------------------------------
 |
-| Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
 | Plugin: Flatpickr - https://flatpickr.js.org
 |
-
-OPTIONS
-data-mode: Mode of flatpickr (single|multiple|range)
-data-format: Date format to  send to the server(datetime|datetime-short|date|time|time-short|db-datetime|db-date|db-time)
-data-allow-input: Allow the user to add manually a date
-data-min-date: Minimum date
-data-max-date: Maximum date
-data-min-date-input: Name of input with minimum date
-data-max-date-input: Name of input with maximum date
-
 */
+
+import { Tooltip } from "bootstrap";
 
 import flatpickr from "flatpickr";
 import { French } from "flatpickr/dist/l10n/fr.js";
 import { German } from "flatpickr/dist/l10n/de.js";
 import { Italian } from "flatpickr/dist/l10n/it.js";
 
-(function() {
+export default class Datepicker {
 
-  window.Datepicker = function(el,options = null) {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
+    // Get the element
+    this.el = el;
 
-      this.parent      = el;
-      this.inputGroup  = el.querySelector('.input-group');
-      this.input       = el.querySelector('.date-picker');
+    // Get the parent
+    this.parent = el.parentNode;
 
-      this.flatepicker = null;
+    // Get the input
+    this.input = el.querySelector('.date-picker');
 
-      this.mode       = this.input.getAttribute('data-mode') ?? 'single';
-      this.format     = this.input.getAttribute('data-format') ?? 'datetime';
-      this.default    = this.input.value ?? null;
-      this.isReadonly = this.input.readOnly;
-      this.lang       = document.documentElement.lang;
-      this.clearBtn   = this.parent.querySelector('.btn-clear');
-      this.inline     = this.input.getAttribute('data-inline') ? Boolean(this.input.getAttribute('data-inline')) :  false;
-      this.static     = this.input.getAttribute('data-static') ? Boolean(this.input.getAttribute('data-static')) :  false;
-      this.calendar   = this.inline ? this.parent.querySelector('.calendar') : this.parent;
+    // Get the input group
+    this.inputGroup = el.querySelector('.input-group');
 
-      this.inputFrom   = this.parent.querySelector('.datepicker-input-from') ?? null;
-      this.inputTo     = this.parent.querySelector('.datepicker-input-to') ?? null;
+    // Get the Flatpickr instance
+    this.flatpickr = null;
 
-      this.disabled   = this.input.getAttribute('data-disabled') ? JSON.parse(this.input.getAttribute('data-disabled')) : [];
-      this.events     = this.input.getAttribute('data-events') ? JSON.parse(this.input.getAttribute('data-events')) : [];
+    // Get the Clear button 
+    this.clearBtn = this.el.querySelector('.btn-clear');
 
-      // Define the min and max value
-      this.defineMinMax(this.input.getAttribute('data-min'),this.input.getAttribute('data-max'));
+    // Get the input for the from and to value
+    this.inputFrom = this.el.querySelector('.datepicker-input-from') ?? null;
+    this.inputTo   = this.el.querySelector('.datepicker-input-to') ?? null;
 
-      // Define option defaults
-      var defaults = {
-          changedCallback: function(e){}
-      };
+    // Get the minimum date
+    this.min = this.input.getAttribute('data-min');
+    this.minInput = isNaN(Date.parse(this.min)) ? document.getElementsByName(this.min)[0] : null;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options);
+    // Get the maximum date
+    this.max = this.input.getAttribute('data-max');
+    this.maxInput = isNaN(Date.parse(this.max)) ? document.getElementsByName(this.max)[0] : null;
 
-      var optionsByFormat = this.setOptionByFormat(this.format );
-      this.altFormat      = optionsByFormat['format'];
-      this.dateFormat     = optionsByFormat['dbformat'];
-      this.noCalendar     = optionsByFormat['calendar'];
-      this.enableTime     = optionsByFormat['time'];
-      this.enableSeconds  = optionsByFormat['second'];
+    // Get the disabled dates
+    this.disabled = this.input.getAttribute('data-disabled') ? JSON.parse(this.input.getAttribute('data-disabled')) : [];
+    
+    // Get the events
+    this.events = this.input.getAttribute('data-events') ? JSON.parse(this.input.getAttribute('data-events')) : [];
 
-      // Init the events
-      this.init();
+    // Get the Flatpickr parameters
+    this.parameters = {
+      mode:       this.input.getAttribute('data-mode') ?? 'single',
+      format:     this.input.getAttribute('data-format') ?? 'datetime',
+      default:    this.input.value ?? null,
+      isReadonly: this.input.readOnly,
+      lang:       document.documentElement.lang,
+      inline:     this.input.getAttribute('data-inline') ? Boolean(this.input.getAttribute('data-inline')) :  false,
+      static:     this.input.getAttribute('data-static') ? Boolean(this.input.getAttribute('data-static')) :  false
+    };
 
-  };
+    // Get the formats parameters
+    this.parametersByFormat = this.setParametersByFormat();
 
-  // SetOptions
-  Datepicker.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
+    // Get the Calendar  
+    this.calendar = this.parameters.inline ? this.el.querySelector('.calendar') : el;
+
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
+
+    // Init the ToggleSwitch
+    this.init();
+
+  }
+
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
+
+    // Variables that you can set as options
+    const defaultOptions = {
+      changedCallback(e){} // Callback function
+    }
+
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
+      }
+    }
+
+    // Return the object
+    return defaultOptions;
+
+  }
+
+  /**
+   * Set the options defined by the format
+   */
+  setParametersByFormat() {
+
+    switch(this.parameters.format) {
+      case 'datetime-short':
+        return {
+          display:        'd.m.Y H:i',
+          database:       'Y-m-d H:i:S',
+          enableCalendar: true,
+          enableTime:     true,
+          enableSeconds:  false 
+        };
+        break;
+      case 'date':
+        return {
+          display:        'd.m.Y',
+          database:       'Y-m-d',
+          enableCalendar: true,
+          enableTime:     false,
+          enableSeconds:  false 
+        };
+        break;
+      case 'time':
+        return {
+          display:        'H:i:S',
+          database:       'H:i:S',
+          enableCalendar: false,
+          enableTime:     true,
+          enableSeconds:  true 
+        };
+        break;
+      case 'time-short':
+        return {
+          display:        'H:i',
+          database:       'H:i:S',
+          enableCalendar: false,
+          enableTime:     true,
+          enableSeconds:  false 
+        };
+        break;
+      case 'db-datetime':
+        return {
+          display:        'Y-m-d H:i:S',
+          database:       'Y-m-d H:i:S',
+          enableCalendar: true,
+          enableTime:     true,
+          enableSeconds:  true 
+        };
+        break;
+      case 'db-date':
+        return {
+          display:        'Y-m-d',
+          database:       'Y-m-d',
+          enableCalendar: true,
+          enableTime:     false,
+          enableSeconds:  false 
+        };
+        break;
+      case 'db-time':
+        return {
+          display:        'H:i:S',
+          database:       'H:i:S',
+          enableCalendar: false,
+          enableTime:     true,
+          enableSeconds:  true 
+        };
+        break;
+      default :
+        return {
+          display:        'd.m.Y H:i:S',
+          database:       'Y-m-d H:i:S',
+          enableCalendar: true,
+          enableTime:     true,
+          enableSeconds:  true 
+        };
+        break;
+    }
+   
+  }
+
+  /**
+   * Init the Datepicker
+   */
+  init() {
+
+    const that = this;
+
+    // Define the Flatepicker object
+    this.flatpickr = flatpickr(this.input,{
+        mode:           that.parameters.mode,
+        altInput:       true,
+        altFormat:      that.parametersByFormat.display,
+        dateFormat:     that.parametersByFormat.database,
+        noCalendar:     !that.parametersByFormat.enableCalendar,
+        enableTime:     that.parametersByFormat.enableTime,
+        enableSeconds:  that.parametersByFormat.enableSeconds,
+        time_24hr:      true,
+        defaultDate:    that.input.value,
+        locale:         that.parameters.lang,
+        allowInput:     !that.parameters.isReadonly,
+        minDate:        that.min,
+        maxDate:        that.max,
+        disable:        that.disabled,
+        inline:         that.parameters.inline,
+        static:         that.parameters.static,
+        appendTo:       that.calendar,
+
+        onOpen: function(selectedDates, dateStr, instance) {
+          if(that.minInput)
+          {
+              instance.config.minDate = that.minInput.value;
+          }
+          if(that.maxInput)
+          {
+              instance.config.maxDate = that.maxInput.value;
+          }
+        },
+
+        onChange: function(selectedDates, dateStr, instance) {
+          that.inputGroup.classList.add('date-picked');
+          that.options.changedCallback(selectedDates);
+
+          if(that.parameters.mode == 'range')
+          {
+              const [to, from] = selectedDates;
+              this.inputFrom.value = to ? instance.formatDate(to, that.parametersByFormat.database) : '';
+              this.inputTo.value = from ? instance.formatDate(from, that.parametersByFormat.database) : '';
+          }
+        },
+
+        onReady: function(selectedDates, dateStr, instance) {
+          that.inputGroup.classList.add('input-group-date-picker');
+          if(dateStr)
+          {
+            that.inputGroup.classList.add('date-picked');
+          }
+          if(that.parameters.inline)
+          {
+            that.inputGroup.classList.add('input-group-date-picker-inline');
+          }
+        },
+
+        onDayCreate: function(dObj, dStr, instance, dayElem){
+          // Utilize dayElem.dateObj, which is the corresponding Date
+          var key = instance.formatDate(dayElem.dateObj, that.parametersByFormat.database);
+          var myEvent = that.events[key] ?? null;
+          if(myEvent)
+          {
+              var className = 'event ' + 'bg-' + myEvent.color;
+              dayElem.innerHTML += "<span class='" + className + "'></span>";
+
+              if(myEvent.title)
+              {
+                  dayElem.classList.add('flatpickr-event');
+                  dayElem.setAttribute('data-bs-toggle','tooltip');
+
+                  var tooltips = new Tooltip(dayElem, {
+                    placement: 'top',
+                    container: dayElem,
+                    trigger: 'hover',
+                    title: myEvent.title
+                  });
+              }
+          }
         }
-      }
-      return source;
+    
+    });
+
+    this.clearBtn.addEventListener('click', event => {
+        event.preventDefault();
+        this.clear();
+    });
+   
   }
 
-  Datepicker.prototype.setOptionByFormat = function(name)
-  {
-      var calendar;
-      var time;
-      var second;
-      var format;
-      var dbformat;
+  /**
+   * Clear the date
+   */
+  clear() {
 
-      switch (name) {
-
-        case 'datetime':
-          calendar  = true;
-          time      = true;
-          second    = true;
-          format    = 'd.m.Y H:i:S';
-          dbformat  = 'Y-m-d H:i:S';
-          break;
-
-        case 'datetime-short':
-          calendar  = true;
-          time      = true;
-          second    = false;
-          format    = 'd.m.Y H:i';
-          dbformat  = 'Y-m-d H:i:S';
-          break;
-
-        case 'date':
-          calendar  = true;
-          time      = false;
-          second    = false;
-          format    = 'd.m.Y';
-          dbformat  = 'Y-m-d';
-          break;
-
-        case 'time':
-          calendar  = false;
-          time      = true;
-          second    = true;
-          format    = 'H:i:S';
-          dbformat  = 'H:i:S';
-          break;
-
-        case 'time-short':
-          calendar  = false;
-          time      = true;
-          second    = false;
-          format    = 'H:i';
-          dbformat  = 'H:i:S';
-          break;
-
-        case 'db-datetime':
-          calendar  = true;
-          time      = true;
-          second    = true;
-          format    = 'Y-m-d H:i:S';
-          dbformat  = 'Y-m-d H:i:S';
-          break;
-
-        case 'db-date':
-          calendar  = true;
-          time      = false;
-          second    = false;
-          format    = 'Y-m-d';
-          dbformat  = 'Y-m-d';
-          break;
-
-        case 'db-time':
-          calendar  = false;
-          time      = true;
-          second    = true;
-          format    = 'H:i:S';
-          dbformat  = 'H:i:S';
-          break;
-      }
-
-      return {'calendar' : calendar, 'time' : time, 'second' : second, 'format' : format, 'dbformat' : dbformat};
+    this.flatpickr.clear();
+    this.inputGroup.classList.remove('date-picked');
+  
   }
 
-  Datepicker.prototype.init = function()
-  {
-        var myObject = this;
 
-        this.flatepicker  = flatpickr(this.input, {
-            mode:           myObject.mode,
-            altInput:       true,
-            altFormat:      myObject.altFormat,
-            dateFormat:     myObject.dateFormat,
-            noCalendar:     !myObject.noCalendar,
-            enableTime:     myObject.enableTime,
-            enableSeconds:  myObject.enableSeconds,
-            time_24hr:      true,
-            defaultDate:    myObject.defaultDate,
-            locale:         myObject.lang,
-            allowInput:     !myObject.isReadonly,
-            minDate:        myObject.min,
-            maxDate:        myObject.max,
-            disable:        myObject.disabled,
-            inline:         myObject.inline,
-            static:         myObject.static,
-            appendTo:       myObject.calendar,
+}
 
-            onOpen: function(selectedDates, dateStr, instance) {
-                if(myObject.minInput)
-                {
-                    instance.config.minDate = myObject.minInput.value;
-                }
-                if(myObject.maxInput)
-                {
-                    instance.config.maxDate = myObject.maxInput.value;
-                }
-            },
-
-            onChange: function(selectedDates, dateStr, instance) {
-              myObject.inputGroup.classList.add('date-picked');
-              myObject.options.changedCallback(selectedDates);
-
-              if(myObject.mode == 'range')
-              {
-                  const [to, from] = selectedDates;
-                  myObject.inputFrom.value = to ? instance.formatDate(to, myObject.dateFormat) : '';
-                  myObject.inputTo.value = from ? instance.formatDate(from, myObject.dateFormat) : '';
-              }
-            },
-
-            onReady: function(selectedDates, dateStr, instance) {
-              myObject.inputGroup.classList.add('input-group-date-picker');
-              if(dateStr)
-              {
-                myObject.inputGroup.classList.add('date-picked');
-              }
-              if(myObject.inline)
-              {
-                myObject.inputGroup.classList.add('input-group-date-picker-inline');
-              }
-            },
-
-            onDayCreate: function(dObj, dStr, instance, dayElem){
-                // Utilize dayElem.dateObj, which is the corresponding Date
-                var key = instance.formatDate(dayElem.dateObj, myObject.dateFormat);
-                var myEvent = myObject.events[key] ?? null;
-                if(myEvent)
-                {
-                    var className = 'event ' + 'bg-' + myEvent.color;
-                    dayElem.innerHTML += "<span class='" + className + "'></span>";
-
-                    if(myEvent.title)
-                    {
-                        dayElem.classList.add('flatpickr-event');
-                        dayElem.setAttribute('data-bs-toggle','tooltip');
-
-                        var tooltips = new Bootstrap.Tooltip(dayElem, {
-                          placement: 'top',
-                          container: dayElem,
-                          trigger: 'hover',
-                          title: myEvent.title
-                        });
-                    }
-                }
-            }
-
-        });
-
-        myObject.clearBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            myObject.clear();
-        });
-  }
-
-  Datepicker.prototype.clear = function()
-  {
-      this.flatepicker.clear();
-      this.inputGroup.classList.remove('date-picked');
-  }
-
-  Datepicker.prototype.defineMinMax = function(min,max)
-  {
-      this.min = null;
-      this.minInput = null;
-
-      if(min)
-      {
-          if(isNaN(Date.parse(min)))
-          {
-            // If not date, get the input
-            this.minInput = document.getElementsByName(min)[0];
-          } else {
-            // If a date
-            this.min = min;
-          }
-      }
-
-      this.max = null;
-      this.maxInput = null;
-
-      if(max)
-      {
-          if(isNaN(Date.parse(max)))
-          {
-            // If not date, get the input
-            this.maxInput = document.getElementsByName(max)[0];
-          } else {
-            // If a date
-            this.max = max;
-          }
-      }
-  }
-
-}());
-
-// Init the Datalist to each .datalist
-var datepickers = document.querySelectorAll('.datepicker-automatic');
-Array.prototype.forEach.call(datepickers, function(el, i) {
-  var datepicker = new Datepicker(el);
-});

@@ -1,96 +1,124 @@
 /*
 |--------------------------------------------------------------------------
-| Toggle Switch - script
+| Toggle Switch - Script
 |--------------------------------------------------------------------------
+|
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
+|
 */
 
-(function() {
+export default class ToggleSwitch {
 
-  window.ToggleSwitch = function(el,options = null) {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-      // Variables
-      this.input = el.querySelector('input[type="checkbox"]');
-      this.parent = el.parentNode;
-      this.elToDisplayIfChecked = this.parent.querySelectorAll('.toggle-switch-true');
-      this.elToDisplayIfNotChecked = this.parent.querySelectorAll('.toggle-switch-false');
+    // Get the element
+    this.el = el;
 
-      var defaults = {
-        changeOnInit : true, // Make a change() on the init 
-        onChanged    : function(e){} // Callback function
-      };
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options)
+    // Get the input
+    this.input = el.querySelector('input[type="checkbox"]');
 
-      this.init();
+    // Get the elements to display if checked
+    this.elToDisplayIfChecked = this.parent.querySelectorAll('.toggle-switch-true');
 
-  };
+    // Get the elements to display if NOT checked
+    this.elToDisplayIfNotChecked = this.parent.querySelectorAll('.toggle-switch-false');
 
-  ToggleSwitch.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
-        }
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
+
+    // Init the ToggleSwitch
+    this.init();
+
+  }
+
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
+
+    // Variables that you can set as options
+    const defaultOptions = {
+      changeOnInit : true, // Make a change() on the init 
+      onChanged(e){} // Callback function
+    }
+
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
       }
-      return source;
-  }
+    }
 
-  // Init
-  ToggleSwitch.prototype.init = function()
-  {
-
-      var toggleSwitch = this;
-
-      if(toggleSwitch.options.changeOnInit)
-      {
-        //Hide/Show at render page
-        toggleSwitch.change();
-      }
-
-      // Hide/Show when change the switch
-      toggleSwitch.input.addEventListener('change',function(e){
-          toggleSwitch.change();
-      },false);
+    // Return the object
+    return defaultOptions;
 
   }
 
-  // Change the switch
-  ToggleSwitch.prototype.change = function()
-  {
-      var toggleSwitch = this;
-      var isChecked = toggleSwitch.input.checked;
+  /**
+   * Init the Toggle Switch
+   */
+  init() {
 
-      toggleSwitch.elToDisplayIfChecked.forEach(function(el){
-        isChecked ? el.classList.remove('d-none') : el.classList.add('d-none');
-        toggleSwitch.disabled(el,!isChecked);
-      });
+    // Hide and show at render page
+    if(this.options.changeOnInit)
+    {
+      this.change()
+    }
 
-      toggleSwitch.elToDisplayIfNotChecked.forEach(function(el){
-        isChecked ? el.classList.add('d-none') : el.classList.remove('d-none');
-        toggleSwitch.disabled(el,isChecked);
-      });
-
-      // Run the custom callback
-      toggleSwitch.options.onChanged(isChecked);
-  }
-
-  // Disable the input, select and co
-  ToggleSwitch.prototype.disabled = function(element,disabled)
-  {
-      var inputs = element.querySelectorAll('input:not(.is-disabled),textarea:not(.is-disabled),select:not(.is-disabled)');
-      inputs.forEach(function(el){
-        el.disabled = disabled;
-      });
+    // Hide/Show when change the switch
+    this.input.addEventListener('change', () => this.change(), false);
 
   }
 
-}());
+  /**
+   * Event when toggle Change
+   */
+  change() {
 
+    let isChecked = this.input.checked;
 
-// Init the ToggleSwitch to each .table-tree
-var switchs = document.querySelectorAll('.toggle-switch');
-Array.prototype.forEach.call(switchs, function(el, i) {
-    var mySwitch = new ToggleSwitch(el);
-});
+    // Display the elements
+    this.elToDisplayIfChecked.forEach(el => {
+      isChecked ? el.classList.remove('d-none') : el.classList.add('d-none');
+      this.disabled(el,!isChecked);
+    });
+
+    // Hide the elements
+    this.elToDisplayIfNotChecked.forEach(el => {
+      isChecked ? el.classList.add('d-none') : el.classList.remove('d-none');
+      this.disabled(el,isChecked);
+    });
+
+    // Run option callback
+    this.options.onChanged(isChecked);
+
+  }
+
+  /**
+   * Set the options
+   *
+   * @param {object} el Node element
+   * @param {boolean} disabled Is disabled or not
+   */
+  disabled(el,disabled) {
+
+    let inputs = el.querySelectorAll('input:not(.is-disabled),textarea:not(.is-disabled),select:not(.is-disabled)');
+    inputs.forEach(el => el.disabled = disabled);
+
+  }
+
+}
+

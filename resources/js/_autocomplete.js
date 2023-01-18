@@ -3,124 +3,152 @@
 | Autocomplete - Script
 |--------------------------------------------------------------------------
 |
-| Copyright © 2020 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
 |
 */
 
 import axios from 'axios'
 window.axios = axios;
 
-(function() {
+export default class Autocomplete {
 
-    window.Autocomplete = function(el,options = null) {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-      this.parent = el;
-      this.input  = el.querySelector('input');
-      this.datas  = null;
+    // Get the element
+    this.el = el;
 
-      var defaults = {
-        url          : el.getAttribute('data-url'),       // Load datalist options via Axios
-        field        : el.getAttribute('data-field'),     // Field to use for the option value
-        datalist     : el.querySelector('datalist'),      // The datalist object
-        hidden       : {
-            input : el.querySelector('.input-hidden'),    // Input hidden
-            field : el.getAttribute('data-hidden-field'), // Field to use for the hidden value
-        },
-        onChanged    : function(e){}                      // Callback function
-      };
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options);
+    // Get the input
+    this.input = el.querySelector('input');
 
-      // Init the events
-      this.init();
+    // Get the datas
+    this.datas = null;
 
-  };
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
 
-  Autocomplete.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
+    // Init the ToggleSwitch
+    this.init();
+
+  }
+
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
+
+    // Variables that you can set as options
+    const defaultOptions = {
+      url          : this.el.getAttribute('data-url'),       // Load datalist options via Axios
+      field        : this.el.getAttribute('data-field'),     // Field to use for the option value
+      datalist     : this.el.querySelector('datalist'),      // The datalist object
+      hidden       : {
+          input : this.el.querySelector('.input-hidden'),    // Input hidden
+          field : this.el.getAttribute('data-hidden-field'), // Field to use for the hidden value
+      },
+      onChanged(e){} // Callback function
+    }
+
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
+      }
+    }
+
+    // Return the object
+    return defaultOptions;
+
+  }
+
+  /**
+   * Init the Autocomplete
+   */
+  init() {
+
+    // Load datas via AXIOS
+    if(this.options.url) { this.load();  }
+
+    console.log(this.options.url);
+
+    // If datalist is a different than the default, change the list attribute
+    if(this.options.datalist.getAttribute('id') !== this.input.getAttribute('list'))
+    {
+        this.input.setAttribute('list',this.options.datalist.getAttribute('id'));
+    }
+
+    // Callback when input change
+    this.input.addEventListener('change', e => {
+        e.preventDefault();
+
+        // Check if an option is selected
+        const option = this.options.datalist.querySelector('option[value="'+e.target.value+'"]');
+        const selected = option ? JSON.parse(option.getAttribute('data-json')) : null;
+
+        // If hidden input set the value
+        if(this.options.hidden.input)
+        {
+          this.options.hidden.input.value = option ? option.getAttribute('data-value') : null;
         }
-      }
-      return source;
+
+        // Run the custom callback
+        this.options.onChanged(selected);
+    });
+
   }
 
-  Autocomplete.prototype.init = function()
-  {
-      var myObject = this;
+  /**
+   * Load via Axios the datas
+   */
+  load() {
 
-      // Load datas via AXIOS
-      if(this.options.url)
-      {
-          this.load();
-      }
+    axios({
+      method: 'post',
+      url: this.options.url,
+    }).then((response)=>{
 
-      // If datalist is a different than the default, change the list attribute
-      if(this.options.datalist.getAttribute('id') !== this.input.getAttribute('list'))
-      {
-          this.input.setAttribute('list',this.options.datalist.getAttribute('id'));
-      }
+      // Set the JSON datas
+      this.datas = response.data;
 
-      // Callback when input change
-      this.input.addEventListener('change',function(e){
-          e.preventDefault();
+      // Create the datalist options
+      this.createOptions();
 
-          // Check if an option is selected
-          var option = myObject.options.datalist.querySelector('option[value="'+this.value+'"]');
-          var selected = option ? JSON.parse(option.getAttribute('data-json')) : null;
+    }).catch((error)=>{
+      console.log(error);
+    });
 
-          // If hidden input set the value
-          if(myObject.options.hidden.input)
-          {
-              myObject.options.hidden.input.value = option ? option.getAttribute('data-value') : null;
-          }
-
-          // Run the custom callback
-          myObject.options.onChanged(selected);
-      });
   }
 
-  Autocomplete.prototype.load = function(e)
-  {
-        axios({
-            method: 'post',
-            url: this.options.url,
-        }).then((response)=>{
+  /**
+   * Create the options list
+   */
+  createOptions() {
 
-            // Set the JSON datas
-            this.datas = response.data;
+    this.datas.forEach(item => {
+        const option = document.createElement('option');
+        const value  = item[this.options.field] ?? null;
+        const hidden = item[this.options.hidden.field] ?? null;
+        option.setAttribute('value',value);
+        option.setAttribute('data-value', hidden);
+        option.setAttribute('data-json',JSON.stringify(item));
+        option.innerHTML = value;
+        this.options.datalist.appendChild(option);
+    });
 
-            // Create the datalist options
-            this.createOptions();
-
-        }).catch((error)=>{});
-  }
-
-  Autocomplete.prototype.createOptions = function(e)
-  {
-        var myObject = this;
-
-        this.datas.forEach((item, i) => {
-            var option = document.createElement('option');
-            var value  = item[myObject.options.field] ?? null;
-            var hidden = item[myObject.options.hidden.field] ?? null;
-            option.setAttribute('value',value);
-            option.setAttribute('data-value', hidden);
-            option.setAttribute('data-json',JSON.stringify(item));
-            option.innerHTML = value;
-            myObject.options.datalist.appendChild(option);
-        });
   }
 
 
-}());
+}
 
-
-// Init the Autocomplete to each .datalist
-var autocompletes = document.querySelectorAll('.autocomplete');
-Array.prototype.forEach.call(autocompletes, function(el, i) {
-    var autocomplete = new Autocomplete(el);
-});

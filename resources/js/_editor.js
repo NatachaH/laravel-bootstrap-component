@@ -3,7 +3,7 @@
 | Editor - Script
 |--------------------------------------------------------------------------
 |
-| Copyright © 2021 Natacha Herth, design & web development | https://www.natachaherth.ch/
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
 | Plugin: TipTap - https://www.tiptap.dev/
 |
 */
@@ -38,300 +38,351 @@ import Div from './editor/div.ts'
 import Italic from './editor/italic.ts'
 import Emoji from './editor/emoji.ts'
 
+export default class Editor {
 
-(function() {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-  window.Editor = function(el) {
+    // Get the element
+    this.el = el;
 
-      // Define the variables
-      this.editor        = null;
-      this.form          = el.closest('form');
-      this.toolbar       = el.querySelector('.editor-toolbar');
-      this.container     = el.querySelector('.editor-container');
-      this.textarea      = el.querySelector('.editor-textarea');
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Define the classes of buttons
-      this.buttons       = {
-        bold:       '.editor-btn-bold',
-        italic:     '.editor-btn-italic',
-        underline:  '.editor-btn-underline',
-        strike:     '.editor-btn-strike',
-        heading:    '.editor-btn-heading',
-        blockquote: '.editor-btn-blockquote',
-        bulletlist: '.editor-btn-bulletlist',
-        orderedlist:'.editor-btn-orderedlist',
-        link:       '.editor-btn-link',
-        table:      '.editor-btn-table',
-        color:      '.editor-btn-color',
-        paragraph:  '.editor-btn-paragraph',
-        div:        '.editor-btn-div',
-        emoji:      '.editor-btn-emoji',
-        clear:      '.editor-btn-clear',
-      };
+    // Get the editor
+    this.editor = null;
 
-      // Init the TipTap editor
-      this.initTipTap();
+    // Get the form
+    this.form          = el.closest('form');
 
-      // Init the buttons
-      this.initButtons();
+    // Get the editor layout
+    this.toolbar       = el.querySelector('.editor-toolbar');
+    this.container     = el.querySelector('.editor-container');
+    this.textarea      = el.querySelector('.editor-textarea');
 
-  };
+    // Define the classes of buttons
+    this.btnsClasses       = {
+      bold:       '.editor-btn-bold',
+      italic:     '.editor-btn-italic',
+      underline:  '.editor-btn-underline',
+      strike:     '.editor-btn-strike',
+      heading:    '.editor-btn-heading',
+      blockquote: '.editor-btn-blockquote',
+      bulletlist: '.editor-btn-bulletlist',
+      orderedlist:'.editor-btn-orderedlist',
+      link:       '.editor-btn-link',
+      table:      '.editor-btn-table',
+      color:      '.editor-btn-color',
+      paragraph:  '.editor-btn-paragraph',
+      div:        '.editor-btn-div',
+      emoji:      '.editor-btn-emoji',
+      clear:      '.editor-btn-clear',
+    };
 
-  // Init the TipTap Editor
-  Editor.prototype.initTipTap = function()
-  {
-      var module = this;
+    this.buttons = {
+      bold:       this.toolbar.querySelector(this.btnsClasses.bold),
+      italic:     this.toolbar.querySelector(this.btnsClasses.italic),
+      underline:  this.toolbar.querySelector(this.btnsClasses.underline),
+      strike:     this.toolbar.querySelector(this.btnsClasses.strike),
+      headings:   this.toolbar.querySelectorAll(this.btnsClasses.heading),
+      blockquote: this.toolbar.querySelector(this.btnsClasses.blockquote),
+      bulletlist: this.toolbar.querySelector(this.btnsClasses.bulletlist),
+      orderedlist:this.toolbar.querySelector(this.btnsClasses.orderedlist),
+      link:       this.toolbar.querySelector(this.btnsClasses.link),
+      table:      this.toolbar.querySelector('.editor-dropdown-table'),
+      tables:     this.toolbar.querySelectorAll(this.btnsClasses.table),
+      tableCreate:this.toolbar.querySelector(this.btnsClasses.table+'[value="create"]'),
+      tableDelete:this.toolbar.querySelector(this.btnsClasses.table+'[value="delete"]'),
+      color:      this.toolbar.querySelector('.editor-dropdown-color'),
+      colors:     this.toolbar.querySelectorAll(this.btnsClasses.color),
+      paragraphs: this.toolbar.querySelectorAll(this.btnsClasses.paragraph),
+      divs:       this.toolbar.querySelectorAll(this.btnsClasses.div),
+      emoji:      this.toolbar.querySelector('.editor-dropdown-emoji'),
+      emojis:     this.toolbar.querySelectorAll(this.btnsClasses.emoji),
+      clear:      this.toolbar.querySelector(this.btnsClasses.clear),
+    }
 
-      this.editor = new TipTapEditor({
-          element: this.container,
-          extensions: [
-            Document,
-            CustomParagraph,
-            Text,
-            History,
-            HardBreak,
-            Bold,
-            Italic,
-            Underline,
-            Strike,
-            Heading,
-            Blockquote,
-            BulletList,
-            OrderedList,
-            ListItem,
-            Link,
-            Table,
-            TableRow,
-            TableCell,
-            TableHeader,
-            Gapcursor,
-            Color,
-            Div,
-            Emoji
-          ],
-          content: this.textarea.value,
-          injectCSS: false,
-          methods: {
-            setLink() {
-              const url = window.prompt('URL')
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
 
-              this.editor.chain().focus().setLink({ href: url }).run()
-            },
-          },
-          onSelectionUpdate({ editor }) {
-            module.toggleButtonsState();
-            module.setCurrentFont();
-            module.setCurrentDiv();
-          },
-
-      });
-
+    // Init the ToggleSwitch
+    this.init();
 
   }
 
-  // Init the buttons
-  Editor.prototype.initButtons = function()
-  {
-      this.bold();
-      this.italic();
-      this.underline();
-      this.strike();
-      this.heading();
-      this.blockquote();
-      this.list();
-      this.link();
-      this.table();
-      this.color();
-      this.paragraph();
-      this.div();
-      this.emoji();
-      this.clear();
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
+
+    // Variables that you can set as options
+    const defaultOptions = {
+      onChanged(e){} // Callback function
+    }
+
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
+      }
+    }
+
+    // Return the object
+    return defaultOptions;
+
   }
 
-  Editor.prototype.getButtonValue = function(event)
-  {
+  /**
+   * Init the Editor
+   */
+  init() {
+
+    const that = this;
+
+    // Init the TipTap plugin
+    this.editor = new TipTapEditor({
+      element: this.container,
+      extensions: [
+        Document,
+        CustomParagraph,
+        Text,
+        History,
+        HardBreak,
+        Bold,
+        Italic,
+        Underline,
+        Strike,
+        Heading,
+        Blockquote,
+        BulletList,
+        OrderedList,
+        ListItem,
+        Link,
+        Table,
+        TableRow,
+        TableCell,
+        TableHeader,
+        Gapcursor,
+        Color,
+        Div,
+        Emoji
+      ],
+      content: this.textarea.value,
+      injectCSS: false,
+      methods: {
+        setLink() {
+          const url = window.prompt('URL')
+
+          this.editor.chain().focus().setLink({ href: url }).run()
+        },
+      },
+      onSelectionUpdate({ editor }) {
+        that.toggleButtonsState();
+        that.setCurrentFont();
+        that.setCurrentDiv();
+      },
+    });
+
+    // Init the buttons
+    if(this.buttons.bold) {this.bold()};
+    if(this.buttons.italic) {this.italic()};
+    if(this.buttons.underline) {this.underline()};
+    if(this.buttons.strike) {this.strike()};
+    if(this.buttons.headings) {this.heading()};
+    if(this.buttons.blockquote) {this.blockquote()};
+    if(this.buttons.bulletlist || this.buttons.orderedlist) {this.list()};
+    if(this.buttons.link) {this.link()};
+    if(this.buttons.table) {this.table()};
+    if(this.buttons.color) {this.color()};
+    if(this.buttons.paragraphs) {this.paragraph()};
+    if(this.buttons.divs) {this.div()};
+    if(this.buttons.emoji) {this.emoji()};
+    if(this.buttons.clear) {this.clear()};
+  }
+
+  /**
+   * Get the button value
+   * @param {event} event The event
+   * @returns {string} The value
+   */
+  getButtonValue(event) {
     return event.target.closest('button').value;
   }
+  
+  /**
+   * Toggle all the buttons state
+   */
+  toggleButtonsState() {
 
-  // Toggle the state of button
-  Editor.prototype.toggleButtonsState = function()
-  {
-      // Bold
-      var bold = this.toolbar.querySelector(this.buttons.bold);
-      if(bold)
-      {
-        this.editor.isActive('bold') ? bold.classList.add('active') : bold.classList.remove('active');
-      }
+    // Bold
+    if(this.buttons.bold)
+    {
+      this.editor.isActive('bold') ? this.buttons.bold.classList.add('active') : this.buttons.bold.classList.remove('active');
+    }
 
-      // Italic
-      var italic = this.toolbar.querySelector(this.buttons.italic);
-      if(italic)
-      {
-        this.editor.isActive('italic') ? italic.classList.add('active') : italic.classList.remove('active');
-      }
+    // Italic
+    if(this.buttons.italic)
+    {
+      this.editor.isActive('italic') ? this.buttons.italic.classList.add('active') : this.buttons.italic.classList.remove('active');
+    }
 
-      // Underline
-      var underline = this.toolbar.querySelector(this.buttons.underline);
-      if(underline)
-      {
-        this.editor.isActive('underline') ? underline.classList.add('active') : underline.classList.remove('active');
-      }
+    // Underline
+    if(this.buttons.underline)
+    {
+      this.editor.isActive('underline') ? this.buttons.underline.classList.add('active') : this.buttons.underline.classList.remove('active');
+    }
 
-      // Strike
-      var strike = this.toolbar.querySelector(this.buttons.strike);
-      if(strike)
-      {
-        this.editor.isActive('strike') ? strike.classList.add('active') : strike.classList.remove('active');
-      }
+    // Strike
+    if(this.buttons.strike)
+    {
+      this.editor.isActive('strike') ? this.buttons.strike.classList.add('active') : this.buttons.strike.classList.remove('active');
+    }
 
-      // Heading
-      var headings = this.toolbar.querySelectorAll(this.buttons.heading);
-      if(headings)
-      {
-        headings.forEach((heading, i) => {
-          this.editor.isActive('heading',{ level: parseInt(heading.getAttribute('value'))}) ? heading.classList.add('active') : heading.classList.remove('active');
-        });
-      }
+    // Heading
+    if(this.buttons.headings)
+    {
+      this.buttons.headings.forEach((heading, i) => {
+        this.editor.isActive('heading',{ level: parseInt(heading.getAttribute('value'))}) ? heading.classList.add('active') : heading.classList.remove('active');
+      });
+    }
 
-      // Bloquote
-      var blockquote = this.toolbar.querySelector(this.buttons.blockquote);
-      if(blockquote)
-      {
-        this.editor.isActive('blockquote') ? blockquote.classList.add('active') : blockquote.classList.remove('active');
-      }
+    // Bloquote
+    if(this.buttons.blockquote)
+    {
+      this.editor.isActive('blockquote') ? this.buttons.blockquote.classList.add('active') : this.buttons.blockquote.classList.remove('active');
+    }
 
-      // Bulletlist
-      var bulletlist = this.toolbar.querySelector(this.buttons.bulletlist);
-      if(bulletlist)
-      {
-        this.editor.isActive('bulletlist') ? bulletlist.classList.add('active') : bulletlist.classList.remove('active');
-      }
+    // Bulletlist
+    if(this.buttons.bulletlist)
+    {
+      this.editor.isActive('bulletlist') ? this.buttons.bulletlist.classList.add('active') : this.buttons.bulletlist.classList.remove('active');
+    }
 
-      // OrderedList
-      var orderedList = this.toolbar.querySelector(this.buttons.orderedlist);
-      if(orderedList)
-      {
-        this.editor.isActive('orderedList') ? orderedList.classList.add('active') : orderedList.classList.remove('active');
-      }
+    // OrderedList
+    if(this.buttons.orderedList)
+    {
+      this.editor.isActive('orderedList') ? this.buttons.orderedList.classList.add('active') : this.buttons.orderedList.classList.remove('active');
+    }
 
-      // Link
-      var link = this.toolbar.querySelector(this.buttons.link);
-      if(link)
-      {
-        this.editor.isActive('link') ? link.classList.add('active') : link.classList.remove('active');
-      }
+    // Link
+    if(this.buttons.link)
+    {
+      this.editor.isActive('link') ? this.buttons.link.classList.add('active') : this.buttons.link.classList.remove('active');
+    }
 
-      // Table
-      var table = this.toolbar.querySelector('.editor-dropdown-table');
-      if(table)
+    // Table
+    if(this.buttons.table)
+    {
+      if(this.editor.isActive('table'))
       {
-        var btnCreateTable = this.toolbar.querySelector(this.buttons.table+'[value="create"]');
-        var btnDeleteTable = this.toolbar.querySelector(this.buttons.table+'[value="delete"]');
-
-        if(this.editor.isActive('table'))
-        {
-          table.classList.add('active');
-          btnCreateTable.classList.add('d-none');
-          btnDeleteTable.classList.remove('d-none');
-        } else {
-          table.classList.remove('active');
-          btnCreateTable.classList.remove('d-none');
-          btnDeleteTable.classList.add('d-none');
-        }
-      }
-
-      // Color
-      var color = this.toolbar.querySelector('.editor-dropdown-color');
-      if(color)
-      {
-        this.editor.isActive('color') ? color.classList.add('active') : color.classList.remove('active');
-      }
-      var colors = this.toolbar.querySelectorAll(this.buttons.color);
-      if(colors)
-      {
-        colors.forEach((color, i) => {
-          this.editor.isActive({ class: color.getAttribute('value')}) ? color.classList.add('active') : color.classList.remove('active');
-        });
-      }
-
-      // Paragraph
-      var paragraphs = this.toolbar.querySelectorAll(this.buttons.paragraph);
-      if(paragraphs)
-      {
-        paragraphs.forEach((paragraph, i) => {
-          if(paragraph.getAttribute('value') == 'null')
-          {
-            this.editor.isActive('paragraph',{ class: null}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
-          } else {
-            this.editor.isActive('paragraph',{ class: paragraph.getAttribute('value')}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
-          }
-        });
-      }
-
-      // Div
-      var divs = this.toolbar.querySelectorAll(this.buttons.div);
-      if(divs)
-      {
-        divs.forEach((div, i) => {
-          this.editor.isActive('div',{ class: div.getAttribute('value')}) ? div.classList.add('active') : div.classList.remove('active');
-        });
-      }
-
-      // Emoji
-      var emoji = this.toolbar.querySelector('.editor-dropdown-emoji');
-      if(emoji)
-      {
-        this.editor.isActive('emoji') ? emoji.classList.add('active') : emoji.classList.remove('active');
-      }
-      var emojis = this.toolbar.querySelectorAll(this.buttons.emoji);
-      if(emojis)
-      {
-        emojis.forEach((emoji, i) => {
-          this.editor.isActive({ class: 'emoji '+emoji.getAttribute('value')}) ? emoji.classList.add('active') : emoji.classList.remove('active');
-        });
-      }
-
-  }
-
-  // Set current font value
-  Editor.prototype.setCurrentFont = function(value = null)
-  {
-      var activeBtn  = this.toolbar.querySelector('.editor-font .dropdown-item.active');
-      if(activeBtn)
-      {
-        var active     = value ?? activeBtn.firstChild.nodeValue;
-        var currentBtn = this.toolbar.querySelector('.editor-dropdown-font small');
-        var current    = currentBtn.firstChild.nodeValue;
-        if(active !== current)
-        {
-          currentBtn.firstChild.nodeValue = active;
-        }
-      }
-  }
-
-  // Set current div value
-  Editor.prototype.setCurrentDiv = function(value = null)
-  {
-      var activeBtn  = this.toolbar.querySelector('.editor-div .dropdown-item.active');
-      if(activeBtn)
-      {
-        var active     = value ?? activeBtn.firstChild.nodeValue;
-        var currentBtn = this.toolbar.querySelector('.editor-dropdown-div small');
-        var current    = currentBtn.firstChild.nodeValue;
-        if(active !== current)
-        {
-          currentBtn.firstChild.nodeValue = active;
-        }
+        this.buttons.table.classList.add('active');
+        this.buttons.tableCreate.classList.add('d-none');
+        this.buttons.tableDelete.classList.remove('d-none');
       } else {
-        var currentBtn = this.toolbar.querySelector('.editor-dropdown-div small');
-        currentBtn.firstChild.nodeValue = '--';
+        this.buttons.table.classList.remove('active');
+        this.buttons.tableCreate.classList.remove('d-none');
+        this.buttons.tableDelete.classList.add('d-none');
       }
+    }
+
+    // Color
+    if(this.buttons.color)
+    {
+      this.editor.isActive('color') ? this.buttons.color.classList.add('active') : this.buttons.color.classList.remove('active');
+    }
+    if(this.buttons.colors)
+    {
+      this.buttons.colors.forEach(color => {
+        this.editor.isActive({ class: color.getAttribute('value')}) ? color.classList.add('active') : color.classList.remove('active');
+      });
+    }
+
+    // Paragraph
+    if(this.buttons.paragraphs)
+    {
+      this.buttons.paragraphs.forEach(paragraph => {
+        if(paragraph.getAttribute('value') == 'null')
+        {
+          this.editor.isActive('paragraph',{ class: null}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
+        } else {
+          this.editor.isActive('paragraph',{ class: paragraph.getAttribute('value')}) ? paragraph.classList.add('active') : paragraph.classList.remove('active');
+        }
+      });
+    }
+
+    // Div
+    if(this.buttons.divs)
+    {
+      this.buttons.divs.forEach(div => {
+        this.editor.isActive('div',{ class: div.getAttribute('value')}) ? div.classList.add('active') : div.classList.remove('active');
+      });
+    }
+
+    // Emoji
+    if(this.buttons.emoji)
+    {
+      this.editor.isActive('emoji') ? this.buttons.emoji.classList.add('active') : this.buttons.emoji.classList.remove('active');
+    }
+    if(this.buttons.emojis)
+    {
+      this.buttons.emojis.forEach(emoji => {
+        this.editor.isActive({ class: 'emoji '+emoji.getAttribute('value')}) ? emoji.classList.add('active') : emoji.classList.remove('active');
+      });
+    }
+
   }
 
+  /**
+   * Set the current Font
+   * @param {string} value
+   */
+  setCurrentFont(value = null) {
+    const activeBtn  = this.toolbar.querySelector('.editor-font .dropdown-item.active');
+    let displayedValue = this.toolbar.querySelector('.editor-dropdown-font small');
+  
+    if(activeBtn)
+    {
+      var active = value ?? activeBtn.firstChild.nodeValue;
+      if(active !== displayedValue.firstChild.nodeValue)
+      {
+        displayedValue.firstChild.nodeValue = active;
+      } 
+    }
+  }
 
-  // Export the editor content to the textarea
-  Editor.prototype.exportToTextarea = function()
-  {
+  /**
+   * Set the current Div
+   * @param {string} value
+   */
+  setCurrentDiv(value = null) {
+    const activeBtn  = this.toolbar.querySelector('.editor-div .dropdown-item.active');
+    let displayedValue = this.toolbar.querySelector('.editor-dropdown-div small');
+
+    if(activeBtn)
+    {
+      var active     = value ?? activeBtn.firstChild.nodeValue;
+      if(active !== displayedValue.firstChild.nodeValue)
+      {
+        displayedValue.firstChild.nodeValue = active;
+      }
+    } else {
+        displayedValue.firstChild.nodeValue = '--';
+    }
+  }
+
+  /**
+   * Export the editor to the textarea field
+   */
+  exportToTextarea() {
     var value = this.editor.getHTML() !== '<p></p>' ? this.editor.getHTML() : null;
     this.textarea.value = value;
   }
@@ -342,328 +393,184 @@ import Emoji from './editor/emoji.ts'
   |--------------------------------------------------------------------------
   */
 
-  // Bold
-  Editor.prototype.bold = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.bold)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-            editor.chain().toggleBold().focus().run();
-        });
-      }
+  bold() {
+    this.buttons.bold.addEventListener('click', () => this.editor.chain().toggleBold().focus().run());
   }
 
-  // Italic
-  Editor.prototype.italic = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.italic)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-            editor.chain().toggleItalic().focus().run();
-        });
-      }
+  italic() {
+    this.buttons.italic.addEventListener('click', () => this.editor.chain().toggleItalic().focus().run());
   }
 
-  // Underline
-  Editor.prototype.underline = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.underline)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-            editor.chain().toggleUnderline().focus().run();
-        });
-      }
+  underline() {
+    this.buttons.underline.addEventListener('click', () => this.editor.chain().toggleUnderline().focus().run());
   }
 
-  // Strike
-  Editor.prototype.strike = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.strike)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-          editor.chain().toggleStrike().focus().run();
-        });
-      }
+  strike() {
+    this.buttons.strike.addEventListener('click', () => this.editor.chain().toggleStrike().focus().run());
   }
 
-  // Heading
-  Editor.prototype.heading = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.heading);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-            var value = module.getButtonValue(event);
-            editor.chain().focus().toggleHeading({ level: parseInt(value)}).run();
-          });
-        });
-      }
+  heading() {
+    this.buttons.headings.forEach(btn => {
+      btn.addEventListener('click', event => {
+        var value = this.getButtonValue(event);
+        this.editor.chain().focus().toggleHeading({ level: parseInt(value)}).run();
+      });
+    });
   }
 
-  // Blockquote
-  Editor.prototype.blockquote = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.blockquote)
-      if(btn)
+  blockquote(){
+    this.buttons.blockquote.addEventListener('click', event => {
+      var command = this.editor.chain().focus();
+      // If it's a blockquote it can't be a div !
+      if(this.editor.isActive('div'))
       {
-        btn.addEventListener('click', (event) => {
+        command.unsetDiv();
+      }
+      command.toggleBlockquote().run();
+    });
+  }
 
-          var command = editor.chain().focus();
+  list() {
+    if(this.buttons.bulletlist)
+    {
+      this.buttons.bulletlist.addEventListener('click', () => this.editor.chain().focus().toggleBulletList().run());
+    }
+    if(this.buttons.orderedlist)
+    {
+      this.buttons.orderedlist.addEventListener('click', () => this.editor.chain().focus().toggleOrderedList().run());
+    }
+  }
+
+  link() {
+    this.buttons.link.addEventListener('click', () => {
+
+      // Define href of link
+      var href = null;
+
+      // If not already a link
+      if(!this.editor.isActive('link'))
+      {
+          // Open a Pop Up for link
+          var url  = window.prompt('URL');
+
+          // Define if it's an url or an email
+          var isUrl = new RegExp('^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$','i');
+          var isEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+          if(isEmail.test(url))
+          {
+            href = 'mailto:'+url;
+          } else if(isUrl.test(url)) {
+            href = url.substring(0, 4) !== 'http' ? 'http://'+url : url;
+          }
+      }
+
+      // Toggle the link
+      this.editor.chain().focus().toggleLink({ href: href }).run();
+
+    });
+  }
+
+  table() {
+      this.buttons.tables.forEach(btn => {
+        btn.addEventListener('click', event => {
+          var value = this.getButtonValue(event);
+          switch (value) {
+            case 'create':
+              this.editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run();
+              break;
+            case 'delete':
+              this.editor.chain().focus().deleteTable().run();
+              break;
+            case 'col-before':
+              this.editor.chain().focus().addColumnBefore().run();
+              break;
+            case 'col-after':
+              this.editor.chain().focus().addColumnAfter().run();
+              break;
+            case 'col-delete':
+              this.editor.chain().focus().deleteColumn().run();
+              break;
+            case 'row-above':
+              this.editor.chain().focus().addRowBefore().run();
+              break;
+            case 'row-below':
+              this.editor.chain().focus().addRowAfter().run();
+              break;
+            case 'row-delete':
+              this.editor.chain().focus().deleteRow().run();
+              break;
+            default:
+          }
+
+        });
+      });
+      
+  }
+
+  color() {
+    this.buttons.colors.forEach(btn => {
+      btn.addEventListener('click', event => {
+        var value = this.getButtonValue(event);
+        this.editor.chain().toggleColor(value).focus().run();
+      });
+    });
+  }
+
+  paragraph() {
+    this.buttons.paragraphs.forEach(btn => {
+      btn.addEventListener('click', event => {
+        var value = this.getButtonValue(event);
+        if(this.editor.isActive('paragraph',{ class: value }) || value == 'null')
+        {
+          this.editor.chain().focus().unsetParagraph().run();
+        } else {
+          this.editor.chain().focus().setParagraph(value).run();
+        }
+      });
+    });
+  }
+
+  div() {
+    this.buttons.divs.forEach(btn => {
+      btn.addEventListener('click', event => {
+          var value = this.getButtonValue(event);
+
+          var command =  this.editor.chain().focus();
 
           // If it's a blockquote it can't be a div !
-          if(editor.isActive('div'))
+          if(this.editor.isActive('blockquote'))
           {
-            command.unsetDiv();
+            command.unsetBlockquote();
           }
 
-          command.toggleBlockquote().run();
-        });
-      }
-  }
-
-  // List
-  Editor.prototype.list = function()
-  {
-      var editor     = this.editor;
-      var btnBullet  = this.toolbar.querySelector(this.buttons.bulletlist)
-      var btnOrdered = this.toolbar.querySelector(this.buttons.orderedlist)
-
-      if(btnBullet)
-      {
-        btnBullet.addEventListener('click', (event) => {
-          editor.chain().focus().toggleBulletList().run();
-        });
-      }
-
-      if(btnOrdered)
-      {
-        btnOrdered.addEventListener('click', (event) => {
-          editor.chain().focus().toggleOrderedList().run();
-        });
-      }
-  }
-
-  // Link
-  Editor.prototype.link = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.link)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-
-          // Define href of link
-          var href = null;
-
-          // If not already a link
-          if(!editor.isActive('link'))
+          if(this.editor.isActive('div',{ class: value }))
           {
-              // Open a Pop Up for link
-              var url  = window.prompt('URL');
-
-              // Define if it's an url or an email
-              var isUrl = new RegExp('^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$','i');
-              var isEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-
-              if(isEmail.test(url))
-              {
-                href = 'mailto:'+url;
-              } else if(isUrl.test(url)) {
-                href = url.substring(0, 4) !== 'http' ? 'http://'+url : url;
-              }
+            command.unsetDiv().run();
+          } if(this.editor.isActive('div')) {
+            command.unsetDiv().setDiv(value).run();
+          } else {
+            command.setDiv(value).run();
           }
-
-          // Toggle the link
-          this.editor.chain().focus().toggleLink({ href: href }).run();
-
-        });
-      }
-  }
-
-  // Table
-  Editor.prototype.table = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.table);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-            var value = module.getButtonValue(event);
-            switch (value) {
-              case 'create':
-                editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run();
-                break;
-              case 'delete':
-                editor.chain().focus().deleteTable().run();
-                break;
-              case 'col-before':
-                editor.chain().focus().addColumnBefore().run();
-                break;
-              case 'col-after':
-                editor.chain().focus().addColumnAfter().run();
-                break;
-              case 'col-delete':
-                editor.chain().focus().deleteColumn().run();
-                break;
-              case 'row-above':
-                editor.chain().focus().addRowBefore().run();
-                break;
-              case 'row-below':
-                editor.chain().focus().addRowAfter().run();
-                break;
-              case 'row-delete':
-                editor.chain().focus().deleteRow().run();
-                break;
-              default:
-            }
-
-          });
-        });
-      }
-  }
-
-  // Color
-  Editor.prototype.color = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.color);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-            var value = module.getButtonValue(event);
-            editor.chain().toggleColor(value).focus().run();
-          });
-        });
-      }
-  }
-
-  // Paragraph
-  Editor.prototype.paragraph = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.paragraph);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-            var value = module.getButtonValue(event);
-            if(editor.isActive('paragraph',{ class: value }) || value == 'null')
-            {
-              editor.chain().focus().unsetParagraph().run();
-            } else {
-              editor.chain().focus().setParagraph(value).run();
-            }
-          });
-        });
-      }
-  }
-
-  // Div
-  Editor.prototype.div = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.div);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-              var value = module.getButtonValue(event);
-
-              var command =  editor.chain().focus();
-
-              // If it's a blockquote it can't be a div !
-              if(editor.isActive('blockquote'))
-              {
-                command.unsetBlockquote();
-              }
-
-              if(editor.isActive('div',{ class: value }))
-              {
-                command.unsetDiv().run();
-              } if(editor.isActive('div')) {
-                command.unsetDiv().setDiv(value).run();
-              } else {
-                command.setDiv(value).run();
-              }
-          });
-        });
-      }
-  }
-
-  // Emoji
-  Editor.prototype.emoji = function()
-  {
-      var module = this;
-      var editor = this.editor;
-      var btns = this.toolbar.querySelectorAll(this.buttons.emoji);
-      if(btns)
-      {
-        btns.forEach((btn, i) => {
-          btn.addEventListener('click', (event) => {
-              var value = module.getButtonValue(event);
-              editor.chain().focus().setEmoji(value).run();
-          });
-        });
-      }
-  }
-
-  // Clear all style
-  Editor.prototype.clear = function()
-  {
-      var editor = this.editor;
-      var btn    = this.toolbar.querySelector(this.buttons.clear)
-      if(btn)
-      {
-        btn.addEventListener('click', (event) => {
-          editor.commands.clearNodes();
-          editor.commands.unsetAllMarks();
-        });
-      }
-  }
-
-}());
-
-
-// Define an empty array to stock the modules
-var editorsModules = [];
-
-// Init the Editor Module for each .editor
-var editors = document.querySelectorAll('.editor');
-editors.forEach((el, i) => {
-  var myEditor = new Editor(el);
-  editorsModules.push(myEditor);
-});
-
-// Init the Form Submit for each form
-var forms = document.querySelectorAll('form:not(.d-none)');
-forms.forEach((form, i) => {
-  form.onsubmit = function(e) {
-
-    // For each Editor Module, save the html in textarea
-    editorsModules.forEach((el, i) => {
-      el.exportToTextarea();
+      });
     });
+  }
 
-    // Prevent sent for test
-    //e.preventDefault();
+  emoji(){
+    this.buttons.emojis.forEach(btn => {
+      btn.addEventListener('click', event => {
+          var value = this.getButtonValue(event);
+          this.editor.chain().focus().setEmoji(value).run();
+      });
+    });
+  }
 
-  };
-});
+  clear() {
+    this.buttons.clear.addEventListener('click', (event) => {
+      this.editor.commands.clearNodes();
+      this.editor.commands.unsetAllMarks();
+    });
+  }
+
+}
+

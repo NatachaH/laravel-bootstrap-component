@@ -1,129 +1,154 @@
 /*
 |--------------------------------------------------------------------------
-| Toggle Select - script
+| Toggle Select - Script
 |--------------------------------------------------------------------------
+|
+| Copyright © 2023 Natacha Herth, design & web development | https://www.natachaherth.ch/
+|
 */
 
-(function() {
+export default class ToggleSelect {
 
-  window.ToggleSelect = function(el,options = null) {
+  /**
+   * Creates an instance
+   *
+   * @author: Natacha Herth
+   * @param {object} el The element
+   * @param {object} options Options that you can overide
+   */
+  constructor(el,options = null){
 
-      // Variables
-      this.select = el.tagName == 'SELECT' ? el : el.querySelector('select');
+    // Get the element
+    this.el = el;
 
-      var defaults = {
-        field        : 'option', // Could be option or group label
-        parent       : this.select.parentNode.parentNode,
-        changeOnInit : true, // Make a change() on the init 
-        withDisabled : false, // Make fields (select, inputs and co) disabled in case you need to not send the fields to not send the fields when they are hidden
-        onChanged    : function(e){}, // Callback function
-      };
+    // Get the parent
+    this.parent = el.parentNode;
 
-      // Create options by extending defaults with the passed in arugments
-      this.options = this.setOption(defaults, options)
+    // Get the input
+    this.select = el.querySelector('select');
 
-      this.init();
+    // Create options by extending defaults with the passed in arugments
+    this.options = this.setOptions(options);
 
-  };
+    // Init the ToggleSwitch
+    this.init();
 
-  ToggleSelect.prototype.setOption = function(source, properties)
-  {
-      var property;
-      for (property in properties) {
-        if (properties.hasOwnProperty(property)) {
-          source[property] = properties[property];
-        }
+  }
+
+  /**
+   * Set the options
+   *
+   * @param {object} options Option that you want to overide
+   * @return {object} The new option object.
+   */
+  setOptions(options) {
+
+    // Variables that you can set as options
+    const defaultOptions = {
+      field        : 'option', // Could be option or group label
+      changeOnInit : true, // Make a change() on the init 
+      resetFormWhenHidden: true, // Make form fields as null when hidden
+      disabledFormWhenHidden : true, // Make form fields disabled in case you need to not send the fields to not send the fields when they are hidden
+      onChanged(e){} // Callback function
+    }
+
+    // Update the options
+    for (let option in options) {
+      if (options.hasOwnProperty(option)) {
+        defaultOptions[option] = options[option];
       }
-      return source;
+    }
+
+    // Return the object
+    return defaultOptions;
+
   }
 
-  // Init
-  ToggleSelect.prototype.init = function()
-  {
-      var toggleSelect = this;
+  /**
+   * Init the Toggle Select
+   */
+  init() {
 
-      if(toggleSelect.options.changeOnInit)
-      {
-        //Hide/Show at render page
-        toggleSelect.change();
-      }
+    //Hide or show at render page
+    if(this.options.changeOnInit)
+    {
+      this.change();
+    }
 
-      // Hide/Show when change the switch
-      toggleSelect.select.addEventListener('change',function(e){
-          toggleSelect.change();
-      },false);
+    // Hide/Show when change the select
+    this.select.addEventListener('change', () => this.change(), false);
+
   }
 
-  // Change the switch
-  ToggleSelect.prototype.change = function()
-  {
-      var toggleSelect = this;
-      var divs = toggleSelect.options.parent.querySelectorAll('[class^="toggle-select-"],[class*=" toggle-select-"]');
-      var option = toggleSelect.select.options[toggleSelect.select.selectedIndex];
-      var group  = option.parentNode.label ? option.parentNode.label.toLowerCase() : null;
-      var value = toggleSelect.options.field == 'group' ? group : option.value;
+  /**
+   * Event when toggle Change
+   */
+  change() {
 
-      // Toggle each div
-      divs.forEach((div, i) => {
-          toggleSelect.toggle(div,value);
-      });
+    const divs = this.parent.querySelectorAll('[class^="toggle-select-"],[class*=" toggle-select-"]');
+    const selectOption = this.select.options[this.select.selectedIndex];
+    let value;
 
-      // Run the custom callback
-      toggleSelect.options.onChanged(value);
-  }
+    if(this.options.field == 'group')
+    {
+      value = selectOption.parentNode.label ? selectOption.parentNode.label.toLowerCase() : null;
+    } else {
+      value = selectOption.value;
+    }
 
-  // Change the switch
-  ToggleSelect.prototype.toggle = function(div,value)
-  {
-      var isVisible = div.classList.contains('toggle-select-'+value);
-      var inputs = div.querySelectorAll('select,textarea,input:not([type="hidden"],[type="checkbox"],[type="radio"])');
+    // Toggle each div
+    divs.forEach(div => {
+      const isVisible = div.classList.contains('toggle-select-'+value);
+      const inputs = div.querySelectorAll('select,textarea,input:not([type="hidden"],[type="checkbox"],[type="radio"])');
 
       // Toggle the visible div
       isVisible ? div.classList.remove('d-none') : div.classList.add('d-none');
 
-      // Toggle the required inputs
+      // Toggle the inputs
       if(inputs)
       {
-        this.required(inputs,isVisible);
-        if(this.options.withDisabled)
-        {
-          this.disabled(inputs,isVisible);
-        }
+        this.toggleForm(inputs,isVisible);
       }
+
+    });
+
+    // Run the custom callback
+    this.options.onChanged(value);
+
   }
 
-  // Toggle the required attribute
-  ToggleSelect.prototype.required = function(elements,show)
-  {
-      elements.forEach((el, i) => {
-        var parent = el.parentNode;
-        if(show)
+  /**
+   * Toggl element when change the select
+   * @param {array} inputs 
+   * @param {boolean} isVisible 
+   */
+  toggleForm(inputs,isVisible) {
+
+    inputs.forEach(input => {
+
+        const parent = input.parentNode;
+
+        // Make them required
+        if(parent.classList.contains('field-required'))
         {
-            if(parent.classList.contains('field-required')) { el.required = true; }
-        } else {
-            el.value = null;
-            if(parent.classList.contains('field-required')) { el.required = false; }
+          input.required = isVisible ? true : false;
         }
-      });
-  }
 
-  // Toggle disabled attribute
-  ToggleSelect.prototype.disabled = function(elements,show)
-  {
-      elements.forEach((el, i) => {
-        if(show)
+        // Make them null
+        if(this.options.resetFormWhenHidden)
         {
-            el.disabled = false;
-        } else {
-            el.disabled = true;
+          input.value = null;
         }
-      });
+
+        // Make them disabled
+        if(this.options.disabledFormWhenHidden)
+        {
+          input.disabled = isVisible ? false : true;
+        }
+      
+    });
+    
   }
 
-}());
+}
 
-// Init the ToggleSwitch to each .table-tree
-var selects = document.querySelectorAll('.toggle-select');
-Array.prototype.forEach.call(selects, function(el, i) {
-    var mySelect = new ToggleSelect(el);
-});
