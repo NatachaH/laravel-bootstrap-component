@@ -28,11 +28,11 @@ export default class Dynamic {
     this.key = this.el.querySelectorAll('.dynamic-item').length ?? 0;
 
     // Get the min elements available
-    this.minData = parseInt(this.el.getAttribute('data-min'));
+    this.minData = parseInt(this.el.getAttribute('data-min')) || 0;
     this.min = this.minData != 0 ? this.minData : 1;
 
     // Get the max elements available
-    this.maxData = parseInt(this.el.getAttribute('data-max'));
+    this.maxData = parseInt(this.el.getAttribute('data-max')) || 0;
     this.max = this.maxData != 0 ? this.maxData : null;
 
     // Get the add button
