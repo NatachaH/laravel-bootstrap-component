@@ -13,6 +13,7 @@ import Editor from './_editor';
 import ModalConfirm from './_modal-confirm';
 import ModalLoad from './_modal-load';
 import TableLink from './_table-link';
+import TableTree from './_table-tree';
 import ToggleSelect from "./_toggle-select"; 
 import ToggleSwitch from "./_toggle-switch"; 
 
@@ -93,6 +94,13 @@ if(tableLinks)
     tableLinks.forEach(el => new TableLink(el));
 }
 
+// Init the TableTreeView
+var tree = document.querySelectorAll('.table-tree');
+if(tree)
+{
+    tree.forEach(el => new TableTree(el));
+}
+
 // Init the ToggleSelect
 var selects = document.querySelectorAll('.toggle-select');
 if(selects)
@@ -106,3 +114,4 @@ if(switchs)
 {
     switchs.forEach(el => new ToggleSwitch(el));
 }
+

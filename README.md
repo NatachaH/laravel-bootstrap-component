@@ -854,3 +854,47 @@ var myTable = new TableLink(table);
 ```
 
 *The tablelink will be automatic on table with class .table-link*
+
+## Table tree
+
+If you need to make a row with children and contract/expand them:
+
+**Require**
+- JS: ```import TableTree from '../../vendor/nh/bs-component/resources/js/_table-tree';```
+
+HTML:
+
+```
+<table id="myTableTree" class="table table-tree">
+  <thead>
+    <tr>
+      <th></th> <!-- For arrow -->
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr data-id="1" data-lvl="0" data-parent="0">
+       <td class="toggle-children"><i class="icon-chevron-right"></i></td> 
+       <td>My title</td>
+      </tr>
+      <tr class="collapse" data-id="2" data-lvl="1" data-parent="1">
+       <td class="toggle-children"><i class="icon-chevron-right"></i></td> 
+       <td>My children title</td>
+      </tr>
+      <tr class="collapse" data-id="3" data-lvl="1" data-parent="1">
+       <td class="toggle-children"><i class="icon-chevron-right"></i></td> 
+       <td>My other children title</td>
+      </tr>
+  </tbody>
+</table>
+
+```
+
+By default the class .table-link make a new TableLink. But you can customize it in JS:
+
+```
+var table = document.getElementById('#myTableLink');
+var myTable = new TableLink(table);
+```
+
+*The tablelink will be automatic on table with class .table-link*
