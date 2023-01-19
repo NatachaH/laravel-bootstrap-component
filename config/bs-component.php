@@ -65,7 +65,7 @@ return [
     | Editor
     |--------------------------------------------------------------------------
     |
-    | Here you may specify the defualt values for the editor
+    | Here you may specify the default values for the editor
     |
     */
 
