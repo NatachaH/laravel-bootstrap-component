@@ -95,7 +95,8 @@ export default class Dynamic {
     // Create empty row if min < nbr
     if(this.getNumber() < this.min)
     {
-        for(let i = 1; i <= (this.min - this.getNumber()); i++ )
+        const nbrNewRow = (this.min - this.getNumber());
+        for(let i = 1; i <= nbrNewRow; i++ )
         {
           this.add();
         }
@@ -149,6 +150,9 @@ export default class Dynamic {
    * Toggle buttons
    */
   toggleButtons() {
+
+    // Update the number of removeBtns
+    this.removeBtns = this.el.querySelectorAll('.dynamic-remove');
 
     // Disabled the add button if is max
     if(this.addBtn)
