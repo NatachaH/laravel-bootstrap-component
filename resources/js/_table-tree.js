@@ -40,7 +40,7 @@ export default class TableTree {
 
       if(toggle)
       {
-        toggle.addEventListener('click', () => {
+        toggle.addEventListener('click', (e) => {
 
           // Get the row
           const row = e.target.closest('tr');
