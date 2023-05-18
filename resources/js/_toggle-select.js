@@ -22,7 +22,7 @@ export default class ToggleSelect {
     this.el = el;
 
     // Get the parent
-    this.parent = el.parentNode;
+    this.parent = el.closest('form');
 
     // Get the input
     this.select = el.querySelector('select');

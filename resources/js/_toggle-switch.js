@@ -22,7 +22,7 @@ export default class ToggleSwitch {
     this.el = el;
 
     // Get the parent
-    this.parent = el.parentNode;
+    this.parent = el.closest('form');
 
     // Get the input
     this.input = el.querySelector('input[type="checkbox"]');
