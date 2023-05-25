@@ -349,7 +349,7 @@ export default class Editor {
     const activeBtn  = this.toolbar.querySelector('.editor-font .dropdown-item.active');
     let displayedValue = this.toolbar.querySelector('.editor-dropdown-font small');
   
-    if(activeBtn)
+    if(activeBtn && displayedValue)
     {
       var active = value ?? activeBtn.firstChild.nodeValue;
       if(active !== displayedValue.firstChild.nodeValue)
@@ -367,15 +367,18 @@ export default class Editor {
     const activeBtn  = this.toolbar.querySelector('.editor-div .dropdown-item.active');
     let displayedValue = this.toolbar.querySelector('.editor-dropdown-div small');
 
-    if(activeBtn)
+    if(displayedValue)
     {
-      var active     = value ?? activeBtn.firstChild.nodeValue;
-      if(active !== displayedValue.firstChild.nodeValue)
+      if(activeBtn)
       {
-        displayedValue.firstChild.nodeValue = active;
+        var active     = value ?? activeBtn.firstChild.nodeValue;
+        if(active !== displayedValue.firstChild.nodeValue)
+        {
+          displayedValue.firstChild.nodeValue = active;
+        }
+      } else {
+          displayedValue.firstChild.nodeValue = '--';
       }
-    } else {
-        displayedValue.firstChild.nodeValue = '--';
     }
   }
 
